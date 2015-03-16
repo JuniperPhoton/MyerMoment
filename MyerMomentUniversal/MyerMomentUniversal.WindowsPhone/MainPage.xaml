@@ -1,0 +1,112 @@
+﻿<Page
+    x:Class="MyerMomentUniversal.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyerMomentUniversal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d"
+    DataContext="{StaticResource Locator}">
+    <Page.Background>
+        <StaticResource ResourceKey="MomentThemeColor"/>
+    </Page.Background>
+    <Page.Resources>
+    	
+    	<Storyboard x:Name="SplashStory">
+    		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="image">
+    			<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+    			<EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1.3"/>
+    			<EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1.3"/>
+    		</DoubleAnimationUsingKeyFrames>
+    		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="image">
+    			<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+    			<EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1.3"/>
+    			<EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1.3"/>
+    		</DoubleAnimationUsingKeyFrames>
+    		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image">
+    			<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+    			<EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0"/>
+    			<EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="0"/>
+    		</DoubleAnimationUsingKeyFrames>
+    		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image">
+    			<DiscreteObjectKeyFrame KeyTime="0:0:1.3">
+    				<DiscreteObjectKeyFrame.Value>
+    					<Visibility>Visible</Visibility>
+    				</DiscreteObjectKeyFrame.Value>
+    			</DiscreteObjectKeyFrame>
+    			<DiscreteObjectKeyFrame KeyTime="0:0:1.4">
+    				<DiscreteObjectKeyFrame.Value>
+    					<Visibility>Collapsed</Visibility>
+    				</DiscreteObjectKeyFrame.Value>
+    			</DiscreteObjectKeyFrame>
+    		</ObjectAnimationUsingKeyFrames>
+    	</Storyboard>
+    	
+    </Page.Resources>
+    <Grid DataContext="{Binding MainVM}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+            
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock  FontSize="30" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" Margin="15,0,0,0">
+                <Run>Myer</Run>
+                </TextBlock>
+                <TextBlock  FontSize="30" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" Margin="0,0,0,0">
+                <Run FontWeight="ExtraBold">Moment</Run>
+                </TextBlock>
+            </StackPanel>
+            
+        </Grid>
+        <Grid Grid.Row="1" Background="{StaticResource MomentThemeBlack}">
+            <Border Height="50"  VerticalAlignment="Top" Background="{StaticResource MomentThemeColor}">
+                
+            </Border>
+            <Pivot Margin="0,-10,0,10">
+                <Pivot.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding }" FontWeight="ExtraBold" FontSize="20"/>
+                    </DataTemplate>
+                </Pivot.HeaderTemplate>
+                <PivotItem Header="START">
+                    <Grid>
+                        <Path Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Pivot.SlideInAnimationGroup="GroupOne" Margin="0,0,0,50" Opacity="0.4" Data="M48.850243,32.061127L40.837259,42.988266 36.466324,40.074284 26.633064,51.365921 61.962049,51.365921 57.591017,36.067707 52.492086,36.067707z M30.036716,26.927057C27.798449,26.927057 25.983376,28.740846 25.983376,30.979034 25.983376,33.21732 27.798449,35.031313 30.036716,35.031313 32.273483,35.031313 34.088657,33.21732 34.088657,30.979034 34.088657,28.740846 32.273483,26.927057 30.036716,26.927057z M17.322001,19.069001L65.332998,19.069001 65.332998,54.707001 17.322001,54.707001z M42.922237,0L50.809,15.735769 13.98841,15.735769 13.98841,49.422001 0,21.513156z" Stretch="Uniform"  Width="200" Height="200"  RenderTransformOrigin="0.5,0.5"/>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                            <TextBlock FontSize="30" Pivot.SlideInAnimationGroup="GroupTwo" TextWrapping="Wrap" FontWeight="ExtraBold" Opacity="0.3" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center" Foreground="Black" Text="Take or pick a photo" Margin="0,0,0,30"/>
+                            <Button Click="OpenPhotoClick" HorizontalAlignment="Center" VerticalAlignment="Bottom" Pivot.SlideInAnimationGroup="GroupThree" BorderThickness="0" MinHeight="50" MinWidth="50" Style="{StaticResource ButtonStyle1}">
+                                <Grid Width="70" Height="70">
+                                    <Ellipse Fill="{StaticResource MomentThemeColor}"/>
+                                    <SymbolIcon Symbol="Add" Foreground="{StaticResource MomentThemeBlack}"/>
+                                </Grid>
+                            </Button>
+
+                        </StackPanel>
+
+                    </Grid>
+                   
+                </PivotItem>
+                <PivotItem Header="COLLECTION">
+                    <Grid>
+                        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                            <Path Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Pivot.SlideInAnimationGroup="GroupOne" Margin="0,0,0,50" Opacity="0.4" Data="M48.850243,32.061127L40.837259,42.988266 36.466324,40.074284 26.633064,51.365921 61.962049,51.365921 57.591017,36.067707 52.492086,36.067707z M30.036716,26.927057C27.798449,26.927057 25.983376,28.740846 25.983376,30.979034 25.983376,33.21732 27.798449,35.031313 30.036716,35.031313 32.273483,35.031313 34.088657,33.21732 34.088657,30.979034 34.088657,28.740846 32.273483,26.927057 30.036716,26.927057z M17.322001,19.069001L65.332998,19.069001 65.332998,54.707001 17.322001,54.707001z M42.922237,0L50.809,15.735769 13.98841,15.735769 13.98841,49.422001 0,21.513156z" Stretch="Uniform"  Width="200" Height="200"  RenderTransformOrigin="0.5,0.5"/>
+                            <TextBlock FontSize="30" Pivot.SlideInAnimationGroup="GroupTwo" TextWrapping="Wrap" FontWeight="ExtraBold" Opacity="0.3" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center" Foreground="Black" Text="No photos" Margin="0,0,0,30"/>
+
+                        </StackPanel>
+
+                    </Grid>
+                </PivotItem>
+                <PivotItem Header="SETTING">
+
+                </PivotItem>
+            </Pivot>
+        </Grid>
+        <Image d:IsHidden="True"  x:Name="image" Grid.RowSpan="2" Source="Assets/SplashScreen.png" Stretch="UniformToFill" Margin="0,-30,0,0" RenderTransformOrigin="0.5,0.5" >
+        	<Image.RenderTransform>
+        		<CompositeTransform/>
+        	</Image.RenderTransform>
+        </Image>
+    </Grid>
+</Page>
