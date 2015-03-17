@@ -27,14 +27,13 @@ using Windows.UI.Text;
 
 namespace MyerMomentUniversal
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
+
     public sealed partial class ImageHandlePage : Page
     {
       
         private bool _isInColorMode = false;
         private bool _isInFontFamilyMode = false;
+        private bool _isInStyleMode = false;
 
         private double _angle = 0;
 
@@ -42,6 +41,8 @@ namespace MyerMomentUniversal
         private uint _width;
         private int _dpiX;
         private int _dpiY;
+
+        private double _qualityScale;
 
         private double _imageBorderH;
         private double _imageBorderW;
@@ -51,6 +52,15 @@ namespace MyerMomentUniversal
         public ImageHandlePage()
         {
             this.InitializeComponent();
+
+            this.NavigationCacheMode = NavigationCacheMode.Disabled;
+
+            switch(LocalSettingHelper.GetValue("Quality"))
+            {
+                case "0": _qualityScale = 0.7; break;
+                case "1": _qualityScale = 0.9; break;
+                case "2": _qualityScale = 1.0; break;
+            }
         }
 
         #region FUNCTION
@@ -96,6 +106,34 @@ namespace MyerMomentUniversal
             }
         }
 
+        private void FamilyClick(object sender,RoutedEventArgs e)
+        {
+            if(_isInFontFamilyMode)
+            {
+                FamilyOutStory.Begin();
+                _isInFontFamilyMode = false;
+            }
+            else
+            {
+                FamilyInStory.Begin();
+                _isInFontFamilyMode = true;
+            }
+        }
+
+        private void MovieClick(object sender,RoutedEventArgs e)
+        {
+            if(_isInStyleMode)
+            {
+                MovieOutStory.Begin();
+                _isInStyleMode = false;
+            }
+            else
+            {
+                MovieInStory.Begin();
+                _isInStyleMode = true;
+            }
+        }
+
         private void FontColorClick(object sender,RoutedEventArgs e)
         {
             var btn = sender as Button;
@@ -105,6 +143,14 @@ namespace MyerMomentUniversal
                 TextView.Foreground = border.Background;
             }
         }
+
+        private void FontFamilyClick(object sender,RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            var textblock = btn.Content as TextBlock;
+            TextView.FontFamily = textblock.FontFamily;
+        }
+
         #endregion
 
         #region TEXT_MANI
@@ -113,8 +159,8 @@ namespace MyerMomentUniversal
             textGrid.ManipulationDelta -= TextView_ManipulationDelta;
             textGrid.ManipulationDelta += TextView_ManipulationDelta;
 
-            textGrid.ManipulationCompleted -= TextView_ManipulationCompleted;
-            textGrid.ManipulationCompleted += TextView_ManipulationCompleted;
+            //textGrid.ManipulationCompleted -= TextView_ManipulationCompleted;
+            //textGrid.ManipulationCompleted += TextView_ManipulationCompleted;
 
             textGrid.RenderTransform = _tranTemplete;
         }
@@ -136,10 +182,18 @@ namespace MyerMomentUniversal
                 _tranTemplete.Y += e.Delta.Translation.Y;
         }
 
-        private void TextView_PointerCaptureLost(object sender, PointerRoutedEventArgs e)
+        private void textGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            maskBorder.Visibility = Visibility.Collapsed;
+            TextView.Focus(Windows.UI.Xaml.FocusState.Programmatic);
+        }
+
+        private void textGrid_LostFocus(object sender, RoutedEventArgs e)
+        {
+            maskBorder.Visibility = Visibility.Visible;
 
         }
+
 
         #endregion
 
@@ -184,6 +238,7 @@ namespace MyerMomentUniversal
                 this._height = decoder.OrientedPixelHeight;
                 this._width = decoder.OrientedPixelWidth;
 
+
                 //显示图像
                 var bitmap = new BitmapImage();
                 bitmap.SetSource(fileStream);
@@ -222,7 +277,7 @@ namespace MyerMomentUniversal
 
                     var propertySet = new BitmapPropertySet();
 
-                    var qualityValue = new BitmapTypedValue(1.0, PropertyType.Single);
+                    var qualityValue = new BitmapTypedValue(_qualityScale, PropertyType.Single);
                     propertySet.Add("ImageQuality", qualityValue);
 
                     var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, fileStream, propertySet);
@@ -236,11 +291,7 @@ namespace MyerMomentUniversal
 
                 MaskGrid.Visibility = Visibility.Collapsed;
 
-                var rootFrame = Window.Current.Content as Frame;
-                if (rootFrame.CanGoBack)
-                {
-                    rootFrame.GoBack();
-                }
+                Frame.Navigate(typeof(SharePage), fileToSave.Name);
             }
             catch (Exception e)
             {
@@ -254,21 +305,22 @@ namespace MyerMomentUniversal
 
         private async void CancelClick(object sender,RoutedEventArgs e)
         {
-            MessageDialog md = new MessageDialog("You are going to give up editing the photo.", "CONFIRM");
+            MessageDialog md = new MessageDialog("This photo being edited will be discarded.", "Discard this photo?");
 
             var rootFrame = Window.Current.Content as Frame;
 
-            md.Commands.Add(new UICommand("YES", act =>
+            md.Commands.Add(new UICommand("Discard", act =>
             {
                 if (rootFrame.CanGoBack)
                 {
                     rootFrame.GoBack();
                 }
             }));
-            md.Commands.Add(new UICommand("CANCEL", act =>
+            md.Commands.Add(new UICommand("Cancel", act =>
             {
                 return;
             }));
+            
             await md.ShowAsync();
         }
 
@@ -284,7 +336,6 @@ namespace MyerMomentUniversal
                 if (args.Files.Count == 0) return;
 
                 ShowImage(args.Files.FirstOrDefault());
-                //Messenger.Default.Send<GenericMessage<StorageFile>>(new GenericMessage<StorageFile>(args.Files[0]), "PickedFile");
             }
         }
 
@@ -296,35 +347,29 @@ namespace MyerMomentUniversal
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             e.Handled = true;
-            if(_isInFontFamilyMode==true || _isInColorMode==true)
+            if(_isInFontFamilyMode==true || _isInColorMode==true || _isInStyleMode==true)
             {
                 if (_isInColorMode)
                 {
                     ColorOutStory.Begin();
                     _isInColorMode = false;
                 }
+                if(_isInFontFamilyMode)
+                {
+                    FamilyOutStory.Begin();
+                    _isInFontFamilyMode = false;
+                }
+                if (_isInStyleMode)
+                {
+                    MovieOutStory.Begin();
+                    _isInStyleMode = false;
+                }
                 return;
             }
             CancelClick(null, null);
         }
 
-        private void TextView_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            this.Focus(Windows.UI.Xaml.FocusState.Programmatic);
-        }
-
-        private void textGrid_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            maskBorder.Visibility = Visibility.Collapsed;
-            TextView.Focus(Windows.UI.Xaml.FocusState.Programmatic);
-        }
-
-        private void textGrid_LostFocus(object sender, RoutedEventArgs e)
-        {
-            maskBorder.Visibility = Visibility.Visible;
-
-        }
-
+        
         
     }
 }

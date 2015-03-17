@@ -8,7 +8,10 @@
     mc:Ignorable="d" Background="{StaticResource MomentThemeColor}" 
     >
 	<Page.Resources>
-		<Style x:Key="ButtonStyle2" TargetType="Button">
+        <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="White"></SolidColorBrush>
+        <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush">#FFB39239</SolidColorBrush>
+        <x:Double x:Key="PhonePivotUnselectedItemOpacity">0.3</x:Double>
+        <Style x:Key="ButtonStyle2" TargetType="Button">
 			<Setter Property="Background" Value="Transparent"/>
 			<Setter Property="BorderBrush" Value="{ThemeResource PhoneForegroundBrush}"/>
 			<Setter Property="Foreground" Value="{ThemeResource PhoneForegroundBrush}"/>
@@ -162,9 +165,6 @@
 											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentElement">
 												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxDisabledForegroundThemeBrush}"/>
 											</ObjectAnimationUsingKeyFrames>
-											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="PlaceholderTextContentPresenter">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxDisabledForegroundThemeBrush}"/>
-											</ObjectAnimationUsingKeyFrames>
 											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="HeaderContentPresenter">
 												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxDisabledHeaderForegroundThemeBrush}"/>
 											</ObjectAnimationUsingKeyFrames>
@@ -191,7 +191,9 @@
 							<Border x:Name="BorderElement" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Row="1"/>
 							<ContentPresenter x:Name="HeaderContentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Margin="{ThemeResource TextControlHeaderMarginThemeThickness}" Grid.Row="0" Style="{StaticResource HeaderContentPresenterStyle}"/>
 							<ScrollViewer x:Name="ContentElement" AutomationProperties.AccessibilityView="Raw" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsTabStop="False" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" Margin="{TemplateBinding BorderThickness}" MinHeight="{ThemeResource TextControlThemeMinHeight}" Padding="{TemplateBinding Padding}" Grid.Row="1" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled"/>
-							<ContentControl x:Name="PlaceholderTextContentPresenter" Content="{TemplateBinding PlaceholderText}" Foreground="{ThemeResource TextBoxPlaceholderTextThemeBrush}" IsTabStop="False" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Grid.Row="1"/>
+							<ContentControl x:Name="PlaceholderTextContentPresenter" Content="{TemplateBinding PlaceholderText}" IsTabStop="False" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Grid.Row="1">
+								
+							</ContentControl>
 						</Grid>
 					</ControlTemplate>
 				</Setter.Value>
@@ -199,8 +201,8 @@
 		</Style>
 		<Storyboard x:Name="ColorInStory">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ColorGrid">
-				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
 					<EasingDoubleKeyFrame.EasingFunction>
 						<CircleEase EasingMode="EaseOut"/>
 					</EasingDoubleKeyFrame.EasingFunction>
@@ -208,11 +210,11 @@
 			</DoubleAnimationUsingKeyFrames>
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid">
 				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="300"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="300"/>
 			</DoubleAnimationUsingKeyFrames>
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
 				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
 			</DoubleAnimationUsingKeyFrames>
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid1">
 				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
@@ -245,6 +247,78 @@
 				<SplineDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
 			</DoubleAnimationUsingKeyFrames>
 		</Storyboard>
+		<Storyboard x:Name="FamilyInStory">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="FamilyGird">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="400"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
+					<EasingDoubleKeyFrame.EasingFunction>
+						<CircleEase EasingMode="EaseOut"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="182">
+					<EasingDoubleKeyFrame.EasingFunction>
+						<CircleEase EasingMode="EaseOut"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid1">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="182">
+					<EasingDoubleKeyFrame.EasingFunction>
+						<CircleEase EasingMode="EaseOut"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Name="FamilyOutStory">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid">
+				<EasingDoubleKeyFrame KeyTime="0" Value="182"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="182"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid1">
+				<EasingDoubleKeyFrame KeyTime="0" Value="182"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="182"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="FamilyGird">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="400"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Name="MovieInStory">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid1">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="StyleGrid">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="400"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Name="MovieOutStory">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid">
+				<EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid1">
+				<EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="StyleGrid">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="400"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
 		
 	</Page.Resources>
     
@@ -260,7 +334,7 @@
             <Grid Background="{StaticResource MomentThemeColor}">
                 <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
                     <SymbolIcon Symbol="Edit" Foreground="{StaticResource MomentThemeBlack}" />
-                    <TextBlock  Text="EDIT" Foreground="{StaticResource MomentThemeBlack}" FontSize="30" FontWeight="ExtraBold" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBlock  Text="EDIT" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0" FontFamily="Font/FZYTK.TTF#FZYaoTi" FontWeight="Bold"/>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -271,27 +345,37 @@
                     <CompositeTransform/>
                 </Image.RenderTransform>
             </Image>
-            <Grid x:Name="textGrid" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped" ManipulationMode="All" PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <TextBox x:Name="TextView" FontSize="20"  Visibility="{Binding TextViewVisibilty}" AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Describe the moment of the photo" HorizontalAlignment="Center"/>
+            <Grid x:Name="textGrid"  LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped" ManipulationMode="All" PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <TextBox x:Name="TextView" FontSize="30"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="The moment of this photo" HorizontalAlignment="Center" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                 <Border x:Name="maskBorder" Background="Black" Opacity="0.01"/>
             </Grid>
+            <StackPanel x:Name="movieSP" Visibility="Collapsed" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped" ManipulationMode="All" PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <TextBox x:Name="Subtitle" FontSize="18"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Make this photo a movie frame" HorizontalAlignment="Center" FontFamily="Font/FZYTK.TTF#FZYaoTi" Margin="0"/>
+                <TextBox x:Name="OriText" FontSize="15"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Make this photo a movie frame" HorizontalAlignment="Center" FontFamily="Font/FZYTK.TTF#FZYaoTi" Margin="0"/>
+
+            </StackPanel>
             <!--<ProgressRing x:Name="ring" Visibility="{Binding ShowProgressRingVisibility}" VerticalAlignment="Center" HorizontalAlignment="Center" IsActive="True" Background="{x:Null}" Foreground="White"/>-->
         </Grid>
         <Grid x:Name="grid" Grid.Row="2" RenderTransformOrigin="0.5,0.5">
-        	<Grid.RenderTransform>
-        		<CompositeTransform/>
-        	</Grid.RenderTransform>
+            <Grid.RenderTransform>
+                <CompositeTransform/>
+            </Grid.RenderTransform>
             <ScrollViewer HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    
                     <Button Click="RotateClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                         <Grid Height="50" Width="50">
                             <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                             <SymbolIcon Symbol="Rotate" Foreground="{StaticResource MomentThemeBlack}"/>
                         </Grid>
                     </Button>
-                    
-                    <Button Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                    <Button Click="MovieClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                        <Grid Height="50" Width="50">
+                            <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                            <SymbolIcon Symbol="Favorite" Foreground="{StaticResource MomentThemeBlack}"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Click="FamilyClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                         <Grid Height="50" Width="50">
                             <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                             <SymbolIcon Symbol="Font" Foreground="{StaticResource MomentThemeBlack}"/>
@@ -303,7 +387,6 @@
                             <SymbolIcon Symbol="FontColor" Foreground="{StaticResource MomentThemeBlack}"/>
                         </Grid>
                     </Button>
-
                     <Button Click="IncreaseFontsizeClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                         <Grid Height="50" Width="50">
                             <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
@@ -316,7 +399,7 @@
                             <SymbolIcon Symbol="FontDecrease" Foreground="{StaticResource MomentThemeBlack}"/>
                         </Grid>
                     </Button>
-                    <Button Click="BoldFontClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                    <!--<Button Click="BoldFontClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                         <Grid Height="50" Width="50">
                             <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                             <SymbolIcon Symbol="Bold" Foreground="{StaticResource MomentThemeBlack}"/>
@@ -327,7 +410,7 @@
                             <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                             <SymbolIcon Symbol="Italic" Foreground="{StaticResource MomentThemeBlack}"/>
                         </Grid>
-                    </Button>
+                    </Button>-->
                 </StackPanel>
             </ScrollViewer>
             
@@ -344,7 +427,7 @@
                 <Border Background="#FFFFEA65">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <SymbolIcon Symbol="Save" Foreground="{StaticResource MomentThemeBlack}"/>
-                        <TextBlock Margin="10,0,0,0" Text="SAVE AS COPY" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraBold" />
+                        <TextBlock Margin="10,0,0,0" Text="SAVE AS COPY" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraBold" FontFamily="Font/FZYTK.TTF#FZYaoTi" />
                     </StackPanel>
                 </Border>
             </Button>
@@ -352,7 +435,7 @@
                 <Border Background="White">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <SymbolIcon Symbol="Cancel" Foreground="{StaticResource MomentThemeBlack}"/>
-                        <TextBlock Text="CANCEL" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="ExtraBold" />
+                        <TextBlock Text="CANCEL" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="ExtraBold" FontFamily="Font/FZYTK.TTF#FZYaoTi" />
                     </StackPanel>
                 </Border>
             </Button>
@@ -362,54 +445,124 @@
         		<CompositeTransform TranslateY="200"/>
         	</Grid.RenderTransform>
 
-            <StackPanel Background="{StaticResource MomentThemeColor}" Orientation="Vertical">
-                <TextBlock Text="COLOR" Foreground="Black" FontWeight="ExtraBold" FontSize="30" Margin="10"/>
-                <Grid Height="40" Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Button Click="FontColorClick" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
-                        <Border Background="White" Margin="0,0,10,0"/>
-                    </Button>
-                    <Button Click="FontColorClick" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
-                        <Border Background="Black" Margin="10,0,10,0"/>
-                    </Button>
-                </Grid>
+            <StackPanel Background="#FFE0E0E0" Orientation="Vertical">
+                <TextBlock Text="FONT COLOR" Foreground="#FFBDBDBD" FontWeight="ExtraBold" FontSize="30" Margin="10" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                <ScrollViewer HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Click="FontColorClick"  Margin="10,0,10,0" Height="70" Width="70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
+                            <Border Background="White" />
+                        </Button>
+                        <Button Click="FontColorClick" Margin="10,0,10,0" Grid.Column="1" Height="70" Width="70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
+                            <Border Background="#FF6A6A6A" />
+                        </Button>
+                        <Button Click="FontColorClick" Margin="10,0,10,0" Grid.Column="1" Height="70" Width="70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
+                            <Border Background="Black" />
+                        </Button>
+                        <Button Click="FontColorClick" Margin="10,0,10,0" Grid.Column="1" Height="70" Width="70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
+                            <Border Background="#FFF52828" />
+                        </Button>
+                        <Button Click="FontColorClick" Margin="10,0,10,0" Grid.Column="1" Height="70" Width="70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
+                            <Border Background="#FF2EADDC" />
+                        </Button>
+                        <Button Click="FontColorClick" Margin="10,0,10,0" Grid.Column="1" Height="70" Width="70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
+                            <Border Background="#FFF1DF26" />
+                        </Button>
+                        <Button Click="FontColorClick" Margin="10,0,10,0" Grid.Column="1" Height="70" Width="70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
+                            <Border Background="#FF37F92E" />
+                        </Button>
+                    </StackPanel>
+                </ScrollViewer>
             </StackPanel>
 
         </Grid>
-        <Grid x:Name="FamilyGird" Grid.Row="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="FamilyGird" d:IsHidden="True"  Height="250" Grid.Row="0" Grid.RowSpan="4" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom">
             <Grid.RenderTransform>
-                <CompositeTransform TranslateY="200"/>
+                <CompositeTransform TranslateY="400"/>
             </Grid.RenderTransform>
 
-            <StackPanel Background="#FFECECEC" Orientation="Vertical">
-                <TextBlock Text="FONT FAMILY" Foreground="Black" FontWeight="ExtraBold" FontSize="30" Margin="10"/>
-                <Grid Margin="10">
-                    <ScrollViewer>
-                        <StackPanel Orientation="Vertical">
-                            <Button Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch"  >
+            <StackPanel Background="#FFE0E0E0" Orientation="Vertical">
+                <TextBlock Text="FONT FAMILY" Foreground="#FFBDBDBD" FontWeight="ExtraBold" FontSize="30" Margin="10" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                <Grid VerticalAlignment="Top" >
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalScrollMode="Auto" Background="{x:Null}" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Button Click="FontFamilyClick" Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch"  >
+                                <TextBlock Text="Segoe WP" Foreground="Black" FontSize="25"/>
+                            </Button>
+                            <Button Click="FontFamilyClick" Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1"  >
                                 <TextBlock Text="康熙字典" Foreground="Black" FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" FontSize="25"/>
                             </Button>
-                            <Button Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch"  >
+                            <Button Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="1"  >
                                 <TextBlock Text="Maturasc" Foreground="Black" FontFamily="Font/MATURASC.TTF#Matura MT Script Capitals" FontSize="25"/>
                             </Button>
-                            <Button  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch"  >
+                            <Button  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0"  >
+                                <TextBlock Text="Pristina" Foreground="Black" FontFamily="Font/PRISTINA.TTF#Pristina" FontSize="25"/>
+                            </Button>
+                            <Button  Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
                                 <TextBlock Text="汉仪菱心体简" Foreground="Black" FontFamily="Font/HYLXJ.ttf#汉仪菱心体简" FontSize="25"/>
                             </Button>
-                            <Button Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch"  >
+                            <Button  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2"  Grid.Column="1">
                                 <TextBlock Text="方正姚体" Foreground="Black" FontFamily="Font/FZYTK.TTF#FZYaoTi" FontSize="25"/>
                             </Button>
-                        </StackPanel>
+                            
+
+                        </Grid>
+                       
                     </ScrollViewer>
-                    
                 </Grid>
             </StackPanel>
 
         </Grid>
+        <Grid x:Name="StyleGrid"   Grid.Row="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom">
+            <Grid.RenderTransform>
+                <CompositeTransform TranslateY="400"/>
+            </Grid.RenderTransform>
 
-        <Grid x:Name="MaskGrid" Visibility="Collapsed" Grid.Row="0"  Grid.RowSpan="6" d:IsHidden="True">
+            <StackPanel Background="#FFE0E0E0" Orientation="Vertical">
+                <TextBlock Text="STYLE" Foreground="#FFBDBDBD" FontWeight="ExtraBold" FontSize="30" Margin="10" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                <Grid VerticalAlignment="Top" >
+                    <StackPanel Orientation="Vertical">
+                        <ScrollViewer Height="120" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
+                            <StackPanel Orientation="Horizontal">
+                                <Button Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
+                                    <Border Background="White">
+                                        <TextBlock Text="Plain" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </Button>
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <!--<Button Margin="10,0,0,0" HorizontalAlignment="Stretch" Grid.Column="0" Style="{StaticResource ButtonStyle2}">
+                                <Border Background="{StaticResource MomentThemeColor}">
+                                    <TextBlock Text="OK" FontWeight="ExtraBold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                                </Border>
+                            </Button>
+                            <Button Click="CancelClick" Margin="10,0,0,0" HorizontalAlignment="Stretch" Grid.Column="1" Style="{StaticResource ButtonStyle2}">
+                                <Border  Background="White" Margin="0,0,10,0">
+                                    <TextBlock Text="CANCEL" FontWeight="ExtraBold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+
+                                </Border>
+                            </Button>-->
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+        </Grid>
+        <Grid x:Name="MaskGrid" Visibility="Collapsed" Grid.Row="0"  Grid.RowSpan="6">
             <Border Background="Black" Opacity="0.8"/>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
                 <ProgressRing IsActive="True" HorizontalAlignment="Center" Background="Transparent"/>

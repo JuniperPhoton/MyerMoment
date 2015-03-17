@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="6d4bbce4-0c79-4433-a78e-994f0fb228a0" Publisher="CN=Photon" Version="1.0.0.0" />
+  <Identity Name="6d4bbce4-0c79-4433-a78e-994f0fb228a0" Publisher="CN=Photon" Version="1.0.0.2" />
   <mp:PhoneIdentity PhoneProductId="6d4bbce4-0c79-4433-a78e-994f0fb228a0" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>MyerMomentUniversal.WindowsPhone</DisplayName>
@@ -29,5 +29,6 @@
     <Capability Name="internetClientServer" />
     <Capability Name="picturesLibrary" />
     <Capability Name="removableStorage" />
+    <DeviceCapability Name="location" />
   </Capabilities>
 </Package>

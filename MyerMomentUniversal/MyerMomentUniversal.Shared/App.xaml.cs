@@ -1,4 +1,6 @@
-﻿using Scheduler.Helper;
+﻿using ChaoFunctionRT;
+using MyerMomentUniversal.Helper;
+using Scheduler.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -77,6 +79,12 @@ namespace MyerMomentUniversal
 
                 // 将框架放在当前窗口中
                 Window.Current.Content = rootFrame;
+
+                if (!LocalSettingHelper.IsExist("feature"))
+                {
+                    LocalSettingHelper.AddValue("feature", true);
+                    rootFrame.Navigate(typeof(FeaturePage));
+                }
             }
 
             if (rootFrame.Content == null)
@@ -107,6 +115,8 @@ namespace MyerMomentUniversal
 
             // 确保当前窗口处于活动状态
             Window.Current.Activate();
+
+            MomentConfig.InitialMomentConfig();
         }
 
 #if WINDOWS_PHONE_APP

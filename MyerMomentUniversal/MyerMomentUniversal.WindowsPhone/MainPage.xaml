@@ -8,47 +8,47 @@
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     DataContext="{StaticResource Locator}">
-    <Page.Background>
-        <StaticResource ResourceKey="MomentThemeColor"/>
-    </Page.Background>
     <Page.Resources>
-    	
-    	<Storyboard x:Name="SplashStory">
-    		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="image">
-    			<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
-    			<EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1.3"/>
-    			<EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1.3"/>
-    		</DoubleAnimationUsingKeyFrames>
-    		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="image">
-    			<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
-    			<EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1.3"/>
-    			<EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1.3"/>
-    		</DoubleAnimationUsingKeyFrames>
-    		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image">
-    			<EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
-    			<EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0"/>
-    			<EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="0"/>
-    		</DoubleAnimationUsingKeyFrames>
-    		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image">
-    			<DiscreteObjectKeyFrame KeyTime="0:0:1.3">
-    				<DiscreteObjectKeyFrame.Value>
-    					<Visibility>Visible</Visibility>
-    				</DiscreteObjectKeyFrame.Value>
-    			</DiscreteObjectKeyFrame>
-    			<DiscreteObjectKeyFrame KeyTime="0:0:1.4">
-    				<DiscreteObjectKeyFrame.Value>
-    					<Visibility>Collapsed</Visibility>
-    				</DiscreteObjectKeyFrame.Value>
-    			</DiscreteObjectKeyFrame>
-    		</ObjectAnimationUsingKeyFrames>
-    	</Storyboard>
-    	
+
+        <Storyboard x:Name="SplashStory">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="image">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1.3"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1.3"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="image">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="1.3"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="1.3"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.4" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.3">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.4">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
     </Page.Resources>
+    <Page.Background>
+        <SolidColorBrush>#FFFFC733</SolidColorBrush>
+    </Page.Background>
     <Grid DataContext="{Binding MainVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition/>
-            
+
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel Orientation="Horizontal">
@@ -59,11 +59,11 @@
                 <Run FontWeight="ExtraBold">Moment</Run>
                 </TextBlock>
             </StackPanel>
-            
+
         </Grid>
-        <Grid Grid.Row="1" Background="{StaticResource MomentThemeBlack}">
+        <Grid Grid.Row="1" Background="#FF303030">
             <Border Height="50"  VerticalAlignment="Top" Background="{StaticResource MomentThemeColor}">
-                
+
             </Border>
             <Pivot Margin="0,-10,0,10">
                 <Pivot.HeaderTemplate>
@@ -71,8 +71,10 @@
                         <TextBlock Text="{Binding }" FontWeight="ExtraBold" FontSize="20"/>
                     </DataTemplate>
                 </Pivot.HeaderTemplate>
-                <PivotItem Header="START">
+                <PivotItem Header="START" Margin="0,23,0,-0.333">
                     <Grid>
+                        <!--<Image Source="Assets/backgrd.jpg" Stretch="UniformToFill" />
+                        <Border Background="Black" Opacity="0.7"/>-->
                         <Path Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Pivot.SlideInAnimationGroup="GroupOne" Margin="0,0,0,50" Opacity="0.4" Data="M48.850243,32.061127L40.837259,42.988266 36.466324,40.074284 26.633064,51.365921 61.962049,51.365921 57.591017,36.067707 52.492086,36.067707z M30.036716,26.927057C27.798449,26.927057 25.983376,28.740846 25.983376,30.979034 25.983376,33.21732 27.798449,35.031313 30.036716,35.031313 32.273483,35.031313 34.088657,33.21732 34.088657,30.979034 34.088657,28.740846 32.273483,26.927057 30.036716,26.927057z M17.322001,19.069001L65.332998,19.069001 65.332998,54.707001 17.322001,54.707001z M42.922237,0L50.809,15.735769 13.98841,15.735769 13.98841,49.422001 0,21.513156z" Stretch="Uniform"  Width="200" Height="200"  RenderTransformOrigin="0.5,0.5"/>
                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                             <TextBlock FontSize="30" Pivot.SlideInAnimationGroup="GroupTwo" TextWrapping="Wrap" FontWeight="ExtraBold" Opacity="0.3" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center" Foreground="Black" Text="Take or pick a photo" Margin="0,0,0,30"/>
@@ -86,27 +88,104 @@
                         </StackPanel>
 
                     </Grid>
-                   
-                </PivotItem>
-                <PivotItem Header="COLLECTION">
-                    <Grid>
-                        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                            <Path Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Pivot.SlideInAnimationGroup="GroupOne" Margin="0,0,0,50" Opacity="0.4" Data="M48.850243,32.061127L40.837259,42.988266 36.466324,40.074284 26.633064,51.365921 61.962049,51.365921 57.591017,36.067707 52.492086,36.067707z M30.036716,26.927057C27.798449,26.927057 25.983376,28.740846 25.983376,30.979034 25.983376,33.21732 27.798449,35.031313 30.036716,35.031313 32.273483,35.031313 34.088657,33.21732 34.088657,30.979034 34.088657,28.740846 32.273483,26.927057 30.036716,26.927057z M17.322001,19.069001L65.332998,19.069001 65.332998,54.707001 17.322001,54.707001z M42.922237,0L50.809,15.735769 13.98841,15.735769 13.98841,49.422001 0,21.513156z" Stretch="Uniform"  Width="200" Height="200"  RenderTransformOrigin="0.5,0.5"/>
-                            <TextBlock FontSize="30" Pivot.SlideInAnimationGroup="GroupTwo" TextWrapping="Wrap" FontWeight="ExtraBold" Opacity="0.3" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center" Foreground="Black" Text="No photos" Margin="0,0,0,30"/>
 
-                        </StackPanel>
+                </PivotItem>
+                <PivotItem Header="PERSONALIZE">
+                    <Grid>
+                        <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalScrollMode="Auto">
+                            <StackPanel VerticalAlignment="Top" Orientation="Vertical">
+                                <TextBlock Text="SETTING" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="ExtraBold" Opacity="0.3" Margin="0,20,0,0" FontSize="30" Foreground="Black" FontFamily="Segoe WP"/>
+                                <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
+                                    <TextBlock Margin="5" Text="SAVING QUALITY" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                                </Border>
+                                <ComboBox Pivot.SlideInAnimationGroup="GroupThree" x:Name="qualityCom" PlaceholderText="Select the default saving quality" SelectionChanged="qualityCom_SelectionChanged" BorderBrush="{StaticResource MomentThemeColor}" >
+                                    <ComboBoxItem>
+                                        <TextBlock Text="Low" />
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="Medium"/>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="High"/>
+                                    </ComboBoxItem>
+                                </ComboBox>
+                                <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
+                                    <TextBlock Margin="5" Text="SAVING POSITON" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                                </Border>
+                                <ComboBox Pivot.SlideInAnimationGroup="GroupThree" x:Name="positionCom" PlaceholderText="Select the default saving position" SelectedIndex="0" SelectionChanged="qualityCom_SelectionChanged" BorderBrush="{StaticResource MomentThemeColor}" >
+                                    <ComboBoxItem>
+                                        <TextBlock Text="SavedPicture" />
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="MyerMoment Folder"/>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="CameraRoll"/>
+                                    </ComboBoxItem>
+                                </ComboBox>
+                                <!--<TextBlock Text="PERSONALIZE" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="ExtraBold" Opacity="0.3" Margin="0,20,0,0" FontSize="30" Foreground="Black" FontFamily="Segoe WP"/>
+                                <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
+                                    <TextBlock Margin="5" Text="DEFAULT FONT FAMILY" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                                </Border>
+                                <ComboBox Pivot.SlideInAnimationGroup="GroupThree" x:Name="familyCom" PlaceholderText="Select the default font family" SelectedIndex="0" SelectionChanged="qualityCom_SelectionChanged" BorderBrush="{StaticResource MomentThemeColor}" >
+                                    <ComboBoxItem>
+                                        <TextBlock Text="SavedPicture" />
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="MyerMoment Folder"/>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="CameraRoll"/>
+                                    </ComboBoxItem>
+                                </ComboBox>-->
+                            </StackPanel>
+
+                        </ScrollViewer>
 
                     </Grid>
                 </PivotItem>
-                <PivotItem Header="SETTING">
+                <PivotItem Header="ABOUT" Margin="0,22,0,-0.333">
+                    <Grid>
+                        <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalScrollMode="Auto">
+                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Orientation="Vertical">
+                                <Grid Pivot.SlideInAnimationGroup="GroupOne" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <Ellipse Width="100" Height="100" Fill="{StaticResource MomentThemeColor}"/>
+                                    <Path Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="0" Opacity="1" Data="M48.850243,32.061127L40.837259,42.988266 36.466324,40.074284 26.633064,51.365921 61.962049,51.365921 57.591017,36.067707 52.492086,36.067707z M30.036716,26.927057C27.798449,26.927057 25.983376,28.740846 25.983376,30.979034 25.983376,33.21732 27.798449,35.031313 30.036716,35.031313 32.273483,35.031313 34.088657,33.21732 34.088657,30.979034 34.088657,28.740846 32.273483,26.927057 30.036716,26.927057z M17.322001,19.069001L65.332998,19.069001 65.332998,54.707001 17.322001,54.707001z M42.922237,0L50.809,15.735769 13.98841,15.735769 13.98841,49.422001 0,21.513156z" Stretch="Uniform"  Width="50" Height="50"  RenderTransformOrigin="0.5,0.5"/>
 
+                                </Grid>
+                                <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="0,30,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
+                                    <TextBlock Margin="5" Text="VERSION" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                                </Border>
+                                <TextBlock Pivot.SlideInAnimationGroup="GroupTwo" Margin="0,10,0,0" Text="1.0" HorizontalAlignment="Center" FontSize="20" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+
+                                <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="0,30,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
+                                    <TextBlock Margin="5" Text="CREDIT" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                                </Border>
+                                <TextBlock Pivot.SlideInAnimationGroup="GroupTwo" Margin="0,10,0,0" Text="JuniperPhoton" FontSize="20" FontFamily="Font/FZYTK.TTF#FZYaoTi" HorizontalAlignment="Center"/>
+                                <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="0,30,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
+                                    <TextBlock Margin="5" Text="FEEDBACK" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                                </Border>
+                                <Button Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Center" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                                    <Border>
+                                        <TextBlock Text="Email me"/>
+                                    </Border>
+                                </Button>
+                                <Button Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Center" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                                    <Border >
+                                        <TextBlock Text="Give me a rate"/>
+                                    </Border>
+                                </Button>
+                            </StackPanel>
+                        </ScrollViewer>
+
+                    </Grid>
                 </PivotItem>
             </Pivot>
         </Grid>
         <Image d:IsHidden="True"  x:Name="image" Grid.RowSpan="2" Source="Assets/SplashScreen.png" Stretch="UniformToFill" Margin="0,-30,0,0" RenderTransformOrigin="0.5,0.5" >
-        	<Image.RenderTransform>
-        		<CompositeTransform/>
-        	</Image.RenderTransform>
+            <Image.RenderTransform>
+                <CompositeTransform/>
+            </Image.RenderTransform>
         </Image>
     </Grid>
 </Page>

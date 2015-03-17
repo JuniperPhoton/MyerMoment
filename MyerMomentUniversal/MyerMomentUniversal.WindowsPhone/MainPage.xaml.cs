@@ -1,4 +1,5 @@
-﻿using Scheduler.Helper;
+﻿using ChaoFunctionRT;
+using Scheduler.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,6 +38,13 @@ namespace MyerMomentUniversal
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
+            //StatusBar.GetForCurrentView().BackgroundOpacity = 0.4;
+
+            var quality = LocalSettingHelper.GetValue("Quality");
+            if(quality!=null)
+            {
+                qualityCom.SelectedIndex = int.Parse(quality);
+            }
         }
 
         private void OpenPhotoClick(object sender,RoutedEventArgs e )
@@ -68,6 +76,7 @@ namespace MyerMomentUniversal
         {
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             SplashStory.Begin();
+            Frame.BackStack.Clear();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -81,6 +90,16 @@ namespace MyerMomentUniversal
             {
                 Frame.GoBack();
                 e.Handled = true;
+            }
+        }
+
+        private void qualityCom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var combox = sender as ComboBox;
+            if(combox!=null)
+            {
+                var selectedIndex = combox.SelectedIndex;
+                LocalSettingHelper.AddValue("Quality", selectedIndex.ToString());
             }
         }
     }
