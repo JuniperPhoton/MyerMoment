@@ -20,7 +20,7 @@
         </FlipView>
         <Button Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" Click="EnterClick" BorderThickness="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="10,0,10,10" Height="45">
             <Border Background="{StaticResource MomentThemeColor}">
-                <TextBlock Text="Enter MyerMoment" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource MomentThemeBlack}"/>
+                <TextBlock x:Name="enterTextblock" Text="Enter MyerMoment" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource MomentThemeBlack}"/>
             </Border>
         </Button>
     </Grid>

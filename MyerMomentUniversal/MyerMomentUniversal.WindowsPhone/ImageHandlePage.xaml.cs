@@ -62,6 +62,8 @@ namespace MyerMomentUniversal
    
             this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
+            ConfigLang();
+
             switch(LocalSettingHelper.GetValue("Quality"))
             {
                 case "0": _qualityScale = 0.7; break;
@@ -71,6 +73,23 @@ namespace MyerMomentUniversal
 
             _transformGroup.Children.Add(_translateTransform);
             _transformGroup.Children.Add(_scaleTransform);
+
+        }
+
+        private void ConfigLang()
+        {
+            var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            editTB.Text = loader.GetString("EditHeader");
+            saveTB.Text = loader.GetString("SaveAsCopyBtn");
+            cancelTB.Text = loader.GetString("CancleBtn");
+            styleTB.Text = loader.GetString("StyleHeader");
+            familyTB.Text = loader.GetString("FontFamilyHeader");
+            colorTB.Text = loader.GetString("FontColorHeader");
+            TextView.PlaceholderText = loader.GetString("FontPlaceHolderText");
+            savedTB.Text = loader.GetString("PhotoSavedHint");
+            savingTB.Text = loader.GetString("SavingHint");
+            shareTB.Text = loader.GetString("ShareHint");
+            backhomeTB.Text = loader.GetString("BackToHomeHint");
 
         }
 

@@ -334,7 +334,7 @@
             <Grid Background="{StaticResource MomentThemeColor}">
                 <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
                     <SymbolIcon Symbol="Edit" Foreground="{StaticResource MomentThemeBlack}" />
-                    <TextBlock  Text="EDIT" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0" FontFamily="Font/FZYTK.TTF#FZYaoTi" FontWeight="Bold"/>
+                    <TextBlock x:Name="editTB" Text="EDIT" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0"  FontWeight="Bold"/>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -394,7 +394,7 @@
                 </Border>
                 <Border x:Name="maskBorder2" Background="Black" Opacity="0.01" d:IsHidden="True"/>
             </Grid>
-            <ProgressRing x:Name="ring"  VerticalAlignment="Center" HorizontalAlignment="Center" IsActive="True" Background="{x:Null}" Foreground="White"/>
+            <ProgressRing x:Name="ring"  VerticalAlignment="Center" HorizontalAlignment="Center" IsActive="True" Background="{x:Null}" Foreground="{StaticResource MomentThemeColor}"/>
         </Grid>
         <Grid x:Name="grid" Grid.Row="2" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
@@ -467,7 +467,7 @@
                 <Border Background="#FFFFEA65">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <SymbolIcon Symbol="Save" Foreground="{StaticResource MomentThemeBlack}"/>
-                        <TextBlock Margin="10,0,0,0" Text="SAVE AS COPY" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraBold" FontFamily="Font/FZYTK.TTF#FZYaoTi" />
+                        <TextBlock  x:Name="saveTB"  Margin="10,0,0,0" Text="SAVE AS COPY" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraBold"/>
                     </StackPanel>
                 </Border>
             </Button>
@@ -475,7 +475,7 @@
                 <Border Background="White">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <SymbolIcon Symbol="Cancel" Foreground="{StaticResource MomentThemeBlack}"/>
-                        <TextBlock Text="CANCEL" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="ExtraBold" FontFamily="Font/FZYTK.TTF#FZYaoTi" />
+                        <TextBlock  x:Name="cancelTB" Text="CANCEL" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="ExtraBold" />
                     </StackPanel>
                 </Border>
             </Button>
@@ -486,7 +486,7 @@
             </Grid.RenderTransform>
 
             <StackPanel Background="#FFE0E0E0" Orientation="Vertical">
-                <TextBlock Text="FONT COLOR" Foreground="#FFBDBDBD" FontWeight="ExtraBold" FontSize="30" Margin="10" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                <TextBlock x:Name="colorTB"  Text="FONT COLOR" Foreground="#FFBDBDBD" FontWeight="ExtraBold" FontSize="30" Margin="10" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                 <ScrollViewer HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
                     <StackPanel Orientation="Horizontal">
                         <Button Click="FontColorClick"  Margin="10,0,10,0" Height="70" Width="70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
@@ -521,7 +521,7 @@
             </Grid.RenderTransform>
 
             <StackPanel Background="#FFE0E0E0" Orientation="Vertical">
-                <TextBlock Text="FONT FAMILY" Foreground="#FFBDBDBD" FontWeight="ExtraBold" FontSize="30" Margin="10" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                <TextBlock  x:Name="familyTB"  Text="FONT FAMILY" Foreground="#FFBDBDBD" FontWeight="ExtraBold" FontSize="30" Margin="10" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                 <Grid VerticalAlignment="Top" >
                     <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalScrollMode="Auto" Background="{x:Null}" >
                         <Grid>
@@ -568,7 +568,7 @@
             </Grid.RenderTransform>
 
             <StackPanel Background="#FFE0E0E0" Orientation="Vertical">
-                <TextBlock Text="STYLE" Foreground="#FFBDBDBD" FontWeight="ExtraBold" FontSize="30" Margin="10" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                <TextBlock  x:Name="styleTB" Text="STYLE" Foreground="#FFBDBDBD" FontWeight="ExtraBold" FontSize="30" Margin="10" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                 <Grid VerticalAlignment="Top" >
                     <StackPanel Orientation="Vertical">
                         <ScrollViewer Height="120" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
@@ -621,22 +621,22 @@
         <Grid x:Name="MaskGrid" Visibility="Collapsed" Grid.Row="0"  Grid.RowSpan="6">
             <Border Background="Black" Opacity="0.8"/>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
-                <ProgressRing IsActive="True" HorizontalAlignment="Center" Background="Transparent"/>
-                <TextBlock Text="Saving..." FontSize="30" />
+                <ProgressRing IsActive="True" HorizontalAlignment="Center" Background="Transparent" Foreground="{StaticResource MomentThemeColor}"/>
+                <TextBlock x:Name="savingTB" Text="Saving..." FontSize="30" />
             </StackPanel>
         </Grid>
         <Grid x:Name="ShareGrid" Visibility="Collapsed" Grid.Row="0"  Grid.RowSpan="6">
             <Border Background="Black" Opacity="0.8"/>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Orientation="Vertical">
-                <TextBlock HorizontalAlignment="Center" Text="Photo saved :D" FontSize="30" />
+                <TextBlock x:Name="savedTB" HorizontalAlignment="Center" Text="Photo saved :D" FontSize="30" />
                 <Button Click="ShareClick" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
                     <Border Background="{StaticResource MomentThemeColor}">
-                        <TextBlock Foreground="{StaticResource MomentThemeBlack}" Text="SHARE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="shareTB" Foreground="{StaticResource MomentThemeBlack}" Text="SHARE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </Button>
                 <Button Click="BackHomeClick" Height="50" MinHeight="10"  Background="White" Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
                     <Border Background="White">
-                        <TextBlock Foreground="{StaticResource MomentThemeBlack}" Text="BACK TO HOME" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="backhomeTB" Foreground="{StaticResource MomentThemeBlack}" Text="BACK TO HOME" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </Button>
             </StackPanel>

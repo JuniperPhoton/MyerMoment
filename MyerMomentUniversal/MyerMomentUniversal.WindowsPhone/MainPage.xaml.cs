@@ -41,7 +41,8 @@ namespace MyerMomentUniversal
             Current = this;
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            
+            ConfigLang();
+
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
 
             var quality = LocalSettingHelper.GetValue("Quality");
@@ -55,6 +56,26 @@ namespace MyerMomentUniversal
             {
                 positionCom.SelectedIndex = int.Parse(position);
             }
+        }
+
+        private void ConfigLang()
+        {
+            var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            StartPivotItem.Header = loader.GetString("StartHeader");
+            SettingPivotItem.Header = loader.GetString("PersonalizeHeader");
+            AboutPivotItem.Header = loader.GetString("AboutHeader");
+            pickHintTextblock.Text = loader.GetString("PickPhotoHint");
+            savingQualityTextblock.Text = loader.GetString("SavingQuality");
+            savingPositionTextblock.Text = loader.GetString("SavingPosition");
+            lowTextblock.Text = loader.GetString("LowHint");
+            mediumTextblock.Text = loader.GetString("MediumHint");
+            highTextblock.Text = loader.GetString("HighHint");
+            savedPictureTextblock.Text = loader.GetString("SavedPictureHint");
+            folderTextblock.Text = loader.GetString("MyerMomentFolderHint");
+            cameraRollTextblock.Text = loader.GetString("CameraRollHint");
+            rateTextblock.Text = loader.GetString("RateHint");
+            errorLogTextblock.Text = loader.GetString("SendLogHint");
+            feedbackTextblock.Text = loader.GetString("SendEmailHint");
         }
 
         private async void EmailClick(object sender,RoutedEventArgs e)

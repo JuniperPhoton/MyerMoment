@@ -25,6 +25,13 @@ namespace MyerMomentUniversal
         public FeaturePage()
         {
             this.InitializeComponent();
+
+            ConfigLang();
+        }
+
+        private void ConfigLang()
+        {
+            enterTextblock.Text = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView().GetString("EnterHint");
         }
 
         private void EnterClick(object sender,RoutedEventArgs e)
