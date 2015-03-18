@@ -5,14 +5,17 @@
     xmlns:local="using:MyerMomentUniversal"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Background="#FFEAEAEA"
+    mc:Ignorable="d"
     >
-    <Grid>
+    <Page.Background>
+        <SolidColorBrush>#FF1E1E1E</SolidColorBrush>
+    </Page.Background>
+    <Grid Background="#FF1E1E1E">
         <FlipView>
-            <Image Source="Assets/Feature-Gesture.jpg" Margin="0,0,0,69"/>
+            <Image Source="Assets/page1.png" Stretch="UniformToFill" />
 
-            <Image Source="Assets/Feature-Tile.jpg" Margin="0,0,0,69"/>
-            <Image Source="Assets/Feature-Cortana.jpg" Margin="0,0,0,69"/>
+            <Image Source="Assets/page2.png" Stretch="UniformToFill" />
+            <Image Source="Assets/page3.png" Stretch="UniformToFill" />
 
         </FlipView>
         <Button Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" Click="EnterClick" BorderThickness="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="10,0,10,10" Height="45">

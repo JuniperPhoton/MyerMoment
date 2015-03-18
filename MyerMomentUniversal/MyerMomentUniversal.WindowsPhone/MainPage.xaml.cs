@@ -6,10 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.DataTransfer.ShareTarget;
+using Windows.ApplicationModel.Email;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Phone.UI.Input;
 using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -37,14 +41,45 @@ namespace MyerMomentUniversal
             Current = this;
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
+            
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
-            //StatusBar.GetForCurrentView().BackgroundOpacity = 0.4;
 
             var quality = LocalSettingHelper.GetValue("Quality");
             if(quality!=null)
             {
                 qualityCom.SelectedIndex = int.Parse(quality);
             }
+
+            var position = LocalSettingHelper.GetValue("Position");
+            if(position!=null)
+            {
+                positionCom.SelectedIndex = int.Parse(position);
+            }
+        }
+
+        private async void EmailClick(object sender,RoutedEventArgs e)
+        {
+            EmailRecipient rec = new EmailRecipient("dengweichao@hotmail.com");
+            EmailMessage mes = new EmailMessage();
+            mes.To.Add(rec);
+            mes.Subject = "MyerMoment feedback";
+            await EmailManager.ShowComposeNewEmailAsync(mes);
+        }
+
+        private async void SendLogClick(object sender,RoutedEventArgs e)
+        {
+            EmailRecipient rec = new EmailRecipient("dengweichao@hotmail.com");
+            EmailMessage mes = new EmailMessage();
+            var error = await ExceptionHelper.ReadRecord();
+            mes.Body = error;
+            mes.To.Add(rec);
+            mes.Subject = "MyerMoment error log";
+            await EmailManager.ShowComposeNewEmailAsync(mes);
+        }
+
+        private void ReviewClick(object sender,RoutedEventArgs e)
+        {
+
         }
 
         private void OpenPhotoClick(object sender,RoutedEventArgs e )
@@ -69,6 +104,10 @@ namespace MyerMomentUniversal
                     {
                         Frame.Navigate(typeof(ImageHandlePage), args);
                     } break;
+                case ActivationKind.ShareTarget:
+                    {
+                        Frame.Navigate(typeof(ImageHandlePage), args);
+                    }break;
             }
         }
 
@@ -102,5 +141,17 @@ namespace MyerMomentUniversal
                 LocalSettingHelper.AddValue("Quality", selectedIndex.ToString());
             }
         }
+
+        private void positionCom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var combox = sender as ComboBox;
+            if(combox!=null)
+            {
+                var selectedIndex = combox.SelectedIndex;
+                LocalSettingHelper.AddValue("Position", selectedIndex.ToString());
+            }
+        }
+
+        
     }
 }

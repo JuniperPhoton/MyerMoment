@@ -39,7 +39,7 @@
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
-
+       
     </Page.Resources>
     <Page.Background>
         <SolidColorBrush>#FFFFC733</SolidColorBrush>
@@ -84,9 +84,8 @@
                                     <SymbolIcon Symbol="Add" Foreground="{StaticResource MomentThemeBlack}"/>
                                 </Grid>
                             </Button>
-
                         </StackPanel>
-
+                        
                     </Grid>
 
                 </PivotItem>
@@ -112,7 +111,7 @@
                                 <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
                                     <TextBlock Margin="5" Text="SAVING POSITON" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                 </Border>
-                                <ComboBox Pivot.SlideInAnimationGroup="GroupThree" x:Name="positionCom" PlaceholderText="Select the default saving position" SelectedIndex="0" SelectionChanged="qualityCom_SelectionChanged" BorderBrush="{StaticResource MomentThemeColor}" >
+                                <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" SelectionChanged="positionCom_SelectionChanged" x:Name="positionCom" PlaceholderText="Select the default saving position" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeColor}" >
                                     <ComboBoxItem>
                                         <TextBlock Text="SavedPicture" />
                                     </ComboBoxItem>
@@ -156,7 +155,7 @@
                                 <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="0,30,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                     <TextBlock Margin="5" Text="VERSION" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                 </Border>
-                                <TextBlock Pivot.SlideInAnimationGroup="GroupTwo" Margin="0,10,0,0" Text="1.0" HorizontalAlignment="Center" FontSize="20" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                                <HyperlinkButton Content="0.9" NavigateUri="http://www.windowsphone.com/s?appid=52172f00-cfe1-4695-b4f7-a2be0c1bfacc" HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" Margin="0,10,0,0" />
 
                                 <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="0,30,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                     <TextBlock Margin="5" Text="CREDIT" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
@@ -165,14 +164,20 @@
                                 <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="0,30,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                     <TextBlock Margin="5" Text="FEEDBACK" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                 </Border>
-                                <Button Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Center" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
-                                    <Border>
-                                        <TextBlock Text="Email me"/>
-                                    </Border>
-                                </Button>
-                                <Button Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Center" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                                
+                                <Button Click="ReviewClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Center" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
                                     <Border >
                                         <TextBlock Text="Give me a rate"/>
+                                    </Border>
+                                </Button>
+                                <Button Click="SendLogClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Center" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                                    <Border >
+                                        <TextBlock Text="Send error log"/>
+                                    </Border>
+                                </Button>
+                                <Button Click="EmailClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Center" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                                    <Border>
+                                        <TextBlock Text="Send me an email"/>
                                     </Border>
                                 </Button>
                             </StackPanel>

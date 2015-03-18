@@ -9,8 +9,11 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -221,5 +224,19 @@ namespace MyerMomentUniversal
             Window.Current.Activate();
         }
 #endif
+        protected override void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
+        {
+            ShareOperation shareOperation = args.ShareOperation;
+            if (shareOperation.Data.Contains(StandardDataFormats.Bitmap))
+            {
+                
+                var rootFrame = new Frame();
+                rootFrame.Navigate(typeof(ImageHandlePage), shareOperation);
+                Window.Current.Content = rootFrame;
+                Window.Current.Activate();
+            }
+        }
+
+
     }
 }

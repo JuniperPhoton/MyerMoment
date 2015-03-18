@@ -20,6 +20,11 @@ namespace MyerMomentUniversal.Helper
                     case Windows.System.AppMemoryUsageLevel.Low: LocalSettingHelper.AddValue("Quality", "0"); break;
                 }
             }
+
+            if(!LocalSettingHelper.IsExist("Position"))
+            {
+                LocalSettingHelper.AddValue("Position", "0");
+            }
            
         }
     }

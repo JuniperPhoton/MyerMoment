@@ -22,18 +22,23 @@ using ChaoFunctionRT;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.UI.Text;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer.ShareTarget;
+using System.Collections.Generic;
+using UmengSocialSDK;
 
-// “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkID=390556 上有介绍
 
 namespace MyerMomentUniversal
 {
 
     public sealed partial class ImageHandlePage : Page
     {
-      
+        private string savedFileName = "";
+
         private bool _isInColorMode = false;
         private bool _isInFontFamilyMode = false;
         private bool _isInStyleMode = false;
+        private bool _isInShareMode = false;
 
         private double _angle = 0;
 
@@ -47,12 +52,14 @@ namespace MyerMomentUniversal
         private double _imageBorderH;
         private double _imageBorderW;
 
-        private TranslateTransform _tranTemplete = new TranslateTransform();
+        private TranslateTransform _translateTransform = new TranslateTransform();
+        private ScaleTransform _scaleTransform = new ScaleTransform();
+        private TransformGroup _transformGroup = new TransformGroup();
 
         public ImageHandlePage()
         {
             this.InitializeComponent();
-
+   
             this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
             switch(LocalSettingHelper.GetValue("Quality"))
@@ -61,35 +68,55 @@ namespace MyerMomentUniversal
                 case "1": _qualityScale = 0.9; break;
                 case "2": _qualityScale = 1.0; break;
             }
+
+            _transformGroup.Children.Add(_translateTransform);
+            _transformGroup.Children.Add(_scaleTransform);
+
         }
 
         #region FUNCTION
         private void IncreaseFontsizeClick(object sender,RoutedEventArgs e)
         {
-            TextView.FontSize += 5;
+            if(textGrid.Visibility==Visibility.Visible)
+            {
+                if (TextView.FontSize < 100) TextView.FontSize += 5;
+            }
+            else if(foodGrid.Visibility==Visibility.Visible)
+            {
+
+                foodGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX += 0.2;
+                _scaleTransform.ScaleY += 0.2;
+            }
+            else if(sceneGrid.Visibility==Visibility.Visible)
+            {
+
+                sceneGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX += 0.2;
+                _scaleTransform.ScaleY += 0.2;
+            }
         }
 
         private void DecreaseFontsizeClick(object sender, RoutedEventArgs e)
         {
-            TextView.FontSize -= 5;
-        }
-
-        private void BoldFontClick(object sender,RoutedEventArgs e)
-        {
-            if (TextView.FontWeight.Weight == Windows.UI.Text.FontWeights.Bold.Weight)
+            if (textGrid.Visibility == Visibility.Visible)
             {
-                TextView.FontWeight = Windows.UI.Text.FontWeights.Normal;
+                if (TextView.FontSize > 10) TextView.FontSize -= 5;
             }
-            else TextView.FontWeight = Windows.UI.Text.FontWeights.Bold;
-        }
-
-        private void ItalicFontClick(object sender, RoutedEventArgs e)
-        {
-            if (TextView.FontStyle == Windows.UI.Text.FontStyle.Normal)
+            else if (foodGrid.Visibility == Visibility.Visible)
             {
-                TextView.FontStyle = Windows.UI.Text.FontStyle.Italic;
+
+                foodGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX -= 0.2;
+                _scaleTransform.ScaleY -= 0.2;
             }
-            else TextView.FontStyle = Windows.UI.Text.FontStyle.Normal;
+            else if (sceneGrid.Visibility == Visibility.Visible)
+            {
+
+                sceneGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX -= 0.2;
+                _scaleTransform.ScaleY -= 0.2;
+            }
         }
 
         private void ColorClick(object sender,RoutedEventArgs e)
@@ -151,6 +178,40 @@ namespace MyerMomentUniversal
             TextView.FontFamily = textblock.FontFamily;
         }
 
+        private void StyleClick(object sender,RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            var border = btn.Content as Border;
+            var tb = border.Child as TextBlock;
+            var text = tb.Text;
+
+            familyBtn.Visibility = colorBtn.Visibility= Visibility.Collapsed;
+
+            switch(text)
+            {
+                case "Plain":
+                    {
+                        textGrid.Visibility = Visibility.Visible;
+                        foodGrid.Visibility = Visibility.Collapsed;
+                        sceneGrid.Visibility = Visibility.Collapsed;
+
+                        familyBtn.Visibility = colorBtn.Visibility= Visibility.Visible;
+                    };break;
+                case "Food":
+                    {
+                        textGrid.Visibility = Visibility.Collapsed;
+                        foodGrid.Visibility = Visibility.Visible;
+                        sceneGrid.Visibility = Visibility.Collapsed;
+                    }; break;
+                case "Scene":
+                    {
+                        textGrid.Visibility = Visibility.Collapsed;
+                        foodGrid.Visibility = Visibility.Collapsed;
+                        sceneGrid.Visibility = Visibility.Visible;
+                    }; break;
+            }
+        }
+
         #endregion
 
         #region TEXT_MANI
@@ -159,27 +220,26 @@ namespace MyerMomentUniversal
             textGrid.ManipulationDelta -= TextView_ManipulationDelta;
             textGrid.ManipulationDelta += TextView_ManipulationDelta;
 
-            //textGrid.ManipulationCompleted -= TextView_ManipulationCompleted;
-            //textGrid.ManipulationCompleted += TextView_ManipulationCompleted;
+            foodGrid.ManipulationDelta -= TextView_ManipulationDelta;
+            foodGrid.ManipulationDelta += TextView_ManipulationDelta;
 
-            textGrid.RenderTransform = _tranTemplete;
-        }
+            sceneGrid.ManipulationDelta -= TextView_ManipulationDelta;
+            sceneGrid.ManipulationDelta += TextView_ManipulationDelta;
 
-        void TextView_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
-        {
-            var x = _tranTemplete.X;
-            var y = _tranTemplete.Y;
-            if (x > _imageBorderW ) _tranTemplete.X= _imageBorderW;
-            if (x < -_imageBorderW) _tranTemplete.X = -_imageBorderW;
-            if (y > _imageBorderH) _tranTemplete.Y = _imageBorderH;
-            if (y < -_imageBorderH) _tranTemplete.Y = -_imageBorderH+TextView.ActualHeight;
+            _transformGroup = new TransformGroup();
+            _transformGroup.Children.Add(_translateTransform);
+            _transformGroup.Children.Add(_scaleTransform);
 
+            textGrid.RenderTransform = _transformGroup;
+            sceneGrid.RenderTransform = _transformGroup;
+            foodGrid.RenderTransform = _transformGroup;
         }
 
         private void TextView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-                _tranTemplete.X += e.Delta.Translation.X;
-                _tranTemplete.Y += e.Delta.Translation.Y;
+            _translateTransform.X += e.Delta.Translation.X;
+            _translateTransform.Y += e.Delta.Translation.Y;
+
         }
 
         private void textGrid_Tapped(object sender, TappedRoutedEventArgs e)
@@ -218,6 +278,10 @@ namespace MyerMomentUniversal
 
         private void SaveClick(object sender,RoutedEventArgs e)
         {
+            if(TextView.Text==string.Empty)
+            {
+                TextView.Visibility = Visibility.Collapsed;
+            }
             SaveImage(renderGrid);
         }
 
@@ -225,7 +289,6 @@ namespace MyerMomentUniversal
         {
             try
             {
-                //ShowProgressRingVisibility = Visibility.Visible;
                 TextView.Visibility = Visibility.Collapsed;
 
                 var fileStream = await file.OpenAsync(FileAccessMode.Read);
@@ -238,17 +301,22 @@ namespace MyerMomentUniversal
                 this._height = decoder.OrientedPixelHeight;
                 this._width = decoder.OrientedPixelWidth;
 
+                ring.IsActive = true;
 
                 //显示图像
                 var bitmap = new BitmapImage();
-                bitmap.SetSource(fileStream);
+                var task=bitmap.SetSourceAsync(fileStream);
+                await task;
                 image.Source = bitmap;
+
+                ring.IsActive = false;
 
                 TextView.Visibility = Visibility.Visible;
 
                 image.UpdateLayout();
                 this._imageBorderH = (image.ActualHeight / 2);
                 this._imageBorderW = (image.ActualWidth / 2);
+
             }
             catch (Exception e)
             {
@@ -265,7 +333,27 @@ namespace MyerMomentUniversal
                 uint targetWidth = this._width;
                 uint targetHeight = this._height;
 
-                var fileToSave = await KnownFolders.SavedPictures.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
+                var positon = LocalSettingHelper.GetValue("Position");
+                StorageFile fileToSave = null;
+                switch(positon)
+                {
+                    case "0": fileToSave = await KnownFolders.SavedPictures.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName); break;
+                    case "1":
+                        {
+                            var folderToSave = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
+                            fileToSave = await folderToSave.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
+                        };break;
+                    case "2":
+                        {
+                            fileToSave = await KnownFolders.CameraRoll.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
+                        };break;
+                    default:
+                        {
+                            var folderToSave = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
+                            fileToSave = await folderToSave.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
+                        };break;
+                }
+                if (fileToSave == null) return;
 
                 CachedFileManager.DeferUpdates(fileToSave);
                 using (var fileStream = await fileToSave.OpenAsync(FileAccessMode.ReadWrite))
@@ -290,8 +378,10 @@ namespace MyerMomentUniversal
                 await CachedFileManager.CompleteUpdatesAsync(fileToSave);
 
                 MaskGrid.Visibility = Visibility.Collapsed;
+                ShareGrid.Visibility = Visibility.Visible;
+                this._isInShareMode = true;
 
-                Frame.Navigate(typeof(SharePage), fileToSave.Name);
+                this.savedFileName = fileToSave.Name;
             }
             catch (Exception e)
             {
@@ -324,6 +414,54 @@ namespace MyerMomentUniversal
             await md.ShowAsync();
         }
 
+        private async void ShareClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+ 
+                UmengClient umengClient = new SinaWeiboClient("5506e8eafd98c52426000587");
+
+                var file = await Windows.Storage.KnownFolders.SavedPictures.GetFileAsync(savedFileName);
+                using (var fileStream = await file.OpenStreamForReadAsync())
+                {
+                    byte[] imageData = new byte[fileStream.Length];
+                    fileStream.Read(imageData, 0, imageData.Length);
+
+                    var pic = new UmengPicture(imageData, "Share image #MyerMoment#");
+                    var task = umengClient.SharePictureAsync(pic, true);
+                    
+                    var result = await task;
+
+                    var resState = result.Status;
+                    switch (resState)
+                    {
+                        case ShareStatus.Success:
+                            {
+                                BackHomeClick(null, null);
+                            }; break;
+                        case ShareStatus.UserCanceled:
+                            {
+                                BackHomeClick(null, null);
+                            }; break;
+                        case ShareStatus.Error:
+                            {
+                            };break;
+                    }
+
+                }
+            }
+            catch (Exception ee)
+            {
+                var task = ExceptionHelper.WriteRecord(ee);
+            }
+
+        }
+
+        private void BackHomeClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
+
         #endregion
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -332,10 +470,13 @@ namespace MyerMomentUniversal
 
             if(e.Parameter!=null)
             {
-                FileOpenPickerContinuationEventArgs args = e.Parameter as FileOpenPickerContinuationEventArgs;
-                if (args.Files.Count == 0) return;
+                if (e.Parameter.GetType() == typeof(FileOpenPickerContinuationEventArgs))
+                {
+                    FileOpenPickerContinuationEventArgs args = e.Parameter as FileOpenPickerContinuationEventArgs;
+                    if (args.Files.Count == 0) return;
 
-                ShowImage(args.Files.FirstOrDefault());
+                    ShowImage(args.Files[0]);
+                }  
             }
         }
 
@@ -347,7 +488,7 @@ namespace MyerMomentUniversal
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             e.Handled = true;
-            if(_isInFontFamilyMode==true || _isInColorMode==true || _isInStyleMode==true)
+            if(_isInFontFamilyMode==true || _isInColorMode==true || _isInStyleMode==true || _isInShareMode==true)
             {
                 if (_isInColorMode)
                 {
@@ -364,13 +505,16 @@ namespace MyerMomentUniversal
                     MovieOutStory.Begin();
                     _isInStyleMode = false;
                 }
+                if (_isInShareMode)
+                {
+                    ShareGrid.Visibility = Visibility.Collapsed;
+                    return;
+                }
                 return;
             }
             CancelClick(null, null);
         }
-
-        
-        
+ 
     }
 }
 
