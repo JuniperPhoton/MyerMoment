@@ -129,6 +129,18 @@
   <data name="CancleBtn" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="DiscardCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="DiscardContent" xml:space="preserve">
+    <value>这会返回主页，并且照片不会被保存。</value>
+  </data>
+  <data name="DiscardOK" xml:space="preserve">
+    <value>放弃编辑</value>
+  </data>
+  <data name="DiscardTitle" xml:space="preserve">
+    <value>放弃这张照片吗？</value>
+  </data>
   <data name="EditHeader" xml:space="preserve">
     <value>编辑</value>
   </data>

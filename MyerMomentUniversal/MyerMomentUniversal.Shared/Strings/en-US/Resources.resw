@@ -126,8 +126,20 @@
   <data name="CameraRollHint" xml:space="preserve">
     <value>CameraRoll</value>
   </data>
+  <data name="CancelContent" xml:space="preserve">
+    <value>This photo being edited will be discarded.</value>
+  </data>
+  <data name="CancelTitle" xml:space="preserve">
+    <value>Discard this photo?</value>
+  </data>
   <data name="CancleBtn" xml:space="preserve">
     <value>CANCEL</value>
+  </data>
+  <data name="DiscardCancel" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="DiscardOK" xml:space="preserve">
+    <value>discard</value>
   </data>
   <data name="EditHeader" xml:space="preserve">
     <value>EDIT</value>

@@ -102,17 +102,22 @@ namespace MyerMomentUniversal
             }
             else if(foodGrid.Visibility==Visibility.Visible)
             {
-
                 foodGrid.RenderTransform = _transformGroup;
                 _scaleTransform.ScaleX += 0.2;
                 _scaleTransform.ScaleY += 0.2;
             }
             else if(sceneGrid.Visibility==Visibility.Visible)
             {
-
                 sceneGrid.RenderTransform = _transformGroup;
                 _scaleTransform.ScaleX += 0.2;
                 _scaleTransform.ScaleY += 0.2;
+            }
+            else if(aloneGrid.Visibility==Visibility.Visible)
+            {
+                aloneGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX += 0.2;
+                _scaleTransform.ScaleY += 0.2;
+
             }
         }
 
@@ -133,6 +138,12 @@ namespace MyerMomentUniversal
             {
 
                 sceneGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX -= 0.2;
+                _scaleTransform.ScaleY -= 0.2;
+            }
+            else if (aloneGrid.Visibility == Visibility.Visible)
+            {
+                aloneGrid.RenderTransform = _transformGroup;
                 _scaleTransform.ScaleX -= 0.2;
                 _scaleTransform.ScaleY -= 0.2;
             }
@@ -213,7 +224,7 @@ namespace MyerMomentUniversal
                         textGrid.Visibility = Visibility.Visible;
                         foodGrid.Visibility = Visibility.Collapsed;
                         sceneGrid.Visibility = Visibility.Collapsed;
-
+                        aloneGrid.Visibility = Visibility.Collapsed;
                         familyBtn.Visibility = colorBtn.Visibility= Visibility.Visible;
                     };break;
                 case "Food":
@@ -221,13 +232,23 @@ namespace MyerMomentUniversal
                         textGrid.Visibility = Visibility.Collapsed;
                         foodGrid.Visibility = Visibility.Visible;
                         sceneGrid.Visibility = Visibility.Collapsed;
+                        aloneGrid.Visibility = Visibility.Collapsed;
                     }; break;
                 case "Scene":
                     {
                         textGrid.Visibility = Visibility.Collapsed;
                         foodGrid.Visibility = Visibility.Collapsed;
                         sceneGrid.Visibility = Visibility.Visible;
+                        aloneGrid.Visibility = Visibility.Collapsed;
                     }; break;
+                case "Alone":
+                    {
+                        textGrid.Visibility = Visibility.Collapsed;
+                        foodGrid.Visibility = Visibility.Collapsed;
+                        sceneGrid.Visibility = Visibility.Collapsed;
+                        aloneGrid.Visibility = Visibility.Visible;
+
+                    }break;
             }
         }
 
@@ -245,6 +266,9 @@ namespace MyerMomentUniversal
             sceneGrid.ManipulationDelta -= TextView_ManipulationDelta;
             sceneGrid.ManipulationDelta += TextView_ManipulationDelta;
 
+            aloneGrid.ManipulationDelta -= TextView_ManipulationDelta;
+            aloneGrid.ManipulationDelta += TextView_ManipulationDelta;
+
             _transformGroup = new TransformGroup();
             _transformGroup.Children.Add(_translateTransform);
             _transformGroup.Children.Add(_scaleTransform);
@@ -252,6 +276,7 @@ namespace MyerMomentUniversal
             textGrid.RenderTransform = _transformGroup;
             sceneGrid.RenderTransform = _transformGroup;
             foodGrid.RenderTransform = _transformGroup;
+            aloneGrid.RenderTransform = _transformGroup;
         }
 
         private void TextView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
@@ -414,18 +439,24 @@ namespace MyerMomentUniversal
 
         private async void CancelClick(object sender,RoutedEventArgs e)
         {
-            MessageDialog md = new MessageDialog("This photo being edited will be discarded.", "Discard this photo?");
+            var loader=Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var title = loader.GetString("DiscardTitle");
+            var content = loader.GetString("DiscardContent");
+            var discardBtn = loader.GetString("DiscardOK");
+            var discardCancel = loader.GetString("DiscardCancel");
+
+            MessageDialog md = new MessageDialog(content, title);
 
             var rootFrame = Window.Current.Content as Frame;
 
-            md.Commands.Add(new UICommand("Discard", act =>
+            md.Commands.Add(new UICommand(discardBtn, act =>
             {
                 if (rootFrame.CanGoBack)
                 {
                     rootFrame.GoBack();
                 }
             }));
-            md.Commands.Add(new UICommand("Cancel", act =>
+            md.Commands.Add(new UICommand(discardCancel, act =>
             {
                 return;
             }));
