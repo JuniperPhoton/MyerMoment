@@ -135,6 +135,9 @@
   <data name="CancleBtn" xml:space="preserve">
     <value>CANCEL</value>
   </data>
+  <data name="CreditHint" xml:space="preserve">
+    <value>If the font MyerMoment is using has involved your company's interest, please contact me by email as soon as possible.</value>
+  </data>
   <data name="DiscardCancel" xml:space="preserve">
     <value>cancel</value>
   </data>

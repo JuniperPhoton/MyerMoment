@@ -147,42 +147,66 @@
                     <Grid>
                         <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalScrollMode="Auto">
                             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Orientation="Vertical">
-                                <Grid Pivot.SlideInAnimationGroup="GroupOne" Margin="0,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                    <Ellipse Width="100" Height="100" Fill="{StaticResource MomentThemeColor}"/>
-                                    <Path Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center"  Margin="0" Opacity="1" Data="M48.850243,32.061127L40.837259,42.988266 36.466324,40.074284 26.633064,51.365921 61.962049,51.365921 57.591017,36.067707 52.492086,36.067707z M30.036716,26.927057C27.798449,26.927057 25.983376,28.740846 25.983376,30.979034 25.983376,33.21732 27.798449,35.031313 30.036716,35.031313 32.273483,35.031313 34.088657,33.21732 34.088657,30.979034 34.088657,28.740846 32.273483,26.927057 30.036716,26.927057z M17.322001,19.069001L65.332998,19.069001 65.332998,54.707001 17.322001,54.707001z M42.922237,0L50.809,15.735769 13.98841,15.735769 13.98841,49.422001 0,21.513156z" Stretch="Uniform"  Width="50" Height="50"  RenderTransformOrigin="0.5,0.5"/>
+                                <TextBlock Text="ABOUT" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="ExtraBold" Opacity="0.3" Margin="15,20,0,0" FontSize="30" Foreground="Black" FontFamily="Segoe WP"/>
 
-                                </Grid>
-                                <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="0,30,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
-                                    <TextBlock Margin="5" Text="VERSION" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
-                                </Border>
-                                <HyperlinkButton Pivot.SlideInAnimationGroup="GroupTwo" Content="0.9" NavigateUri="http://www.windowsphone.com/s?appid=52172f00-cfe1-4695-b4f7-a2be0c1bfacc" HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" Margin="0,10,0,0" />
+                                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                                    <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Left"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
+                                        <TextBlock Margin="5" Text="VERSION" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                                    </Border>
+                                    <HyperlinkButton Pivot.SlideInAnimationGroup="GroupTwo" Content="0.9 BETA" NavigateUri="http://www.windowsphone.com/s?appid=52172f00-cfe1-4695-b4f7-a2be0c1bfacc" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Margin="15,0,0,0" />
 
-                                <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="0,30,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
-                                    <TextBlock Margin="5" Text="CREDIT" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
-                                </Border>
-                                <TextBlock Pivot.SlideInAnimationGroup="GroupTwo" Margin="0,10,0,0" Text="JuniperPhoton" FontSize="20" FontFamily="Font/FZYTK.TTF#FZYaoTi" HorizontalAlignment="Center"/>
-                                <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="0,30,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
-                                    <TextBlock Margin="5" Text="FEEDBACK" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
-                                </Border>
-                                
-                                <Button Click="ReviewClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Center" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
-                                    <Border >
-                                        <TextBlock x:Name="rateTextblock"  Text="Give me a rate"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                                    <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
+                                        <TextBlock Margin="5" Text="CREDIT" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                     </Border>
-                                </Button>
-                                <Button Click="SendLogClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Center" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
-                                    <Border >
-                                        <TextBlock  x:Name="errorLogTextblock" Text="Send error log"/>
+                                    <TextBlock Pivot.SlideInAnimationGroup="GroupTwo" Margin="15,0,0,0" Text="JuniperPhoton" FontSize="20" FontFamily="Font/FZYTK.TTF#FZYaoTi" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                </StackPanel>
+                                <Border Pivot.SlideInAnimationGroup="GroupTwo" Margin="15,15,15,0" BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="5,0,0,0">
+                                    <TextBlock x:Name="creditTB" Text="If the font MyerMoment is using has involved your company's interest, please contact me by email as soon as possible." TextWrapping="Wrap" FontSize="20"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                </Border>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                                    <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
+                                        <TextBlock Margin="5" Text="FEEDBACK" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                     </Border>
-                                </Button>
-                                <Button Click="EmailClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Center" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                                    
+                                </StackPanel>
+
+                                <Button Click="ReviewClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Left" Margin="15,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
                                     <Border>
-                                        <TextBlock x:Name="feedbackTextblock"  Text="Send me an email"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <SymbolIcon Symbol="Emoji" />
+                                            <TextBlock x:Name="rateTextblock"  Text="Give me a rate" Margin="15,0,0,0"/>
+                                        </StackPanel>
                                     </Border>
                                 </Button>
+                                <Button Click="SendLogClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Left" Margin="15,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                                    <Border >
+                                        <StackPanel Orientation="Horizontal">
+                                            <SymbolIcon Symbol="Document" />
+                                            <TextBlock  x:Name="errorLogTextblock" Text="Send error log" Margin="15,0,0,0"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Button>
+                                <Button Click="EmailClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Left" Margin="15,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                                    <Border>
+                                        <StackPanel Orientation="Horizontal">
+                                            <SymbolIcon Symbol="MailFilled" />
+                                            <TextBlock x:Name="feedbackTextblock"  Text="Send me an email" Margin="15,0,0,0"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Button>
+                                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                                    <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
+                                        <TextBlock Margin="5" Text="OTHER APP" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
+                                    </Border>
+                                    <HyperlinkButton Pivot.SlideInAnimationGroup="GroupTwo" Content="MyerList for one Windows " NavigateUri="http://www.windowsphone.com/s?appid=52172f00-cfe1-4695-b4f7-a2be0c1bfacc" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Margin="15,0,0,0" />
+
+                                </StackPanel>
                             </StackPanel>
                         </ScrollViewer>
-
                     </Grid>
                 </PivotItem>
             </Pivot>

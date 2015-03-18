@@ -119,6 +119,13 @@ namespace MyerMomentUniversal
                 _scaleTransform.ScaleY += 0.2;
 
             }
+            else if (thanksGrid.Visibility == Visibility.Visible)
+            {
+                thanksGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX += 0.2;
+                _scaleTransform.ScaleY += 0.2;
+
+            }
         }
 
         private void DecreaseFontsizeClick(object sender, RoutedEventArgs e)
@@ -144,6 +151,12 @@ namespace MyerMomentUniversal
             else if (aloneGrid.Visibility == Visibility.Visible)
             {
                 aloneGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX -= 0.2;
+                _scaleTransform.ScaleY -= 0.2;
+            }
+            else if (thanksGrid.Visibility == Visibility.Visible)
+            {
+                thanksGrid.RenderTransform = _transformGroup;
                 _scaleTransform.ScaleX -= 0.2;
                 _scaleTransform.ScaleY -= 0.2;
             }
@@ -225,6 +238,7 @@ namespace MyerMomentUniversal
                         foodGrid.Visibility = Visibility.Collapsed;
                         sceneGrid.Visibility = Visibility.Collapsed;
                         aloneGrid.Visibility = Visibility.Collapsed;
+                        thanksGrid.Visibility = Visibility.Collapsed;
                         familyBtn.Visibility = colorBtn.Visibility= Visibility.Visible;
                     };break;
                 case "Food":
@@ -233,6 +247,8 @@ namespace MyerMomentUniversal
                         foodGrid.Visibility = Visibility.Visible;
                         sceneGrid.Visibility = Visibility.Collapsed;
                         aloneGrid.Visibility = Visibility.Collapsed;
+                        thanksGrid.Visibility = Visibility.Collapsed;
+
                     }; break;
                 case "Scene":
                     {
@@ -240,6 +256,8 @@ namespace MyerMomentUniversal
                         foodGrid.Visibility = Visibility.Collapsed;
                         sceneGrid.Visibility = Visibility.Visible;
                         aloneGrid.Visibility = Visibility.Collapsed;
+                        thanksGrid.Visibility = Visibility.Collapsed;
+
                     }; break;
                 case "Alone":
                     {
@@ -247,8 +265,18 @@ namespace MyerMomentUniversal
                         foodGrid.Visibility = Visibility.Collapsed;
                         sceneGrid.Visibility = Visibility.Collapsed;
                         aloneGrid.Visibility = Visibility.Visible;
+                        thanksGrid.Visibility = Visibility.Collapsed;
 
                     }break;
+                case "Thanks":
+                    {
+                        textGrid.Visibility = Visibility.Collapsed;
+                        foodGrid.Visibility = Visibility.Collapsed;
+                        sceneGrid.Visibility = Visibility.Collapsed;
+                        aloneGrid.Visibility = Visibility.Collapsed;
+                        thanksGrid.Visibility = Visibility.Visible;
+
+                    } break;
             }
         }
 
@@ -269,6 +297,10 @@ namespace MyerMomentUniversal
             aloneGrid.ManipulationDelta -= TextView_ManipulationDelta;
             aloneGrid.ManipulationDelta += TextView_ManipulationDelta;
 
+            thanksGrid.ManipulationDelta -= TextView_ManipulationDelta;
+            thanksGrid.ManipulationDelta += TextView_ManipulationDelta;
+
+
             _transformGroup = new TransformGroup();
             _transformGroup.Children.Add(_translateTransform);
             _transformGroup.Children.Add(_scaleTransform);
@@ -277,6 +309,7 @@ namespace MyerMomentUniversal
             sceneGrid.RenderTransform = _transformGroup;
             foodGrid.RenderTransform = _transformGroup;
             aloneGrid.RenderTransform = _transformGroup;
+            thanksGrid.RenderTransform = _transformGroup;
         }
 
         private void TextView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)

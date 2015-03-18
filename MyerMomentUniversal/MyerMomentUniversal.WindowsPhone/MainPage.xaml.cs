@@ -76,6 +76,7 @@ namespace MyerMomentUniversal
             rateTextblock.Text = loader.GetString("RateHint");
             errorLogTextblock.Text = loader.GetString("SendLogHint");
             feedbackTextblock.Text = loader.GetString("SendEmailHint");
+            creditTB.Text = loader.GetString("CreditHint");
         }
 
         private async void EmailClick(object sender,RoutedEventArgs e)

@@ -129,6 +129,9 @@
   <data name="CancleBtn" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="CreditHint" xml:space="preserve">
+    <value>如果 MyerMoment 所内置的字体侵犯到字体开发商的权益，请尽早通过下面的邮件联系开发者。</value>
+  </data>
   <data name="DiscardCancel" xml:space="preserve">
     <value>取消</value>
   </data>

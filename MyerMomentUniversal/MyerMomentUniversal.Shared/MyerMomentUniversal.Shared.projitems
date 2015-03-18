@@ -20,6 +20,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Font\archtura.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Atlantis MF.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\CALID.TTF" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Coriannis.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\FZYTK.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\HYLXJ.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\MATURASC.TTF" />
