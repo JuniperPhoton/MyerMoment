@@ -20,6 +20,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Asset\alone.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\along.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\brave.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\brave.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\dinner.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\dinner.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\food.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\scene.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\thanks.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\thanks.png" />
     <Content Include="$(MSBuildThisFileDirectory)Font\archtura.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Atlantis MF.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\CALID.TTF" />

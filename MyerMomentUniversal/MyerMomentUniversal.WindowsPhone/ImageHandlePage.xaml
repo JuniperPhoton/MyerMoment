@@ -421,10 +421,16 @@
                 </Border>
             </Grid>
             <Grid x:Name="aloneGrid" ManipulationMode="TranslateX,TranslateY" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped"  PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="103.167,0,103.833,0" Visibility="Collapsed">
-            	<Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Source="Assets/along.png"/>
+            	<Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Source="Asset/along.png"/>
             </Grid>
-            <Grid x:Name="thanksGrid" ManipulationMode="TranslateX,TranslateY" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped"  PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="103.167,0,103.833,0" Visibility="Collapsed">
-            	<Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Source="Assets/thanks.png"/>
+            <Grid x:Name="thanksGrid" ManipulationMode="TranslateX,TranslateY" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped"  PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0" Visibility="Collapsed">
+            	<Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Source="Asset/thanks.png"/>
+            </Grid>
+            <Grid x:Name="braveGrid" ManipulationMode="TranslateX,TranslateY" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped"  PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0" Visibility="Collapsed">
+                <Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Source="Asset/brave.png"/>
+            </Grid>
+            <Grid x:Name="dinnerGrid" ManipulationMode="TranslateX,TranslateY" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped"  PointerEntered="TextView_OnPointerEntered" Margin="91,58,107,10" Width="124" HorizontalAlignment="Center" VerticalAlignment="Center" Height="105" Visibility="Collapsed">
+                <Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Source="Asset/dinner.png"/>
             </Grid>
             <ProgressRing x:Name="ring"  VerticalAlignment="Center" HorizontalAlignment="Center" IsActive="True" Background="{x:Null}" Foreground="{StaticResource MomentThemeColor}"/>
         </Grid>
@@ -471,18 +477,6 @@
                             <SymbolIcon Symbol="FontDecrease" Foreground="{StaticResource MomentThemeBlack}"/>
                         </Grid>
                     </Button>
-                    <!--<Button Click="BoldFontClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                        <Grid Height="50" Width="50">
-                            <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                            <SymbolIcon Symbol="Bold" Foreground="{StaticResource MomentThemeBlack}"/>
-                        </Grid>
-                    </Button>
-                    <Button Click="ItalicFontClick" Style="{StaticResource ButtonStyle1}"  HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                        <Grid Height="50" Width="50">
-                            <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                            <SymbolIcon Symbol="Italic" Foreground="{StaticResource MomentThemeBlack}"/>
-                        </Grid>
-                    </Button>-->
                 </StackPanel>
             </ScrollViewer>
 
@@ -525,7 +519,7 @@
                             <Border Background="White" />
                         </Button>
                         <Button Click="FontColorClick" Margin="10,0,10,0" Grid.Column="1" Height="70" Width="70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
-                            <Border Background="#FF6A6A6A" />
+                            <Border Background="#FFBFBFBF" />
                         </Button>
                         <Button Click="FontColorClick" Margin="10,0,10,0" Grid.Column="1" Height="70" Width="70" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
                             <Border Background="Black" />
@@ -554,57 +548,63 @@
 
             <StackPanel Background="#FFE0E0E0" Orientation="Vertical">
                 <TextBlock  x:Name="familyTB"  Text="FONT FAMILY" Foreground="#FFBDBDBD" FontWeight="ExtraBold" FontSize="30" Margin="10" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
-                <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalScrollMode="Enabled" VerticalAlignment="Top" Height="196">
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalScrollMode="Auto" Background="#FFE0E0E0" Height="196" >
+                    <StackPanel Orientation="Vertical" Background="#FFE0E0E0">
                         <StackPanel Orientation="Horizontal">
-                            <Button Width="160" Click="FontFamilyClick" Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch"  >
+                            <Button Width="180" Click="FontFamilyClick" Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch"  >
                                 <TextBlock Text="Segoe WP" Foreground="Black" FontSize="25"/>
                             </Button>
-                            <Button Width="160" Click="FontFamilyClick" Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1"  >
+                            <Button Click="FontFamilyClick" Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1"  >
                                 <TextBlock Text="康熙字典" Foreground="Black" FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" FontSize="25"/>
                             </Button>
-                           
+
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Button  Width="160"  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="4"  Grid.Column="0">
-                                <TextBlock Text="汉仪菱心体简" Foreground="Black" FontFamily="Font/HYLXJ.ttf#汉仪菱心体简" FontSize="25"/>
-                            </Button>
-                            <Button  Width="160"  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="4"  Grid.Column="1">
-                                <TextBlock Text="方正姚体" Foreground="Black" FontFamily="Font/FZYTK.TTF#FZYaoTi" FontSize="25"/>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Button  Width="160" Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="1"  >
+                            <Button Width="180" Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="1"  >
                                 <TextBlock Text="Maturasc" Foreground="Black" FontFamily="Font/MATURASC.TTF#Matura MT Script Capitals" FontSize="25"/>
                             </Button>
-                            <Button   Width="160" Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0"  >
+                            <Button  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0"  >
                                 <TextBlock Text="Pristina" Foreground="Black" FontFamily="Font/PRISTINA.TTF#Pristina" FontSize="25"/>
                             </Button>
 
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Button   Width="160" Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="3"  Grid.Column="0">
-                                <TextBlock Text="Arcitectura" Foreground="Black" FontFamily="Font/archtura.ttf#Arcitectura" FontSize="25"/>
+                            <Button  Width="180"  Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
+                                <TextBlock Text="汉仪菱心体简" Foreground="Black" FontFamily="Font/HYLXJ.ttf#汉仪菱心体简" FontSize="25"/>
                             </Button>
-                            <Button   Width="160" Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="3"  Grid.Column="1">
-                                <TextBlock Text="Coriannis" Foreground="Black" FontFamily="Font/Coriannis.ttf#Coriannis" FontSize="25"/>
+                            <Button  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2"  Grid.Column="1">
+                                <TextBlock Text="方正姚体" Foreground="Black" FontFamily="Font/FZYTK.TTF#FZYaoTi" FontSize="25"/>
                             </Button>
 
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <Button   Width="160" Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="4"  Grid.Column="0">
+                            <Button  Width="180"  Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
+                                <TextBlock Text="Arcitectura" Foreground="Black" FontFamily="Font/archtura.ttf#Arcitectura" FontSize="25"/>
+                            </Button>
+                            <Button  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2"  Grid.Column="1">
                                 <TextBlock Text="Atlantis MF" Foreground="Black" FontFamily="Font/Atlantis MF.ttf#Atlantis MF" FontSize="25"/>
                             </Button>
-                            <Button   Width="160" Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="4"  Grid.Column="1">
+
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Button  Width="180"  Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
                                 <TextBlock Text="CaligulaDodgy" Foreground="Black" FontFamily="Font/CALID.TTF#CaligulaDodgy" FontSize="25"/>
                             </Button>
+                            <Button  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2"  Grid.Column="1">
+                                <TextBlock Text="Coriannis" Foreground="Black" FontFamily="Font/Coriannis.ttf#Coriannis" FontSize="25"/>
+                            </Button>
+
                         </StackPanel>
+
                     </StackPanel>
-                </ScrollViewer>
+                        
+                    </ScrollViewer>
+              
             </StackPanel>
 
         </Grid>
-        <Grid x:Name="StyleGrid" d:IsHidden="True"  Grid.Row="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom">
+        <Grid x:Name="StyleGrid"   Grid.Row="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" >
             <Grid.RenderTransform>
                 <CompositeTransform TranslateY="400"/>
             </Grid.RenderTransform>
@@ -623,7 +623,7 @@
                                 <Button Click="StyleClick" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
                                     <Border>
                                         <Border.Background>
-                                            <ImageBrush Stretch="Fill" ImageSource="Assets/food.jpg"/>
+                                            <ImageBrush Stretch="Fill" ImageSource="Asset/food.jpg"/>
                                         </Border.Background>
                                         <TextBlock Text="Food" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     </Border>
@@ -631,7 +631,7 @@
                                 <Button Click="StyleClick" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
                                     <Border>
                                         <Border.Background>
-                                            <ImageBrush Stretch="Fill" ImageSource="Assets/scene.jpg"/>
+                                            <ImageBrush Stretch="Fill" ImageSource="Asset/scene.jpg"/>
                                         </Border.Background>
                                         <TextBlock Text="Scene" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     </Border>
@@ -639,7 +639,7 @@
                                 <Button Click="StyleClick" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
                                     <Border>
                                         <Border.Background>
-                                            <ImageBrush Stretch="Fill" ImageSource="Assets/alone.jpg"/>
+                                            <ImageBrush Stretch="Fill" ImageSource="Asset/alone.jpg"/>
                                         </Border.Background>
                                         <TextBlock Text="Alone" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     </Border>
@@ -647,9 +647,25 @@
                                 <Button Click="StyleClick" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
                                     <Border>
                                         <Border.Background>
-                                            <ImageBrush Stretch="Fill" ImageSource="Assets/thanks.jpg"/>
+                                            <ImageBrush Stretch="Fill" ImageSource="Asset/thanks.jpg"/>
                                         </Border.Background>
                                         <TextBlock Text="Thanks" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </Button>
+                                <Button Click="StyleClick" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
+                                    <Border>
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="Asset/brave.jpg"/>
+                                        </Border.Background>
+                                        <TextBlock Text="Brave" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </Button>
+                                <Button Click="StyleClick" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
+                                    <Border>
+                                        <Border.Background>
+                                            <ImageBrush Stretch="Fill" ImageSource="Asset/dinner.jpg"/>
+                                        </Border.Background>
+                                        <TextBlock Text="Dinner" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     </Border>
                                 </Button>
                             </StackPanel>

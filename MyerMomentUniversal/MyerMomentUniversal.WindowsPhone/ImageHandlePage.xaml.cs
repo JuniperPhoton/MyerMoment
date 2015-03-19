@@ -124,7 +124,18 @@ namespace MyerMomentUniversal
                 thanksGrid.RenderTransform = _transformGroup;
                 _scaleTransform.ScaleX += 0.2;
                 _scaleTransform.ScaleY += 0.2;
-
+            }
+            else if (braveGrid.Visibility == Visibility.Visible)
+            {
+                braveGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX += 0.2;
+                _scaleTransform.ScaleY += 0.2;
+            }
+            else if (dinnerGrid.Visibility == Visibility.Visible)
+            {
+                dinnerGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX += 0.2;
+                _scaleTransform.ScaleY += 0.2;
             }
         }
 
@@ -136,7 +147,6 @@ namespace MyerMomentUniversal
             }
             else if (foodGrid.Visibility == Visibility.Visible)
             {
-
                 foodGrid.RenderTransform = _transformGroup;
                 _scaleTransform.ScaleX -= 0.2;
                 _scaleTransform.ScaleY -= 0.2;
@@ -157,6 +167,18 @@ namespace MyerMomentUniversal
             else if (thanksGrid.Visibility == Visibility.Visible)
             {
                 thanksGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX -= 0.2;
+                _scaleTransform.ScaleY -= 0.2;
+            }
+            else if (dinnerGrid.Visibility == Visibility.Visible)
+            {
+                dinnerGrid.RenderTransform = _transformGroup;
+                _scaleTransform.ScaleX -= 0.2;
+                _scaleTransform.ScaleY -= 0.2;
+            }
+            else if (braveGrid.Visibility == Visibility.Visible)
+            {
+                braveGrid.RenderTransform = _transformGroup;
                 _scaleTransform.ScaleX -= 0.2;
                 _scaleTransform.ScaleY -= 0.2;
             }
@@ -239,6 +261,8 @@ namespace MyerMomentUniversal
                         sceneGrid.Visibility = Visibility.Collapsed;
                         aloneGrid.Visibility = Visibility.Collapsed;
                         thanksGrid.Visibility = Visibility.Collapsed;
+                        dinnerGrid.Visibility = Visibility.Collapsed;
+                        braveGrid.Visibility = Visibility.Collapsed;
                         familyBtn.Visibility = colorBtn.Visibility= Visibility.Visible;
                     };break;
                 case "Food":
@@ -248,7 +272,8 @@ namespace MyerMomentUniversal
                         sceneGrid.Visibility = Visibility.Collapsed;
                         aloneGrid.Visibility = Visibility.Collapsed;
                         thanksGrid.Visibility = Visibility.Collapsed;
-
+                        dinnerGrid.Visibility = Visibility.Collapsed;
+                        braveGrid.Visibility = Visibility.Collapsed;
                     }; break;
                 case "Scene":
                     {
@@ -257,7 +282,8 @@ namespace MyerMomentUniversal
                         sceneGrid.Visibility = Visibility.Visible;
                         aloneGrid.Visibility = Visibility.Collapsed;
                         thanksGrid.Visibility = Visibility.Collapsed;
-
+                        dinnerGrid.Visibility = Visibility.Collapsed;
+                        braveGrid.Visibility = Visibility.Collapsed;
                     }; break;
                 case "Alone":
                     {
@@ -266,7 +292,8 @@ namespace MyerMomentUniversal
                         sceneGrid.Visibility = Visibility.Collapsed;
                         aloneGrid.Visibility = Visibility.Visible;
                         thanksGrid.Visibility = Visibility.Collapsed;
-
+                        dinnerGrid.Visibility = Visibility.Collapsed;
+                        braveGrid.Visibility = Visibility.Collapsed;
                     }break;
                 case "Thanks":
                     {
@@ -275,7 +302,28 @@ namespace MyerMomentUniversal
                         sceneGrid.Visibility = Visibility.Collapsed;
                         aloneGrid.Visibility = Visibility.Collapsed;
                         thanksGrid.Visibility = Visibility.Visible;
-
+                        dinnerGrid.Visibility = Visibility.Collapsed;
+                        braveGrid.Visibility = Visibility.Collapsed;
+                    } break;
+                case "Dinner":
+                    {
+                        textGrid.Visibility = Visibility.Collapsed;
+                        foodGrid.Visibility = Visibility.Collapsed;
+                        sceneGrid.Visibility = Visibility.Collapsed;
+                        aloneGrid.Visibility = Visibility.Collapsed;
+                        thanksGrid.Visibility = Visibility.Collapsed;
+                        dinnerGrid.Visibility = Visibility.Visible;
+                        braveGrid.Visibility = Visibility.Collapsed;
+                    } break;
+                case "Brave":
+                    {
+                        textGrid.Visibility = Visibility.Collapsed;
+                        foodGrid.Visibility = Visibility.Collapsed;
+                        sceneGrid.Visibility = Visibility.Collapsed;
+                        aloneGrid.Visibility = Visibility.Collapsed;
+                        thanksGrid.Visibility = Visibility.Collapsed;
+                        dinnerGrid.Visibility = Visibility.Collapsed;
+                        braveGrid.Visibility = Visibility.Visible;
                     } break;
             }
         }
@@ -300,6 +348,12 @@ namespace MyerMomentUniversal
             thanksGrid.ManipulationDelta -= TextView_ManipulationDelta;
             thanksGrid.ManipulationDelta += TextView_ManipulationDelta;
 
+            dinnerGrid.ManipulationDelta -= TextView_ManipulationDelta;
+            dinnerGrid.ManipulationDelta += TextView_ManipulationDelta;
+
+            braveGrid.ManipulationDelta -= TextView_ManipulationDelta;
+            braveGrid.ManipulationDelta += TextView_ManipulationDelta;
+
 
             _transformGroup = new TransformGroup();
             _transformGroup.Children.Add(_translateTransform);
@@ -310,13 +364,14 @@ namespace MyerMomentUniversal
             foodGrid.RenderTransform = _transformGroup;
             aloneGrid.RenderTransform = _transformGroup;
             thanksGrid.RenderTransform = _transformGroup;
+            dinnerGrid.RenderTransform = _transformGroup;
+            braveGrid.RenderTransform = _transformGroup;
         }
 
         private void TextView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
             _translateTransform.X += e.Delta.Translation.X;
             _translateTransform.Y += e.Delta.Translation.Y;
-
         }
 
         private void textGrid_Tapped(object sender, TappedRoutedEventArgs e)

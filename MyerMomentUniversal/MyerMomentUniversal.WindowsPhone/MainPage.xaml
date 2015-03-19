@@ -161,6 +161,7 @@
                                         <TextBlock Margin="5" Text="CREDIT" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                     </Border>
                                     <TextBlock Pivot.SlideInAnimationGroup="GroupTwo" Margin="15,0,0,0" Text="JuniperPhoton" FontSize="20" FontFamily="Font/FZYTK.TTF#FZYaoTi" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Pivot.SlideInAnimationGroup="GroupTwo" Margin="15,0,0,0" Text="Churwin" FontSize="20" FontFamily="Font/FZYTK.TTF#FZYaoTi" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                                 </StackPanel>
                                 <Border Pivot.SlideInAnimationGroup="GroupTwo" Margin="15,15,15,0" BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="5,0,0,0">
@@ -211,7 +212,7 @@
                 </PivotItem>
             </Pivot>
         </Grid>
-        <Image d:IsHidden="True"  x:Name="image" Grid.RowSpan="2" Source="Assets/SplashScreen.png" Stretch="UniformToFill" Margin="0,-30,0,0" RenderTransformOrigin="0.5,0.5" >
+        <Image d:IsHidden="True"  x:Name="image" Grid.RowSpan="2" Source="Assets/Splash_672x1120.png" Stretch="UniformToFill" Margin="0,-30,0,0" RenderTransformOrigin="0.5,0.5" >
             <Image.RenderTransform>
                 <CompositeTransform/>
             </Image.RenderTransform>
