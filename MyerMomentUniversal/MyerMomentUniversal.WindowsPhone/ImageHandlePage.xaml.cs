@@ -518,7 +518,7 @@ namespace MyerMomentUniversal
 
                 this.savedFileName = fileToSave.Name;
 
-                if (_isInShareMode) shareBtn.Visibility = Visibility.Collapsed;
+                if (_isFromShareTarget) shareBtn.Visibility = Visibility.Collapsed;
             }
             catch (Exception e)
             {
@@ -543,6 +543,7 @@ namespace MyerMomentUniversal
 
             md.Commands.Add(new UICommand(discardBtn, act =>
             {
+                if (_isFromShareTarget) App.Current.Exit();
                 if (rootFrame.CanGoBack)
                 {
                     rootFrame.GoBack();
@@ -656,7 +657,7 @@ namespace MyerMomentUniversal
 
         private void BackHomeClick(object sender, RoutedEventArgs e)
         {
-            if (_isInShareMode) App.Current.Exit();
+            if (_isFromShareTarget) App.Current.Exit();
             Frame.Navigate(typeof(MainPage));
         }
 
@@ -687,7 +688,7 @@ namespace MyerMomentUniversal
                         var fileToOpen = await Windows.Storage.StorageFile.GetFileFromPathAsync(path);
                         ShowImage(fileToOpen);
 
-                        _isInShareMode = true;
+                        _isFromShareTarget = true;
                     }
                     
                 }  
@@ -702,7 +703,7 @@ namespace MyerMomentUniversal
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             e.Handled = true;
-            if(_isInFontFamilyMode || _isInColorMode || _isInStyleMode || _isInShareMode || _isInErrorMode)
+            if (_isInFontFamilyMode || _isInColorMode || _isInStyleMode || _isInShareMode || _isInErrorMode)
             {
                 if (_isInColorMode)
                 {
