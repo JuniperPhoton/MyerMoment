@@ -121,7 +121,7 @@
     <value>ABOUT</value>
   </data>
   <data name="BackToHomeHint" xml:space="preserve">
-    <value>BACK TO HOME</value>
+    <value>COMPLETE</value>
   </data>
   <data name="CameraRollHint" xml:space="preserve">
     <value>CameraRoll</value>
@@ -167,6 +167,12 @@
   </data>
   <data name="HighHint" xml:space="preserve">
     <value>High</value>
+  </data>
+  <data name="ImportHeader" xml:space="preserve">
+    <value>IMPORT FONT</value>
+  </data>
+  <data name="ImportHint" xml:space="preserve">
+    <value>Coming soon.</value>
   </data>
   <data name="LowHint" xml:space="preserve">
     <value>Low</value>
@@ -214,7 +220,7 @@
     <value>SETTING</value>
   </data>
   <data name="ShareHint" xml:space="preserve">
-    <value>SHARE TO WEIBO</value>
+    <value>SHARE</value>
   </data>
   <data name="StartHeader" xml:space="preserve">
     <value>START</value>

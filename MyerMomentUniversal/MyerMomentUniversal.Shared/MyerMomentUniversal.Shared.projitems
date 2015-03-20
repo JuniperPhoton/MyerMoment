@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Helper\MomentConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FontViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
@@ -30,15 +31,14 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\scene.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\thanks.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\thanks.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\archtura.ttf" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\Atlantis MF.ttf" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\CALID.TTF" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\Coriannis.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Frozen.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\FZYTK.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\HYLXJ.ttf" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\MATURASC.TTF" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Kelson Sans Regular.otf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\norwester.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\PRISTINA.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\TpldKhangXiDictTrial.otf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\wqy-microhei.ttc" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />

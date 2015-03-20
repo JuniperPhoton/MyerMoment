@@ -121,7 +121,7 @@
     <value>关于</value>
   </data>
   <data name="BackToHomeHint" xml:space="preserve">
-    <value>返回到主页</value>
+    <value>完成</value>
   </data>
   <data name="CameraRollHint" xml:space="preserve">
     <value>CameraRoll</value>
@@ -130,7 +130,7 @@
     <value>取消</value>
   </data>
   <data name="CreditHint" xml:space="preserve">
-    <value>如果 MyerMoment 所内置的字体侵犯到字体开发商的权益，请尽早通过下面的邮件联系开发者。</value>
+    <value>如果 MyerMoment 所内置的字体侵犯到您作为字体开发商的权益，请尽早通过下面的邮件联系开发者。</value>
   </data>
   <data name="DiscardCancel" xml:space="preserve">
     <value>取消</value>
@@ -161,6 +161,12 @@
   </data>
   <data name="HighHint" xml:space="preserve">
     <value>高</value>
+  </data>
+  <data name="ImportHeader" xml:space="preserve">
+    <value>导入字体</value>
+  </data>
+  <data name="ImportHint" xml:space="preserve">
+    <value>敬请期待。</value>
   </data>
   <data name="LowHint" xml:space="preserve">
     <value>低</value>
@@ -208,7 +214,7 @@
     <value>设置</value>
   </data>
   <data name="ShareHint" xml:space="preserve">
-    <value>分享到微博</value>
+    <value>共享</value>
   </data>
   <data name="StartHeader" xml:space="preserve">
     <value>开始</value>

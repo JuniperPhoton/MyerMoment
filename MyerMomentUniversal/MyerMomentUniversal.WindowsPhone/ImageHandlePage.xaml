@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="{StaticResource MomentThemeColor}" 
+    IsTextScaleFactorEnabled="False"
     >
     <Page.Resources>
         <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="White"></SolidColorBrush>
@@ -562,16 +563,16 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button Width="180" Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="1"  >
-                                <TextBlock Text="Maturasc" Foreground="Black" FontFamily="Font/MATURASC.TTF#Matura MT Script Capitals" FontSize="25"/>
+                                <TextBlock Text="FROZEN" Foreground="Black" FontFamily="Font/Frozen.ttf#Frozen" FontSize="25"/>
                             </Button>
                             <Button  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0"  >
-                                <TextBlock Text="Pristina" Foreground="Black" FontFamily="Font/PRISTINA.TTF#Pristina" FontSize="25"/>
+                                <TextBlock Text="Kelson Sans" Foreground="Black" FontFamily="Font/Kelson Sans Regular.otf#Kelson Sans" FontSize="25"/>
                             </Button>
 
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button  Width="180"  Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
-                                <TextBlock Text="汉仪菱心体简" Foreground="Black" FontFamily="Font/HYLXJ.ttf#汉仪菱心体简" FontSize="25"/>
+                                <TextBlock Text="NORWESTER" Foreground="Black" FontFamily="Font/norwester.otf#Norwester" FontSize="25"/>
                             </Button>
                             <Button  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2"  Grid.Column="1">
                                 <TextBlock Text="方正姚体" Foreground="Black" FontFamily="Font/FZYTK.TTF#FZYaoTi" FontSize="25"/>
@@ -580,23 +581,11 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button  Width="180"  Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
-                                <TextBlock Text="Arcitectura" Foreground="Black" FontFamily="Font/archtura.ttf#Arcitectura" FontSize="25"/>
+                                <TextBlock Text="Wqy-microhei" Foreground="Black" FontFamily="Font/wqy-microhei.ttc#WenQuanYi Micro Hei" FontSize="25"/>
                             </Button>
-                            <Button  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2"  Grid.Column="1">
-                                <TextBlock Text="Atlantis MF" Foreground="Black" FontFamily="Font/Atlantis MF.ttf#Atlantis MF" FontSize="25"/>
-                            </Button>
-
+                           
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <Button  Width="180"  Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
-                                <TextBlock Text="CaligulaDodgy" Foreground="Black" FontFamily="Font/CALID.TTF#CaligulaDodgy" FontSize="25"/>
-                            </Button>
-                            <Button  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2"  Grid.Column="1">
-                                <TextBlock Text="Coriannis" Foreground="Black" FontFamily="Font/Coriannis.ttf#Coriannis" FontSize="25"/>
-                            </Button>
-
-                        </StackPanel>
-
+                        
                     </StackPanel>
                         
                     </ScrollViewer>
@@ -604,12 +593,12 @@
             </StackPanel>
 
         </Grid>
-        <Grid x:Name="StyleGrid"   Grid.Row="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" >
+        <Grid x:Name="StyleGrid" d:IsHidden="True"  Grid.Row="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" >
             <Grid.RenderTransform>
                 <CompositeTransform TranslateY="400"/>
             </Grid.RenderTransform>
 
-            <StackPanel Background="#FFE0E0E0" Orientation="Vertical">
+            <StackPanel Background="#FFE0E0E0"  Orientation="Vertical">
                 <TextBlock  x:Name="styleTB" Text="STYLE" Foreground="#FFBDBDBD" FontWeight="ExtraBold" FontSize="30" Margin="10" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                 <Grid VerticalAlignment="Top" >
                     <StackPanel Orientation="Vertical">
@@ -699,11 +688,22 @@
                 <TextBlock x:Name="savingTB" Text="Saving..." FontSize="30" />
             </StackPanel>
         </Grid>
+        <Grid x:Name="ErrorGrid" Visibility="Collapsed" Grid.Row="0"  Grid.RowSpan="6">
+            <Border Background="Black" Opacity="0.8"/>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Orientation="Vertical">
+                <TextBlock VerticalAlignment="Center" x:Name="errorTB" Text="ERROR :-(" FontSize="30" HorizontalAlignment="Center" />
+                <Button Click="backErrorClick" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
+                    <Border Background="White">
+                        <TextBlock x:Name="backTB" Foreground="{StaticResource MomentThemeBlack}" Text="Return" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </Button>
+            </StackPanel>
+        </Grid>
         <Grid x:Name="ShareGrid" Visibility="Collapsed" Grid.Row="0"  Grid.RowSpan="6">
             <Border Background="Black" Opacity="0.8"/>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Orientation="Vertical">
                 <TextBlock x:Name="savedTB" HorizontalAlignment="Center" Text="Photo saved :D" FontSize="30" />
-                <Button Click="ShareClick" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
+                <Button Click="ShareClick" x:Name="shareBtn" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
                     <Border Background="{StaticResource MomentThemeColor}">
                         <TextBlock x:Name="shareTB" Foreground="{StaticResource MomentThemeBlack}" Text="SHARE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>

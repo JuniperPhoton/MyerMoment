@@ -196,5 +196,11 @@
     <MainPackageIdentityName>19204JuniperPhoton.2828271CA5F95</MainPackageIdentityName>
     <MainPackageIdentityName>19204JuniperPhoton.Beta</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=f5d259bc-3ea4-4a35-be26-fd2494321d3f" />
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=f5d259bc-3ea4-4a35-be26-fd2494321d3f">
+    <PackageInfo>
+      <OsMinVersion>6.3.0.0</OsMinVersion>
+      <PackageArchitecture>neutral</PackageArchitecture>
+      <PackageMaxArchitectureVersion>1.1.0.6</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>

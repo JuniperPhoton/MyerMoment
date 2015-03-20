@@ -24,13 +24,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
 namespace MyerMomentUniversal
 {
-    /// <summary>
-    /// 可独立使用或用于导航至 Frame 内部的空白页。
-    /// </summary>
+
     public sealed partial class MainPage : Page, IFileOpenPickerContinuable
     {
         public static MainPage Current;        
@@ -74,9 +71,11 @@ namespace MyerMomentUniversal
             folderTextblock.Text = loader.GetString("MyerMomentFolderHint");
             cameraRollTextblock.Text = loader.GetString("CameraRollHint");
             rateTextblock.Text = loader.GetString("RateHint");
-            errorLogTextblock.Text = loader.GetString("SendLogHint");
+            //errorLogTextblock.Text = loader.GetString("SendLogHint");
             feedbackTextblock.Text = loader.GetString("SendEmailHint");
-            creditTB.Text = loader.GetString("CreditHint");
+            //creditTB.Text = loader.GetString("CreditHint");
+            importHint.Text = loader.GetString("ImportHint");
+            importTB.Text = loader.GetString("ImportHeader");
         }
 
         private async void EmailClick(object sender,RoutedEventArgs e)
@@ -99,9 +98,15 @@ namespace MyerMomentUniversal
             await EmailManager.ShowComposeNewEmailAsync(mes);
         }
 
-        private void ReviewClick(object sender,RoutedEventArgs e)
+        private async void ReviewClick(object sender,RoutedEventArgs e)
         {
+            await Windows.System.Launcher.LaunchUriAsync(
+                            new Uri("ms-windows-store:reviewapp?appid=126a1e6d-0f68-4b89-a67c-fe3d204508ec"));
+        }
 
+        private void ManageClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(FontPage));
         }
 
         private void OpenPhotoClick(object sender,RoutedEventArgs e )
@@ -126,10 +131,6 @@ namespace MyerMomentUniversal
                     {
                         Frame.Navigate(typeof(ImageHandlePage), args);
                     } break;
-                case ActivationKind.ShareTarget:
-                    {
-                        Frame.Navigate(typeof(ImageHandlePage), args);
-                    }break;
             }
         }
 
@@ -138,6 +139,11 @@ namespace MyerMomentUniversal
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             SplashStory.Begin();
             Frame.BackStack.Clear();
+
+            //if(e.Parameter.GetType()==typeof(ShareOperation))
+            //{
+            //    Frame.Navigate(typeof(ImageHandlePage), e.Parameter);
+            //}
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

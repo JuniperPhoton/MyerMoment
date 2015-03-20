@@ -213,7 +213,7 @@ namespace MyerMomentUniversal
             var continuationEventArgs = e as IContinuationActivatedEventArgs;
             if (continuationEventArgs != null)
             {
-                Frame scenarioFrame = MainPage.Current.Frame;
+                Frame scenarioFrame = Window.Current.Content as Frame;
                 if (scenarioFrame != null)
                 {
                     // Call ContinuationManager to handle continuation activation
@@ -224,16 +224,22 @@ namespace MyerMomentUniversal
             Window.Current.Activate();
         }
 #endif
-        protected override void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
+        protected async override void OnShareTargetActivated(ShareTargetActivatedEventArgs args)
         {
-            ShareOperation shareOperation = args.ShareOperation;
-            if (shareOperation.Data.Contains(StandardDataFormats.Bitmap))
+            
+            Frame rootFrame = CreateRootFrame();
+            await RestoreStatusAsync(args.PreviousExecutionState);
+
+            if (rootFrame.Content == null)
             {
-                
-                var rootFrame = new Frame();
-                rootFrame.Navigate(typeof(ImageHandlePage), shareOperation);
-                Window.Current.Content = rootFrame;
-                Window.Current.Activate();
+                ShareOperation shareOperation = args.ShareOperation;
+                if (shareOperation.Data.Contains(StandardDataFormats.StorageItems))
+                {
+                    rootFrame.Navigate(typeof(ImageHandlePage), shareOperation);
+                    Window.Current.Content = rootFrame;
+                    Window.Current.Activate();
+                }
+
             }
         }
 

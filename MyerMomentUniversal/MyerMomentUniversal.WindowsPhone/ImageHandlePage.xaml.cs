@@ -26,6 +26,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using System.Collections.Generic;
 using UmengSocialSDK;
+using Windows.ApplicationModel.DataTransfer;
 
 
 namespace MyerMomentUniversal
@@ -39,6 +40,9 @@ namespace MyerMomentUniversal
         private bool _isInFontFamilyMode = false;
         private bool _isInStyleMode = false;
         private bool _isInShareMode = false;
+        private bool _isInErrorMode = false;
+
+        private bool _isFromShareTarget = false;
 
         private double _angle = 0;
 
@@ -49,8 +53,8 @@ namespace MyerMomentUniversal
 
         private double _qualityScale;
 
-        private double _imageBorderH;
-        private double _imageBorderW;
+        //private double _imageBorderH;
+        //private double _imageBorderW;
 
         private TranslateTransform _translateTransform = new TranslateTransform();
         private ScaleTransform _scaleTransform = new ScaleTransform();
@@ -63,6 +67,8 @@ namespace MyerMomentUniversal
             this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
             ConfigLang();
+
+            DataTransferManager.GetForCurrentView().DataRequested += dataTransferManager_DataRequested;
 
             switch(LocalSettingHelper.GetValue("Quality"))
             {
@@ -383,7 +389,6 @@ namespace MyerMomentUniversal
         private void textGrid_LostFocus(object sender, RoutedEventArgs e)
         {
             maskBorder.Visibility = Visibility.Visible;
-
         }
 
 
@@ -423,32 +428,32 @@ namespace MyerMomentUniversal
             {
                 TextView.Visibility = Visibility.Collapsed;
 
-                var fileStream = await file.OpenAsync(FileAccessMode.Read);
+                using(var fileStream = await file.OpenAsync(FileAccessMode.Read))
+                {
+                    //从文件流里创建解码器
+                    var decoder = await BitmapDecoder.CreateAsync(fileStream);
 
-                //从文件流里创建解码器
-                var decoder = await BitmapDecoder.CreateAsync(fileStream);
+                    this._dpiX = (int)decoder.DpiX;
+                    this._dpiY = (int)decoder.DpiY;
+                    this._height = decoder.OrientedPixelHeight;
+                    this._width = decoder.OrientedPixelWidth;
 
-                this._dpiX = (int)decoder.DpiX;
-                this._dpiY = (int)decoder.DpiY;
-                this._height = decoder.OrientedPixelHeight;
-                this._width = decoder.OrientedPixelWidth;
+                    ring.IsActive = true;
 
-                ring.IsActive = true;
+                    //显示图像
+                    var bitmap = new BitmapImage();
+                    var task = bitmap.SetSourceAsync(fileStream);
+                    await task;
+                    image.Source = bitmap;
 
-                //显示图像
-                var bitmap = new BitmapImage();
-                var task=bitmap.SetSourceAsync(fileStream);
-                await task;
-                image.Source = bitmap;
+                    ring.IsActive = false;
 
-                ring.IsActive = false;
+                    TextView.Visibility = Visibility.Visible;
 
-                TextView.Visibility = Visibility.Visible;
-
-                image.UpdateLayout();
-                this._imageBorderH = (image.ActualHeight / 2);
-                this._imageBorderW = (image.ActualWidth / 2);
-
+                    image.UpdateLayout();
+                    //this._imageBorderH = (image.ActualHeight / 2);
+                    //this._imageBorderW = (image.ActualWidth / 2);
+                }
             }
             catch (Exception e)
             {
@@ -501,8 +506,7 @@ namespace MyerMomentUniversal
                     propertySet.Add("ImageQuality", qualityValue);
 
                     var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, fileStream, propertySet);
-
-                    var logicalDpi = DisplayInformation.GetForCurrentView().LogicalDpi;
+                    encoder.BitmapTransform.InterpolationMode = BitmapInterpolationMode.Fant;
 
                     encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied, (uint)bitmap.PixelWidth, (uint)bitmap.PixelHeight, _dpiX, _dpiY, pixels.ToArray());
                     await encoder.FlushAsync();
@@ -511,18 +515,18 @@ namespace MyerMomentUniversal
 
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ShareGrid.Visibility = Visibility.Visible;
-                this._isInShareMode = true;
 
                 this.savedFileName = fileToSave.Name;
+
+                if (_isInShareMode) shareBtn.Visibility = Visibility.Collapsed;
             }
             catch (Exception e)
             {
                 var task = ExceptionHelper.WriteRecord(e);
                 MaskGrid.Visibility = Visibility.Collapsed;
-                //new MessageDialog(e.Message.ToString(), "Error").ShowAsync();
+                ErrorGrid.Visibility = Visibility.Visible;
+                _isInErrorMode = true;
             }
-
-
         }
 
         private async void CancelClick(object sender,RoutedEventArgs e)
@@ -552,57 +556,113 @@ namespace MyerMomentUniversal
             await md.ShowAsync();
         }
 
-        private async void ShareClick(object sender, RoutedEventArgs e)
+        private void backErrorClick(object sender,RoutedEventArgs e)
+        {
+            ErrorGrid.Visibility = Visibility.Collapsed;
+            _isInErrorMode = false;
+        }
+
+        private void ShareClick(object sender, RoutedEventArgs e)
         {
             try
             {
- 
-                UmengClient umengClient = new SinaWeiboClient("5506e8eafd98c52426000587");
+                #region UMENG
+                //UmengClient umengClient = new SinaWeiboClient("5506e8eafd98c52426000587");
 
-                var file = await Windows.Storage.KnownFolders.SavedPictures.GetFileAsync(savedFileName);
-                using (var fileStream = await file.OpenStreamForReadAsync())
-                {
-                    byte[] imageData = new byte[fileStream.Length];
-                    fileStream.Read(imageData, 0, imageData.Length);
+                //var file = await Windows.Storage.KnownFolders.SavedPictures.GetFileAsync(savedFileName);
+                //using (var fileStream = await file.OpenStreamForReadAsync())
+                //{
+                //    byte[] imageData = new byte[fileStream.Length];
+                //    fileStream.Read(imageData, 0, imageData.Length);
 
-                    var pic = new UmengPicture(imageData, "Share image #MyerMoment#");
-                    var task = umengClient.SharePictureAsync(pic, true);
+                //    var pic = new UmengPicture(imageData, "Share image #MyerMoment#");
+                //    var task = umengClient.SharePictureAsync(pic, true);
                     
-                    var result = await task;
+                //    var result = await task;
 
-                    var resState = result.Status;
-                    switch (resState)
-                    {
-                        case ShareStatus.Success:
-                            {
-                                BackHomeClick(null, null);
-                            }; break;
-                        case ShareStatus.UserCanceled:
-                            {
-                                BackHomeClick(null, null);
-                            }; break;
-                        case ShareStatus.Error:
-                            {
-                            };break;
-                    }
+                //    var resState = result.Status;
+                //    switch (resState)
+                //    {
+                //        case ShareStatus.Success:
+                //            {
+                //                BackHomeClick(null, null);
+                //            }; break;
+                //        case ShareStatus.UserCanceled:
+                //            {
+                //                BackHomeClick(null, null);
+                //            }; break;
+                //        case ShareStatus.Error:
+                //            {
+                //            };break;
+                //    }
 
-                }
+                //}
+                #endregion
+
+                DataTransferManager.ShowShareUI();
             }
             catch (Exception ee)
             {
                 var task = ExceptionHelper.WriteRecord(ee);
+                
             }
 
         }
 
+        private async void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            DataRequest request = args.Request;
+            request.Data.Properties.Title = "MyerMoment";
+            request.Data.Properties.Description = "image From MyerMoment";
+            DataRequestDeferral deferral = request.GetDeferral();
+
+            try
+            {
+                var positon = LocalSettingHelper.GetValue("Position");
+                StorageFile fileToGet = null;
+                switch (positon)
+                {
+                    case "0": fileToGet = await KnownFolders.SavedPictures.GetFileAsync(savedFileName); break;
+                    case "1":
+                        {
+                            var folderToGet = await KnownFolders.PicturesLibrary.GetFolderAsync("MyerMoment");
+                            fileToGet = await folderToGet.GetFileAsync(savedFileName);
+                        }; break;
+                    case "2":
+                        {
+                            fileToGet = await KnownFolders.CameraRoll.GetFileAsync(savedFileName);
+                        }; break;
+                }
+                if (fileToGet == null) return;
+
+                List<IStorageItem> storageItems = new List<IStorageItem>();
+                storageItems.Add(fileToGet);
+                request.Data.SetStorageItems(storageItems);
+            }
+            catch (Exception ee)
+            {
+                ShareGrid.Visibility = Visibility.Collapsed;
+                _isInShareMode = false;
+
+                ErrorGrid.Visibility = Visibility.Visible;
+                _isInErrorMode = true;
+
+            }
+            finally
+            {
+                deferral.Complete();
+            }
+        }
+
         private void BackHomeClick(object sender, RoutedEventArgs e)
         {
+            if (_isInShareMode) App.Current.Exit();
             Frame.Navigate(typeof(MainPage));
         }
 
         #endregion
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 
@@ -614,6 +674,22 @@ namespace MyerMomentUniversal
                     if (args.Files.Count == 0) return;
 
                     ShowImage(args.Files[0]);
+                }
+                if (e.Parameter.GetType() == typeof(ShareOperation))
+                {
+                    var shareOperation = e.Parameter as ShareOperation;
+                    var items=await shareOperation.Data.GetStorageItemsAsync();
+                   
+                    var firstItem = items.FirstOrDefault();
+                    if(firstItem!=null)
+                    {
+                        var path = firstItem.Path;
+                        var fileToOpen = await Windows.Storage.StorageFile.GetFileFromPathAsync(path);
+                        ShowImage(fileToOpen);
+
+                        _isInShareMode = true;
+                    }
+                    
                 }  
             }
         }
@@ -626,7 +702,7 @@ namespace MyerMomentUniversal
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             e.Handled = true;
-            if(_isInFontFamilyMode==true || _isInColorMode==true || _isInStyleMode==true || _isInShareMode==true)
+            if(_isInFontFamilyMode || _isInColorMode || _isInStyleMode || _isInShareMode || _isInErrorMode)
             {
                 if (_isInColorMode)
                 {
@@ -647,6 +723,10 @@ namespace MyerMomentUniversal
                 {
                     ShareGrid.Visibility = Visibility.Collapsed;
                     return;
+                }
+                if(_isInErrorMode)
+                {
+                    backErrorClick(null, null);
                 }
                 return;
             }
