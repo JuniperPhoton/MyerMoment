@@ -375,7 +375,7 @@
                 </Image.RenderTransform>
             </Image>
             <Grid x:Name="textGrid"  LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped" ManipulationMode="TranslateX,TranslateY" PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Center" d:IsHidden="True">
-                <TextBox x:Name="TextView" FontSize="30"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="The moment of this photo" FontFamily="Font/FZYTK.TTF#FZYaoTi" Margin="0"/>
+                <TextBox x:Name="TextView" FontSize="30"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="The moment of this photo" FontFamily="Font/FZYTK.TTF#FZYaoTi" Margin="0" InputScope="Chat"/>
                 <Border x:Name="maskBorder" Background="Black" Opacity="0.01"/>
             </Grid>
             <Grid x:Name="foodGrid" ManipulationMode="TranslateX,TranslateY" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped"  PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="-0.167,0,0.166,-0.5" Visibility="Collapsed">
@@ -413,13 +413,6 @@
                         <CompositeTransform ScaleX="1.2" ScaleY="0.8"/>
                     </TextBlock.RenderTransform>
                 </TextBlock>
-                <Border BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Margin="10,-6,0,0" Height="11">
-                    <TextBlock TextWrapping="Wrap" Text="SCENE" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock.RenderTransform>
-                            <CompositeTransform ScaleY="0.7"/>
-                        </TextBlock.RenderTransform>
-                    </TextBlock>
-                </Border>
             </Grid>
             <Grid x:Name="aloneGrid" ManipulationMode="TranslateX,TranslateY" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped"  PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="103.167,0,103.833,0" Visibility="Collapsed">
             	<Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Source="Asset/along.png"/>
@@ -566,7 +559,7 @@
                                 <TextBlock Text="FROZEN" Foreground="Black" FontFamily="Font/Frozen.ttf#Frozen" FontSize="25"/>
                             </Button>
                             <Button  Click="FontFamilyClick" Margin="10"  MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="0"  >
-                                <TextBlock Text="Kelson Sans" Foreground="Black" FontFamily="Font/Kelson Sans Regular.otf#Kelson Sans" FontSize="25"/>
+                                <TextBlock Text="汉仪菱心体" Foreground="Black" FontFamily="Font/HYLXJ.ttf#汉仪菱心体简" FontSize="25"/>
                             </Button>
 
                         </StackPanel>
@@ -581,9 +574,9 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <Button  Width="180"  Click="FontFamilyClick"  Margin="10" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
-                                <TextBlock Text="Wqy-microhei" Foreground="Black" FontFamily="Font/wqy-microhei.ttc#WenQuanYi Micro Hei" FontSize="25"/>
+                                <TextBlock Text="WenQuanYi" Foreground="Black" FontFamily="Font/wqy-microhei.ttc#WenQuanYi Micro Hei" FontSize="25"/>
                             </Button>
-                           
+                            
                         </StackPanel>
                         
                     </StackPanel>
@@ -692,6 +685,12 @@
             <Border Background="Black" Opacity="0.8"/>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Orientation="Vertical">
                 <TextBlock VerticalAlignment="Center" x:Name="errorTB" Text="ERROR :-(" FontSize="30" HorizontalAlignment="Center" />
+                <TextBlock VerticalAlignment="Center" x:Name="errorHintTB" Text="For some reason, this picture should be compressed." FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Center" />
+                <Button Click="retryClick" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
+                    <Border Background="{StaticResource MomentThemeColor}">
+                        <TextBlock x:Name="retryTB" Foreground="{StaticResource MomentThemeBlack}" Text="Compress and retry" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </Button>
                 <Button Click="backErrorClick" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
                     <Border Background="White">
                         <TextBlock x:Name="backTB" Foreground="{StaticResource MomentThemeBlack}" Text="Return" HorizontalAlignment="Center" VerticalAlignment="Center"/>

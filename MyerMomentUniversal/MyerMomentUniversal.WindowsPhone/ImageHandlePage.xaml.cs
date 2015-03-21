@@ -27,6 +27,7 @@ using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using System.Collections.Generic;
 using UmengSocialSDK;
 using Windows.ApplicationModel.DataTransfer;
+using MyerMomentUniversal.Helper;
 
 
 namespace MyerMomentUniversal
@@ -34,7 +35,7 @@ namespace MyerMomentUniversal
 
     public sealed partial class ImageHandlePage : Page
     {
-        private string savedFileName = "";
+        private string _savedFileName = "";
 
         private bool _isInColorMode = false;
         private bool _isInFontFamilyMode = false;
@@ -51,10 +52,7 @@ namespace MyerMomentUniversal
         private int _dpiX;
         private int _dpiY;
 
-        private double _qualityScale;
-
-        //private double _imageBorderH;
-        //private double _imageBorderW;
+        private string _selectedText = "";
 
         private TranslateTransform _translateTransform = new TranslateTransform();
         private ScaleTransform _scaleTransform = new ScaleTransform();
@@ -70,16 +68,8 @@ namespace MyerMomentUniversal
 
             DataTransferManager.GetForCurrentView().DataRequested += dataTransferManager_DataRequested;
 
-            switch(LocalSettingHelper.GetValue("Quality"))
-            {
-                case "0": _qualityScale = 0.7; break;
-                case "1": _qualityScale = 0.9; break;
-                case "2": _qualityScale = 1.0; break;
-            }
-
             _transformGroup.Children.Add(_translateTransform);
             _transformGroup.Children.Add(_scaleTransform);
-
         }
 
         private void ConfigLang()
@@ -96,7 +86,9 @@ namespace MyerMomentUniversal
             savingTB.Text = loader.GetString("SavingHint");
             shareTB.Text = loader.GetString("ShareHint");
             backhomeTB.Text = loader.GetString("BackToHomeHint");
-
+            retryTB.Text = loader.GetString("ChangeToCompressHint");
+            errorHintTB.Text = loader.GetString("CompressHint");
+            backTB.Text = loader.GetString("BackErrorHint");
         }
 
         #region FUNCTION
@@ -470,6 +462,12 @@ namespace MyerMomentUniversal
                 uint targetWidth = this._width;
                 uint targetHeight = this._height;
 
+
+                if(LocalSettingHelper.GetValue("QualityCompress")=="0")
+                {
+                    ImageHandleHelper.CompressImageSize(ref targetWidth, ref targetHeight);
+                }
+
                 var positon = LocalSettingHelper.GetValue("Position");
                 StorageFile fileToSave = null;
                 switch(positon)
@@ -492,31 +490,35 @@ namespace MyerMomentUniversal
                 }
                 if (fileToSave == null) return;
 
-                CachedFileManager.DeferUpdates(fileToSave);
-                using (var fileStream = await fileToSave.OpenAsync(FileAccessMode.ReadWrite))
+               
+                //CachedFileManager.DeferUpdates(fileToSave);
+                using (IRandomAccessStream fileStream = await fileToSave.OpenAsync(FileAccessMode.ReadWrite), 
+                    memStream = new InMemoryRandomAccessStream())
                 {
+                    
                     var bitmap = new RenderTargetBitmap();
-                    await bitmap.RenderAsync(elementToRender, (int)targetWidth, (int)targetHeight);
+                    await bitmap.RenderAsync(elementToRender, (int)(targetWidth), (int)(targetHeight));
 
                     var pixels = await bitmap.GetPixelsAsync();
 
-                    var propertySet = new BitmapPropertySet();
+                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, memStream);
+                    encoder.BitmapTransform.ScaledHeight = (uint)(targetHeight);
+                    encoder.BitmapTransform.ScaledWidth = (uint)(targetWidth);
 
-                    var qualityValue = new BitmapTypedValue(_qualityScale, PropertyType.Single);
-                    propertySet.Add("ImageQuality", qualityValue);
-
-                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.JpegEncoderId, fileStream, propertySet);
-                    encoder.BitmapTransform.InterpolationMode = BitmapInterpolationMode.Fant;
-
-                    encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied, (uint)bitmap.PixelWidth, (uint)bitmap.PixelHeight, _dpiX, _dpiY, pixels.ToArray());
+                    encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Straight, (uint)bitmap.PixelWidth, (uint)bitmap.PixelHeight, _dpiX, _dpiY, pixels.ToArray());
                     await encoder.FlushAsync();
+
+                    memStream.Seek(0);
+                    fileStream.Seek(0);
+                    fileStream.Size = 0;
+                    await RandomAccessStream.CopyAsync(memStream, fileStream);
                 }
-                await CachedFileManager.CompleteUpdatesAsync(fileToSave);
+                //await CachedFileManager.CompleteUpdatesAsync(fileToSave);
 
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ShareGrid.Visibility = Visibility.Visible;
 
-                this.savedFileName = fileToSave.Name;
+                this._savedFileName = fileToSave.Name;
 
                 if (_isFromShareTarget) shareBtn.Visibility = Visibility.Collapsed;
             }
@@ -526,6 +528,8 @@ namespace MyerMomentUniversal
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ErrorGrid.Visibility = Visibility.Visible;
                 _isInErrorMode = true;
+
+                //new MessageDialog(e.Message).ShowAsync();
             }
         }
 
@@ -567,45 +571,11 @@ namespace MyerMomentUniversal
         {
             try
             {
-                #region UMENG
-                //UmengClient umengClient = new SinaWeiboClient("5506e8eafd98c52426000587");
-
-                //var file = await Windows.Storage.KnownFolders.SavedPictures.GetFileAsync(savedFileName);
-                //using (var fileStream = await file.OpenStreamForReadAsync())
-                //{
-                //    byte[] imageData = new byte[fileStream.Length];
-                //    fileStream.Read(imageData, 0, imageData.Length);
-
-                //    var pic = new UmengPicture(imageData, "Share image #MyerMoment#");
-                //    var task = umengClient.SharePictureAsync(pic, true);
-                    
-                //    var result = await task;
-
-                //    var resState = result.Status;
-                //    switch (resState)
-                //    {
-                //        case ShareStatus.Success:
-                //            {
-                //                BackHomeClick(null, null);
-                //            }; break;
-                //        case ShareStatus.UserCanceled:
-                //            {
-                //                BackHomeClick(null, null);
-                //            }; break;
-                //        case ShareStatus.Error:
-                //            {
-                //            };break;
-                //    }
-
-                //}
-                #endregion
-
                 DataTransferManager.ShowShareUI();
             }
             catch (Exception ee)
             {
                 var task = ExceptionHelper.WriteRecord(ee);
-                
             }
 
         }
@@ -623,15 +593,15 @@ namespace MyerMomentUniversal
                 StorageFile fileToGet = null;
                 switch (positon)
                 {
-                    case "0": fileToGet = await KnownFolders.SavedPictures.GetFileAsync(savedFileName); break;
+                    case "0": fileToGet = await KnownFolders.SavedPictures.GetFileAsync(_savedFileName); break;
                     case "1":
                         {
                             var folderToGet = await KnownFolders.PicturesLibrary.GetFolderAsync("MyerMoment");
-                            fileToGet = await folderToGet.GetFileAsync(savedFileName);
+                            fileToGet = await folderToGet.GetFileAsync(_savedFileName);
                         }; break;
                     case "2":
                         {
-                            fileToGet = await KnownFolders.CameraRoll.GetFileAsync(savedFileName);
+                            fileToGet = await KnownFolders.CameraRoll.GetFileAsync(_savedFileName);
                         }; break;
                 }
                 if (fileToGet == null) return;
@@ -640,7 +610,7 @@ namespace MyerMomentUniversal
                 storageItems.Add(fileToGet);
                 request.Data.SetStorageItems(storageItems);
             }
-            catch (Exception ee)
+            catch (Exception)
             {
                 ShareGrid.Visibility = Visibility.Collapsed;
                 _isInShareMode = false;
@@ -661,8 +631,19 @@ namespace MyerMomentUniversal
             Frame.Navigate(typeof(MainPage));
         }
 
+        private void retryClick(object sender,RoutedEventArgs e)
+        {
+            ErrorGrid.Visibility = Visibility.Collapsed;
+            _isInErrorMode = false;
+
+            LocalSettingHelper.AddValue("QualityCompress", "0");
+
+            SaveClick(null, null);
+        }
+
         #endregion
 
+        #region NAVIGATE
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
@@ -733,7 +714,8 @@ namespace MyerMomentUniversal
             }
             CancelClick(null, null);
         }
- 
+        #endregion
+
     }
 }
 

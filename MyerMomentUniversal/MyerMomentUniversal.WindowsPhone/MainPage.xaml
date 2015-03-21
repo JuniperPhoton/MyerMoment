@@ -9,6 +9,7 @@
     mc:Ignorable="d"
     IsTextScaleFactorEnabled="False"
     DataContext="{StaticResource Locator}">
+    
     <Page.Resources>
 
         <Storyboard x:Name="SplashStory">
@@ -246,6 +247,7 @@
     <Page.Background>
         <SolidColorBrush>#FFFFC733</SolidColorBrush>
     </Page.Background>
+    
     <Grid DataContext="{Binding MainVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -299,15 +301,12 @@
                                 <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
                                     <TextBlock x:Name="savingQualityTextblock" Margin="5" Text="SAVING QUALITY" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" />
                                 </Border>
-                                <ComboBox Pivot.SlideInAnimationGroup="GroupThree" x:Name="qualityCom" PlaceholderText="Select the default saving quality" SelectionChanged="qualityCom_SelectionChanged" BorderBrush="{StaticResource MomentThemeColor}" Style="{StaticResource ComboBoxStyle1}" >
+                                <ComboBox Pivot.SlideInAnimationGroup="GroupThree" x:Name="qualityCom" SelectedIndex="0" PlaceholderText="Select the default saving quality" SelectionChanged="qualityCom_SelectionChanged" BorderBrush="{StaticResource MomentThemeColor}" Style="{StaticResource ComboBoxStyle1}" >
                                     <ComboBoxItem>
-                                        <TextBlock x:Name="lowTextblock" Text="Low" />
+                                        <TextBlock x:Name="compressTextblock" Text="Compress" />
                                     </ComboBoxItem>
                                     <ComboBoxItem>
-                                        <TextBlock x:Name="mediumTextblock" Text="Medium"/>
-                                    </ComboBoxItem>
-                                    <ComboBoxItem>
-                                        <TextBlock x:Name="highTextblock" Text="High"/>
+                                        <TextBlock x:Name="oriTextblock" Text="Original"/>
                                     </ComboBoxItem>
                                 </ComboBox>
                                 <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
@@ -351,7 +350,7 @@
                                     <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Left"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                         <TextBlock Margin="5" Text="VERSION" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                     </Border>
-                                    <HyperlinkButton Pivot.SlideInAnimationGroup="GroupTwo" Content="0.9 BETA" NavigateUri="http://www.windowsphone.com/s?appid=52172f00-cfe1-4695-b4f7-a2be0c1bfacc" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="25" Margin="15,0,0,0" Foreground="White" />
+                                    <HyperlinkButton Pivot.SlideInAnimationGroup="GroupTwo" Content="0.92 BETA" NavigateUri="http://www.windowsphone.com/s?appid=52172f00-cfe1-4695-b4f7-a2be0c1bfacc" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="25" Margin="15,0,0,0" Foreground="White" />
 
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,30,0,0">

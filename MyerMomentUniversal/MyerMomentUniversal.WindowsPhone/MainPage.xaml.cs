@@ -30,7 +30,9 @@ namespace MyerMomentUniversal
 
     public sealed partial class MainPage : Page, IFileOpenPickerContinuable
     {
-        public static MainPage Current;        
+        public static MainPage Current;
+        private bool iscomComDirty = false;
+        private bool isposComDirty = false;
 
         public MainPage()
         {
@@ -42,17 +44,7 @@ namespace MyerMomentUniversal
 
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
 
-            var quality = LocalSettingHelper.GetValue("Quality");
-            if(quality!=null)
-            {
-                qualityCom.SelectedIndex = int.Parse(quality);
-            }
-
-            var position = LocalSettingHelper.GetValue("Position");
-            if(position!=null)
-            {
-                positionCom.SelectedIndex = int.Parse(position);
-            }
+            
         }
 
         private void ConfigLang()
@@ -64,9 +56,8 @@ namespace MyerMomentUniversal
             pickHintTextblock.Text = loader.GetString("PickPhotoHint");
             savingQualityTextblock.Text = loader.GetString("SavingQuality");
             savingPositionTextblock.Text = loader.GetString("SavingPosition");
-            lowTextblock.Text = loader.GetString("LowHint");
-            mediumTextblock.Text = loader.GetString("MediumHint");
-            highTextblock.Text = loader.GetString("HighHint");
+            compressTextblock.Text = loader.GetString("LowHint");
+            oriTextblock.Text = loader.GetString("HighHint");
             savedPictureTextblock.Text = loader.GetString("SavedPictureHint");
             folderTextblock.Text = loader.GetString("MyerMomentFolderHint");
             cameraRollTextblock.Text = loader.GetString("CameraRollHint");
@@ -140,6 +131,17 @@ namespace MyerMomentUniversal
             SplashStory.Begin();
             Frame.BackStack.Clear();
 
+            var quality = LocalSettingHelper.GetValue("QualityCompress");
+            if (quality != null)
+            {
+                qualityCom.SelectedIndex = int.Parse(quality);
+            }
+
+            var position = LocalSettingHelper.GetValue("Position");
+            if (position != null)
+            {
+                positionCom.SelectedIndex = int.Parse(position);
+            }
             //if(e.Parameter.GetType()==typeof(ShareOperation))
             //{
             //    Frame.Navigate(typeof(ImageHandlePage), e.Parameter);
@@ -162,16 +164,26 @@ namespace MyerMomentUniversal
 
         private void qualityCom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if(iscomComDirty==false)
+            {
+                iscomComDirty = true;
+                return;
+            }
             var combox = sender as ComboBox;
             if(combox!=null)
             {
                 var selectedIndex = combox.SelectedIndex;
-                LocalSettingHelper.AddValue("Quality", selectedIndex.ToString());
+                LocalSettingHelper.AddValue("QualityCompress", selectedIndex.ToString());
             }
         }
 
         private void positionCom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (isposComDirty == false)
+            {
+                isposComDirty = true;
+                return;
+            }
             var combox = sender as ComboBox;
             if(combox!=null)
             {

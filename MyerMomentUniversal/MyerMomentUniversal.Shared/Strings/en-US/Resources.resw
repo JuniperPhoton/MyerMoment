@@ -120,6 +120,9 @@
   <data name="AboutHeader" xml:space="preserve">
     <value>ABOUT</value>
   </data>
+  <data name="BackErrorHint" xml:space="preserve">
+    <value>RETURN</value>
+  </data>
   <data name="BackToHomeHint" xml:space="preserve">
     <value>COMPLETE</value>
   </data>
@@ -134,6 +137,12 @@
   </data>
   <data name="CancleBtn" xml:space="preserve">
     <value>CANCEL</value>
+  </data>
+  <data name="ChangeToCompressHint" xml:space="preserve">
+    <value>Compress and retry</value>
+  </data>
+  <data name="CompressHint" xml:space="preserve">
+    <value>For some reason, this picture should be compressed.</value>
   </data>
   <data name="CreditHint" xml:space="preserve">
     <value>If the font MyerMoment is using has involved your company's interest, please contact me by email as soon as possible.</value>
@@ -166,7 +175,7 @@
     <value>The moment of this Photo</value>
   </data>
   <data name="HighHint" xml:space="preserve">
-    <value>High</value>
+    <value>Original</value>
   </data>
   <data name="ImportHeader" xml:space="preserve">
     <value>IMPORT FONT</value>
@@ -175,7 +184,7 @@
     <value>Coming soon.</value>
   </data>
   <data name="LowHint" xml:space="preserve">
-    <value>Low</value>
+    <value>Compressed</value>
   </data>
   <data name="MediumHint" xml:space="preserve">
     <value>Medium</value>

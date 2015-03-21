@@ -10,15 +10,9 @@ namespace MyerMomentUniversal.Helper
     {
         public static void InitialMomentConfig()
         {
-            var level = Windows.System.MemoryManager.AppMemoryUsageLevel;
-            if(!LocalSettingHelper.IsExist("Quality"))
+            if(!LocalSettingHelper.IsExist("QualityCompress"))
             {
-                switch (level)
-                {
-                    case Windows.System.AppMemoryUsageLevel.High: LocalSettingHelper.AddValue("Quality", "2"); break;
-                    case Windows.System.AppMemoryUsageLevel.Medium: LocalSettingHelper.AddValue("Quality", "1"); break;
-                    case Windows.System.AppMemoryUsageLevel.Low: LocalSettingHelper.AddValue("Quality", "0"); break;
-                }
+                LocalSettingHelper.AddValue("QualityCompress", "0");
             }
 
             if(!LocalSettingHelper.IsExist("Position"))

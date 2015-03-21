@@ -120,6 +120,9 @@
   <data name="AboutHeader" xml:space="preserve">
     <value>关于</value>
   </data>
+  <data name="BackErrorHint" xml:space="preserve">
+    <value>返回</value>
+  </data>
   <data name="BackToHomeHint" xml:space="preserve">
     <value>完成</value>
   </data>
@@ -129,6 +132,12 @@
   <data name="CancleBtn" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="ChangeToCompressHint" xml:space="preserve">
+    <value>降低照片输出尺寸并重试</value>
+  </data>
+  <data name="CompressHint" xml:space="preserve">
+    <value>某些 Lumia 机型的问题，保存照片需要降低照片的尺寸。</value>
+  </data>
   <data name="CreditHint" xml:space="preserve">
     <value>如果 MyerMoment 所内置的字体侵犯到您作为字体开发商的权益，请尽早通过下面的邮件联系开发者。</value>
   </data>
@@ -136,7 +145,7 @@
     <value>取消</value>
   </data>
   <data name="DiscardContent" xml:space="preserve">
-    <value>这会返回主页，并且照片不会被保存。</value>
+    <value>这将返回主页，并且照片不会被保存。</value>
   </data>
   <data name="DiscardOK" xml:space="preserve">
     <value>放弃编辑</value>
@@ -160,7 +169,7 @@
     <value>写下这张照片的记忆</value>
   </data>
   <data name="HighHint" xml:space="preserve">
-    <value>高</value>
+    <value>全尺寸</value>
   </data>
   <data name="ImportHeader" xml:space="preserve">
     <value>导入字体</value>
@@ -169,7 +178,7 @@
     <value>敬请期待。</value>
   </data>
   <data name="LowHint" xml:space="preserve">
-    <value>低</value>
+    <value>压缩</value>
   </data>
   <data name="MediumHint" xml:space="preserve">
     <value>中</value>
@@ -202,7 +211,7 @@
     <value>保存位置</value>
   </data>
   <data name="SavingQuality" xml:space="preserve">
-    <value>保存质量</value>
+    <value>照片保存输出尺寸</value>
   </data>
   <data name="SendEmailHint" xml:space="preserve">
     <value>邮件反馈</value>

@@ -15,7 +15,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\ImageHandleHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\MomentConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\AbstractMomentStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FontViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
@@ -34,9 +37,10 @@
     <Content Include="$(MSBuildThisFileDirectory)Font\Frozen.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\FZYTK.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\HYLXJ.ttf" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\Kelson Sans Regular.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\norwester.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\PRISTINA.TTF" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\SourceHanSansK-Bold.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\SourceHanSansK-Regular.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\TpldKhangXiDictTrial.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\wqy-microhei.ttc" />
   </ItemGroup>
