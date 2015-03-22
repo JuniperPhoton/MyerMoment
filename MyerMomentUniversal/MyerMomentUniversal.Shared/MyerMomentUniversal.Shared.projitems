@@ -17,21 +17,23 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Helper\ImageHandleHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\MomentConfig.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\AbstractMomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\StyleList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FontViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Asset\alone.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\along.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Alone.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Alone.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\brave.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\brave.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\dinner.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\dinner.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\food.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\food.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\scene.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\scene.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\thanks.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\thanks.png" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Frozen.ttf" />
@@ -39,8 +41,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Font\HYLXJ.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\norwester.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\PRISTINA.TTF" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\SourceHanSansK-Bold.ttf" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\SourceHanSansK-Regular.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\TpldKhangXiDictTrial.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\wqy-microhei.ttc" />
   </ItemGroup>

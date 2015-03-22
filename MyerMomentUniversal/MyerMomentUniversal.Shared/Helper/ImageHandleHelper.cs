@@ -6,55 +6,62 @@ namespace MyerMomentUniversal.Helper
 {
     public class ImageHandleHelper
     {
-        public static void CompressImageSize(ref uint targetWidth, ref uint targetHeight)
+        /// <summary>
+        /// 压缩图片尺寸，直接修改原来的值
+        /// </summary>
+        /// <param name="width">宽</param>
+        /// <param name="height">高</param>
+        public static void CompressImageSize(ref uint width, ref uint height)
         {
             
-            if (targetWidth > targetHeight)
+            if (width > height)
             {
-                if (targetWidth >= 4000)
+                if (width >= 4000)
                 {
-                    targetWidth = (uint)(targetWidth * 0.4);
-                    targetHeight = (uint)(targetHeight * 0.4);
+                    width = (uint)(width * 0.4);
+                    height = (uint)(height * 0.4);
                 }
-                if (targetWidth >= 3000 && targetWidth<4000)
+                if (width >= 3000 && width<4000)
                 {
-                    targetWidth = (uint)(targetWidth * 0.5);
-                    targetHeight = (uint)(targetHeight * 0.5);
+                    width = (uint)(width * 0.5);
+                    height = (uint)(height * 0.5);
                 }
-                else if (targetWidth >= 2000 & targetWidth < 3000)
+                else if (width >= 2000 & width < 3000)
                 {
-                    targetWidth = (uint)(targetWidth * 0.7);
-                    targetHeight = (uint)(targetHeight * 0.7);
+                    width = (uint)(width * 0.7);
+                    height = (uint)(height * 0.7);
                 }
-                else if (targetWidth >= 1000 & targetWidth < 2000)
+                else if (width >= 1000 & width < 2000)
                 {
-                    targetWidth = (uint)(targetWidth * 0.95);
-                    targetHeight = (uint)(targetHeight * 0.95);
+                    width = (uint)(width * 0.95);
+                    height = (uint)(height * 0.95);
                 }
             }
-            if (targetHeight > targetWidth)
+            if (height > width)
             {
-                if (targetHeight >= 4000)
+                if (height >= 4000)
                 {
-                    targetHeight = (uint)(targetHeight * 0.4);
-                    targetWidth = (uint)(targetWidth * 0.4);
+                    height = (uint)(height * 0.4);
+                    width = (uint)(width * 0.4);
                 }
-                if (targetHeight >= 3000 && targetHeight<4000)
+                if (height >= 3000 && height<4000)
                 {
-                    targetHeight = (uint)(targetHeight * 0.5);
-                    targetWidth = (uint)(targetWidth * 0.5);
+                    height = (uint)(height * 0.5);
+                    width = (uint)(width * 0.5);
                 }
-                else if (targetHeight >= 2000 & targetHeight < 3000)
+                else if (height >= 2000 & height < 3000)
                 {
-                    targetHeight = (uint)(targetHeight * 0.7);
-                    targetWidth = (uint)(targetWidth * 0.7);
+                    height = (uint)(height * 0.7);
+                    width = (uint)(width * 0.7);
                 }
-                else if (targetHeight >= 1000 & targetHeight < 2000)
+                else if (height >= 1000 & height < 2000)
                 {
-                    targetHeight = (uint)(targetHeight * 0.95);
-                    targetWidth = (uint)(targetWidth * 0.95);
+                    height = (uint)(height * 0.95);
+                    width = (uint)(width * 0.95);
                 }
             }
         }
+
+
     }
 }

@@ -378,7 +378,10 @@
                 <TextBox x:Name="TextView" FontSize="30"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="The moment of this photo" FontFamily="Font/FZYTK.TTF#FZYaoTi" Margin="0" InputScope="Chat"/>
                 <Border x:Name="maskBorder" Background="Black" Opacity="0.01"/>
             </Grid>
-            <Grid x:Name="foodGrid" ManipulationMode="TranslateX,TranslateY" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped"  PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="-0.167,0,0.166,-0.5" Visibility="Collapsed">
+            <Grid x:Name="styleGrid" ManipulationMode="TranslateX,TranslateY" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped"  PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="103.167,0,103.833,0" Visibility="Collapsed">
+                <Image x:Name="styleImage" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Source="Asset/along.png"/>
+            </Grid>
+            <!--<Grid x:Name="foodGrid" ManipulationMode="TranslateX,TranslateY" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped"  PointerEntered="TextView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="-0.167,0,0.166,-0.5" Visibility="Collapsed">
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="53.333" FontFamily="Font/PRISTINA.TTF#Pristina" Foreground="Black" Margin="1,1,0,0">
             		<Run Text="L"/>
             		<Run FontSize="40" Text="ife"/>
@@ -425,7 +428,7 @@
             </Grid>
             <Grid x:Name="dinnerGrid" ManipulationMode="TranslateX,TranslateY" LostFocus="textGrid_LostFocus" Tapped="textGrid_Tapped"  PointerEntered="TextView_OnPointerEntered" Margin="91,58,107,10" Width="124" HorizontalAlignment="Center" VerticalAlignment="Center" Height="105" Visibility="Collapsed">
                 <Image HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Source="Asset/dinner.png"/>
-            </Grid>
+            </Grid>-->
             <ProgressRing x:Name="ring"  VerticalAlignment="Center" HorizontalAlignment="Center" IsActive="True" Background="{x:Null}" Foreground="{StaticResource MomentThemeColor}"/>
         </Grid>
         <Grid x:Name="grid" Grid.Row="2" RenderTransformOrigin="0.5,0.5">
@@ -586,7 +589,7 @@
             </StackPanel>
 
         </Grid>
-        <Grid x:Name="StyleGrid" d:IsHidden="True"  Grid.Row="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" >
+        <Grid x:Name="StyleGrid" Grid.Row="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" >
             <Grid.RenderTransform>
                 <CompositeTransform TranslateY="400"/>
             </Grid.RenderTransform>
@@ -596,13 +599,13 @@
                 <Grid VerticalAlignment="Top" >
                     <StackPanel Orientation="Vertical">
                         <ScrollViewer Height="120" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel x:Name="styleSP" Orientation="Horizontal">
                                 <Button Click="StyleClick" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
                                     <Border Background="White">
                                         <TextBlock Text="Plain" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     </Border>
                                 </Button>
-                                <Button Click="StyleClick" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
+                                <!--<Button Click="StyleClick" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
                                     <Border>
                                         <Border.Background>
                                             <ImageBrush Stretch="Fill" ImageSource="Asset/food.jpg"/>
@@ -649,7 +652,7 @@
                                         </Border.Background>
                                         <TextBlock Text="Dinner" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     </Border>
-                                </Button>
+                                </Button>-->
                             </StackPanel>
                         </ScrollViewer>
                         <Grid>

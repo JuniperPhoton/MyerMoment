@@ -28,6 +28,8 @@ using System.Collections.Generic;
 using UmengSocialSDK;
 using Windows.ApplicationModel.DataTransfer;
 using MyerMomentUniversal.Helper;
+using MyerMomentUniversal.Model;
+using Windows.UI;
 
 
 namespace MyerMomentUniversal
@@ -58,6 +60,8 @@ namespace MyerMomentUniversal
         private ScaleTransform _scaleTransform = new ScaleTransform();
         private TransformGroup _transformGroup = new TransformGroup();
 
+        private StyleList styleList;
+
         public ImageHandlePage()
         {
             this.InitializeComponent();
@@ -70,6 +74,42 @@ namespace MyerMomentUniversal
 
             _transformGroup.Children.Add(_translateTransform);
             _transformGroup.Children.Add(_scaleTransform);
+
+            styleList = new StyleList();
+            foreach(var style in styleList.Styles)
+            {
+                Button styleBtn = new Button();
+                styleBtn.BorderThickness = new Thickness(0);
+                styleBtn.Style = (App.Current.Resources["ButtonStyle2"] as Style);
+                styleBtn.MinHeight = styleBtn.MinWidth = 10;
+                styleBtn.Height = styleBtn.Width = 70;
+                styleBtn.VerticalAlignment = VerticalAlignment.Top;
+                styleBtn.Margin = new Thickness(10, 10, 0, 0);
+                styleBtn.Click += ((senderb, eb) =>
+                    {
+                        styleImage.Source = style.Image;
+                        familyBtn.Visibility = colorBtn.Visibility = Visibility.Collapsed;
+
+                        textGrid.Visibility = Visibility.Collapsed;
+                        styleGrid.Visibility = Visibility.Visible;
+                    });
+
+                Border border = new Border();
+                ImageBrush brush = new ImageBrush();
+                brush.ImageSource = style.PreviewImge;
+                border.Background = brush;
+
+                TextBlock tb = new TextBlock();
+                tb.Text = style.NameID;
+                tb.VerticalAlignment = VerticalAlignment.Center;
+                tb.HorizontalAlignment = HorizontalAlignment.Center;
+                tb.Foreground = new SolidColorBrush(Colors.White);
+
+                border.Child = tb;
+                styleBtn.Content = border;
+
+                styleSP.Children.Add(styleBtn);
+            }
         }
 
         private void ConfigLang()
@@ -98,40 +138,9 @@ namespace MyerMomentUniversal
             {
                 if (TextView.FontSize < 100) TextView.FontSize += 5;
             }
-            else if(foodGrid.Visibility==Visibility.Visible)
+            else if(styleGrid.Visibility==Visibility.Visible)
             {
-                foodGrid.RenderTransform = _transformGroup;
-                _scaleTransform.ScaleX += 0.2;
-                _scaleTransform.ScaleY += 0.2;
-            }
-            else if(sceneGrid.Visibility==Visibility.Visible)
-            {
-                sceneGrid.RenderTransform = _transformGroup;
-                _scaleTransform.ScaleX += 0.2;
-                _scaleTransform.ScaleY += 0.2;
-            }
-            else if(aloneGrid.Visibility==Visibility.Visible)
-            {
-                aloneGrid.RenderTransform = _transformGroup;
-                _scaleTransform.ScaleX += 0.2;
-                _scaleTransform.ScaleY += 0.2;
-
-            }
-            else if (thanksGrid.Visibility == Visibility.Visible)
-            {
-                thanksGrid.RenderTransform = _transformGroup;
-                _scaleTransform.ScaleX += 0.2;
-                _scaleTransform.ScaleY += 0.2;
-            }
-            else if (braveGrid.Visibility == Visibility.Visible)
-            {
-                braveGrid.RenderTransform = _transformGroup;
-                _scaleTransform.ScaleX += 0.2;
-                _scaleTransform.ScaleY += 0.2;
-            }
-            else if (dinnerGrid.Visibility == Visibility.Visible)
-            {
-                dinnerGrid.RenderTransform = _transformGroup;
+                styleGrid.RenderTransform = _transformGroup;
                 _scaleTransform.ScaleX += 0.2;
                 _scaleTransform.ScaleY += 0.2;
             }
@@ -143,40 +152,9 @@ namespace MyerMomentUniversal
             {
                 if (TextView.FontSize > 10) TextView.FontSize -= 5;
             }
-            else if (foodGrid.Visibility == Visibility.Visible)
+            else if (styleGrid.Visibility == Visibility.Visible)
             {
-                foodGrid.RenderTransform = _transformGroup;
-                _scaleTransform.ScaleX -= 0.2;
-                _scaleTransform.ScaleY -= 0.2;
-            }
-            else if (sceneGrid.Visibility == Visibility.Visible)
-            {
-
-                sceneGrid.RenderTransform = _transformGroup;
-                _scaleTransform.ScaleX -= 0.2;
-                _scaleTransform.ScaleY -= 0.2;
-            }
-            else if (aloneGrid.Visibility == Visibility.Visible)
-            {
-                aloneGrid.RenderTransform = _transformGroup;
-                _scaleTransform.ScaleX -= 0.2;
-                _scaleTransform.ScaleY -= 0.2;
-            }
-            else if (thanksGrid.Visibility == Visibility.Visible)
-            {
-                thanksGrid.RenderTransform = _transformGroup;
-                _scaleTransform.ScaleX -= 0.2;
-                _scaleTransform.ScaleY -= 0.2;
-            }
-            else if (dinnerGrid.Visibility == Visibility.Visible)
-            {
-                dinnerGrid.RenderTransform = _transformGroup;
-                _scaleTransform.ScaleX -= 0.2;
-                _scaleTransform.ScaleY -= 0.2;
-            }
-            else if (braveGrid.Visibility == Visibility.Visible)
-            {
-                braveGrid.RenderTransform = _transformGroup;
+                styleGrid.RenderTransform = _transformGroup;
                 _scaleTransform.ScaleX -= 0.2;
                 _scaleTransform.ScaleY -= 0.2;
             }
@@ -250,79 +228,12 @@ namespace MyerMomentUniversal
 
             familyBtn.Visibility = colorBtn.Visibility= Visibility.Collapsed;
 
-            switch(text)
+            if(text=="Plain")
             {
-                case "Plain":
-                    {
-                        textGrid.Visibility = Visibility.Visible;
-                        foodGrid.Visibility = Visibility.Collapsed;
-                        sceneGrid.Visibility = Visibility.Collapsed;
-                        aloneGrid.Visibility = Visibility.Collapsed;
-                        thanksGrid.Visibility = Visibility.Collapsed;
-                        dinnerGrid.Visibility = Visibility.Collapsed;
-                        braveGrid.Visibility = Visibility.Collapsed;
-                        familyBtn.Visibility = colorBtn.Visibility= Visibility.Visible;
-                    };break;
-                case "Food":
-                    {
-                        textGrid.Visibility = Visibility.Collapsed;
-                        foodGrid.Visibility = Visibility.Visible;
-                        sceneGrid.Visibility = Visibility.Collapsed;
-                        aloneGrid.Visibility = Visibility.Collapsed;
-                        thanksGrid.Visibility = Visibility.Collapsed;
-                        dinnerGrid.Visibility = Visibility.Collapsed;
-                        braveGrid.Visibility = Visibility.Collapsed;
-                    }; break;
-                case "Scene":
-                    {
-                        textGrid.Visibility = Visibility.Collapsed;
-                        foodGrid.Visibility = Visibility.Collapsed;
-                        sceneGrid.Visibility = Visibility.Visible;
-                        aloneGrid.Visibility = Visibility.Collapsed;
-                        thanksGrid.Visibility = Visibility.Collapsed;
-                        dinnerGrid.Visibility = Visibility.Collapsed;
-                        braveGrid.Visibility = Visibility.Collapsed;
-                    }; break;
-                case "Alone":
-                    {
-                        textGrid.Visibility = Visibility.Collapsed;
-                        foodGrid.Visibility = Visibility.Collapsed;
-                        sceneGrid.Visibility = Visibility.Collapsed;
-                        aloneGrid.Visibility = Visibility.Visible;
-                        thanksGrid.Visibility = Visibility.Collapsed;
-                        dinnerGrid.Visibility = Visibility.Collapsed;
-                        braveGrid.Visibility = Visibility.Collapsed;
-                    }break;
-                case "Thanks":
-                    {
-                        textGrid.Visibility = Visibility.Collapsed;
-                        foodGrid.Visibility = Visibility.Collapsed;
-                        sceneGrid.Visibility = Visibility.Collapsed;
-                        aloneGrid.Visibility = Visibility.Collapsed;
-                        thanksGrid.Visibility = Visibility.Visible;
-                        dinnerGrid.Visibility = Visibility.Collapsed;
-                        braveGrid.Visibility = Visibility.Collapsed;
-                    } break;
-                case "Dinner":
-                    {
-                        textGrid.Visibility = Visibility.Collapsed;
-                        foodGrid.Visibility = Visibility.Collapsed;
-                        sceneGrid.Visibility = Visibility.Collapsed;
-                        aloneGrid.Visibility = Visibility.Collapsed;
-                        thanksGrid.Visibility = Visibility.Collapsed;
-                        dinnerGrid.Visibility = Visibility.Visible;
-                        braveGrid.Visibility = Visibility.Collapsed;
-                    } break;
-                case "Brave":
-                    {
-                        textGrid.Visibility = Visibility.Collapsed;
-                        foodGrid.Visibility = Visibility.Collapsed;
-                        sceneGrid.Visibility = Visibility.Collapsed;
-                        aloneGrid.Visibility = Visibility.Collapsed;
-                        thanksGrid.Visibility = Visibility.Collapsed;
-                        dinnerGrid.Visibility = Visibility.Collapsed;
-                        braveGrid.Visibility = Visibility.Visible;
-                    } break;
+                textGrid.Visibility = Visibility.Visible;
+                styleGrid.Visibility = Visibility.Collapsed;
+
+                familyBtn.Visibility = colorBtn.Visibility = Visibility.Visible;
             }
         }
 
@@ -334,36 +245,14 @@ namespace MyerMomentUniversal
             textGrid.ManipulationDelta -= TextView_ManipulationDelta;
             textGrid.ManipulationDelta += TextView_ManipulationDelta;
 
-            foodGrid.ManipulationDelta -= TextView_ManipulationDelta;
-            foodGrid.ManipulationDelta += TextView_ManipulationDelta;
-
-            sceneGrid.ManipulationDelta -= TextView_ManipulationDelta;
-            sceneGrid.ManipulationDelta += TextView_ManipulationDelta;
-
-            aloneGrid.ManipulationDelta -= TextView_ManipulationDelta;
-            aloneGrid.ManipulationDelta += TextView_ManipulationDelta;
-
-            thanksGrid.ManipulationDelta -= TextView_ManipulationDelta;
-            thanksGrid.ManipulationDelta += TextView_ManipulationDelta;
-
-            dinnerGrid.ManipulationDelta -= TextView_ManipulationDelta;
-            dinnerGrid.ManipulationDelta += TextView_ManipulationDelta;
-
-            braveGrid.ManipulationDelta -= TextView_ManipulationDelta;
-            braveGrid.ManipulationDelta += TextView_ManipulationDelta;
-
+            styleGrid.ManipulationDelta -= TextView_ManipulationDelta;
+            styleGrid.ManipulationDelta += TextView_ManipulationDelta;
 
             _transformGroup = new TransformGroup();
             _transformGroup.Children.Add(_translateTransform);
             _transformGroup.Children.Add(_scaleTransform);
 
-            textGrid.RenderTransform = _transformGroup;
-            sceneGrid.RenderTransform = _transformGroup;
-            foodGrid.RenderTransform = _transformGroup;
-            aloneGrid.RenderTransform = _transformGroup;
-            thanksGrid.RenderTransform = _transformGroup;
-            dinnerGrid.RenderTransform = _transformGroup;
-            braveGrid.RenderTransform = _transformGroup;
+            styleGrid.RenderTransform = _transformGroup;
         }
 
         private void TextView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)

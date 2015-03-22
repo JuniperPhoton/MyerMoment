@@ -19,7 +19,6 @@ namespace MyerMomentUniversal.Helper
             {
                 LocalSettingHelper.AddValue("Position", "0");
             }
-           
         }
     }
 }
