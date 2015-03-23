@@ -522,7 +522,7 @@ namespace MyerMomentUniversal
                 {
                     var propertySet = new Windows.Graphics.Imaging.BitmapPropertySet();
                     var qualityValue = new Windows.Graphics.Imaging.BitmapTypedValue(
-                        0.5, // Maximum quality
+                        1.0, // Maximum quality
                         Windows.Foundation.PropertyType.Single
                         );
 
