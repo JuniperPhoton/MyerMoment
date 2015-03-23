@@ -1,0 +1,1838 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MicroMsgSDK</name>
+    </assembly>
+    <members>
+        <member name="T:MicroMsg.sdk.ConstantsAPI">
+            <summary>
+            <div class="en">WeChatOpenAPI Constants</div>
+            <div class="zh_CN">微信OpenAPI常量定义</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ConstantsAPI.SDK_VERSION">
+            <summary>
+            SDK Version
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ConstantsAPI.COMMAND_UNKNOWN">
+            <summary>
+            unknown command
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ConstantsAPI.COMMAND_SENDAUTH">
+            <summary>
+                     <div class="en">Send OpenAPI Auth</div>
+                     <div class="zh_CN">发送OpenAPI Auth验证</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX">
+            <summary>
+                     <div class="en">Share information to WeChat</div>
+                     <div class="zh_CN">分享消息到微信</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ConstantsAPI.COMMAND_GETMESSAGE_FROM_WX">
+            <summary>
+                     <div class="en">WeChat requests the third-party app for message data.</div>
+                     <div class="zh_CN">微信向第三方app请求消息数据</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ConstantsAPI.COMMAND_SHOWMESSAGE_FROM_WX">
+            <summary>
+                     <div class="en">WeChat requests the third-party app to display message data.</div>
+                     <div class="zh_CN">微信向第三方app请求显示消息数据</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ConstantsAPI.COMMAND_SENDPAY">
+            <summary>
+                     <div class="en">Send wechat pay</div>
+                     <div class="zh_CN">发送微信支付</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ConstantsAPI.WECHAT_APP_ID">
+            <summary>
+            Wechat App ID
+            微信应用的appID
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ConstantsAPI.THIRD_APP_ID">
+             <summary>
+             Third App ID
+            支持微信openapi的第三方应用可以打开的appid
+             </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ConstantsAPI.SDK_TEMP_FILE_PATH">
+            <summary>
+            Wechat SDK temp file path.
+            微信SDK临时文件路径
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ConstantsAPI.SDK_TEMP_DIR_PATH">
+            <summary>
+            Wechat SDK temp dir path.
+            微信SDK临时文件路径
+            </summary>
+        </member>
+        <member name="T:MicroMsg.sdk.IWXAPI">
+            <summary>
+            OpenAPI功能入口，使用时通过WXAPIFactory创建实例
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.IWXAPI.OpenWXApp">
+            <summary>
+            拉起微信应用
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.IWXAPI.SendReq(MicroMsg.sdk.BaseReq,System.String)">
+            <summary>
+            发送请求给微信
+            </summary>
+            <param name="request">发送请求的数据</param>
+            <param name="targetAppID">目标App的id，默认为发给微信</param>
+            <returns>发送成功返回true</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.IWXAPI.SendResp(MicroMsg.sdk.BaseResp,System.String)">
+            <summary>
+            发送响应给微信
+            </summary>
+            <param name="response">发送的响应的数据</param>
+            <param name="targetAppID">目标App的id，默认为发给微信</param>
+            <returns>发送成功返回true</returns>
+        </member>
+        <member name="T:MicroMsg.sdk.WXAPIFactory">
+            <summary>
+            创建IWXAPI接口的工厂类，第三方应用使用openapi的入口
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXAPIFactory.CreateWXAPI(System.String)">
+            <summary>
+            创建一个WXAPI访问接口的实例
+            </summary>
+            <param name="appID">传入应用在微信开放平台注册的AppID</param>
+            <returns>接口实例对象</returns>
+        </member>
+        <member name="T:MicroMsg.sdk.WXApiImplV1">
+            <summary>
+            IWXAPI的实现类
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXApiImplV1.getCheckSummary(System.String,System.String,System.String)">
+            <summary>
+            生成摘要
+            </summary>
+            <param name="content">内容</param>
+            <param name="sdkVersion">版本</param>
+            <param name="appID">AppID</param>
+            <returns>摘要</returns>
+        </member>
+        <member name="T:MicroMsg.sdk.WXEntryBasePage">
+            <summary>
+            第三方应用与微信交互的入口Page的基类。
+            第三方应用要继承此类，来处理来自微信的请求和响应。
+            在UriMapper中判断，如果是来自微信的请求，导向到此类的子类来处理。
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEntryBasePage.OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs)">
+            <summary>
+            See the base class
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEntryBasePage.parseData(System.String)">
+            <summary>
+            解析数据
+            </summary>
+            <param name="fileToken"></param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEntryBasePage.On_GetMessageFromWX_Request(MicroMsg.sdk.GetMessageFromWX.Req)">
+            <summary>
+            在子类中覆写此函数，处理来自微信的GetMessageFromWX请求
+            </summary>
+            <param name="request">GetMessageFromWX的请求数据</param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEntryBasePage.On_SendMessageToWX_Response(MicroMsg.sdk.SendMessageToWX.Resp)">
+            <summary>
+            在子类中覆写此函数，处理来自微信的SendMessageToWX响应
+            </summary>
+            <param name="response">SendMessageToWX的响应数据</param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEntryBasePage.On_SendAuth_Response(MicroMsg.sdk.SendAuth.Resp)">
+            <summary>
+            在子类中覆写此函数，处理来自微信的SendAuth响应
+            </summary>
+            <param name="response">SendAuth的响应数据</param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEntryBasePage.On_ShowMessageFromWX_Request(MicroMsg.sdk.ShowMessageFromWX.Req)">
+            <summary>
+            在子类中覆写此函数，处理来自微信的ShowMessageFromWX请求
+            </summary>
+            <param name="request">ShowMessageFromWX的请求数据</param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEntryBasePage.On_SendPay_Response(MicroMsg.sdk.SendPay.Resp)">
+            <summary>
+            在子类中覆写此函数，处理来自微信支付响应
+            </summary>
+            <param name="response">SendPay的响应数据</param>
+        </member>
+        <member name="T:MicroMsg.sdk.WXException">
+            <summary>
+            OpenAPI的异常类，发送请求和响应的时候发生错误时抛出
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXException.ERR_OTHER">
+            <summary>
+            未知错误
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXException.ERR_DATA_ILLEGA">
+            <summary>
+            数据格式不合法
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXException.ERR_NOT_SUPPORTED">
+            <summary>
+            当前版本不支持该请求
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXException.ERR_PACKAGE_ERR">
+            <summary>
+            打包数据时发生错误
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXException.#ctor(System.Int32,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="errCode">错误类型</param>
+            <param name="appendString">错误描述</param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXException.GetErrString(System.Int32,System.String)">
+            <summary>
+            获得指定错误类型的错误描述（按当前系统语言返回，支持中英繁三种语言）
+            </summary>
+            <param name="code">错误类型</param>
+            <param name="appendString">补充描述文字</param>
+            <returns>错误描述</returns>
+        </member>
+        <member name="T:MicroMsg.sdk.BaseReq">
+            <summary>
+            OpenAPI请求基类
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.BaseReq.Type">
+            <summary>
+            返回当前请求的类型ID，参考ConstantsAPI
+            </summary>
+            <returns>返回当前请求的类型ID</returns>
+        </member>
+        <member name="F:MicroMsg.sdk.BaseReq.Transaction">
+            <summary>
+            对应该请求的事务ID，通常由Req发起，回复Resp时应填入对应事务ID
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.BaseReq.ValidateData">
+            <summary>
+            Check parameters of this request
+            检查该请求各个参数的合法性
+            </summary>
+            <returns>如果参数均合法，返回true</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.BaseReq.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.BaseReq.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">proto对象</param>
+        </member>
+        <member name="T:MicroMsg.sdk.ErrorCode">
+            <summary>
+            Error code for OpenAPI responses
+            OpenAPI响应错误代码
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ErrorCode.ERR_OK">
+            <summary>
+            <div class="en">Returned normally</div>
+            <div class="zh_CN">正确返回</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ErrorCode.ERR_COMM">
+            <summary>
+            <div class="en">General errors</div>
+            <div class="zh_CN">一般错误</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ErrorCode.ERR_USER_CANCEL">
+            <summary>
+            <div class="en">User canceled</div>
+            <div class="zh_CN">用户取消</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ErrorCode.ERR_SENT_FAILED">
+            <summary>
+            <div class="en">Unable to send</div>
+            <div class="zh_CN">发送失败</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ErrorCode.ERR_AUTH_DENIED">
+            <summary>
+            <div class="en">Authentication failed</div>
+            <div class="zh_CN">认证被否决</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ErrorCode.ERR_UNSUPPORT">
+            <summary>
+            <div class="en">Unsupport error</div>
+            <div class="zh_CN">不支持错误</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ErrorCode.ERR_PAY_FAILED">
+            <summary>
+            <div class="en">pay failed</div>
+            <div class="zh_CN">支付失败</div>
+            </summary>
+        </member>
+        <member name="T:MicroMsg.sdk.BaseResp">
+            <summary>
+            OpenAPI响应基类
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.BaseResp.ErrCode">
+            <summary>
+            <div class="en">Error code. See {@linkplain ErrCode}</div>
+            <div class="zh_CN">错误码, 参考 {@linkplain ErrCode}</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.BaseResp.ErrStr">
+            <summary>
+            <div class="en">Invalid texts</div>
+            <div class="zh_CN">错误文本</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.BaseResp.Transaction">
+            <summary>
+            <div class="en">Transaction ID corresponding to this request. It is usually created by Req. Corresponding transaction ID should be populated in Resp.</div>
+            <div class="zh_CN">对应请求的事务ID，通常由Req创建，回复Resp时应填入对应事务ID</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.BaseResp.Type">
+            <summary>
+            <div class="en">Return type ID of the current response. See {@linkplain ConstantsAPI}</div>
+            <div class="zh_CN">返回当前响应的类型ID，参考 {@linkplain ConstantsAPI}</div>
+            </summary>
+            <returns>type of current request instance业务类型</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.BaseResp.ValidateData">
+            <summary>
+            <div class="en">Check parameters of this response</div>
+            <div class="zh_CN">检查该响应各个参数的合法性</div>
+            </summary>
+            <returns>
+            <div class="en">Returns True if all parameters are valid.</div>
+            <div class="zh_CN">如果参数均合法，返回true</div>
+            </returns>
+        </member>
+        <member name="M:MicroMsg.sdk.BaseResp.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.BaseResp.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj"></param>
+        </member>
+        <member name="T:MicroMsg.sdk.GetMessageFromWX">
+            <summary>
+            <div class="en">
+            WeChat sends requests to applications. The application receives the request and call IWXAPI::sendResp() to return the result.
+            </div>
+            
+            <div class="zh_CN">
+            微信发出的向第三方应用请求app message，第三方应用收到后应调用IWXAPI::sendResp()返回处理结果
+            </div>
+            </summary>
+        </member>
+        <member name="T:MicroMsg.sdk.GetMessageFromWX.Req">
+            <summary>
+            <div class="en">Request class of GetMessageFromWX, extend from BaseReq</div>
+            <div class="zh_CN">GetMessageFromWX请求类，继承自BaseReq</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.GetMessageFromWX.Req.Username">
+            <summary>
+            <div class="en">WeChat name of the user in current conversation</div>
+            <div class="zh_CN">当前聊天对象的微信名</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Req.#ctor">
+            <summary>
+            <div class="en">Build an empty request</div>
+            <div class="zh_CN">构造空请求</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Req.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="username">微信用户名</param>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Req.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Req.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Req.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            
+            @return 返回相应的Protobuf对象
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Req.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            
+            </summary>
+        </member>
+        <member name="T:MicroMsg.sdk.GetMessageFromWX.Resp">
+            <summary>
+            <div class="en">Response class of GetMessageFromWX, extend from BaseResp</div>
+            <div class="zh_CN">GetMessageFromWX响应类，继承自BaseResp</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.GetMessageFromWX.Resp.Username">
+            <summary>
+            <div class="en">WeChat name of the user in current conversation</div>
+            <div class="zh_CN">当前聊天对象的微信名</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.GetMessageFromWX.Resp.Message">
+            <summary>
+            <div class="en">WXBaseMessage object returned</div>
+            <div class="zh_CN">返回的WXBaseMessage对象</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Resp.#ctor">
+            <summary>
+            <div class="en">Build an empty response</div>
+            <div class="zh_CN">构造空响应</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Resp.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            构造函数，发送错误响应时用
+            </summary>
+            <param name="transaction">transaction</param>
+            <param name="errCode">errCode</param>
+            <param name="errString">errString</param>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Resp.#ctor(System.String,System.String,MicroMsg.sdk.WXBaseMessage)">
+            <summary>
+            构造函数，发送正确响应时用
+            </summary>
+            <param name="transaction">transaction</param>
+            <param name="username">username</param>
+            <param name="message">message</param>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Resp.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Resp.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Resp.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.GetMessageFromWX.Resp.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+        </member>
+        <member name="T:MicroMsg.sdk.SendAuth">
+             <summary>
+             <div class="en">
+             WeChat OAuth authentication; authorizes applications via WeChat client
+             </div>
+            
+             <div class="zh_CN">
+             微信OAuth验证功能，通过客微信客户端对第三方请求的权限进行授权
+             </div>
+             </summary>
+        </member>
+        <member name="T:MicroMsg.sdk.SendAuth.Req">
+            <summary>
+            <div class="en">Request class of SendAuth, extend from BaseReq</div>
+            <div class="zh_CN">SendAuth请求类，继承自BaseReq</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendAuth.Req.Scope">
+             <summary>
+             <div class="en">
+             Authorization scope requested by applications
+             NOTE: 1KB at most</div>
+            
+            <div class="zh_CN"> 外部应用请求的权限范围
+            注意：限制长度不能超过1KB</div>
+             </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendAuth.Req.State">
+             <summary>
+             <div class="en">
+             Used to indentify applications; returned by WeChat after authentication. See {@link SendAuth.Resp}
+             <b>NOTE: 1KB at most</b> </div>
+            
+             <div class="zh_CN"> 外部应用本身用来标识其请求的唯一性，验证完成后，将由微信终端回传，参考{@link SendAuth.Resp}
+             <b>注意：限制长度不超过1KB</b> </div>
+             </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Req.#ctor">
+            <summary>
+            <div class="en">Build an empty request</div>
+            <div class="zh_CN">构造空请求</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Req.#ctor(System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="scope">scope</param>
+            <param name="state">state</param>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Req.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Req.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Req.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Req.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.SendAuth.Resp">
+            <summary>
+            <div class="en">Response class of SendAuth, extend from BaseResp</div>
+            <div class="zh_CN">SendAuth响应类，继承自BaseResp</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendAuth.Resp.Code">
+            <div class="en">code for authorization. Null if authorization failed.</div>
+            <div class="zh_CN">授权的code，授权失败时返回null</div>
+        </member>
+        <member name="F:MicroMsg.sdk.SendAuth.Resp.State">
+            <div class="en">
+            Used to indentify applications; returned by WeChat after authentication. See {@link SendAuth.Req}
+            <p />
+            <b>NOTE: 1KB at most</b> </div>
+            
+            <div class="zh_CN"> 外部应用本身用来标识其请求的唯一性，验证完成后，将由微信终端回传，参考{@link SendAuth.Req}
+            <p />
+            <b>注意：限制长度不超过1KB</b> </div>
+        </member>
+        <member name="F:MicroMsg.sdk.SendAuth.Resp.Url">
+            <div class="en">return url.</div>
+            <div class="zh_CN">返回的url</div>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Resp.#ctor">
+            <div class="en">Build an empty response</div>
+            <div class="zh_CN">构造空响应</div>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Resp.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            构造函数，发送错误响应时用
+            </summary>
+            <param name="transaction">transaction</param>
+            <param name="errCode">errCode</param>
+            <param name="errString">errString</param>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Resp.#ctor(System.String,System.String,System.String)">
+            <summary>
+            构造函数，发送正确响应时用
+            </summary>
+            <param name="code">code</param>
+            <param name="state">state</param>
+            <param name="url">url</param>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Resp.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Resp.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Resp.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendAuth.Resp.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.SendMessageToWX">
+            <summary>
+            <div class="en">Message sharing request started by applications</div>
+            <div class="zh_CN">第三方应用主动向微信发起的消息分享请求</div>
+            </summary>
+        </member>
+        <member name="T:MicroMsg.sdk.SendMessageToWX.Req">
+            <summary>
+            <div class="en">Request class of SendMessageToWX, extend from BaseReq</div>
+            <div class="zh_CN">SendMessageToWX请求类，继承自BaseReq</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendMessageToWX.Req.WXSceneChooseByUser">
+            <summary>
+            默认类型，由用户选择发送的目标场景，发送到回话或发到朋友圈
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendMessageToWX.Req.WXSceneSession">
+            <summary>
+            <div class="en">Send to WeChat conversation</div>
+            <div class="zh_CN">发送的目标场景，表示发送到会话</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendMessageToWX.Req.WXSceneTimeline">
+            <summary>
+            <div class="en">Send to WeChat Moments</div>
+            <div class="zh_CN">发送的目标场景，表示发送朋友圈</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendMessageToWX.Req.Message">
+            <summary>
+            <div class="en">WXBaseMessage data of the sharing request</div>
+            <div class="zh_CN">分享请求的WXBaseMessage数据</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendMessageToWX.Req.Scene">
+            <summary>
+            <div class="en">Target of sharing. Share to WeChat conversation (WXSceneSession) or WeChat Moments (WXSceneTimeline). Share to WeChat conversation by default.</div>
+            <div class="zh_CN">发送的目标场景， 可以选择发送到会话 WXSceneSession 或者朋友圈 WXSceneTimeline。 默认发送到会话。</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Req.#ctor">
+            <summary>
+            <div class="en">Build an empty request</div>
+            <div class="zh_CN">构造空请求</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Req.#ctor(MicroMsg.sdk.WXBaseMessage,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">message</param>
+            <param name="scene">scene，default is WXSceneSession</param>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Req.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Req.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Req.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Req.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj"></param>
+        </member>
+        <member name="T:MicroMsg.sdk.SendMessageToWX.Resp">
+            <summary>
+            <div class="en">Response class of SendMessageToWX, extend from BaseResp</div>
+            <div class="zh_CN">SendMessageToWX响应类，继承自BaseResp</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Resp.#ctor">
+            <summary>
+            <div class="en">Build an empty response</div>
+            <div class="zh_CN">构造空响应</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Resp.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            构造函数，发送错误响应时用
+            </summary>
+            <param name="transaction">transaction</param>
+            <param name="errCode">errCode</param>
+            <param name="errString">errString</param>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Resp.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Resp.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Resp.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendMessageToWX.Resp.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.SendPay">
+             <summary>
+             <div class="en">
+             WeChat pay; third applications pay via WeChat client
+             </div>
+            
+             <div class="zh_CN">
+             微信支付功能，通过客微信客户端对第三方请求支付处理
+             </div>
+             </summary>
+        </member>
+        <member name="T:MicroMsg.sdk.SendPay.Req">
+            <summary>
+            <div class="en">Request class of SendPay, extend from BaseReq</div>
+            <div class="zh_CN">SendPay请求类，继承自BaseReq</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendPay.Req.PartnerId">
+             <summary>
+             <div class="en">
+             商家向财付通申请的商家id
+             </div>
+            
+            <div class="zh_CN"> 
+            商家向财付通申请的商家id
+            </div>
+             </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendPay.Req.PrepayId">
+             <summary>
+             <div class="en">
+             预支付订单
+             </div>
+            
+             <div class="zh_CN">
+             预支付订单
+             </div>
+             </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendPay.Req.NonceStr">
+             <summary>
+             <div class="en">
+             随机串，防重发
+             </div>
+            
+             <div class="zh_CN">
+             随机串，防重发
+             </div>
+             </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendPay.Req.TimeStamp">
+             <summary>
+             <div class="en">
+             时间戳，防重发
+             </div>
+            
+             <div class="zh_CN">
+             时间戳，防重发
+             </div>
+             </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendPay.Req.Package">
+             <summary>
+             <div class="en">
+             商家根据财付通文档填写的数据和签名 
+             </div>
+            
+             <div class="zh_CN">
+             商家根据财付通文档填写的数据和签名 
+             </div>
+             </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendPay.Req.Sign">
+             <summary>
+             <div class="en">
+             商家根据微信开放平台文档对数据做的签名 
+             </div>
+            
+             <div class="zh_CN">
+             商家根据微信开放平台文档对数据做的签名 
+             </div>
+             </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Req.#ctor">
+            <summary>
+            <div class="en">Build an empty request</div>
+            <div class="zh_CN">构造空请求</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Req.#ctor(System.String,System.String,System.String,System.UInt32,System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Req.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Req.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Req.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Req.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.SendPay.Resp">
+            <summary>
+            <div class="en">Response class of SendAuth, extend from BaseResp</div>
+            <div class="zh_CN">SendAuth响应类，继承自BaseResp</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.SendPay.Resp.ReturnKey">
+            <div class="en">财付通返回给商家的信息,这个字段已经废弃，永远都是空字符串</div>
+            <div class="zh_CN">财付通返回给商家的信息,这个字段已经废弃，永远都是空字符串</div>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Resp.#ctor">
+            <div class="en">Build an empty response</div>
+            <div class="zh_CN">构造空响应</div>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Resp.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            构造函数，发送错误响应时用
+            </summary>
+            <param name="transaction">transaction</param>
+            <param name="errCode">errCode</param>
+            <param name="errString">errString</param>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Resp.#ctor(System.String)">
+            <summary>
+            构造函数，发送正确响应时用
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Resp.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Resp.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Resp.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.SendPay.Resp.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.ShowMessageFromWX">
+            <summary>
+            <div class="en">Message displaying request that WeChat sends to applications</div>
+            <div class="zh_CN">微信向第三方应用发起的消息展示请求</div>
+            </summary>
+        </member>
+        <member name="T:MicroMsg.sdk.ShowMessageFromWX.Req">
+            <summary>
+            <div class="en">Request class of ShowMessageFromWX, inherited from BaseReq</div>
+            <div class="zh_CN">ShowMessageFromWX请求类，继承自BaseReq</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.ShowMessageFromWX.Req.Message">
+            <summary>
+            <div class="en">WXBaseMessage data that WeChat requests application to display</div>
+            <div class="zh_CN">请求第三方应用展示的WXBaseMessage数据</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Req.#ctor">
+            <summary>
+            <div class="en">Build an empty request</div>
+            <div class="zh_CN">构造空请求</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Req.#ctor(MicroMsg.sdk.WXBaseMessage)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="message">message</param>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Req.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Req.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Req.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Req.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.ShowMessageFromWX.Resp">
+            <summary>
+            <div class="en">Response class of ShowMessageFromWX, inherited from BaseResp</div>
+            <div class="zh_CN">ShowMessageFromWX响应类，继承自BaseResp</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Resp.#ctor">
+            <summary>
+            <div class="en">Build an empty response</div>
+            <div class="zh_CN">构造空响应</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Resp.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            构造函数，发送错误响应时用
+            </summary>
+            <param name="transaction">transaction</param>
+            <param name="errCode">errCode</param>
+            <param name="errString">errString</param>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Resp.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Resp.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Resp.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.ShowMessageFromWX.Resp.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.TransactData">
+            <summary>
+            微信与第三方应用进行交互的数据封装类。
+            请求和响应数据都使用此类封装。
+            通过ConmandID识别具体业务类型。
+            在Req和Resp中包含具体业务需要的数据。
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.TransactData.ConmandID">
+            <summary>
+            业务ID，现有设计为所有交互都是传递一个TransactData对象，然后通过ConmondID来识别是什么业务。
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.TransactData.Req">
+            <summary>
+            具体业务的请求数据，包含特定业务的请求数据。数据为响应时填null。
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.TransactData.Resp">
+            <summary>
+            具体业务的响应数据，包含特定业务的响应数据。数据为请求时填null。
+            </summary> 
+        </member>
+        <member name="F:MicroMsg.sdk.TransactData.AppID">
+            <summary>
+            应用的AppID，微信直接用wechat，第三方应用使用在微信开放平台注册的AppID
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.TransactData.SdkVersion">
+            <summary>
+            SDK的版本信息，主要用于判断某业务是否支持等。
+            </summary> 
+        </member>
+        <member name="F:MicroMsg.sdk.TransactData.CheckContent">
+            <summary>
+            用于生成和验证摘要信息。
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.TransactData.CheckSummary">
+            <summary>
+            摘要信息，发送时候，根据CheckContent和AppId等信息生成。数据发送到对方后，要进行摘要验证。
+            </summary> 
+        </member>
+        <member name="M:MicroMsg.sdk.TransactData.ValidateData(System.Boolean)">
+            <summary>
+            验证数据是否合法，如检查必填项是否填值。
+            验证失败的数据无法发送。
+            供SDK自己调用。
+            </summary>
+            <returns>验证成功返回true, 数据不合法抛出WXException</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.TransactData.CheckSupported">
+            <summary>
+            检查当前SDK版本是否支持给定的数据。
+            用来防止如4.0的微信发送新的请求给sdk为1.0版本的第三方应用。
+            调用此函数验证数据是否兼容当前版本。
+            </summary>
+            <returns>true表示支持</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.TransactData.ToProto">
+            <summary>
+            序列化到文件。
+            供SDK自己调用。
+            </summary>
+            <returns>TransactDataP</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.TransactData.FromProto(System.Object)">
+            <summary>
+            从文件反序列化为对象。
+            供SDK自己调用。
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="M:MicroMsg.sdk.TransactData.WriteToFile(MicroMsg.sdk.TransactData,System.String)">
+            <summary>
+            把对象序列化写到文件
+            </summary>
+            <param name="data">TransactData对象</param>
+            <param name="filePath">filePath</param>
+        </member>
+        <member name="M:MicroMsg.sdk.TransactData.ReadFromFile(System.String)">
+            <summary>
+            从文件反序列化成对象
+            </summary>
+            <param name="filePath">filePath</param>
+            <returns>TransactData对象</returns>
+        </member>
+        <member name="T:MicroMsg.sdk.WXAppExtendMessage">
+            <summary>
+            <div class="en"> used to describe a application object.</div>
+            <div class="zh_CN">用于描述一个第三方应用对象</div>
+            
+            <p/>
+            
+            <div class="en"> Used as the unique identifier of applications; returned by WeChat after authentication. See {@link SendAuth.Req}
+            <b>NOTE: extInfo, fileData can not be null at that same time.</b>
+            <p/>
+            </div>
+            
+            <div class="zh_CN"> 外部应用本身用来标识其请求的唯一性，验证完成后，将由微信终端回传，参考{@link SendAuth.Req}
+            <p />
+            <b>注意：extInfo, fileData不能同时为空，数据不能大于10M.</b>
+            <p/>
+            </div>
+            </summary>
+        </member>
+        <member name="T:MicroMsg.sdk.WXBaseMessage">
+            <summary>
+            <div class="en">Contents of WeChat media message</div> 
+            <div class="zh_CN">微信媒体消息内容的基类</div>
+            子类有WXTextMessage, WXImageMessage, WXMusicMessage, WXVideoMessage, WXWebpageMessage, WXFileMessage, WXAppExtendMessage
+            每一个子类代表一种类型的消息，封装各自特有的数据。
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.TYPE_UNKNOWN">
+            <summary>
+            <div class="en">Unknown message type; should be ignored</div> 
+            <div class="zh_CN">未知消息类型，应直接被忽略</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.TYPE_TEXT">
+            <summary>
+            <div class="en">Text message. It refers to plain text message but not WeChat texts</div>
+            <div class="zh_CN">文本消息类型，表示纯文本消息，非微信普通文本</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.TYPE_IMAGE">
+            <summary>
+            <div class="en">Image message</div> 
+            <div class="zh_CN">图片消息类型</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.TYPE_MUSIC">
+            <summary>
+            <div class="en">Music message </div> 
+            <div class="zh_CN">音乐消息类型</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.TYPE_VIDEO">
+            <summary>
+            <div class="en">Video message </div> 
+            <div class="zh_CN">视频消息类型</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.TYPE_URL">
+            <summary>
+            <div class="en">Webpage message</div> 
+            <div class="zh_CN">网页消息类型</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.TYPE_FILE">
+            <summary>
+            <div class="en">File sharing message</div> 
+            <div class="zh_CN">分享文件消息类型</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.TYPE_APPDATA">
+            <summary>
+            <div class="en">Type of application extend message</div> 
+            <div class="zh_CN">第三方扩展消息类型</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.TYPE_EMOJI">
+            <summary>
+            <div class="en">Emoji message </div> 
+            <div class="zh_CN">表情消息类型</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.Title">
+            <summary>
+            <div class="en">Message title
+            <p/>
+            <b>NOTE: The length should be within 512Bytes</b></div>
+            <div class="zh_CN">消息标题
+            <p/>
+            <b>注意：限制长度不超过512Bytes</b></div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.Description">
+            <summary>
+            <div class="en">Message description
+            <p/>
+            <b>NOTE: The length should be within 1KB.</b> </div>
+            <div class="zh_CN">消息描述
+            <p/>
+            <b>注意：限制长度不超过1KB</b></div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXBaseMessage.ThumbData">
+            <summary>
+            <div class="en">Binary data of a thumbnail image
+            <p/>
+            <b>NOTE: The file size should be within 32KB.</b></div>
+            <div class="zh_CN">缩略图的二进制数据
+            <p/>
+            <b>注意：限制内容大小不超过32KB</b></div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXBaseMessage.SetThumbImage(System.Byte[])">
+            <summary>
+            <div class="en">Set the thumbnail via bitmap object</div>
+            <div class="zh_CN">通过位图对象设置缩略图</div>
+            </summary>
+            <param name="thumbData">
+            <div class="en">Bitmap object that used to set thumbnail</div> 
+            <div class="zh_CN">用于设置缩略图的位图对象</div>
+            </param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXBaseMessage.Type">
+            <summary>
+            <div class="en">Load type of the current media object</div> 
+            <div class="zh_CN">获取当前媒体对象的类型</div>
+            </summary>
+            <returns>
+            <div class="en">Type of the current media object</div> 
+            <div class="zh_CN">当前媒体对象的类型</div>
+            </returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXBaseMessage.ValidateData">
+            <summary>
+            <div class="en">Check validity of parameters of WXBaseMessage</div>
+            <div class="zh_CN">检查该MediaObject各个参数的合法性</div>
+            </summary>
+            <returns>
+            		<div class="en">True if all parameters are valid.</div>
+            		<div class="zh_CN">如果参数均合法，返回true</div>
+            </returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXBaseMessage.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXBaseMessage.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXBaseMessage.CreateMessage(System.Int32)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="type">消息类型</param>
+            <returns>type对应WXBaseMessage对象，数据为空</returns>
+        </member>
+        <member name="F:MicroMsg.sdk.WXAppExtendMessage.ExtInfo">
+            <summary>
+            <div class="en">Extend text data for applications
+            <b>NOTE: 2KB at most.</b></div>
+            <div class="zh_CN">供第三方使用的扩展文本数据
+            <b>注意：限制长度不超过2KB</b> </div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXAppExtendMessage.FileName">
+            <summary>
+            文件名，特别是文件名的后缀要写正确，否则微信可能打不开文件
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXAppExtendMessage.FileData">
+            <summary>
+            <div class="en">File binary data for applications
+            <b>NOTE: Content size should be within 10MB</b></div>
+            <div class="zh_CN">供第三方使用的文件二进制数据
+            <b>注意：内容大小不能超过10MB</b></div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXAppExtendMessage.#ctor(System.String,System.String,System.Byte[])">
+            <summary>
+            <div class="en">Constructor</div>
+            <div class="zh_CN">构造函数</div>
+            </summary>
+            <param name="extInfo">
+            <div class="en">Extend text data provided for applications</div>
+            <div class="zh_CN">供第三方使用的扩展文本数据</div>
+            </param>
+            <param name="fileName">文件名</param>
+            <param name="fileData">
+            <div class="en">File binary data provided for applications</div>
+            <div class="zh_CN">供第三方使用的文件二进制数据</div>
+            </param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXAppExtendMessage.#ctor">
+            <summary>
+            <div class="en">Constructor</div>
+            <div class="zh_CN">构造函数</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXAppExtendMessage.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXAppExtendMessage.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXAppExtendMessage.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXAppExtendMessage.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.WXEmojiMessage">
+            <summary>
+            <div class="en">Derived class of {@linkplain WXBaseMessage}. Used to describe an emoji object</div>
+            <div class="zh_CN">{@linkplain WXBaseMessage}的派生类，用于描述一个表情对象</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXEmojiMessage.EmojiData">
+            <summary>
+            <div class="en">Binary data of the emoji</div>
+            <div class="zh_CN">表情的二进制数据</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEmojiMessage.#ctor">
+            <summary>
+            <div class="en">Constructor</div>
+            <div class="zh_CN">构造函数</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEmojiMessage.#ctor(System.Byte[])">
+            <summary>
+            <div class="en">Constructor</div>
+            <div class="zh_CN">构造函数</div>
+            </summary>
+            <param name="emojiData">
+                       <div class="en">Binary data of the emoji. Used to create a new object.</div> 
+                       <div class="zh_CN">表情的二进制数据，用于创建一个新对象</div>
+            </param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEmojiMessage.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEmojiMessage.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEmojiMessage.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXEmojiMessage.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.WXFileMessage">
+            <summary>
+            <div class="en">Derived class of {@linkplain WXBaseMessage}. Used to describe a file object</div>
+            <div class="zh_CN">{@linkplain WXBaseMessage}的派生类，用于描述一个文件对象</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXFileMessage.FileData">
+            <summary>
+            <div class="en">Binary data of the file</div>
+            <div class="zh_CN">文件的二进制数据</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXFileMessage.FileName">
+            <summary>
+            <div class="en">Local directory of the file</div> 
+            <div class="zh_CN">文件的文件名，后缀要写对，否则可能导致不能正确打开</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXFileMessage.#ctor">
+            <summary>
+            <div class="en">Constructor</div>
+            <div class="zh_CN">构造函数</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXFileMessage.#ctor(System.Byte[],System.String)">
+            <summary>
+            <div class="en">Constructor</div> 
+            <div class="zh_CN">构造函数</div>
+            </summary>
+            <param name="fileData">
+                       <div class="en">Binary data of the file. Used to create a new object.</div> 
+                       <div class="zh_CN">文本的二进制数据，用于创建一个新对象</div>
+            </param>
+            <param name="FileName">文件名，后缀要写对，否则可能打不开文件</param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXFileMessage.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXFileMessage.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXFileMessage.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXFileMessage.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.WXImageMessage">
+            <summary>
+            <div class="en">Derived class of {@linkplain WXBaseMessage}. Used to describe an image object
+            
+            <b>NOTE: imageData and imageUrl can not be null at the same time.</b>
+            <b>imageData and imageUrl will not be used at the same time.</b>
+            </div>
+            
+            <div class="zh_CN">{@linkplain WXBaseMessage}的派生类，用于描述一个图片对象
+            <b>注意：imageData和imageUrl不能同时为空</b>
+            <b>imageData和imageUrl不会同时被使用</b>
+            </div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXImageMessage.ImageData">
+            <summary>
+            <div class="en">Binary data of an image
+            <p/>
+            <b>NOTE: Content size should be within 10MB</b></div>
+            <div class="zh_CN">图片的二进制数据
+            <p/>
+            <b>注意：内容大小不超过10MB</b></div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXImageMessage.ImageUrl">
+            <summary>
+            <div class="en">URL of an image
+            <p/>
+            <b>NOTE: The length should be within 10KB.</b></div>
+            <div class="zh_CN">图片的网页链接
+            <p/>
+            <b>注意：长度不超过10KB</b></div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXImageMessage.#ctor">
+            <summary>
+            <div class="en">Constructor</div>
+            <div class="zh_CN">构造函数</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXImageMessage.#ctor(System.Byte[])">
+            <summary>
+            <div class="en">Constructor</div> 
+            <div class="zh_CN">构造函数</div>
+            </summary>
+            <param name="imageData">
+                       <div class="en">Binary data of a image. Used to create a new object.</div> 
+                       <div class="zh_CN">图片的二级制数据，用于创建一个对象</div>
+            </param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXImageMessage.#ctor(System.String)">
+            <summary>
+            <div class="en">Constructor</div> 
+            <div class="zh_CN">构造函数</div>
+            </summary>
+            <param name="imageUrl">
+                       <div class="en">URL of an image.</div> 
+                       <div class="zh_CN">图片的Url链接</div>
+            </param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXImageMessage.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXImageMessage.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXImageMessage.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXImageMessage.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.WXMusicMessage">
+            <summary>
+            <div class="en">Derived class of {@linkplain WXBaseMessage}. Used to describe an audio object
+            <p/>
+            <b>NOTE: musicUrl and musicLowBandUrl can not be null at the same time.</b></div>
+            <div class="zh_CN">{@linkplain WXBaseMessage}的派生类，用于描述一个音频对象
+            <p/>
+            <b>注意：musicUrl和musicLowBandUrl不能同时为空</b></div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXMusicMessage.MusicUrl">
+            <summary>
+            <div class="en">Audio URL
+            <p/>
+            <b>NOTE: The length should be within 10KB.</b></div>
+            <div class="zh_CN">音频链接
+            <p/>
+            <b>注意：限制长度不超过10KB</b></div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXMusicMessage.MusicLowBandUrl">
+            <summary>
+            <div class="en">Audio URL for low bandwidth
+            <p/>
+            <b>NOTE: The length should be within 10KB.</b></div>
+            <div class="zh_CN">供低带宽的环境下使用的音频链接
+            <p/>
+            <b>注意：限制长度不超过10KB</b></div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXMusicMessage.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXMusicMessage.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXMusicMessage.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXMusicMessage.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.WXTextMessage">
+            <summary>
+            <div class="en">Derived class of {@linkplain WXBaseMessage}. Used to describe a text object.</div> 
+            <div class="zh_CN">{@linkplain WXBaseMessage}的派生类，用于描述一个文本对象</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXTextMessage.Text">
+            <summary>
+            <div class="en">Text data
+            <p />
+            <b>NOTE: The length should be within 10KB.</b></div>
+            
+            <div class="zh_CN">文本数据
+            <p />
+            <b>注意：长度需大于0且不超过10KB</b></div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXTextMessage.#ctor">
+            <summary>
+            <div class="en">Constructor</div>
+            <div class="zh_CN">构造函数</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXTextMessage.#ctor(System.String)">
+            <summary>
+            <div class="en">Constructor</div> 
+            <div class="zh_CN">构造函数</div>
+            </summary>
+            <param name="text">
+            <div class="en">Text data</div> 
+            <div class="zh_CN">文本数据</div>
+            </param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXTextMessage.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXTextMessage.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXTextMessage.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXTextMessage.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.WXVideoMessage">
+            <summary>
+            <div class="en">Derived class of {@linkplain WXBaseMessage}. Used to describe a video object
+            <p/>
+            <b>NOTE: videoUrl and videoLowBandUrl can not be null at the same time.</b></div>
+            <div class="zh_CN">{@linkplain WXBaseMessage}的派生类，用于描述一个视频对象
+            <p/>
+            <b>注意：videoUrl和videoLowBandUrl不能同时为空</b></div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXVideoMessage.VideoUrl">
+            <summary>
+            <div class="en">Video URL
+            <p/>
+            <b>NOTE: The length should be within 10KB.</b></div>
+            <div class="zh_CN">视频链接
+            <p/>
+            <b>注意：限制长度不超过10KB</b></div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXVideoMessage.VideoLowBandUrl">
+            <summary>
+            <div class="en">Video URL for low bandwidth
+            <p/>
+            <b>NOTE: The length should be within 10KB.</b></div>
+            <div class="zh_CN">供低带宽的环境下使用的视频链接
+            <p/>
+            <b>注意：限制长度不超过10KB</b></div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXVideoMessage.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXVideoMessage.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXVideoMessage.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXVideoMessage.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.WXWebpageMessage">
+            <summary>
+            <div class="en">Derived class of {@linkplain WXBaseMessage}. Used to describe a webpage object.</div>
+            <div class="zh_CN">{@linkplain WXBaseMessage}的派生类，用于描述一个网页对象</div>
+            </summary>
+        </member>
+        <member name="F:MicroMsg.sdk.WXWebpageMessage.WebpageUrl">
+            <summary>
+            <div class="en">html URL
+            <p/>
+            <b>NOTE：The length should be within 10KB.</b></div>
+            <div class="zh_CN">html 链接
+            <p/>
+            <b>注意：长度大于0且不超过10KB</b></div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXWebpageMessage.#ctor">
+            <summary>
+            <div class="en">Constructor</div>
+            <div class="zh_CN">构造函数</div>
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.WXWebpageMessage.#ctor(System.String)">
+            <summary>
+            <div class="en">Constructor</div>
+            <div class="zh_CN">构造函数</div>
+            </summary>
+            <param name="url">
+                       <div class="en">html URL</div>
+                       <div class="zh_CN">html 链接</div>
+            </param>
+        </member>
+        <member name="M:MicroMsg.sdk.WXWebpageMessage.Type">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXWebpageMessage.ValidateData">
+            <summary>
+            See the base class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXWebpageMessage.ToProto">
+            <summary>
+            把对象转成Protobuf的对象，序列化之前调用
+            </summary>
+            <returns>返回相应的Protobuf对象</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.WXWebpageMessage.FromProto(System.Object)">
+            <summary>
+            从Protobuf对象获取数据，反序列化时调用
+            </summary>
+            <param name="protoObj">protoObj</param>
+        </member>
+        <member name="T:MicroMsg.sdk.FileUtil">
+            <summary>
+            文件IO操作工具类
+            </summary>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.deleteDir(System.IO.IsolatedStorage.IsolatedStorageFile,System.String,System.Boolean)">
+            <summary>
+            删除目录
+            </summary>
+            <param name="isf">IsolatedStorageFile对象</param>
+            <param name="path">目录路径</param>
+            <param name="bDeleteDir">是否删除目录</param>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.writeToFile(System.String,System.Byte[],System.Boolean)">
+            <summary>
+            把数据写入文件
+            </summary>
+            <param name="fileName">文件路径</param>
+            <param name="data">数据</param>
+            <param name="bCreateDir">是否创建目录</param>
+            <returns>操作成功返回true</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.appendToFile(System.String,System.Byte[])">
+            <summary>
+            追加写入文件
+            </summary>
+            <param name="fileName">文件路径</param>
+            <param name="data">数据</param>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.readFromFile(System.String)">
+            <summary>
+            读取文件数据，大文件慎用
+            </summary>
+            <param name="fileName">文件路径</param>
+            <returns>文件数据数组</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.readFromFile(System.String,System.Int32,System.Int32)">
+            <summary>
+            文件读取，从offset开始，读取count个byte
+            </summary>
+            <param name="fileName">文件路径</param>
+            <param name="offset">读取起始位置</param>
+            <param name="count">读取数量</param>
+            <returns>成功返回true</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.getFileExistTime(System.String)">
+            <summary>
+            返回文件存在时间 ，单位秒
+            </summary>
+            <param name="path">文件路径</param>
+            <returns>返回文件存在时间</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.fileLength(System.String)">
+            <summary>
+            读取文件大小
+            </summary>
+            <param name="path">文件路径</param>
+            <returns>文件大小</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.fileExists(System.String)">
+            <summary>
+            判断文件是否存在
+            </summary>
+            <param name="path">文件路径</param>
+            <returns>是否存在</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.dirExists(System.String)">
+            <summary>
+            判断目录是否存在
+            </summary>
+            <param name="path">文件路径</param>
+            <returns>是否存在</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.deleteFile(System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="fileName">文件路径</param>
+            <returns>成功返回true</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.emptyDir(System.String)">
+            <summary>
+            清空一个目录下的所有文件和子目录
+            </summary>
+            <param name="strPath">文件路径</param>
+            <returns>成功返回true</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.createDir(System.String)">
+            <summary>
+            创建目录
+            </summary>
+            <param name="strPath">文件路径</param>
+            <returns>成功返回true</returns>
+        </member>
+        <member name="M:MicroMsg.sdk.FileUtil.emptyFile(System.String)">
+            <summary>
+            清空一个目录下 (包括子目录)的所有文件（仅删文件不删目录）
+            </summary>
+            <param name="strPath">文件路径</param>
+            <returns>成功返回true</returns>
+        </member>
+    </members>
+</doc>
