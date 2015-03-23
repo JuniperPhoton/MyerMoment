@@ -19,30 +19,38 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helper\MomentConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\StyleList.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FontViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Asset\Alone.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Alone.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\brave.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\brave.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\dinner.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\dinner.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\food.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\food.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\scene.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\scene.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\thanks.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\thanks.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Brave.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Brave.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\color.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Couple.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Couple.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Dinner.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Dinner.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Food.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Food.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Memory.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Memory.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Music.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Music.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Place.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Place.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Scene.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Scene.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Thanks.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Thanks.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Cubos.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Frozen.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\FZYTK.TTF" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\HYLXJ.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\HYLiLiangHeiJ.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\norwester.otf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\penna.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\PRISTINA.TTF" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Reswysokr.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\TpldKhangXiDictTrial.otf" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\wqy-microhei.ttc" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />

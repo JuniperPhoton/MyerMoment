@@ -7,7 +7,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace Scheduler.Helper
+namespace MyerMomentUniversal.Helper
 {
 #if WINDOWS_PHONE_APP
     /// <summary> 

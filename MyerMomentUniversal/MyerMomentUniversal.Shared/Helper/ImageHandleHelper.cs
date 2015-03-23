@@ -14,51 +14,36 @@ namespace MyerMomentUniversal.Helper
         public static void CompressImageSize(ref uint width, ref uint height)
         {
             
-            if (width > height)
+            var factor = (double)height / width;
+            
+            if (width >= 4000)
             {
-                if (width >= 4000)
-                {
-                    width = (uint)(width * 0.4);
-                    height = (uint)(height * 0.4);
-                }
-                if (width >= 3000 && width<4000)
-                {
-                    width = (uint)(width * 0.5);
-                    height = (uint)(height * 0.5);
-                }
-                else if (width >= 2000 & width < 3000)
-                {
-                    width = (uint)(width * 0.7);
-                    height = (uint)(height * 0.7);
-                }
-                else if (width >= 1000 & width < 2000)
-                {
-                    width = (uint)(width * 0.95);
-                    height = (uint)(height * 0.95);
-                }
+                width = (uint)(width * 0.4);
+                height = (uint)(height * 0.4);
             }
-            if (height > width)
+            if (width >= 3000 && width < 4000)
             {
-                if (height >= 4000)
+                if(factor.ToString().StartsWith("0.7"))
                 {
-                    height = (uint)(height * 0.4);
-                    width = (uint)(width * 0.4);
+                    width = (uint)(width * 0.3);
+                    height = (uint)(height * 0.3);
                 }
-                if (height >= 3000 && height<4000)
+                else
                 {
-                    height = (uint)(height * 0.5);
                     width = (uint)(width * 0.5);
+                    height = (uint)(height * 0.5);
                 }
-                else if (height >= 2000 & height < 3000)
-                {
-                    height = (uint)(height * 0.7);
-                    width = (uint)(width * 0.7);
-                }
-                else if (height >= 1000 & height < 2000)
-                {
-                    height = (uint)(height * 0.95);
-                    width = (uint)(width * 0.95);
-                }
+                
+            }
+            else if (width >= 2000 & width < 3000)
+            {
+                width = (uint)(width * 0.6);
+                height = (uint)(height * 0.6);
+            }
+            else if (width >= 1000 & width < 2000)
+            {
+                width = (uint)(width * 0.7);
+                height = (uint)(height * 0.7);
             }
         }
 

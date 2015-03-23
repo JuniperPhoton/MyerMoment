@@ -166,7 +166,7 @@
     <value>字体</value>
   </data>
   <data name="FontPlaceHolderText" xml:space="preserve">
-    <value>写下这张照片的记忆</value>
+    <value>为这张照片写点东西</value>
   </data>
   <data name="HighHint" xml:space="preserve">
     <value>全尺寸</value>
@@ -205,7 +205,7 @@
     <value>SavedPicture</value>
   </data>
   <data name="SavingHint" xml:space="preserve">
-    <value>保存中...</value>
+    <value>努力画图中...</value>
   </data>
   <data name="SavingPosition" xml:space="preserve">
     <value>保存位置</value>

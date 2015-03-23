@@ -4,19 +4,23 @@ using System.Text;
 
 namespace MyerMomentUniversal.Model
 {
-    public class StyleList
+    public class MomentStyleList
     {
         public List<MomentStyle> Styles;
 
-        public StyleList()
+        public MomentStyleList()
         {
             Styles = new List<MomentStyle>();
-            Styles.Add(new MomentStyle("Alone"));
-            Styles.Add(new MomentStyle("Brave"));
-            Styles.Add(new MomentStyle("Dinner"));
-            Styles.Add(new MomentStyle("Food"));
-            Styles.Add(new MomentStyle("Scene"));
-            Styles.Add(new MomentStyle("Thanks"));
+            Styles.Add(new MomentStyle("Alone",false));
+            Styles.Add(new MomentStyle("Brave",false));
+            Styles.Add(new MomentStyle("Couple",false));
+            Styles.Add(new MomentStyle("Dinner",false));
+            Styles.Add(new MomentStyle("Food",false));
+            Styles.Add(new MomentStyle("Scene",false));
+            Styles.Add(new MomentStyle("Thanks",false));
+            Styles.Add(new MomentStyle("Place",false));
+            Styles.Add(new MomentStyle("Memory",false));
+            Styles.Add(new MomentStyle("Music",false));
         }
     }
 }

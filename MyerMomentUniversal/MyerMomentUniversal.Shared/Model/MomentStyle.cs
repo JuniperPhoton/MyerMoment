@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.Storage;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -35,15 +36,41 @@ namespace MyerMomentUniversal.Model
             }
         }
 
-        public MomentStyle(string nameID)
+        /// <summary>
+        /// 初始化Style类
+        /// </summary>  
+        /// <param name="nameID">图片的名字</param>
+        /// <param name="isFromUser">是否来自用户的导入</param>
+        public MomentStyle(string nameID,bool isFromUser)
         {
             NameID = nameID;
 
-            Image = new BitmapImage();
-            Image.UriSource = new Uri("ms-appx:///Asset/"+nameID+".png", UriKind.RelativeOrAbsolute);
+            if(!isFromUser)
+            {
+                Image = new BitmapImage();
+                Image.UriSource = new Uri("ms-appx:///Asset/" + nameID + ".png", UriKind.RelativeOrAbsolute);
 
-            PreviewImge = new BitmapImage();
-            PreviewImge.UriSource = new Uri("ms-appx:///Asset/" + nameID + ".jpg", UriKind.RelativeOrAbsolute);
+                PreviewImge = new BitmapImage();
+                PreviewImge.UriSource = new Uri("ms-appx:///Asset/" + nameID + ".jpg", UriKind.RelativeOrAbsolute);
+            }
+            else
+            {
+                ImportStyle(nameID);
+            }
+            
+        }
+
+        private async void ImportStyle(string nameID)
+        {
+            var folder = await Windows.Storage.ApplicationData.Current.LocalFolder.CreateFolderAsync("MyerMomentStyles", CreationCollisionOption.OpenIfExists);
+            var file = await folder.GetFileAsync(nameID);
+            if(file!=null)
+            {
+                using(var fileStream=await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    this.Image.SetSource(fileStream);
+                }
+            }
         }
 
     }

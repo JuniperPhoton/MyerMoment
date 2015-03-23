@@ -18,6 +18,8 @@
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
     <AppxBundle>Never</AppxBundle>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -86,9 +88,6 @@
     <Compile Include="FeaturePage.xaml.cs">
       <DependentUpon>FeaturePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FontPage.xaml.cs">
-      <DependentUpon>FontPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Helper\ContinuationManager.cs" />
     <Compile Include="Helper\SuspensionManager.cs" />
     <Compile Include="ImageHandlePage.xaml.cs">
@@ -123,6 +122,7 @@
     <Content Include="Assets\StoreLogo.scale-240.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
+    <None Include="Design\projectGuides.guides" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="StoreManifest.xml" />
     <Content Include="UmImages\location.png" />
@@ -140,10 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="FeaturePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FontPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

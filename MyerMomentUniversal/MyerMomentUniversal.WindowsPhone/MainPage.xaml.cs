@@ -1,5 +1,5 @@
 ﻿using ChaoFunctionRT;
-using Scheduler.Helper;
+using MyerMomentUniversal.Helper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -97,7 +97,7 @@ namespace MyerMomentUniversal
 
         private void ManageClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(FontPage));
+            //Frame.Navigate(typeof(FontPage));
         }
 
         private void OpenPhotoClick(object sender,RoutedEventArgs e )

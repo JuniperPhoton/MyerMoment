@@ -8,7 +8,7 @@
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d"
     IsTextScaleFactorEnabled="False"
-    DataContext="{StaticResource Locator}">
+    >
     
     <Page.Resources>
 
@@ -248,7 +248,7 @@
         <SolidColorBrush>#FFFFC733</SolidColorBrush>
     </Page.Background>
     
-    <Grid DataContext="{Binding MainVM}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition/>
@@ -350,7 +350,7 @@
                                     <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Left"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                         <TextBlock Margin="5" Text="VERSION" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                     </Border>
-                                    <HyperlinkButton Pivot.SlideInAnimationGroup="GroupTwo" Content="0.92 BETA" NavigateUri="http://www.windowsphone.com/s?appid=52172f00-cfe1-4695-b4f7-a2be0c1bfacc" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="25" Margin="15,0,0,0" Foreground="White" />
+                                    <HyperlinkButton Pivot.SlideInAnimationGroup="GroupTwo" Content="0.94 BETA" NavigateUri="http://www.windowsphone.com/en-us/store/app/myermoment/126a1e6d-0f68-4b89-a67c-fe3d204508ec" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="25" Margin="15,0,0,0" Foreground="White" />
 
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
