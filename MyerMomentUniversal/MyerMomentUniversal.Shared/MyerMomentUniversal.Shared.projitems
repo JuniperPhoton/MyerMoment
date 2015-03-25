@@ -17,6 +17,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Helper\ImageHandleHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\MomentConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\PhoneNameResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\StyleList.cs" />
   </ItemGroup>
@@ -32,6 +33,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Dinner.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Food.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Food.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\LOGO_TRAN_300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Memory.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Memory.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Music.jpg" />
@@ -43,14 +45,18 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Thanks.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Thanks.png" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Cubos.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\FAXT.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Frozen.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\FZYTK.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\HYLiLiangHeiJ.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Mad Potato Bill.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\msyh.ttc" />
     <Content Include="$(MSBuildThisFileDirectory)Font\norwester.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\penna.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\PRISTINA.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Reswysokr.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\TpldKhangXiDictTrial.otf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Western Bang Bang.ttf" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />

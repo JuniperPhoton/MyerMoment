@@ -82,9 +82,9 @@ namespace MyerMomentUniversal
                 // 将框架放在当前窗口中
                 Window.Current.Content = rootFrame;
 
-                if (!LocalSettingHelper.IsExist("feature"))
+                if (!LocalSettingHelper.IsExist("feature1"))
                 {
-                    LocalSettingHelper.AddValue("feature", true);
+                    LocalSettingHelper.AddValue("feature1", true);
                     rootFrame.Navigate(typeof(FeaturePage));
                 }
             }

@@ -12,6 +12,7 @@ using Windows.ApplicationModel.Email;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Phone.UI.Input;
+using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Popups;
@@ -22,6 +23,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 
@@ -44,7 +46,7 @@ namespace MyerMomentUniversal
 
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
 
-            
+            //GetCurrentPhotos();
         }
 
         private void ConfigLang()
@@ -69,7 +71,8 @@ namespace MyerMomentUniversal
             importTB.Text = loader.GetString("ImportHeader");
         }
 
-        private async void EmailClick(object sender,RoutedEventArgs e)
+        #region FEEDBACK
+        private async void EmailClick(object sender, RoutedEventArgs e)
         {
             EmailRecipient rec = new EmailRecipient("dengweichao@hotmail.com");
             EmailMessage mes = new EmailMessage();
@@ -78,7 +81,7 @@ namespace MyerMomentUniversal
             await EmailManager.ShowComposeNewEmailAsync(mes);
         }
 
-        private async void SendLogClick(object sender,RoutedEventArgs e)
+        private async void SendLogClick(object sender, RoutedEventArgs e)
         {
             EmailRecipient rec = new EmailRecipient("dengweichao@hotmail.com");
             EmailMessage mes = new EmailMessage();
@@ -89,7 +92,7 @@ namespace MyerMomentUniversal
             await EmailManager.ShowComposeNewEmailAsync(mes);
         }
 
-        private async void ReviewClick(object sender,RoutedEventArgs e)
+        private async void ReviewClick(object sender, RoutedEventArgs e)
         {
             await Windows.System.Launcher.LaunchUriAsync(
                             new Uri("ms-windows-store:reviewapp?appid=126a1e6d-0f68-4b89-a67c-fe3d204508ec"));
@@ -99,8 +102,23 @@ namespace MyerMomentUniversal
         {
             //Frame.Navigate(typeof(FontPage));
         }
+        #endregion
 
-        private void OpenPhotoClick(object sender,RoutedEventArgs e )
+        private async void GetCurrentPhotos()
+        {
+            //var files = await KnownFolders.SavedPictures.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByName,0, 1);
+            //var first = files.FirstOrDefault();
+            //if (first == null) return;
+            //using (var fileStream = await first.OpenStreamForReadAsync())
+            //{
+            //    BitmapImage bitmap = new BitmapImage();
+            //    bitmap.SetSource(fileStream.AsRandomAccessStream());
+            //    backImage1.Source = bitmap;
+            //}
+
+        }
+
+        private void OpenPhotoClick(object sender, RoutedEventArgs e)
         {
             FileOpenPicker picker = new Windows.Storage.Pickers.FileOpenPicker();
             picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
@@ -112,7 +130,7 @@ namespace MyerMomentUniversal
 
         public void ContinueFileOpenPicker(FileOpenPickerContinuationEventArgs args)
         {
-            if(args.Files.Count==0)
+            if (args.Files.Count == 0)
             {
                 return;
             }
@@ -121,7 +139,38 @@ namespace MyerMomentUniversal
                 case ActivationKind.PickFileContinuation:
                     {
                         Frame.Navigate(typeof(ImageHandlePage), args);
-                    } break;
+                    }
+                    break;
+            }
+        }
+
+        private void qualityCom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (iscomComDirty == false)
+            {
+                iscomComDirty = true;
+                return;
+            }
+            var combox = sender as ComboBox;
+            if (combox != null)
+            {
+                var selectedIndex = combox.SelectedIndex;
+                LocalSettingHelper.AddValue("QualityCompress", selectedIndex.ToString());
+            }
+        }
+
+        private void positionCom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (isposComDirty == false)
+            {
+                isposComDirty = true;
+                return;
+            }
+            var combox = sender as ComboBox;
+            if (combox != null)
+            {
+                var selectedIndex = combox.SelectedIndex;
+                LocalSettingHelper.AddValue("Position", selectedIndex.ToString());
             }
         }
 
@@ -142,10 +191,6 @@ namespace MyerMomentUniversal
             {
                 positionCom.SelectedIndex = int.Parse(position);
             }
-            //if(e.Parameter.GetType()==typeof(ShareOperation))
-            //{
-            //    Frame.Navigate(typeof(ImageHandlePage), e.Parameter);
-            //}
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -155,43 +200,13 @@ namespace MyerMomentUniversal
 
         void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            if(Frame.CanGoBack)
+            if (Frame.CanGoBack)
             {
                 Frame.GoBack();
                 e.Handled = true;
             }
         }
 
-        private void qualityCom_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(iscomComDirty==false)
-            {
-                iscomComDirty = true;
-                return;
-            }
-            var combox = sender as ComboBox;
-            if(combox!=null)
-            {
-                var selectedIndex = combox.SelectedIndex;
-                LocalSettingHelper.AddValue("QualityCompress", selectedIndex.ToString());
-            }
-        }
 
-        private void positionCom_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (isposComDirty == false)
-            {
-                isposComDirty = true;
-                return;
-            }
-            var combox = sender as ComboBox;
-            if(combox!=null)
-            {
-                var selectedIndex = combox.SelectedIndex;
-                LocalSettingHelper.AddValue("Position", selectedIndex.ToString());
-            }
-        }
-
-        
     }
 }
