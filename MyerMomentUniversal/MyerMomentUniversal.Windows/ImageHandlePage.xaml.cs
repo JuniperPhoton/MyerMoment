@@ -10,7 +10,6 @@ using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Graphics.Imaging;
-using Windows.Phone.UI.Input;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI;
@@ -99,22 +98,22 @@ namespace MyerMomentUniversal
         #region CONFIGURATION
         private void ConfigQuality()
         {
-            var qualitySetting = LocalSettingHelper.GetValue("QualityCompress");
-            if (qualitySetting == "0")
-            {
-                scaleLong = 1500;
+            //var qualitySetting = LocalSettingHelper.GetValue("QualityCompress");
+            //if (qualitySetting == "0")
+            //{
+            //    scaleLong = 1500;
 
-                Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
-                var firmwareVersion = deviceInfo.SystemFirmwareVersion;
+            //    Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
+            //    var firmwareVersion = deviceInfo.SystemFirmwareVersion;
 
-                if (deviceInfo.SystemProductName.Contains("RM-875") 
-                    || deviceInfo.SystemProductName.Contains("RM-876") 
-                    || deviceInfo.SystemProductName.Contains("RM-877"))
-                {
-                    scaleLong = 1300;
-                }
+            //    if (deviceInfo.SystemProductName.Contains("RM-875") 
+            //        || deviceInfo.SystemProductName.Contains("RM-876") 
+            //        || deviceInfo.SystemProductName.Contains("RM-877"))
+            //    {
+            //        scaleLong = 1300;
+            //    }
                 
-            }
+            //}
         }
 
         private void ConfigStyle()
@@ -196,10 +195,7 @@ namespace MyerMomentUniversal
         #endregion
 
         #region FUNCTION
-        private void TapBlack(object sender, TappedRoutedEventArgs e)
-        {
-            BackHandle();
-        }
+
         private void RotateClick(object sender, RoutedEventArgs e)
         {
             _angle += 90;
@@ -443,6 +439,7 @@ namespace MyerMomentUniversal
                     _isInStyleMode = false;
                 }
                 EditInStory.Begin();
+                contentTB.Focus(FocusState.Programmatic);
                 _isInEditMode = true;
             }
             _currentTextBox = TextView1;
@@ -471,7 +468,18 @@ namespace MyerMomentUniversal
         {
             if (!_isInEditMode)
             {
+                if (_isInMoreLineMode)
+                {
+                    MoreLineOutStory.Begin();
+                    _isInMoreLineMode = false;
+                }
+                else if (_isInStyleMode)
+                {
+                    MovieOutStory.Begin();
+                    _isInStyleMode = false;
+                }
                 EditInStory.Begin();
+                contentTB.Focus(FocusState.Programmatic);
                 _isInEditMode = true;
             }
             _currentTextBox = TextView2;
@@ -500,7 +508,18 @@ namespace MyerMomentUniversal
         {
             if (!_isInEditMode)
             {
+                if (_isInMoreLineMode)
+                {
+                    MoreLineOutStory.Begin();
+                    _isInMoreLineMode = false;
+                }
+                else if (_isInStyleMode)
+                {
+                    MovieOutStory.Begin();
+                    _isInStyleMode = false;
+                }
                 EditInStory.Begin();
+                contentTB.Focus(FocusState.Programmatic);
                 _isInEditMode = true;
             }
             _currentTextBox = TextView3;
@@ -593,14 +612,14 @@ namespace MyerMomentUniversal
                 uint targetWidth = this._width;
                 uint targetHeight = this._height;
 
-                //压缩图像
-                if (LocalSettingHelper.GetValue("QualityCompress") == "0")
-                {
-                    var imagehelper = new ImageHandleHelper();
-                    imagehelper.CompressImage((uint)scaleLong, targetWidth, targetHeight);
-                    targetWidth = imagehelper.outputWidth;
-                    targetHeight = imagehelper.outputHeight;
-                }
+                ////压缩图像
+                //if (LocalSettingHelper.GetValue("QualityCompress") == "0")
+                //{
+                //    var imagehelper = new ImageHandleHelper();
+                //    imagehelper.CompressImage((uint)scaleLong, targetWidth, targetHeight);
+                //    targetWidth = imagehelper.outputWidth;
+                //    targetHeight = imagehelper.outputHeight;
+                //}
 
                 var bitmap = new RenderTargetBitmap();
                 await bitmap.RenderAsync(renderGrid, (int)(targetWidth), (int)(targetHeight));
@@ -791,46 +810,22 @@ namespace MyerMomentUniversal
         #endregion
 
         #region NAVIGATE
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-
-            UpdatePageLayout();
-
             if(e.Parameter!=null)
             {
-                if (e.Parameter.GetType() == typeof(FileOpenPickerContinuationEventArgs))
+                if (e.Parameter.GetType() == typeof(StorageFile))
                 {
-                    FileOpenPickerContinuationEventArgs args = e.Parameter as FileOpenPickerContinuationEventArgs;
-                    if (args.Files.Count == 0) return;
-
-                    ShowImage(args.Files[0]);
+                    var file = e.Parameter as StorageFile;
+                    ShowImage(file);
                 }
-                if (e.Parameter.GetType() == typeof(ShareOperation))
-                {
-                    var shareOperation = e.Parameter as ShareOperation;
-                    var items=await shareOperation.Data.GetStorageItemsAsync();
-                   
-                    var firstItem = items.FirstOrDefault();
-                    if(firstItem!=null)
-                    {
-                        var path = firstItem.Path;
-                        var fileToOpen = await Windows.Storage.StorageFile.GetFileFromPathAsync(path);
-                        ShowImage(fileToOpen);
-
-                        _isFromShareTarget = true;
-                    }
-                    
-                }  
             }
         }
 
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        private void TapBlack(object sender, TappedRoutedEventArgs e)
         {
-            HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+            BackHandle();
         }
-
-        
 
         private bool BackHandle()
         {
@@ -868,12 +863,6 @@ namespace MyerMomentUniversal
             else return false;
         }
 
-        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
-        {
-            e.Handled = true;
-            if (BackHandle()) return;
-            CancelClick(null, null);
-        }
         #endregion
 
     }

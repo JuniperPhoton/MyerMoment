@@ -15,9 +15,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\ContinuationManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\ImageHandleHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\MomentConfig.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\PhoneNameResolver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\SuspensionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\StyleList.cs" />
   </ItemGroup>
@@ -50,7 +52,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Font\FZYTK.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\HYLiLiangHeiJ.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Mad Potato Bill.ttf" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\msyh.ttc" />
     <Content Include="$(MSBuildThisFileDirectory)Font\norwester.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\penna.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\PRISTINA.TTF" />

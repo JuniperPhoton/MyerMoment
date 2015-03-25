@@ -16,65 +16,11 @@
         <x:Double x:Key="PhonePivotUnselectedItemOpacity">0.3</x:Double>
 
         <SolidColorBrush x:Key="ButtonDisabledBackgroundThemeBrush" Color="Transparent" />
-        <Style x:Key="MomentBtn" TargetType="Button">
-        	<Setter Property="Background" Value="Transparent" />
-        	<Setter Property="BorderBrush" Value="{ThemeResource PhoneForegroundBrush}" />
-        	<Setter Property="Foreground" Value="{ThemeResource PhoneForegroundBrush}" />
-        	<Setter Property="BorderThickness" Value="{ThemeResource PhoneBorderThickness}" />
-        	<Setter Property="FontFamily" Value="{ThemeResource PhoneFontFamilyNormal}" />
-        	<Setter Property="FontWeight" Value="{ThemeResource PhoneButtonFontWeight}" />
-        	<Setter Property="FontSize" Value="{ThemeResource TextStyleLargeFontSize}" />
-        	<Setter Property="Padding" Value="{ThemeResource PhoneButtonContentPadding}" />
-        	<Setter Property="MinHeight" Value="{ThemeResource PhoneButtonMinHeight}" />
-        	<Setter Property="MinWidth" Value="{ThemeResource PhoneButtonMinWidth}" />
-        	<Setter Property="HorizontalAlignment" Value="Left" />
-        	<Setter Property="VerticalAlignment" Value="Center" />
-        	<Setter Property="Template">
-        		<Setter.Value>
-        			<ControlTemplate TargetType="Button">
-        				<Grid x:Name="Grid" Background="Transparent">
-        					<VisualStateManager.VisualStateGroups>
-        						<VisualStateGroup x:Name="CommonStates">
-        							<VisualState x:Name="Normal" />
-        							<VisualState x:Name="PointerOver" />
-        							<VisualState x:Name="Pressed">
-        								<Storyboard>
-        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPressedForegroundThemeBrush}" />
-        									</ObjectAnimationUsingKeyFrames>
-        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
-        										<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}" />
-        									</ObjectAnimationUsingKeyFrames>
-        									<DoubleAnimation Duration="0" To="0.6" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Border"/>
-        								</Storyboard>
-        							</VisualState>
-        							<VisualState x:Name="Disabled">
-        								<Storyboard>
-        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
-        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledForegroundThemeBrush}" />
-        									</ObjectAnimationUsingKeyFrames>
-        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Border">
-        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledBorderThemeBrush}" />
-        									</ObjectAnimationUsingKeyFrames>
-        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
-        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledBackgroundThemeBrush}" />
-        									</ObjectAnimationUsingKeyFrames>
-        								</Storyboard>
-        							</VisualState>
-        						</VisualStateGroup>
-        					</VisualStateManager.VisualStateGroups>
-        					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="{ThemeResource PhoneTouchTargetOverhang}">
-        						<ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="Left" />
-        					</Border>
-        				</Grid>
-        			</ControlTemplate>
-        		</Setter.Value>
-        	</Setter>
-        </Style>
+       
         <Style x:Key="ButtonStyle1" TargetType="Button">
         	<Setter Property="Background" Value="Transparent"/>
-        	<Setter Property="BorderBrush" Value="{ThemeResource PhoneForegroundBrush}"/>
-        	<Setter Property="Foreground" Value="{ThemeResource PhoneForegroundBrush}"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Transparent"/>
         	<Setter Property="BorderThickness" Value="{ThemeResource PhoneBorderThickness}"/>
         	<Setter Property="FontFamily" Value="{ThemeResource PhoneFontFamilyNormal}"/>
         	<Setter Property="FontWeight" Value="{ThemeResource PhoneButtonFontWeight}"/>
@@ -172,8 +118,8 @@
         </Style>
         <Style x:Key="ButtonStyle2" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="{ThemeResource PhoneForegroundBrush}"/>
-            <Setter Property="Foreground" Value="{ThemeResource PhoneForegroundBrush}"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="{ThemeResource PhoneBorderThickness}"/>
             <Setter Property="FontFamily" Value="{ThemeResource PhoneFontFamilyNormal}"/>
             <Setter Property="FontWeight" Value="{ThemeResource PhoneButtonFontWeight}"/>

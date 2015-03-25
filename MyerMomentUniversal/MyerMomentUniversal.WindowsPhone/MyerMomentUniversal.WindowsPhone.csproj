@@ -88,8 +88,6 @@
     <Compile Include="FeaturePage.xaml.cs">
       <DependentUpon>FeaturePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Helper\ContinuationManager.cs" />
-    <Compile Include="Helper\SuspensionManager.cs" />
     <Compile Include="ImageHandlePage.xaml.cs">
       <DependentUpon>ImageHandlePage.xaml</DependentUpon>
     </Compile>
@@ -181,6 +179,9 @@
       <Project>{9c909fed-d859-4cab-b4d2-dfb7fd31ee58}</Project>
       <Name>ChaoFunctionRT</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
