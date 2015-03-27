@@ -138,7 +138,7 @@ namespace MyerMomentUniversal
             args.Request.ApplicationCommands.Add(new SettingsCommand(
                 "Setting", "Setting", (handler) =>
                 {
-                    SettingsFlyout1 CustomSettingFlyout = new SettingsFlyout1();
+                    SettingFlyoutPage CustomSettingFlyout = new SettingFlyoutPage();
                     CustomSettingFlyout.Show();
                 }));
 

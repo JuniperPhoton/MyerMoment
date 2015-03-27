@@ -1,8 +1,10 @@
 ﻿using ChaoFunctionRT;
+
 using MyerMomentUniversal.Helper;
 using MyerMomentUniversal.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
@@ -27,29 +29,16 @@ namespace MyerMomentUniversal
 
     public sealed partial class ImageHandlePage : Page
     {
-        private string _savedFileName = "";
-
         private bool _isInStyleMode = false;
         private bool _isInShareMode = false;
         private bool _isInErrorMode = false;
         private bool _isInMoreLineMode = false;
         private bool _isInEditMode = false;
+        private bool _isInFilterMode = false;
 
         private bool _isFromShareTarget = false;
 
-        private bool _isConfigStyle = false;
-
         private double _angle = 0;
-
-        private uint _height;
-        private uint _width;
-        private int _dpiX;
-        private int _dpiY;
-        private Guid _encoderID;
-        private string fileName;
-        private int scaleLong;
-        private BitmapAlphaMode alphaMode;
-        private BitmapPixelFormat pixelFormat;
 
         private TextBox _currentTextBox = null;
 
@@ -74,6 +63,11 @@ namespace MyerMomentUniversal
 
         private MomentStyleList styleList;
 
+        private ImageHandleHelper _imageHandleHelper = new ImageHandleHelper();
+
+        //private List<AbstractFilter> _filters;
+        //private FilterPreviewViewModel _filterPreviewViewModel;
+
         public ImageHandlePage()
         {
             this.InitializeComponent();
@@ -88,33 +82,11 @@ namespace MyerMomentUniversal
             _transformGroupStyle.Children.Add(_scaleTransformStyle);
             styleImage.RenderTransform = _transformGroupStyle;
 
-            ConfigQuality();
             ConfigStyle();
-
-            
-            
         }
 
         #region CONFIGURATION
-        private void ConfigQuality()
-        {
-            //var qualitySetting = LocalSettingHelper.GetValue("QualityCompress");
-            //if (qualitySetting == "0")
-            //{
-            //    scaleLong = 1500;
-
-            //    Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
-            //    var firmwareVersion = deviceInfo.SystemFirmwareVersion;
-
-            //    if (deviceInfo.SystemProductName.Contains("RM-875") 
-            //        || deviceInfo.SystemProductName.Contains("RM-876") 
-            //        || deviceInfo.SystemProductName.Contains("RM-877"))
-            //    {
-            //        scaleLong = 1300;
-            //    }
-                
-            //}
-        }
+   
 
         private void ConfigStyle()
         {
@@ -180,18 +152,6 @@ namespace MyerMomentUniversal
             backTB.Text = loader.GetString("BackErrorHint");
         }
 
-        /// <summary>
-        /// 根据当前分辨率决定ContentGrid的高度
-        /// </summary>
-        private void UpdatePageLayout()
-        {
-            if (Frame.ActualHeight < 720)
-            {
-                contentGrid.Height = 260;
-                contentSV.Height = 200;
-            }
-        }
-
         #endregion
 
         #region FUNCTION
@@ -204,12 +164,13 @@ namespace MyerMomentUniversal
             startAngle.Value = finalAngle - 90;
             endAngle.Value = finalAngle;
 
-            var temp = _height;
-            _height = _width;
-            _width = temp;
+            var temp = _imageHandleHelper.Height;
+            _imageHandleHelper.Height = _imageHandleHelper.Width;
+            _imageHandleHelper.Width = temp;
 
             RotateStory.Begin();
         }
+
         /// <summary>
         /// 增加文字大小
         /// </summary>
@@ -274,7 +235,6 @@ namespace MyerMomentUniversal
                 {
                     VisualStateManager.GoToState(defaultLineBtn, "Using", false);
                 }
-               
             }
             else
             {
@@ -356,6 +316,20 @@ namespace MyerMomentUniversal
             }
         }
 
+        private void FilterClick(object sender,RoutedEventArgs e)
+        {
+            if(_isInFilterMode)
+            {
+                FilterOutStory.Begin();
+                _isInFilterMode = false;
+            }
+            else
+            {
+                FilterInStory.Begin();
+                _isInFilterMode = true;
+            }
+        }
+
         /// <summary>
         /// 添加/删除新的文段
         /// </summary>
@@ -398,10 +372,12 @@ namespace MyerMomentUniversal
                 _currentTextBox.Text = tb.Text;
             }
         }
+
         private void TapMask(object sender,TappedRoutedEventArgs e)
         {
             BackHandle();
         }
+
         #endregion
 
         #region TEXT_MANI 关于所有手势操作
@@ -566,33 +542,20 @@ namespace MyerMomentUniversal
             {
                 TextView1.Visibility = Visibility.Collapsed;
 
-                using(var fileStream = await file.OpenAsync(FileAccessMode.Read))
-                {
-                    //从文件流里创建解码器
-                    var decoder = await BitmapDecoder.CreateAsync(fileStream);
-                    
-                    //获取目前图像的信息
-                    this._dpiX = (int)decoder.DpiX;
-                    this._dpiY = (int)decoder.DpiY;
-                    this._height = decoder.OrientedPixelHeight;
-                    this._width = decoder.OrientedPixelWidth;
-                    this.fileName = file.Name;
-                    this.pixelFormat = decoder.BitmapPixelFormat;
-                    this.alphaMode = decoder.BitmapAlphaMode;
+                ring.IsActive = true;
 
-                    switch (file.FileType)
-                    {
-                        case ".jpg": _encoderID = BitmapEncoder.JpegEncoderId; break;
-                        case ".png": _encoderID = BitmapEncoder.PngEncoderId; break;
-                    }
+                var bitmap = await _imageHandleHelper.GetBitmapFromFileAsync(file);
+                image.Source = bitmap;
 
-                    ring.IsActive = true;
+                //var ok = await HandleSelectedImageFileAsync(file);
 
-                    //显示图像
-                    var bitmap = new BitmapImage();
-                    await  bitmap.SetSourceAsync(fileStream);
-                    image.Source = bitmap;
-                }
+                //BitmapImage bitmap = new BitmapImage();
+                //bitmap.SetSource(FilterEffects.DataContext.Instance.FullResolutionStream.AsRandomAccessStream());
+                //image.Source = bitmap;
+
+                //CreateComponents();
+                //CreatePreviewImagesAsync();
+
                 ring.IsActive = false;
 
                 TextView1.Visibility = Visibility.Visible;
@@ -609,60 +572,11 @@ namespace MyerMomentUniversal
             {
                 MaskGrid.Visibility = Visibility.Visible;
 
-                uint targetWidth = this._width;
-                uint targetHeight = this._height;
-
-                ////压缩图像
-                //if (LocalSettingHelper.GetValue("QualityCompress") == "0")
-                //{
-                //    var imagehelper = new ImageHandleHelper();
-                //    imagehelper.CompressImage((uint)scaleLong, targetWidth, targetHeight);
-                //    targetWidth = imagehelper.outputWidth;
-                //    targetHeight = imagehelper.outputHeight;
-                //}
-
-                var bitmap = new RenderTargetBitmap();
-                await bitmap.RenderAsync(renderGrid, (int)(targetWidth), (int)(targetHeight));
-
-                var pixels =await bitmap.GetPixelsAsync();
-
-                //处理保存的位置
-                var positon = LocalSettingHelper.GetValue("Position");
-                StorageFile fileToSave = null;
-                switch(positon)
+                bool isOK=await _imageHandleHelper.SaveImageAsync(renderGrid);
+                if(!isOK)
                 {
-                    case "0": fileToSave = await KnownFolders.SavedPictures.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName); break;
-                    case "1":
-                        {
-                            var folderToSave = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
-                            fileToSave = await folderToSave.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
-                        };break;
-                    case "2":
-                        {
-                            fileToSave = await KnownFolders.CameraRoll.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
-                        };break;
-                    default:
-                        {
-                            var folderToSave = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
-                            fileToSave = await folderToSave.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
-                        };break;
+                    throw new Exception();
                 }
-                if (fileToSave == null) return;
-
-                this._savedFileName = fileToSave.Name;
-
-                //CachedFileManager.DeferUpdates(fileToSave);
-                using (IRandomAccessStream fileStream = await fileToSave.OpenAsync(FileAccessMode.ReadWrite))
-                {
-
-                    var encoder = await BitmapEncoder.CreateAsync(_encoderID, fileStream);
-                    encoder.BitmapTransform.ScaledHeight = targetHeight;
-                    encoder.BitmapTransform.ScaledWidth = targetWidth;
-
-                    encoder.SetPixelData(pixelFormat, alphaMode, (uint)bitmap.PixelWidth, (uint)bitmap.PixelHeight, _dpiX, _dpiY, pixels.ToArray());
-                    await encoder.FlushAsync();
-                }
-                //await CachedFileManager.CompleteUpdatesAsync(fileToSave);
 
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ShareGrid.Visibility = Visibility.Visible;
@@ -723,7 +637,6 @@ namespace MyerMomentUniversal
             {
                 var task = ExceptionHelper.WriteRecord(ee);
             }
-
         }
 
         private void ShareToWechatClick(object sender, RoutedEventArgs e)
@@ -759,15 +672,15 @@ namespace MyerMomentUniversal
                 StorageFile fileToGet = null;
                 switch (positon)
                 {
-                    case "0": fileToGet = await KnownFolders.SavedPictures.GetFileAsync(_savedFileName); break;
+                    case "0": fileToGet = await KnownFolders.SavedPictures.GetFileAsync(_imageHandleHelper.SavedFileName); break;
                     case "1":
                         {
                             var folderToGet = await KnownFolders.PicturesLibrary.GetFolderAsync("MyerMoment");
-                            fileToGet = await folderToGet.GetFileAsync(_savedFileName);
+                            fileToGet = await folderToGet.GetFileAsync(_imageHandleHelper.SavedFileName);
                         }; break;
                     case "2":
                         {
-                            fileToGet = await KnownFolders.CameraRoll.GetFileAsync(_savedFileName);
+                            fileToGet = await KnownFolders.CameraRoll.GetFileAsync(_imageHandleHelper.SavedFileName);
                         }; break;
                 }
                 if (fileToGet == null) return;
@@ -783,7 +696,6 @@ namespace MyerMomentUniversal
 
                 ErrorGrid.Visibility = Visibility.Visible;
                 _isInErrorMode = true;
-
             }
             finally
             {
@@ -829,7 +741,7 @@ namespace MyerMomentUniversal
 
         private bool BackHandle()
         {
-            if (_isInStyleMode || _isInShareMode || _isInErrorMode || _isInMoreLineMode || _isInEditMode)
+            if (_isInStyleMode || _isInShareMode || _isInErrorMode || _isInFilterMode|| _isInMoreLineMode || _isInEditMode)
             {
 
                 if (_isInStyleMode)
@@ -841,6 +753,11 @@ namespace MyerMomentUniversal
                 {
                     ShareGrid.Visibility = Visibility.Collapsed;
 
+                }
+                if(_isInFilterMode)
+                {
+                    FilterOutStory.Begin();
+                    _isInFilterMode = false;
                 }
                 if (_isInErrorMode)
                 {
@@ -864,7 +781,204 @@ namespace MyerMomentUniversal
         }
 
         #endregion
+//        private void CreateComponents()
+//        {
+//            if (_filters == null)
+//            {
+//#if !WINDOWS_PHONE_APP
+//                _filterPreviewViewModel = new FilterPreviewViewModel();
+//                DataContext = _filterPreviewViewModel;
+//#endif
 
+//                _filters = new List<AbstractFilter>
+//                {
+//                    new OriginalImageFilter(), // This is for the original image and has no effects
+//                    new SixthGearFilter(),
+//                    new SadHipsterFilter(),
+//                    new EightiesPopSongFilter(),
+//                    new MarvelFilter(),
+//                    new SurroundedFilter()
+//                };
+//            }
+
+//#if WINDOWS_PHONE_APP
+//            DataContext dataContext = FilterEffects.DataContext.Instance;
+//            _previewImages = new List<Image>();
+//            int i = 0;
+
+//            // Create a pivot item with an image for each filter. The image
+//            // content is added later. In addition, create the preview bitmaps
+//            // and associate them with the images.
+//            foreach (AbstractFilter filter in _filters)
+//            {
+//                var pivotItem = new PivotItem {Header = filter.Name};
+
+//                if (!string.IsNullOrEmpty(filter.ShortDescription))
+//                {
+//                    pivotItem.Header += " (" + filter.ShortDescription + ")";
+//                }
+
+//                var grid = new Grid {Name = PivotItemNamePrefix + filter.Name};
+
+//                _previewImages.Add(new Image());
+//                grid.Children.Add(_previewImages[i++]);
+
+//                filter.PropertiesManipulated += OnControlManipulated;
+
+//                pivotItem.Content = grid;
+//                FilterPreviewPivot.Items.Add(pivotItem);
+//                filter.PreviewResolution = FilterEffects.DataContext.Instance.PreviewResolution;
+//            }
+
+//            FilterPreviewPivot.SelectionChanged += FilterPreviewPivot_SelectionChanged;
+//#endif
+//        }
+//        private async void CreatePreviewImagesAsync()
+//        {
+//            DataContext dataContext = FilterEffects.DataContext.Instance;
+
+//            if (dataContext.PreviewResolutionStream == null)
+//            {
+
+//            }
+//            else
+//            {
+//#if WINDOWS_PHONE_APP
+//                int i = 0;
+//#endif
+//                foreach (AbstractFilter filter in _filters)
+//                {
+//                    filter.PreviewResolution = FilterEffects.DataContext.Instance.PreviewResolution;
+//                    filter.Buffer = dataContext.PreviewResolutionStream.GetWindowsRuntimeBuffer();
+//#if WINDOWS_PHONE_APP
+//                    _previewImages[i++].Source = filter.PreviewImageSource;
+//#endif
+//                    filter.Apply();
+
+//#if !WINDOWS_PHONE_APP
+//                    if (filter is OriginalImageFilter)
+//                    {
+//                        AbstractFilter filter1 = filter;
+//                        await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+//                            Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+//                            {
+//                                image.Source = filter1.PreviewImageSource;
+//                            });
+//                    }
+
+//                    _filterPreviewViewModel.Add(filter);
+//#endif
+//                }
+//            }
+
+//#if !WINDOWS_PHONE_APP
+//            FilterPreviewListView.SelectedIndex = 0;
+//#endif
+//        }
+
+//        private async Task<bool> HandleSelectedImageFileAsync(StorageFile file)
+//        {
+//            var fileStream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+//            FilterEffects.DataContext dataContext = FilterEffects.DataContext.Instance;
+
+//            // Reset the streams
+//            dataContext.ResetStreams();
+
+//            var image = new BitmapImage();
+//            image.SetSource(fileStream);
+//            int width = image.PixelWidth;
+//            int height = image.PixelHeight;
+//            dataContext.SetFullResolution(width, height);
+
+//            int previewWidth = (int)FilterEffects.DataContext.DefaultPreviewResolutionWidth;
+//            int previewHeight = 0;
+//            AppUtils.CalculatePreviewResolution(width, height, ref previewWidth, ref previewHeight);
+//            dataContext.SetPreviewResolution(previewWidth, previewHeight);
+
+//            bool success = false;
+
+//            try
+//            {
+//                // JPEG images can be used as such
+//                Stream stream = fileStream.AsStream();
+//                stream.Position = 0;
+//                stream.CopyTo(dataContext.FullResolutionStream);
+//                success = true;
+//            }
+//            catch (Exception e)
+//            {
+//            }
+
+//            if (!success)
+//            {
+//                try
+//                {
+//                    await AppUtils.FileStreamToJpegStreamAsync(fileStream,
+//                        (IRandomAccessStream)dataContext.FullResolutionStream.AsInputStream());
+//                    success = true;
+//                }
+//                catch (Exception e)
+//                {
+//                }
+//            }
+
+//            if (success)
+//            {
+//                await AppUtils.ScaleImageStreamAsync(
+//                    dataContext.FullResolutionStream,
+//                    dataContext.FullResolution,
+//                    dataContext.PreviewResolutionStream,
+//                    dataContext.PreviewResolution);
+
+//                dataContext.WasCaptured = false;
+//            }
+
+//            return success;
+//        }
+
+//        private async void FilterPreviewListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+//        {
+//            if (FilterEffects.DataContext.Instance != null)
+//            {
+//                DataContext dataContext = FilterEffects.DataContext.Instance;
+
+//                foreach (object item in e.AddedItems)
+//                {
+//                    string filterName = ((AbstractFilter)item).Name;
+
+//                    foreach (AbstractFilter filter in _filters)
+//                    {
+//                        if (filter.Name.Equals(filterName))
+//                        {
+//                            IBuffer buffer = await filter.RenderJpegAsync(
+//                                dataContext.FullResolutionStream.GetWindowsRuntimeBuffer());
+//                            //FileManager fileManager = FileManager.Instance;
+//                            //bool success = await fileManager.SaveImageFileAsync(buffer);
+//                            var stream = buffer.AsStream();
+//                            stream.Seek(stream.Length, 0);
+//                            var bitmap = new BitmapImage();
+//                            await bitmap.SetSourceAsync(stream.AsRandomAccessStream());
+//                            image.Source = bitmap;
+
+//                            if (filterName.Equals("Original") && !dataContext.WasCaptured)
+//                            {
+//                                /* It does not make sense to allow saving the
+//                                 * original image if it was taken from the file
+//                                 * system.
+//                                 */
+//                                //SaveButton.IsEnabled = false;
+//                            }
+//                            else
+//                            {
+//                                //BitmapImage bitmap = new BitmapImage();
+//                                //bitmap.SetSource(dataContext.FullResolutionStream.AsRandomAccessStream());
+//                                //image.Source = bitmap;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 }
 

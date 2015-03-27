@@ -28,7 +28,7 @@ namespace MyerMomentUniversal
 
     public sealed partial class ImageHandlePage : Page
     {
-        private string _savedFileName = "";
+        //private string _savedFileName = "";
 
         private bool _isInStyleMode = false;
         private bool _isInShareMode = false;
@@ -42,15 +42,15 @@ namespace MyerMomentUniversal
 
         private double _angle = 0;
 
-        private uint _height;
-        private uint _width;
-        private int _dpiX;
-        private int _dpiY;
-        private Guid _encoderID;
-        private string fileName;
-        private int scaleLong;
-        private BitmapAlphaMode alphaMode;
-        private BitmapPixelFormat pixelFormat;
+        //private uint _height;
+        //private uint _width;
+        //private int _dpiX;
+        //private int _dpiY;
+        //private Guid _encoderID;
+        //private string fileName;
+        //private int scaleLong;
+        //private BitmapAlphaMode alphaMode;
+        //private BitmapPixelFormat pixelFormat;
 
         private TextBox _currentTextBox = null;
 
@@ -74,6 +74,8 @@ namespace MyerMomentUniversal
         private TransformGroup _transformGroupStyle = new TransformGroup();
 
         private MomentStyleList styleList;
+
+        private ImageHandleHelper _imageHandleHelper = new ImageHandleHelper();
 
         public ImageHandlePage()
         {
@@ -102,7 +104,7 @@ namespace MyerMomentUniversal
             var qualitySetting = LocalSettingHelper.GetValue("QualityCompress");
             if (qualitySetting == "0")
             {
-                scaleLong = 1500;
+                _imageHandleHelper.ScaleLong = 1500;
 
                 Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
                 var firmwareVersion = deviceInfo.SystemFirmwareVersion;
@@ -111,7 +113,7 @@ namespace MyerMomentUniversal
                     || deviceInfo.SystemProductName.Contains("RM-876") 
                     || deviceInfo.SystemProductName.Contains("RM-877"))
                 {
-                    scaleLong = 1300;
+                    _imageHandleHelper.ScaleLong = 1300;
                 }
                 
             }
@@ -208,9 +210,9 @@ namespace MyerMomentUniversal
             startAngle.Value = finalAngle - 90;
             endAngle.Value = finalAngle;
 
-            var temp = _height;
-            _height = _width;
-            _width = temp;
+            var temp = _imageHandleHelper.Height;
+            _imageHandleHelper.Height = _imageHandleHelper.Width;
+            _imageHandleHelper.Width = temp;
 
             RotateStory.Begin();
         }
@@ -547,33 +549,38 @@ namespace MyerMomentUniversal
             {
                 TextView1.Visibility = Visibility.Collapsed;
 
-                using(var fileStream = await file.OpenAsync(FileAccessMode.Read))
-                {
-                    //从文件流里创建解码器
-                    var decoder = await BitmapDecoder.CreateAsync(fileStream);
-                    
-                    //获取目前图像的信息
-                    this._dpiX = (int)decoder.DpiX;
-                    this._dpiY = (int)decoder.DpiY;
-                    this._height = decoder.OrientedPixelHeight;
-                    this._width = decoder.OrientedPixelWidth;
-                    this.fileName = file.Name;
-                    this.pixelFormat = decoder.BitmapPixelFormat;
-                    this.alphaMode = decoder.BitmapAlphaMode;
+                //using(var fileStream = await file.OpenAsync(FileAccessMode.Read))
+                //{
+                //    //从文件流里创建解码器
+                //    var decoder = await BitmapDecoder.CreateAsync(fileStream);
 
-                    switch (file.FileType)
-                    {
-                        case ".jpg": _encoderID = BitmapEncoder.JpegEncoderId; break;
-                        case ".png": _encoderID = BitmapEncoder.PngEncoderId; break;
-                    }
+                //    //获取目前图像的信息
+                //    this._dpiX = (int)decoder.DpiX;
+                //    this._dpiY = (int)decoder.DpiY;
+                //    this._height = decoder.OrientedPixelHeight;
+                //    this._width = decoder.OrientedPixelWidth;
+                //    this.fileName = file.Name;
+                //    this.pixelFormat = decoder.BitmapPixelFormat;
+                //    this.alphaMode = decoder.BitmapAlphaMode;
 
-                    ring.IsActive = true;
+                //    switch (file.FileType)
+                //    {
+                //        case ".jpg": _encoderID = BitmapEncoder.JpegEncoderId; break;
+                //        case ".png": _encoderID = BitmapEncoder.PngEncoderId; break;
+                //    }
 
-                    //显示图像
-                    var bitmap = new BitmapImage();
-                    await  bitmap.SetSourceAsync(fileStream);
-                    image.Source = bitmap;
-                }
+                //    ring.IsActive = true;
+
+                //    //显示图像
+                //    var bitmap = new BitmapImage();
+                //    await  bitmap.SetSourceAsync(fileStream);
+                //    image.Source = bitmap;
+                //}
+                ring.IsActive = true;
+
+                var bitmap = await _imageHandleHelper.GetBitmapFromFileAsync(file);
+                image.Source = bitmap;
+
                 ring.IsActive = false;
 
                 TextView1.Visibility = Visibility.Visible;
@@ -590,60 +597,65 @@ namespace MyerMomentUniversal
             {
                 MaskGrid.Visibility = Visibility.Visible;
 
-                uint targetWidth = this._width;
-                uint targetHeight = this._height;
+                //uint targetWidth = this._width;
+                //uint targetHeight = this._height;
 
-                //压缩图像
-                if (LocalSettingHelper.GetValue("QualityCompress") == "0")
+                ////压缩图像
+                //if (LocalSettingHelper.GetValue("QualityCompress") == "0")
+                //{
+                //    var imagehelper = new ImageHandleHelper();
+                //    imagehelper.CompressImage((uint)scaleLong, targetWidth, targetHeight);
+                //    targetWidth = imagehelper.outputWidth;
+                //    targetHeight = imagehelper.outputHeight;
+                //}
+
+                //var bitmap = new RenderTargetBitmap();
+                //await bitmap.RenderAsync(renderGrid, (int)(targetWidth), (int)(targetHeight));
+
+                //var pixels =await bitmap.GetPixelsAsync();
+
+                ////处理保存的位置
+                //var positon = LocalSettingHelper.GetValue("Position");
+                //StorageFile fileToSave = null;
+                //switch(positon)
+                //{
+                //    case "0": fileToSave = await KnownFolders.SavedPictures.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName); break;
+                //    case "1":
+                //        {
+                //            var folderToSave = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
+                //            fileToSave = await folderToSave.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
+                //        };break;
+                //    case "2":
+                //        {
+                //            fileToSave = await KnownFolders.CameraRoll.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
+                //        };break;
+                //    default:
+                //        {
+                //            var folderToSave = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
+                //            fileToSave = await folderToSave.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
+                //        };break;
+                //}
+                //if (fileToSave == null) return;
+
+                //this._savedFileName = fileToSave.Name;
+
+                ////CachedFileManager.DeferUpdates(fileToSave);
+                //using (IRandomAccessStream fileStream = await fileToSave.OpenAsync(FileAccessMode.ReadWrite))
+                //{
+
+                //    var encoder = await BitmapEncoder.CreateAsync(_encoderID, fileStream);
+                //    encoder.BitmapTransform.ScaledHeight = targetHeight;
+                //    encoder.BitmapTransform.ScaledWidth = targetWidth;
+
+                //    encoder.SetPixelData(pixelFormat, alphaMode, (uint)bitmap.PixelWidth, (uint)bitmap.PixelHeight, _dpiX, _dpiY, pixels.ToArray());
+                //    await encoder.FlushAsync();
+                //}
+                ////await CachedFileManager.CompleteUpdatesAsync(fileToSave);
+
+                if(! await _imageHandleHelper.SaveImageAsync(renderGrid))
                 {
-                    var imagehelper = new ImageHandleHelper();
-                    imagehelper.CompressImage((uint)scaleLong, targetWidth, targetHeight);
-                    targetWidth = imagehelper.outputWidth;
-                    targetHeight = imagehelper.outputHeight;
+                    throw new Exception();
                 }
-
-                var bitmap = new RenderTargetBitmap();
-                await bitmap.RenderAsync(renderGrid, (int)(targetWidth), (int)(targetHeight));
-
-                var pixels =await bitmap.GetPixelsAsync();
-
-                //处理保存的位置
-                var positon = LocalSettingHelper.GetValue("Position");
-                StorageFile fileToSave = null;
-                switch(positon)
-                {
-                    case "0": fileToSave = await KnownFolders.SavedPictures.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName); break;
-                    case "1":
-                        {
-                            var folderToSave = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
-                            fileToSave = await folderToSave.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
-                        };break;
-                    case "2":
-                        {
-                            fileToSave = await KnownFolders.CameraRoll.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
-                        };break;
-                    default:
-                        {
-                            var folderToSave = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
-                            fileToSave = await folderToSave.CreateFileAsync("MyerMoment.jpg", CreationCollisionOption.GenerateUniqueName);
-                        };break;
-                }
-                if (fileToSave == null) return;
-
-                this._savedFileName = fileToSave.Name;
-
-                //CachedFileManager.DeferUpdates(fileToSave);
-                using (IRandomAccessStream fileStream = await fileToSave.OpenAsync(FileAccessMode.ReadWrite))
-                {
-
-                    var encoder = await BitmapEncoder.CreateAsync(_encoderID, fileStream);
-                    encoder.BitmapTransform.ScaledHeight = targetHeight;
-                    encoder.BitmapTransform.ScaledWidth = targetWidth;
-
-                    encoder.SetPixelData(pixelFormat, alphaMode, (uint)bitmap.PixelWidth, (uint)bitmap.PixelHeight, _dpiX, _dpiY, pixels.ToArray());
-                    await encoder.FlushAsync();
-                }
-                //await CachedFileManager.CompleteUpdatesAsync(fileToSave);
 
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ShareGrid.Visibility = Visibility.Visible;
@@ -740,15 +752,15 @@ namespace MyerMomentUniversal
                 StorageFile fileToGet = null;
                 switch (positon)
                 {
-                    case "0": fileToGet = await KnownFolders.SavedPictures.GetFileAsync(_savedFileName); break;
+                    case "0": fileToGet = await KnownFolders.SavedPictures.GetFileAsync(_imageHandleHelper.SavedFileName); break;
                     case "1":
                         {
                             var folderToGet = await KnownFolders.PicturesLibrary.GetFolderAsync("MyerMoment");
-                            fileToGet = await folderToGet.GetFileAsync(_savedFileName);
+                            fileToGet = await folderToGet.GetFileAsync(_imageHandleHelper.SavedFileName);
                         }; break;
                     case "2":
                         {
-                            fileToGet = await KnownFolders.CameraRoll.GetFileAsync(_savedFileName);
+                            fileToGet = await KnownFolders.CameraRoll.GetFileAsync(_imageHandleHelper.SavedFileName);
                         }; break;
                 }
                 if (fileToGet == null) return;

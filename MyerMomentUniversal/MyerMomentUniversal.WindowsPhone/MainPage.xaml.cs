@@ -104,20 +104,6 @@ namespace MyerMomentUniversal
         }
         #endregion
 
-        private async void GetCurrentPhotos()
-        {
-            //var files = await KnownFolders.SavedPictures.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByName,0, 1);
-            //var first = files.FirstOrDefault();
-            //if (first == null) return;
-            //using (var fileStream = await first.OpenStreamForReadAsync())
-            //{
-            //    BitmapImage bitmap = new BitmapImage();
-            //    bitmap.SetSource(fileStream.AsRandomAccessStream());
-            //    backImage1.Source = bitmap;
-            //}
-
-        }
-
         private void OpenPhotoClick(object sender, RoutedEventArgs e)
         {
             FileOpenPicker picker = new Windows.Storage.Pickers.FileOpenPicker();

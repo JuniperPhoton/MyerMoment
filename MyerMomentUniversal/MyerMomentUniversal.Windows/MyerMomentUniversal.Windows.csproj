@@ -19,6 +19,7 @@
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Never</AppxBundle>
     <PackageCertificateThumbprint>FD19B4DD63C69DF794452D59119494894C6CBCF4</PackageCertificateThumbprint>
+    <NuGetPackageImportStamp>d84c0cbd</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -119,8 +120,8 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsFlyout1.xaml.cs">
-      <DependentUpon>SettingsFlyout1.xaml</DependentUpon>
+    <Compile Include="SettingFlyoutPage.xaml.cs">
+      <DependentUpon>SettingFlyoutPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -129,7 +130,6 @@
     </AppxManifest>
     <None Include="MyerMomentUniversal.Windows_StoreKey.pfx" />
     <None Include="MyerMomentUniversal.Windows_TemporaryKey.pfx" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.scale-100.png" />
@@ -166,7 +166,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SettingsFlyout1.xaml">
+    <Page Include="SettingFlyoutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,9 +174,6 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="UmengAnalyticsUniversal">
-      <HintPath>..\..\packages\UmengAnalytics.2.0.2\lib\netcore451\UmengAnalyticsUniversal.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
