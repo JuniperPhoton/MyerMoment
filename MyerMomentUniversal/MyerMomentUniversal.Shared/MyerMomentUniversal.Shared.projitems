@@ -15,11 +15,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CropControl.xaml.cs">
+      <DependentUpon>CropControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Helper\ContinuationManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helper\ImageHandleHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\MomentConfig.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helper\PhoneNameResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ImageHandlePage.xaml.cs">
+      <DependentUpon>ImageHandlePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\StyleList.cs" />
   </ItemGroup>
@@ -35,32 +39,58 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Dinner.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Food.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Food.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\LOGO_150.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\logo_71.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\LOGO_TRAN_300.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\LOGO_WIDE.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Love.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Love.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Memory.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Memory.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Music.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Music.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Night.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Night.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Place.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Place.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Sad.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Sad.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Scene.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Scene.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Thanks.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Thanks.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Time.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Time.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\ClubNight.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Cubos.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Digiform_demo.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\FAXT.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Frozen.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\FZYTK.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\HYLiLiangHeiJ.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\KrinkesDecorPERSONAL.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Mad Potato Bill.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Modern-Vision.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\norwester.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\penna.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\PRISTINA.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Reswysokr.otf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\SOFT ADDICTIONS.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\TpldKhangXiDictTrial.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Western Bang Bang.ttf" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\zh-CN\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)CropControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)ImageHandlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

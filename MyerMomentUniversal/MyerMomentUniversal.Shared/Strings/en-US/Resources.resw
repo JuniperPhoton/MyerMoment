@@ -237,4 +237,13 @@
   <data name="StyleHeader" xml:space="preserve">
     <value>STYLE</value>
   </data>
+  <data name="ThemeHint" xml:space="preserve">
+    <value>MyerMoment Theme</value>
+  </data>
+  <data name="TileColorHeader" xml:space="preserve">
+    <value>TILE COLOR</value>
+  </data>
+  <data name="TransparantHint" xml:space="preserve">
+    <value>Transparant</value>
+  </data>
 </root>

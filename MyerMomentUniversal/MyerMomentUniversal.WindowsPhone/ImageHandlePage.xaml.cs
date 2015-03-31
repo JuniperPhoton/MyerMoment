@@ -4,22 +4,17 @@ using MyerMomentUniversal.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
-using Windows.Graphics.Imaging;
 using Windows.Phone.UI.Input;
 using Windows.Storage;
-using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 
@@ -41,16 +36,6 @@ namespace MyerMomentUniversal
         private bool _isConfigStyle = false;
 
         private double _angle = 0;
-
-        //private uint _height;
-        //private uint _width;
-        //private int _dpiX;
-        //private int _dpiY;
-        //private Guid _encoderID;
-        //private string fileName;
-        //private int scaleLong;
-        //private BitmapAlphaMode alphaMode;
-        //private BitmapPixelFormat pixelFormat;
 
         private TextBox _currentTextBox = null;
 
@@ -94,8 +79,6 @@ namespace MyerMomentUniversal
             ConfigQuality();
             ConfigStyle();
 
-            
-            
         }
 
         #region CONFIGURATION
@@ -113,7 +96,7 @@ namespace MyerMomentUniversal
                     || deviceInfo.SystemProductName.Contains("RM-876") 
                     || deviceInfo.SystemProductName.Contains("RM-877"))
                 {
-                    _imageHandleHelper.ScaleLong = 1300;
+                    _imageHandleHelper.ScaleLong = 1024;
                 }
                 
             }
@@ -251,6 +234,8 @@ namespace MyerMomentUniversal
         {
             _scaleTransformStyle.ScaleX += 0.2;
             _scaleTransformStyle.ScaleY += 0.2;
+            
+            //new MessageDialog(_scaleTransformStyle.ScaleX + ", y" + _scaleTransformStyle.ScaleY).ShowAsync();
         }
 
         /// <summary>
@@ -426,8 +411,8 @@ namespace MyerMomentUniversal
 
         private void TextView1_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransform1.X += e.Delta.Translation.X;
-            _translateTransform1.Y += e.Delta.Translation.Y;
+            _translateTransform1.X += e.Delta.Translation.X/_scaleTransform1.ScaleX;
+            _translateTransform1.Y += e.Delta.Translation.Y/_scaleTransform1.ScaleY;
         }
 
         private void textGrid1_Tapped(object sender, TappedRoutedEventArgs e)
@@ -465,8 +450,8 @@ namespace MyerMomentUniversal
 
         private void TextView2_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransform2.X += e.Delta.Translation.X;
-            _translateTransform2.Y += e.Delta.Translation.Y;
+            _translateTransform2.X += e.Delta.Translation.X/_scaleTransform2.ScaleX;
+            _translateTransform2.Y += e.Delta.Translation.Y/_scaleTransform2.ScaleY;
         }
 
         private void textGrid2_Tapped(object sender, TappedRoutedEventArgs e)
@@ -494,8 +479,8 @@ namespace MyerMomentUniversal
 
         private void TextView3_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransform3.X += e.Delta.Translation.X;
-            _translateTransform3.Y += e.Delta.Translation.Y;
+            _translateTransform3.X += e.Delta.Translation.X/_scaleTransform3.ScaleX;
+            _translateTransform3.Y += e.Delta.Translation.Y/_scaleTransform3.ScaleY;
         }
 
         private void textGrid3_Tapped(object sender, TappedRoutedEventArgs e)
@@ -518,8 +503,8 @@ namespace MyerMomentUniversal
 
         private void StyleView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransformStyle.X += e.Delta.Translation.X;
-            _translateTransformStyle.Y += e.Delta.Translation.Y;
+            _translateTransformStyle.X += (e.Delta.Translation.X/_scaleTransformStyle.ScaleX);
+            _translateTransformStyle.Y +=( e.Delta.Translation.Y/ _scaleTransformStyle.ScaleY);
         }
 
         #endregion

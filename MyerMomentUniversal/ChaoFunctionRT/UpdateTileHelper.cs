@@ -169,7 +169,7 @@ namespace ChaoFunctionRT
 
                 return file.Name;
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 
                 return null;

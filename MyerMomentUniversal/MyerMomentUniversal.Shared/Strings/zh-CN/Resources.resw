@@ -127,7 +127,7 @@
     <value>完成</value>
   </data>
   <data name="CameraRollHint" xml:space="preserve">
-    <value>CameraRoll</value>
+    <value>本机照片</value>
   </data>
   <data name="CancleBtn" xml:space="preserve">
     <value>取消</value>
@@ -202,7 +202,7 @@
     <value>保存为副本</value>
   </data>
   <data name="SavedPictureHint" xml:space="preserve">
-    <value>SavedPicture</value>
+    <value>保存的照片</value>
   </data>
   <data name="SavingHint" xml:space="preserve">
     <value>努力画图中...</value>
@@ -230,5 +230,14 @@
   </data>
   <data name="StyleHeader" xml:space="preserve">
     <value>样式</value>
+  </data>
+  <data name="ThemeHint" xml:space="preserve">
+    <value>MyerMoment 主题色</value>
+  </data>
+  <data name="TileColorHeader" xml:space="preserve">
+    <value>磁贴样式</value>
+  </data>
+  <data name="TransparantHint" xml:space="preserve">
+    <value>背景透明</value>
   </data>
 </root>

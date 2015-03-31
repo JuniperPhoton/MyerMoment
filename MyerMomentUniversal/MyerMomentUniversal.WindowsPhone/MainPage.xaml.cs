@@ -1,5 +1,6 @@
 ﻿using ChaoFunctionRT;
 using MyerMomentUniversal.Helper;
+using NotificationsExtensions.TileContent;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,7 @@ using Windows.Phone.UI.Input;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -35,6 +37,7 @@ namespace MyerMomentUniversal
         public static MainPage Current;
         private bool iscomComDirty = false;
         private bool isposComDirty = false;
+        private bool iscolorComDirty = false;
 
         public MainPage()
         {
@@ -46,11 +49,12 @@ namespace MyerMomentUniversal
 
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
 
-            //GetCurrentPhotos();
+            VersionHLB.Content = (string)(App.Current.Resources["AppVersion"]);
         }
 
         private void ConfigLang()
         {
+            
             var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
             StartPivotItem.Header = loader.GetString("StartHeader");
             SettingPivotItem.Header = loader.GetString("PersonalizeHeader");
@@ -69,6 +73,10 @@ namespace MyerMomentUniversal
             //creditTB.Text = loader.GetString("CreditHint");
             importHint.Text = loader.GetString("ImportHint");
             importTB.Text = loader.GetString("ImportHeader");
+            tileColorTextblock.Text = loader.GetString("TileColorHeader");
+            transparantTextblock.Text = loader.GetString("TransparantHint");
+            solidcolorTextblock.Text = loader.GetString("ThemeHint");
+            
         }
 
         #region FEEDBACK
@@ -77,20 +85,10 @@ namespace MyerMomentUniversal
             EmailRecipient rec = new EmailRecipient("dengweichao@hotmail.com");
             EmailMessage mes = new EmailMessage();
             mes.To.Add(rec);
-            mes.Subject = "MyerMoment feedback";
+            mes.Subject = "MyerMoment for Phone Feedback";
             await EmailManager.ShowComposeNewEmailAsync(mes);
         }
 
-        private async void SendLogClick(object sender, RoutedEventArgs e)
-        {
-            EmailRecipient rec = new EmailRecipient("dengweichao@hotmail.com");
-            EmailMessage mes = new EmailMessage();
-            var error = await ExceptionHelper.ReadRecord();
-            mes.Body = error;
-            mes.To.Add(rec);
-            mes.Subject = "MyerMoment error log";
-            await EmailManager.ShowComposeNewEmailAsync(mes);
-        }
 
         private async void ReviewClick(object sender, RoutedEventArgs e)
         {
@@ -124,7 +122,7 @@ namespace MyerMomentUniversal
             {
                 case ActivationKind.PickFileContinuation:
                     {
-                        Frame.Navigate(typeof(ImageHandlePage), args);
+                        Frame.Navigate(typeof(ImageHandlePage), args.Files[0]);
                     }
                     break;
             }
@@ -142,6 +140,54 @@ namespace MyerMomentUniversal
             {
                 var selectedIndex = combox.SelectedIndex;
                 LocalSettingHelper.AddValue("QualityCompress", selectedIndex.ToString());
+            }
+        }
+
+        private void colorCom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (iscolorComDirty == false)
+            {
+                iscolorComDirty = true;
+                return;
+            }
+            var combox = sender as ComboBox;
+            if (combox != null)
+            {
+                var selectedIndex = combox.SelectedIndex;
+                LocalSettingHelper.AddValue("TileColor", selectedIndex.ToString());
+
+                switch (selectedIndex)
+                {
+                    case 1:
+                        {
+                            var smallTileContent = TileContentFactory.CreateTileSquare71x71Image();
+                            smallTileContent.Image.Src = "ms-appx:///Asset/logo_71.png";
+
+                            //medium
+                            var mediumTileContent = TileContentFactory.CreateTileSquare150x150Image();
+                            mediumTileContent.RequireSquare71x71Content = true;
+                            mediumTileContent.Square71x71Content = smallTileContent;
+                            mediumTileContent.Image.Src = "ms-appx:///Assets/LOGO_Mediun_For_Change.png";
+                            mediumTileContent.Branding = TileBranding.None;
+
+                            //wide
+                            var wideTileContent = TileContentFactory.CreateTileWide310x150Image();
+                            wideTileContent.RequireSquare150x150Content = true;
+                            wideTileContent.Square150x150Content = mediumTileContent;
+                            wideTileContent.Image.Src = "ms-appx:///Asset/LOGO_WIDE.png";
+                            wideTileContent.Branding = TileBranding.None;
+
+                            var notification = wideTileContent.CreateNotification();
+                            
+                            TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
+                        }
+                        break;
+                    case 0:
+                        {
+                            TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+                        }
+                        break;
+                }
             }
         }
 
@@ -176,6 +222,12 @@ namespace MyerMomentUniversal
             if (position != null)
             {
                 positionCom.SelectedIndex = int.Parse(position);
+            }
+
+            var color = LocalSettingHelper.GetValue("TileColor");
+            if (color != null)
+            {
+                colorCom.SelectedIndex = int.Parse(color);
             }
         }
 

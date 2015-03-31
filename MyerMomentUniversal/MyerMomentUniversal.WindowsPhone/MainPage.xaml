@@ -319,17 +319,24 @@
                                         <TextBlock  x:Name="cameraRollTextblock" Text="CameraRoll"/>
                                     </ComboBoxItem>
                                 </ComboBox>
+                                <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
+                                    <TextBlock x:Name="tileColorTextblock"  Margin="5" Text="TILE STYLE" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}"/>
+                                </Border>
+                                <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" SelectionChanged="colorCom_SelectionChanged" x:Name="colorCom" PlaceholderText="Select the default color of Tile" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeColor}" >
+                                    <ComboBoxItem>
+                                        <TextBlock  x:Name="transparantTextblock"  Text="Transparant" />
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock  x:Name="solidcolorTextblock" Text="SolidColor"/>
+                                    </ComboBoxItem>
+                                   
+                                </ComboBox>
                                 <TextBlock Text="PERSONALIZE" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="ExtraBold" Opacity="0.3" Margin="0,20,0,0" FontSize="30" Foreground="Black" FontFamily="Segoe WP"/>
                                 <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
                                     <TextBlock x:Name="importTB" Margin="5" Text="IMPORT FONT FAMILY" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" />
                                 </Border>
                                 <TextBlock x:Name="importHint" Pivot.SlideInAnimationGroup="GroupThree" Margin="5,15,5,5" Text="Comming soon" FontSize="25" Foreground="White" />
 
-                                <!--<Button Click="ManageClick"  BorderBrush="{StaticResource MomentThemeColor}" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" Margin="0,10,0,0">
-                                    <Border Height="30" BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="2">
-                                        <TextBlock x:Name="manageTB" Margin="10,0,10,0" Text="FONT FAMILY MANAGEMENT" Foreground="White" FontWeight="Normal"/>
-                                    </Border>
-                                </Button>-->
                             </StackPanel>
 
                         </ScrollViewer>
@@ -341,12 +348,12 @@
                         <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalScrollMode="Auto">
                             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Orientation="Vertical">
                                 <TextBlock Text="ABOUT" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="ExtraBold" Opacity="0.3" Margin="15,20,0,0" FontSize="30" Foreground="Black" FontFamily="Segoe WP"/>
-
-                                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                                <TextBlock Text="Also available for PC" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="Light"  Margin="15,0,0,0" FontSize="30" Foreground="{StaticResource MomentThemeColor}" FontFamily="Segoe WP"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                                     <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Left"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                         <TextBlock Margin="5" Text="VERSION" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                     </Border>
-                                    <HyperlinkButton Pivot.SlideInAnimationGroup="GroupTwo" Content="0.95 BETA" NavigateUri="http://www.windowsphone.com/en-us/store/app/myermoment/126a1e6d-0f68-4b89-a67c-fe3d204508ec" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="25" Margin="15,0,0,0" Foreground="White" />
+                                    <HyperlinkButton x:Name="VersionHLB" Pivot.SlideInAnimationGroup="GroupTwo" Content="0.971 BETA" NavigateUri="http://www.windowsphone.com/en-us/store/app/myermoment/126a1e6d-0f68-4b89-a67c-fe3d204508ec" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="25" Margin="15,0,0,0" Foreground="White" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
                                     <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
@@ -395,7 +402,7 @@
                                 <Button Click="EmailClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Left" Margin="15,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
                                     <Border>
                                         <StackPanel Orientation="Horizontal">
-                                            <SymbolIcon Symbol="MailFilled" />
+                                            <SymbolIcon Symbol="MailFilled"  Foreground="White" />
                                             <TextBlock x:Name="feedbackTextblock" FontSize="25" Text="Send me an email" Margin="15,0,0,0" Foreground="White"/>
                                         </StackPanel>
                                     </Border>

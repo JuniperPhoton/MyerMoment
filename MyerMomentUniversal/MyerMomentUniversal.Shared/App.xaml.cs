@@ -85,13 +85,13 @@ namespace MyerMomentUniversal
                 // 将框架放在当前窗口中
                 Window.Current.Content = rootFrame;
 
-                #if WINDOWS_PHONE_APP
+                
                 if (!LocalSettingHelper.IsExist("feature1"))
                 {
                     LocalSettingHelper.AddValue("feature1", true);
                     rootFrame.Navigate(typeof(FeaturePage));
                 }
-                #endif
+                
             }
 
             if (rootFrame.Content == null)
@@ -135,19 +135,19 @@ namespace MyerMomentUniversal
         private void OnCommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
 
-            args.Request.ApplicationCommands.Add(new SettingsCommand(
-                "Setting", "Setting", (handler) =>
-                {
-                    SettingFlyoutPage CustomSettingFlyout = new SettingFlyoutPage();
-                    CustomSettingFlyout.Show();
-                }));
+            //args.Request.ApplicationCommands.Add(new SettingsCommand(
+            //    "Setting", "Setting", (handler) =>
+            //    {
+            //        SettingFlyoutPage CustomSettingFlyout = new SettingFlyoutPage();
+            //        CustomSettingFlyout.Show();
+            //    }));
 
-            args.Request.ApplicationCommands.Add(new SettingsCommand(
-                "About", "About", (handler) =>
-                {
-                    AboutFlyout CustomSettingFlyout = new AboutFlyout();
-                    CustomSettingFlyout.Show();
-                }));
+            //args.Request.ApplicationCommands.Add(new SettingsCommand(
+            //    "About", "About", (handler) =>
+            //    {
+            //        AboutFlyout CustomSettingFlyout = new AboutFlyout();
+            //        CustomSettingFlyout.Show();
+            //    }));
         }
 
 #endif

@@ -867,7 +867,9 @@
                             </ScrollViewer>
                             <ScrollViewer Height="25" HorizontalScrollBarVisibility="Visible" HorizontalScrollMode="Auto" Background="#FFE0E0E0">
                                 <StackPanel Orientation="Horizontal">
-                                    
+                                    <Button Click="FontFamilyClick" Margin="10,0,0,0" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch"  >
+                                        <TextBlock Text="微软雅黑" Foreground="Black" FontFamily="Microsoft YaHei" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Button>
                                     <Button Click="FontFamilyClick" Margin="10,0,0,0" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch"  >
                                         <TextBlock Text="康熙字典" Foreground="Black" FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Button>

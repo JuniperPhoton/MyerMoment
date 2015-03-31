@@ -5,7 +5,7 @@ using Windows.Storage.Streams;
 
 namespace ChaoFunctionRT
 {
-    public class ExceptionHelper
+    public class ExceptionUtils
     {
         /// <summary>
         /// 写入独立储存，文件名为record.log

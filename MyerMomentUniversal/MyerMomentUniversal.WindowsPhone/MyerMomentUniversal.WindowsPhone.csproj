@@ -89,9 +89,6 @@
     <Compile Include="FeaturePage.xaml.cs">
       <DependentUpon>FeaturePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ImageHandlePage.xaml.cs">
-      <DependentUpon>ImageHandlePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -106,6 +103,7 @@
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-140.png" />
     <Content Include="Assets\Logo.scale-240.png" />
+    <Content Include="Assets\LOGO_Mediun_For_Change.png" />
     <Content Include="Assets\page1.png" />
     <Content Include="Assets\page2.png" />
     <Content Include="Assets\page3.png" />
@@ -127,10 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="FeaturePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ImageHandlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,6 +157,10 @@
     <ProjectReference Include="..\ChaoFunctionRT\ChaoFunctionRT.csproj">
       <Project>{9c909fed-d859-4cab-b4d2-dfb7fd31ee58}</Project>
       <Name>ChaoFunctionRT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotificationsExtensions\NotificationsExtensions.csproj">
+      <Project>{6e87464b-b064-40ca-8161-7c18c337adff}</Project>
+      <Name>NotificationsExtensions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

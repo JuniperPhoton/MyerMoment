@@ -396,8 +396,8 @@ namespace MyerMomentUniversal
 
         private void TextView1_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransform1.X += e.Delta.Translation.X;
-            _translateTransform1.Y += e.Delta.Translation.Y;
+            _translateTransform1.X += e.Delta.Translation.X/_scaleTransform1.ScaleX;
+            _translateTransform1.Y += e.Delta.Translation.Y/_scaleTransform1.ScaleY;
         }
 
         private void textGrid1_Tapped(object sender, TappedRoutedEventArgs e)
@@ -436,8 +436,8 @@ namespace MyerMomentUniversal
 
         private void TextView2_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransform2.X += e.Delta.Translation.X;
-            _translateTransform2.Y += e.Delta.Translation.Y;
+            _translateTransform2.X += e.Delta.Translation.X/_scaleTransform2.ScaleX;
+            _translateTransform2.Y += e.Delta.Translation.Y/_scaleTransform2.ScaleY;
         }
 
         private void textGrid2_Tapped(object sender, TappedRoutedEventArgs e)
@@ -476,8 +476,8 @@ namespace MyerMomentUniversal
 
         private void TextView3_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransform3.X += e.Delta.Translation.X;
-            _translateTransform3.Y += e.Delta.Translation.Y;
+            _translateTransform3.X += e.Delta.Translation.X/_scaleTransform3.ScaleX;
+            _translateTransform3.Y += e.Delta.Translation.Y/_scaleTransform3.ScaleY;
         }
 
         private void textGrid3_Tapped(object sender, TappedRoutedEventArgs e)
@@ -511,8 +511,8 @@ namespace MyerMomentUniversal
 
         private void StyleView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransformStyle.X += e.Delta.Translation.X;
-            _translateTransformStyle.Y += e.Delta.Translation.Y;
+            _translateTransformStyle.X += e.Delta.Translation.X/_scaleTransformStyle.ScaleX;
+            _translateTransformStyle.Y += e.Delta.Translation.Y/_scaleTransformStyle.ScaleY;
         }
 
         #endregion

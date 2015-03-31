@@ -640,6 +640,7 @@
                     <CompositeTransform/>
                 </Image.RenderTransform>
             </Image>
+            <!--<local:CropControl></local:CropControl>-->
             <Grid x:Name="textGrid1"  Tapped="textGrid1_Tapped"  PointerEntered="TextView1_OnPointerEntered" ManipulationMode="TranslateX,TranslateY" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBox x:Name="TextView1" FontSize="30"  AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White"  PlaceholderText="The moment of this photo" FontFamily="Font/FZYTK.TTF#FZYaoTi" Margin="0" InputScope="Chat" Style="{StaticResource TextBoxStyle1}"/>
                 <Border x:Name="maskBorder1" Background="Black" Opacity="0.01"/>
@@ -673,12 +674,12 @@
                                 <SymbolIcon Symbol="Rotate" Foreground="Black"/>
                             </Grid>
                         </Button>
-                        <Button Click="FilterClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                        <!--<Button Click="FilterClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="Filter" Foreground="Black"/>
                             </Grid>
-                        </Button>
+                        </Button>-->
                         <Button x:Name="MoreLineBtn" Click="fontLineClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
@@ -883,8 +884,6 @@
             </StackPanel>
 
         </Grid>
-
-
         <Grid x:Name="StyleGrid" Visibility="Collapsed" Grid.Row="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Background="#FFE0E0E0" >
             <Grid.RenderTransform>
                 <CompositeTransform TranslateY="400"/>
@@ -977,57 +976,6 @@
             </StackPanel>
 
         </Grid>
-        <Grid x:Name="FilterGrid" Height="170" Visibility="Visible"  RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Background="#FFE0E0E0" Grid.Row="1" Grid.RowSpan="3" >
-            <Grid.RenderTransform>
-                <CompositeTransform TranslateY="200"/>
-            </Grid.RenderTransform>
-
-            <Border BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="1" Margin="0" Background="{StaticResource MomentThemeColor}" Height="5" VerticalAlignment="Top"/>
-
-            <StackPanel  Orientation="Vertical">
-                <TextBlock  x:Name="filterTB" Text="FILTER" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
-                <ScrollViewer Height="100" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled" HorizontalScrollMode="Enabled">
-                    <GridView
-                        x:Name="FilterPreviewListView"
-                        ItemsSource="{Binding FilterPreviewItems}"
-                        
-                        SelectionChanged="FilterPreviewListView_SelectionChanged" Margin="10,0,0,0">
-                        <GridView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid
-                            		Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" 
-                                    Height="70"
-                                    Width="160">
-                                    <Grid Margin="0">
-                                        <Image Stretch="UniformToFill" Source="{Binding PreviewImageSource}" />
-                                            <Border Background="Black" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
-                                            <TextBlock
-                                				Style="{StaticResource TitleTextBlockStyle}"
-                                				TextWrapping="NoWrap"
-                                				Text="{Binding Name}"
-                                                FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                />
-
-                                        </Border>
-                                    </Grid>
-                                </Grid>
-                            </DataTemplate>
-                        </GridView.ItemTemplate>
-
-                        <GridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="10"/>
-                            </ItemsPanelTemplate>
-                        </GridView.ItemsPanel>
-
-                    </GridView>
-
-                </ScrollViewer>
-
-            </StackPanel>
-
-        </Grid>
-
         <Grid x:Name="MaskGrid" Grid.Row="0"  Grid.RowSpan="4" Margin="0,-52,0,0" Visibility="Collapsed">
             <Border Background="Black" Opacity="0.8"/>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">

@@ -11,17 +11,22 @@
         <SolidColorBrush>#FF1E1E1E</SolidColorBrush>
     </Page.Background>
     <Grid Background="#FF1E1E1E">
-        <FlipView>
-            <Image Source="Assets/page1.png" Stretch="UniformToFill" />
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+            <FlipView Grid.Row="0">
+                <Image Source="Assets/WinPage1.jpg" Stretch="UniformToFill" />
 
-            <Image Source="Assets/page2.png" Stretch="UniformToFill" />
-            <Image Source="Assets/page3.png" Stretch="UniformToFill" />
+                <Image Source="Assets/WinPage2.jpg" Stretch="UniformToFill" />
+                <Image Source="Assets/WinPage3.jpg" Stretch="UniformToFill" />
 
-        </FlipView>
-        <Button Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" Click="EnterClick" BorderThickness="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="10,0,10,10" Height="45">
-            <Border Background="{StaticResource MomentThemeColor}">
-                <TextBlock x:Name="enterTextblock" Text="Enter MyerMoment" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource MomentThemeBlack}"/>
-            </Border>
-        </Button>
+            </FlipView>
+        <Button   Grid.Row="1"  MaxWidth="400" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" Click="EnterClick" BorderThickness="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="0,0,0,10" Height="45">
+                <Border Background="{StaticResource MomentThemeColor}">
+                    <TextBlock x:Name="enterTextblock" Text="Enter MyerMoment" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource MomentThemeBlack}"/>
+                </Border>
+            </Button>
+        
     </Grid>
 </Page>
