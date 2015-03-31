@@ -1,0 +1,5 @@
+MainPackage=C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\Release\MyerMomentUniversal.Windows_1.1.0.6_AnyCPU.appx
+SymbolPackage=C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\AppPackages\MyerMomentUniversal.Windows_1.1.0.6_Test\MyerMomentUniversal.Windows_1.1.0.6_AnyCPU.appxsym
+ResourcePack=C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\Release\MyerMomentUniversal.Windows_1.1.0.6_language-en.appx
+ResourcePack=C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\Release\MyerMomentUniversal.Windows_1.1.0.6_scale-140.appx
+ResourcePack=C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\Release\MyerMomentUniversal.Windows_1.1.0.6_scale-180.appx
