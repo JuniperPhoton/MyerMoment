@@ -23,7 +23,7 @@ namespace MyerMomentUniversal
             this.NavigationCacheMode = NavigationCacheMode.Required;
             
             ConfigLang();
-            VersionHLB.Content = (string)(App.Current.Resources["AppVersion"]);
+            //VersionHLB.Content = (string)(App.Current.Resources["AppVersion"]);
 
         }
 

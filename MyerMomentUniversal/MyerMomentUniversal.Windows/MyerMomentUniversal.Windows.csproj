@@ -17,7 +17,7 @@
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>MyerMomentUniversal.Windows_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-    <AppxBundle>Auto</AppxBundle>
+    <AppxBundle>Always</AppxBundle>
     <PackageCertificateThumbprint>FD19B4DD63C69DF794452D59119494894C6CBCF4</PackageCertificateThumbprint>
     <NuGetPackageImportStamp>d84c0cbd</NuGetPackageImportStamp>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>

@@ -33,46 +33,22 @@ namespace MyerMomentUniversal
 
         private bool _isFromShareTarget = false;
 
-        private bool _isConfigStyle = false;
-
         private double _styleAngle = 0;
         private double _text1Angle = 0;
         private double _text2Angle = 0;
         private double _text3Angle = 0;
 
-        private double _text1CenterX = 0;
-        private double _text1CenterY = 0;
-        private double _text2CenterX = 0;
-        private double _text2CenterY = 0;
-        private double _text3CenterX = 0;
-        private double _text3CenterY = 0;
-
         private TextBox _currentTextBox = null;
         private int _currentTextViewFlag = 1;
 
-        private TranslateTransform _translateTransform1 = new TranslateTransform();
-        private ScaleTransform _scaleTransform1 = new ScaleTransform();
         private CompositeTransform _compositeTransform1 = new CompositeTransform();
-        private TransformGroup _transformGroup1 = new TransformGroup();
-        
-
-        private TranslateTransform _translateTransform2 = new TranslateTransform();
-        private ScaleTransform _scaleTransform2 = new ScaleTransform();
         private CompositeTransform _compositeTransform2 = new CompositeTransform();
-        private TransformGroup _transformGroup2 = new TransformGroup();
-        
-        private TranslateTransform _translateTransform3 = new TranslateTransform();
-        private ScaleTransform _scaleTransform3 = new ScaleTransform();
         private CompositeTransform _compositeTransform3 = new CompositeTransform();
-        private TransformGroup _transformGroup3 = new TransformGroup();
-
-        private TranslateTransform _translateTransformStyle = new TranslateTransform();
-        private ScaleTransform _scaleTransformStyle = new ScaleTransform();
-        private TransformGroup _transformGroupStyle = new TransformGroup();
+        private CompositeTransform _compositeTransformStyle = new CompositeTransform();
 
         private MomentStyleList styleList;
 
-        private ImageHandleHelper _imageHandleHelper = new ImageHandleHelper();
+        private ImageHandleHelper _imageHandleHelper;
 
         public ImageHandlePage()
         {
@@ -80,17 +56,13 @@ namespace MyerMomentUniversal
    
             this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
-            ConfigLang();
-
             DataTransferManager.GetForCurrentView().DataRequested += dataTransferManager_DataRequested;
 
-            _transformGroupStyle.Children.Add(_translateTransformStyle);
-            _transformGroupStyle.Children.Add(_scaleTransformStyle);
-            styleImage.RenderTransform = _transformGroupStyle;
+            _imageHandleHelper = new ImageHandleHelper();
 
+            ConfigLang();
             ConfigQuality();
             ConfigStyle();
-            
         }
 
         #region CONFIGURATION
@@ -105,17 +77,18 @@ namespace MyerMomentUniversal
                 Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
                 var firmwareVersion = deviceInfo.SystemFirmwareVersion;
 
+                //针对 Lumia 1020 进行配置
                 if (deviceInfo.SystemProductName.Contains("RM-875") 
                     || deviceInfo.SystemProductName.Contains("RM-876") 
                     || deviceInfo.SystemProductName.Contains("RM-877"))
                 {
                     _imageHandleHelper.ScaleLong = 1024;
                 }
-                
             }
 #endif
         }
 
+        //配置Style 列表
         private void ConfigStyle()
         {
             styleList = new MomentStyleList();
@@ -128,13 +101,17 @@ namespace MyerMomentUniversal
                 styleBtn.Height = styleBtn.Width = 70;
                 styleBtn.VerticalAlignment = VerticalAlignment.Top;
                 styleBtn.Margin = new Thickness(10, 10, 0, 0);
-                styleBtn.Click += ((senderb, eb) =>
+                styleBtn.Click += ((sender, e) =>
                 {
+                    //点击Style 按钮的操作
                     styleImage.Source = style.Image;
 
+                    //所有Text 都隐藏
                     textGrid1.Visibility = Visibility.Collapsed;
                     textGrid2.Visibility = Visibility.Collapsed;
                     textGrid3.Visibility = Visibility.Collapsed;
+
+                    //隐藏操作按钮
                     MoreLineBtn.Visibility = Visibility.Collapsed;
                     styleImage.Visibility = Visibility.Visible;
                     increaseStyleBtn.Visibility = Visibility.Visible;
@@ -185,24 +162,24 @@ namespace MyerMomentUniversal
         /// </summary>
         private void UpdatePageLayout()
         {
-#if WINDOWS_PHONE_APP
+            #if WINDOWS_PHONE_APP
             if (Frame.ActualHeight < 720)
             {
                 contentGrid.Height = 260;
                 contentSV.Height = 200;
             }
-#elif WINDOWS_APP
+            #elif WINDOWS_APP
             contentGrid.Height = 320;
             contentSV.Height = 300;
             shareBtn.MaxWidth = 300;
             backHomeBtn.MaxWidth = 300;
             familySV.Height = familySV2.Height = 60;
-#endif
+            #endif
         }
 
 #endregion
 
-#region FUNCTION
+        #region FUNCTION
         private void TapBlack(object sender, TappedRoutedEventArgs e)
         {
             HandleBack();
@@ -241,8 +218,8 @@ namespace MyerMomentUniversal
         /// <param name="e"></param>
         private void IncreaseStyleClick(object sender,RoutedEventArgs e)
         {
-            _scaleTransformStyle.ScaleX += 0.2;
-            _scaleTransformStyle.ScaleY += 0.2;
+            _compositeTransformStyle.ScaleX += 0.2;
+            _compositeTransformStyle.ScaleY += 0.2;
             
             //new MessageDialog(_scaleTransformStyle.ScaleX + ", y" + _scaleTransformStyle.ScaleY).ShowAsync();
         }
@@ -254,8 +231,8 @@ namespace MyerMomentUniversal
         /// <param name="e"></param>
         private void DecreaseStyleClick(object sender, RoutedEventArgs e)
         {
-            _scaleTransformStyle.ScaleX -= 0.2;
-            _scaleTransformStyle.ScaleY -= 0.2;
+            _compositeTransformStyle.ScaleX -= 0.2;
+            _compositeTransformStyle.ScaleY -= 0.2;
         }
 
         /// <summary>
@@ -405,6 +382,12 @@ namespace MyerMomentUniversal
         #endregion
 
         #region TEXT_MANI 关于所有手势操作
+
+        /// <summary>
+        /// 旋转图像
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RotateClick(object sender, RoutedEventArgs e)
         {
             _styleAngle += 90;
@@ -413,6 +396,7 @@ namespace MyerMomentUniversal
             startAngle.Value = finalAngle - 90;
             endAngle.Value = finalAngle;
 
+            //旋转后记得改宽高
             var temp = _imageHandleHelper.Height;
             _imageHandleHelper.Height = _imageHandleHelper.Width;
             _imageHandleHelper.Width = temp;
@@ -420,6 +404,11 @@ namespace MyerMomentUniversal
             RotateStory.Begin();
         }
 
+        /// <summary>
+        /// 旋转文本
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RotateTextClick(object sender, RoutedEventArgs e)
         {
             var flag = _currentTextViewFlag;
@@ -450,29 +439,23 @@ namespace MyerMomentUniversal
             textGrid1.ManipulationDelta -= TextView1_ManipulationDelta;
             textGrid1.ManipulationDelta += TextView1_ManipulationDelta;
 
-            _transformGroup1 = new TransformGroup();
-            _transformGroup1.Children.Add(_translateTransform1);
-            _transformGroup1.Children.Add(_compositeTransform1);
-            
-            textGrid1.RenderTransform = _transformGroup1;
+            textGrid1.RenderTransform = _compositeTransform1;
         }
 
         private void TextView1_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransform1.X += e.Delta.Translation.X/_compositeTransform1.ScaleX;
-            _translateTransform1.Y += e.Delta.Translation.Y/ _compositeTransform1.ScaleY;
+            _compositeTransform1.TranslateX += e.Delta.Translation.X/_compositeTransform1.ScaleX;
+            _compositeTransform1.TranslateY += e.Delta.Translation.Y/ _compositeTransform1.ScaleY;
 
-            _text1CenterX += e.Delta.Translation.X / _compositeTransform1.ScaleX;
-            _text1CenterY += e.Delta.Translation.Y / _compositeTransform1.ScaleY;
-
-            _compositeTransform1.CenterX = _text1CenterX;
-            _compositeTransform1.CenterY = _text1CenterY;
+            _compositeTransform1.CenterX = 0;
+            _compositeTransform1.CenterY = 0;
         }
 
         private void textGrid1_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!_isInEditMode)
             {
+                //在其他模式下先exit
                 if (_isInMoreLineMode)
                 {
                     MoreLineOutStory.Begin();
@@ -483,22 +466,20 @@ namespace MyerMomentUniversal
                     MovieOutStory.Begin();
                     _isInStyleMode = false;
                 }
+
+                //进入编辑模式
                 EditInStory.Begin();
                 _isInEditMode = true;
                 _currentTextViewFlag = 1;
 
-                _compositeTransform1.CenterX = _text1CenterX;
-                _compositeTransform1.CenterY = _text1CenterY;
+                _compositeTransform1.CenterX = 0;
+                _compositeTransform1.CenterY = 0;
             }
+
+            //已经在编辑模式下了
             _currentTextBox = TextView1;
             contentTB.Text = TextView1.Text;
-#if WINDOWS_PHONE_APP2
-            if (TextView1.Text == "")
-            {
-                contentTB.Focus(FocusState.Programmatic);
-                return;
-            }
-#endif
+
 #if WINDOWS_APP
             contentTB.Focus(FocusState.Programmatic);
 #endif
@@ -509,24 +490,16 @@ namespace MyerMomentUniversal
             textGrid2.ManipulationDelta -= TextView2_ManipulationDelta;
             textGrid2.ManipulationDelta += TextView2_ManipulationDelta;
 
-            _transformGroup2 = new TransformGroup();
-            _transformGroup2.Children.Add(_translateTransform2);
-            _transformGroup2.Children.Add(_compositeTransform2);
-
-            textGrid2.RenderTransform = _transformGroup2;
+            textGrid2.RenderTransform = _compositeTransform2;
         }
 
         private void TextView2_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransform2.X += e.Delta.Translation.X/ _compositeTransform2.ScaleX;
-            _translateTransform2.Y += e.Delta.Translation.Y/ _compositeTransform2.ScaleY;
+            _compositeTransform2.TranslateX += e.Delta.Translation.X/ _compositeTransform2.ScaleX;
+            _compositeTransform2.TranslateY += e.Delta.Translation.Y/ _compositeTransform2.ScaleY;
 
-            _text2CenterX += e.Delta.Translation.X / _compositeTransform2.ScaleX;
-            _text2CenterY += e.Delta.Translation.Y / _compositeTransform2.ScaleY;
-
-            _compositeTransform2.CenterX = _text2CenterX;
-            _compositeTransform2.CenterY = _text2CenterY;
-            
+            _compositeTransform2.CenterX = 0;
+            _compositeTransform2.CenterY = 0;
         }
 
         private void textGrid2_Tapped(object sender, TappedRoutedEventArgs e)
@@ -547,19 +520,12 @@ namespace MyerMomentUniversal
                 _isInEditMode = true;
                 _currentTextViewFlag = 2;
 
-                _compositeTransform2.CenterX = _text2CenterX;
-                _compositeTransform2.CenterY = _text2CenterY;
+                _compositeTransform2.CenterX = 0;
+                _compositeTransform2.CenterY = 0;
             }
             _currentTextBox = TextView2;
             contentTB.Text = TextView2.Text;
 
-#if WINDOWS_PHONE_APP2
-            if (TextView2.Text == "")
-            {
-                contentTB.Focus(FocusState.Programmatic);
-                return;
-            }
-#endif
 #if WINDOWS_APP
             contentTB.Focus(FocusState.Programmatic);
 #endif
@@ -570,23 +536,16 @@ namespace MyerMomentUniversal
             textGrid3.ManipulationDelta -= TextView3_ManipulationDelta;
             textGrid3.ManipulationDelta += TextView3_ManipulationDelta;
 
-            _transformGroup3 = new TransformGroup();
-            _transformGroup3.Children.Add(_translateTransform3);
-            _transformGroup3.Children.Add(_compositeTransform3);
-
-            textGrid3.RenderTransform = _transformGroup3;
+            textGrid3.RenderTransform = _compositeTransform3;
         }
 
         private void TextView3_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransform3.X += e.Delta.Translation.X/ _compositeTransform3.ScaleX;
-            _translateTransform3.Y += e.Delta.Translation.Y/ _compositeTransform3.ScaleY;
+            _compositeTransform3.TranslateX += e.Delta.Translation.X/ _compositeTransform3.ScaleX;
+            _compositeTransform3.TranslateY += e.Delta.Translation.Y/ _compositeTransform3.ScaleY;
 
-            _text3CenterX += e.Delta.Translation.X / _compositeTransform3.ScaleX;
-            _text3CenterY += e.Delta.Translation.Y / _compositeTransform3.ScaleY;
-
-            _compositeTransform3.CenterX = _text3CenterX;
-            _compositeTransform3.CenterY = _text3CenterY;
+            _compositeTransform3.CenterX = 0;
+            _compositeTransform3.CenterY = 0;
         }
 
         private void textGrid3_Tapped(object sender, TappedRoutedEventArgs e)
@@ -609,19 +568,13 @@ namespace MyerMomentUniversal
                 _compositeTransform3.CenterX = 0;
                 _compositeTransform3.CenterY = 0;
 
-                _compositeTransform3.CenterX = _text3CenterX;
-                _compositeTransform3.CenterY = _text3CenterY;
+                _compositeTransform3.CenterX = 0;
+                _compositeTransform3.CenterY = 0;
             }
             _currentTextBox = TextView3;
             contentTB.Text = TextView3.Text;
             _currentTextViewFlag = 3;
-#if WINDOWS_PHONE_APP2
-            if (contentTB.Text == "")
-            {
-                TextView3.Focus(FocusState.Programmatic);
-                return;
-            }
-#endif
+
 #if WINDOWS_APP
             contentTB.Focus(FocusState.Programmatic);
 #endif
@@ -629,21 +582,26 @@ namespace MyerMomentUniversal
 
         private void StyleView_OnPointerEntered(object sender,PointerRoutedEventArgs e)
         {
-            styleImage.RenderTransform = _transformGroupStyle;
+            styleImage.RenderTransform = _compositeTransformStyle;
             styleImage.ManipulationDelta -= StyleView_ManipulationDelta;
             styleImage.ManipulationDelta += StyleView_ManipulationDelta;
         }
 
         private void StyleView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _translateTransformStyle.X += (e.Delta.Translation.X/_scaleTransformStyle.ScaleX);
-            _translateTransformStyle.Y +=( e.Delta.Translation.Y/ _scaleTransformStyle.ScaleY);
+            _compositeTransformStyle.TranslateX += e.Delta.Translation.X;
+            _compositeTransformStyle.TranslateY += e.Delta.Translation.Y;
         }
 
 #endregion
 
-#region DISPLAY AND SAVE
+        #region DISPLAY AND SAVE
         
+        /// <summary>
+        /// 保存按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveClick(object sender,RoutedEventArgs e)
         {
             if(TextView1.Text==string.Empty)
@@ -661,6 +619,10 @@ namespace MyerMomentUniversal
             SaveImage();
         }
 
+        /// <summary>
+        /// 显示图像
+        /// </summary>
+        /// <param name="file">选取后的文件</param>
         private async void ShowImage(StorageFile file)
         {
             try
@@ -682,6 +644,9 @@ namespace MyerMomentUniversal
             }
         }
 
+        /// <summary>
+        /// 保存图像
+        /// </summary>
         private async void SaveImage()
         {
             try
@@ -697,6 +662,7 @@ namespace MyerMomentUniversal
                 ShareGrid.Visibility = Visibility.Visible;
                 _isInShareMode = true;
 
+                //从分享打开后，不能再次分享
                 if (_isFromShareTarget) shareBtn.Visibility = Visibility.Collapsed;
             }
             catch (Exception e)
@@ -705,7 +671,6 @@ namespace MyerMomentUniversal
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ErrorGrid.Visibility = Visibility.Visible;
                 _isInErrorMode = true;
-                
             }
         }
 
