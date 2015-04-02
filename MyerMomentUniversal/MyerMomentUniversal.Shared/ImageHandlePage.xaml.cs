@@ -654,9 +654,14 @@ namespace MyerMomentUniversal
             {
                 MaskGrid.Visibility = Visibility.Visible;
 
-                if(! await _imageHandleHelper.SaveImageAsync(renderGrid))
+                var result = await _imageHandleHelper.SaveImageAsync(renderGrid);
+                switch(result)
                 {
-                    throw new Exception();
+                    case ImageSaveResult.FileNotOpen:
+                        {
+                            var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                            errorHintTB.Text = loader.GetString("getpixelsErrorHint");
+                        };break;
                 }
 
                 MaskGrid.Visibility = Visibility.Collapsed;
