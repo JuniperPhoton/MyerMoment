@@ -49,7 +49,6 @@
     <Compile Include="ColorConverter.cs" />
     <Compile Include="ExceptionHelper.cs" />
     <Compile Include="Functions.cs" />
-    <Compile Include="ImageHandleHelper.cs" />
     <Compile Include="LocalSettingHelper.cs" />
     <Compile Include="NetworkHelper.cs" />
     <Compile Include="PhoneNameResolver.cs" />

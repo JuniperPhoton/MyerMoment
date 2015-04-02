@@ -894,6 +894,7 @@
                                     <Button Click="FontFamilyClick" Margin="10,0,0,0" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" VerticalAlignment="Stretch"  >
                                         <TextBlock Text="康熙字典" Foreground="Black" FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Button>
+                                    
                                     <Button  Click="FontFamilyClick" Margin="10,-5,0,0" MinHeight="5" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                                         <TextBlock Text="方正姚体" Foreground="Black" FontFamily="Font/FZYTK.TTF#FZYaoTi" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Button>

@@ -1,4 +1,5 @@
 ﻿using ChaoFunctionRT;
+using MyerMomentUniversal.Helper;
 using MyerMomentUniversal.Model;
 using System;
 using System.Collections.Generic;
@@ -671,6 +672,8 @@ namespace MyerMomentUniversal
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ErrorGrid.Visibility = Visibility.Visible;
                 _isInErrorMode = true;
+
+                var sendTask=HttpHelper.SendDeviceInfo("");
             }
         }
 

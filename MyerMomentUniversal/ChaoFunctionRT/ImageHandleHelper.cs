@@ -144,6 +144,12 @@ namespace ChaoFunctionRT
           
         }
 
+        /// <summary>
+        /// 压缩图像
+        /// </summary>
+        /// <param name="scaledLong">压缩后的相对长度</param>
+        /// <param name="width">原来的宽</param>
+        /// <param name="height">原来的高</param>
         public void CompressImage(uint scaledLong,uint width,uint height)
         {
             this.outputHeight = height;
@@ -174,6 +180,10 @@ namespace ChaoFunctionRT
             }
         }
 
-
+        public string OutputDecoderInfo()
+        {
+            return "&oriWidth=" + Width + "&oriHeight=" + Height + "&outputWidth=" + outputHeight +
+                "&outputHeight" + outputHeight + "&dpiX=" + DpiX + "&dpiY=" + DpiY;
+        }
     }
 }
