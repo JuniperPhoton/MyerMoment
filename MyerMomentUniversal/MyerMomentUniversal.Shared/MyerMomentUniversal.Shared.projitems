@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helper\HttpHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\ImageHandleHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\MomentConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\ImageSaveResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\SuspensionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImageHandlePage.xaml.cs">
       <DependentUpon>ImageHandlePage.xaml</DependentUpon>

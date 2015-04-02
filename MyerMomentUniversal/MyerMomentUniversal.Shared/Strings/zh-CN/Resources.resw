@@ -168,6 +168,9 @@
   <data name="FontPlaceHolderText" xml:space="preserve">
     <value>为这张照片写点东西</value>
   </data>
+  <data name="getpixelsErrorHint" xml:space="preserve">
+    <value>抱歉，因为图片太大以致无法正常保存，请期待未来的更新支持。</value>
+  </data>
   <data name="HighHint" xml:space="preserve">
     <value>全尺寸</value>
   </data>

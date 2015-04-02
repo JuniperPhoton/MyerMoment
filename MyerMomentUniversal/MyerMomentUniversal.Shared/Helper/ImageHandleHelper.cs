@@ -18,6 +18,8 @@ namespace MyerMomentUniversal.Helper
         public uint outputHeight;
         public IRandomAccessStream outputStream;
 
+        private int exceptionFlag = 0; //the result is either 0 or 1
+
         public uint Height { get; set; }
         public uint Width { get; set; }
         public int DpiX { get; set; }
@@ -74,14 +76,15 @@ namespace MyerMomentUniversal.Helper
         /// </summary>
         /// <param name="elementToRender">UIElement</param>
         /// <returns></returns>
-        public async Task<bool> SaveImageAsync(UIElement elementToRender)
+        public async Task<ImageSaveResult> SaveImageAsync(UIElement elementToRender)
         {
+
             try
             {
                 uint targetWidth = Width;
                 uint targetHeight = Height;
 
-                #if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP
                 //压缩图像
                 if (LocalSettingHelper.GetValue("QualityCompress") == "0")
                 {
@@ -90,13 +93,13 @@ namespace MyerMomentUniversal.Helper
                     targetWidth = imagehelper.outputWidth;
                     targetHeight = imagehelper.outputHeight;
                 }
-                #endif
-
+#endif
                 var bitmap = new RenderTargetBitmap();
                 await bitmap.RenderAsync(elementToRender, (int)(targetWidth), (int)(targetHeight));
-
                 var pixels = await bitmap.GetPixelsAsync();
 
+                exceptionFlag++; //now it's 1
+            
                 //处理保存的位置
                 var positon = LocalSettingHelper.GetValue("Position");
                 StorageFile fileToSave = null;
@@ -118,14 +121,13 @@ namespace MyerMomentUniversal.Helper
                             fileToSave = await folderToSave.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
                         }; break;
                 }
-                if (fileToSave == null) return false;
+                if (fileToSave == null) return ImageSaveResult.FileNotOpen;
 
                 SavedFileName = fileToSave.Name;
 
-                //CachedFileManager.DeferUpdates(fileToSave);
+                CachedFileManager.DeferUpdates(fileToSave);
                 using (IRandomAccessStream fileStream = await fileToSave.OpenAsync(FileAccessMode.ReadWrite))
                 {
-
                     var encoder = await BitmapEncoder.CreateAsync(EncodeID, fileStream);
                     encoder.BitmapTransform.ScaledHeight = targetHeight;
                     encoder.BitmapTransform.ScaledWidth = targetWidth;
@@ -133,13 +135,14 @@ namespace MyerMomentUniversal.Helper
                     encoder.SetPixelData(PixelFormat, AlphaMode, (uint)bitmap.PixelWidth, (uint)bitmap.PixelHeight, DpiX, DpiY, pixels.ToArray());
                     await encoder.FlushAsync();
                 }
+                await CachedFileManager.CompleteUpdatesAsync(fileToSave);
 
-                return true;
-                //await CachedFileManager.CompleteUpdatesAsync(fileToSave);
+                return ImageSaveResult.Successful;
             }
             catch (Exception)
             {
-                return false;
+                if (exceptionFlag == 0) return ImageSaveResult.FailToGetPixels;
+                else return ImageSaveResult.FailToFlush;
             }
           
         }
@@ -186,4 +189,5 @@ namespace MyerMomentUniversal.Helper
                 "&outputHeight" + outputHeight + "&dpiX=" + DpiX + "&dpiY=" + DpiY;
         }
     }
+
 }
