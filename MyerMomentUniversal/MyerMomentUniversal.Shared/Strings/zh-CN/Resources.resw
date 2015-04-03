@@ -243,4 +243,13 @@
   <data name="TransparantHint" xml:space="preserve">
     <value>背景透明</value>
   </data>
+  <data name="ContinueBtn" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="CropHeader" xml:space="preserve">
+    <value>裁剪</value>
+  </data>
+  <data name="CroppingHint" xml:space="preserve">
+    <value>努力裁剪中...</value>
+  </data>
 </root>

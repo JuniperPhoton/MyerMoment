@@ -78,13 +78,13 @@ namespace MyerMomentUniversal
                 Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
                 var firmwareVersion = deviceInfo.SystemFirmwareVersion;
 
-                //针对 Lumia 1020 进行配置
-                if (deviceInfo.SystemProductName.Contains("RM-875") 
-                    || deviceInfo.SystemProductName.Contains("RM-876") 
-                    || deviceInfo.SystemProductName.Contains("RM-877"))
-                {
-                    _imageHandleHelper.ScaleLong = 1024;
-                }
+                ////针对 Lumia 1020 进行配置
+                //if (deviceInfo.SystemProductName.Contains("RM-875") 
+                //    || deviceInfo.SystemProductName.Contains("RM-876") 
+                //    || deviceInfo.SystemProductName.Contains("RM-877"))
+                //{
+                //    _imageHandleHelper.ScaleLong = 1024;
+                //}
             }
 #endif
         }
@@ -696,10 +696,7 @@ namespace MyerMomentUniversal
             md.Commands.Add(new UICommand(discardBtn, act =>
             {
                 if (_isFromShareTarget) App.Current.Exit();
-                if (rootFrame.CanGoBack)
-                {
-                    rootFrame.GoBack();
-                }
+                Frame.Navigate(typeof(MainPage));
             }));
             md.Commands.Add(new UICommand(discardCancel, act =>
             {

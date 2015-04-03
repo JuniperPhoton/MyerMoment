@@ -17,6 +17,27 @@
         <x:Double x:Key="PhonePivotUnselectedItemOpacity">0.3</x:Double>
         
         <SolidColorBrush x:Key="ButtonDisabledBackgroundThemeBrush" Color="Transparent" />
+        <x:Double x:Key="Size">30</x:Double>
+        <x:Double x:Key="TransformSize">-15</x:Double>
+        <DataTemplate x:Key="RectangleCorner">
+            <Rectangle Height="{StaticResource Size}" Width="{StaticResource Size}"
+                       Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" 
+                       Stroke="{StaticResource ApplicationForegroundThemeBrush}" StrokeThickness="2">
+                <Rectangle.RenderTransform>
+                    <CompositeTransform TranslateX="{StaticResource TransformSize}" TranslateY="{StaticResource TransformSize}"/>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RoundCorner">
+            <Ellipse Height="{StaticResource Size}" Width="{StaticResource Size}"  
+                     Fill="White" 
+                     Stroke="{StaticResource MomentThemeColor}" StrokeThickness="2" >
+                <Ellipse.RenderTransform>
+                    <CompositeTransform TranslateX="{StaticResource TransformSize}" TranslateY="{StaticResource TransformSize}"/>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+        </DataTemplate>
         <Style x:Key="LineBtnStyle" TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource ButtonBackgroundThemeBrush}"/>
             <Setter Property="Foreground" Value="{ThemeResource ButtonForegroundThemeBrush}"/>
@@ -179,7 +200,11 @@
         								</VisualTransition>
         							</VisualStateGroup.Transitions>
         							<VisualState x:Name="OnState"/>
-        							<VisualState x:Name="OffState"/>
+        							<VisualState x:Name="OffState">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="0.5" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContentPresenter" d:IsOptimized="True"/>
+        								</Storyboard>
+        							</VisualState>
         						</VisualStateGroup>
         					</VisualStateManager.VisualStateGroups>
         					<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="{ThemeResource PhoneTouchTargetOverhang}">

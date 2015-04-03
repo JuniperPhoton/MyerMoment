@@ -45,7 +45,7 @@ namespace MyerMomentUniversal
             var file=await picker.PickSingleFileAsync();
             if(file!=null)
             {
-                Frame.Navigate(typeof(ImageHandlePage), file);
+                Frame.Navigate(typeof(CropImagePage), file);
             }
             
         }

@@ -99,28 +99,10 @@ namespace MyerMomentUniversal.Helper
                 var pixels = await bitmap.GetPixelsAsync();
 
                 exceptionFlag++; //now it's 1
-            
-                //处理保存的位置
-                var positon = LocalSettingHelper.GetValue("Position");
-                StorageFile fileToSave = null;
-                switch (positon)
-                {
-                    case "0": fileToSave = await KnownFolders.SavedPictures.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName); break;
-                    case "1":
-                        {
-                            var folderToSave = await KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
-                            fileToSave = await folderToSave.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
-                        }; break;
-                    case "2":
-                        {
-                            fileToSave = await KnownFolders.CameraRoll.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
-                        }; break;
-                    default:
-                        {
-                            var folderToSave = await KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
-                            fileToSave = await folderToSave.CreateFileAsync(FileName, CreationCollisionOption.GenerateUniqueName);
-                        }; break;
-                }
+
+
+                StorageFile fileToSave = await GetFileToSaved(this.FileName);
+               
                 if (fileToSave == null) return ImageSaveResult.FileNotOpen;
 
                 SavedFileName = fileToSave.Name;
@@ -187,6 +169,32 @@ namespace MyerMomentUniversal.Helper
         {
             return "&oriWidth=" + Width + "&oriHeight=" + Height + "&outputWidth=" + outputHeight +
                 "&outputHeight" + outputHeight + "&dpiX=" + DpiX + "&dpiY=" + DpiY;
+        }
+
+        public async static Task<StorageFile> GetFileToSaved(string fileName)
+        {
+            var positon = LocalSettingHelper.GetValue("Position");
+            StorageFile fileToSave = null;
+            switch (positon)
+            {
+                case "0": fileToSave = await KnownFolders.SavedPictures.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName); break;
+                case "1":
+                    {
+                        var folderToSave = await KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
+                        fileToSave = await folderToSave.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+                    }; break;
+                case "2":
+                    {
+                        fileToSave = await KnownFolders.CameraRoll.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+                    }; break;
+                default:
+                    {
+                        var folderToSave = await KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
+                        fileToSave = await folderToSave.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+                    }; break;
+            }
+
+            return fileToSave;
         }
     }
 

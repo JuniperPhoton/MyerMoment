@@ -122,7 +122,7 @@ namespace MyerMomentUniversal
             {
                 case ActivationKind.PickFileContinuation:
                     {
-                        Frame.Navigate(typeof(ImageHandlePage), args.Files[0]);
+                        Frame.Navigate(typeof(CropImagePage), args.Files[0]);
                     }
                     break;
             }

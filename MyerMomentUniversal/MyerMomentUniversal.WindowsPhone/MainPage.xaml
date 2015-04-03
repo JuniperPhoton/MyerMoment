@@ -331,7 +331,7 @@
                                     </ComboBoxItem>
                                    
                                 </ComboBox>
-                                <TextBlock Text="PERSONALIZE" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="ExtraBold" Opacity="0.3" Margin="0,20,0,0" FontSize="30" Foreground="Black" FontFamily="Segoe WP"/>
+                                <TextBlock Text="PERSONALIZE" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="ExtraBold" Opacity="0.3" Margin="0,10,0,0" FontSize="30" Foreground="Black" FontFamily="Segoe WP"/>
                                 <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
                                     <TextBlock x:Name="importTB" Margin="5" Text="IMPORT FONT FAMILY" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" />
                                 </Border>
@@ -343,7 +343,7 @@
 
                     </Grid>
                 </PivotItem>
-                <PivotItem  x:Name="AboutPivotItem"  Header="ABOUT" Margin="0,22,0,-0.333">
+                <PivotItem  x:Name="AboutPivotItem"  Header="ABOUT" Margin="0,22,0,0">
                     <Grid>
                         <ScrollViewer VerticalScrollBarVisibility="Visible" VerticalScrollMode="Auto">
                             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Orientation="Vertical">
@@ -353,9 +353,9 @@
                                     <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Left"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                         <TextBlock Margin="5" Text="VERSION" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                     </Border>
-                                    <HyperlinkButton x:Name="VersionHLB" Pivot.SlideInAnimationGroup="GroupTwo" Content="0.971 BETA" NavigateUri="http://www.windowsphone.com/en-us/store/app/myermoment/126a1e6d-0f68-4b89-a67c-fe3d204508ec" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="25" Margin="15,0,0,0" Foreground="White" />
+                                    <HyperlinkButton x:Name="VersionHLB" Pivot.SlideInAnimationGroup="GroupTwo" Content="0.98 RC" NavigateUri="http://www.windowsphone.com/en-us/store/app/myermoment/126a1e6d-0f68-4b89-a67c-fe3d204508ec" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="25" Margin="15,0,0,0" Foreground="White" />
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                                     <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                         <TextBlock Margin="5" Text="CREDIT" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                     </Border>                                    
@@ -376,7 +376,7 @@
                                     <TextBlock Pivot.SlideInAnimationGroup="GroupTwo" Margin="15,0,0,0" Text="Churwin" FontSize="25"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                                 </StackPanel>
                                
-                                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                                     <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                         <TextBlock Margin="5" Text="FEEDBACK" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                     </Border>
@@ -391,14 +391,7 @@
                                         </StackPanel>
                                     </Border>
                                 </Button>
-                                <!--<Button Click="SendLogClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Left" Margin="15,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
-                                    <Border >
-                                        <StackPanel Orientation="Horizontal">
-                                            <SymbolIcon Symbol="Document" />
-                                            <TextBlock  x:Name="errorLogTextblock" Text="Send error log" Margin="15,0,0,0"/>
-                                        </StackPanel>
-                                    </Border>
-                                </Button>-->
+                                
                                 <Button Click="EmailClick" Pivot.SlideInAnimationGroup="GroupTwo" HorizontalAlignment="Left" Margin="15,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
                                     <Border>
                                         <StackPanel Orientation="Horizontal">
@@ -407,7 +400,7 @@
                                         </StackPanel>
                                     </Border>
                                 </Button>
-                                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                                     <Border Pivot.SlideInAnimationGroup="GroupOne" Margin="15,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                         <TextBlock Margin="5" Text="OTHER APP" FontSize="20" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Font/FZYTK.TTF#FZYaoTi"/>
                                     </Border>
