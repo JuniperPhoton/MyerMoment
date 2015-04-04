@@ -19,6 +19,7 @@
         </Grid.RowDefinitions>
         <Grid x:Name="titleGrid" Grid.Row="0" Background="{StaticResource MomentThemeColor}">
             <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                <SymbolIcon Symbol="Crop"  Foreground="Black"/>
                 <TextBlock x:Name="cropHeaderTB" Text="CROP" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0"  FontWeight="Light"/>
             </StackPanel>
         </Grid>
@@ -69,13 +70,13 @@
                         <TextBlock Text="1:1" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
                 </Button>
-                <Button x:Name="wideBtn" Click="SetToWideClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                <!--<Button x:Name="wideBtn" Click="SetToWideClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                     <Grid Height="50" Width="50">
                         <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                        
                         <TextBlock Text="16:9" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
-                </Button>
+                </Button>-->
                 <Button x:Name="resetBtn" Click="ResetClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                     <Grid Height="50" Width="50">
                         <Ellipse StrokeThickness="4" Fill="White"/>

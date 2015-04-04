@@ -627,6 +627,7 @@
         <Grid Grid.Row="0" >
             <Grid Background="{StaticResource MomentThemeColor}">
                 <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                    <SymbolIcon Symbol="Edit"  Foreground="Black"/>
                     <TextBlock x:Name="editTB" Text="EDIT" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0"  FontWeight="Light"/>
                 </StackPanel>
             </Grid>
@@ -648,17 +649,17 @@
             </Image>
             <Grid x:Name="textGrid1"  Tapped="textGrid1_Tapped"  PointerEntered="TextView1_OnPointerEntered" ManipulationMode="TranslateX,TranslateY" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
                 
-                <TextBox x:Name="TextView1" FontSize="30"  AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="The moment of this photo" FontFamily="Microsoft YaHei" Margin="0" InputScope="Chat"/>
+                <TextBox x:Name="TextView1" FontSize="30"  AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to write sth." FontFamily="Microsoft YaHei" Margin="0" InputScope="Chat"/>
                 <Border x:Name="maskBorder1" Background="Black" Opacity="0.01"/>
             </Grid>
             <Grid x:Name="textGrid2" Tapped="textGrid2_Tapped" PointerEntered="TextView2_OnPointerEntered" ManipulationMode="TranslateX,TranslateY"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
-               
-                <TextBox x:Name="TextView2" FontSize="30"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="2.The moment of this photo" FontFamily="Microsoft YaHei"  Margin="0" InputScope="Chat"/>
+
+                <TextBox x:Name="TextView2" FontSize="30"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to write sth." FontFamily="Microsoft YaHei"  Margin="0" InputScope="Chat"/>
                 <Border x:Name="maskBorder2" Background="Black" Opacity="0.01"/>
             </Grid>
             <Grid x:Name="textGrid3"  Tapped="textGrid3_Tapped" PointerEntered="TextView3_OnPointerEntered" ManipulationMode="TranslateX,TranslateY"  HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed"  RenderTransformOrigin="0.5,0.5">
-                
-                <TextBox x:Name="TextView3" FontSize="30"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="3.The moment of this photo"  FontFamily="Microsoft YaHei" Margin="0" InputScope="Chat"/>
+
+                <TextBox x:Name="TextView3" FontSize="30"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to write sth."  FontFamily="Microsoft YaHei" Margin="0" InputScope="Chat"/>
                 <Border x:Name="maskBorder3" Background="Black" Opacity="0.01"/>
             </Grid>
 
@@ -696,10 +697,16 @@
                                 <SymbolIcon Symbol="Rotate" Foreground="Black"/>
                             </Grid>
                         </Button>
+                        <!--<Button x:Name="FilterBtn" Click="fontLineClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                            <Grid Height="50" Width="50">
+                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                <SymbolIcon Symbol="Filter" Foreground="Black"/>
+                            </Grid>
+                        </Button>-->
                         <Button x:Name="MoreLineBtn" Click="fontLineClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                                <SymbolIcon Symbol="AllApps" Foreground="Black"/>
+                                <SymbolIcon Symbol="Bullets" Foreground="Black"/>
                             </Grid>
                         </Button>
                         <Button Click="ToStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
@@ -791,24 +798,24 @@
             <Border BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="1" VerticalAlignment="Top" Height="5" Background="{StaticResource MomentThemeColor}"/>
 
             <StackPanel Orientation="Vertical">
-                <TextBlock  x:Name="familyTB"  Text="EDITING CONTENT" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
+                <TextBlock  x:Name="familyTB"  Text="EDITING" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
                 <ScrollViewer x:Name="contentSV" Height="230"  VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
                     <StackPanel Orientation="Vertical">
                         <TextBox Text=""  x:Name="contentTB" AcceptsReturn="True" TextChanged="conentChanged"  Foreground="{StaticResource MomentThemeBlack}" FontSize="20" Margin="10,5,10,10" FontFamily="Segoe WP" InputScope="Chat"/>
                         <ScrollViewer x:Name="colorSV" HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Hidden">
                             <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
                                 <Button Click="IncreaseFontsizeClick" Width="50" Height="50" Margin="0,5,5,5" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                    <Border Background="{StaticResource MomentThemeColor}">
+                                    <Border Background="#FFD6D6D6">
                                         <SymbolIcon Symbol="FontIncrease" Foreground="Black"/>
                                     </Border>
                                 </Button>
                                 <Button Click="DecreaseFontsizeClick"   Width="50" Height="50"  Margin="5" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                    <Border Background="{StaticResource MomentThemeColor}">
+                                    <Border Background="#FFD6D6D6">
                                         <SymbolIcon Symbol="FontDecrease" Foreground="Black" RenderTransformOrigin="0.5,0.5"/>
                                     </Border>
                                 </Button>
                                 <Button Click="RotateTextClick"   Width="50" Height="50"  Margin="5" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                    <Border Background="#FFFFDB7B">
+                                    <Border Background="#FFD6D6D6">
                                         <SymbolIcon Symbol="Rotate" Foreground="Black" RenderTransformOrigin="0.5,0.5"/>
                                     </Border>
                                 </Button>
@@ -1007,6 +1014,39 @@
             </StackPanel>
 
         </Grid>
+        <!--<Grid x:Name="FilterGrid" Visibility="Visible" Grid.Row="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Background="#FFE0E0E0" >
+            <Grid.RenderTransform>
+                <CompositeTransform TranslateY="400"/>
+            </Grid.RenderTransform>
+
+            <Border BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="1" Margin="0" Background="{StaticResource MomentThemeColor}" Height="5" VerticalAlignment="Top"/>
+
+            <StackPanel  Orientation="Vertical">
+                <TextBlock  x:Name="filterTB" Text="FILTER" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
+                <Grid VerticalAlignment="Top" >
+                    <StackPanel Orientation="Vertical">
+                        <ScrollViewer Height="120" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
+                            <StackPanel x:Name="filterSP" Orientation="Horizontal">
+                                <Button Click="FilterClick" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
+                                    <Border Background="White">
+                                        <TextBlock Text="Plain" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </Button>
+                                
+                            </StackPanel>
+                        </ScrollViewer>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                           
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+        </Grid>-->
 
         <Grid x:Name="MaskGrid" Grid.Row="0"  Grid.RowSpan="4" Margin="0,-52,0,0" Visibility="Collapsed">
             <Border Background="Black" Opacity="0.8"/>
@@ -1020,7 +1060,7 @@
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Orientation="Vertical">
                 <TextBlock VerticalAlignment="Center" x:Name="errorTB" Text="ERROR :-(" FontSize="40" HorizontalAlignment="Center" FontWeight="ExtraBlack" />
                 <TextBlock VerticalAlignment="Center" x:Name="errorHintTB" Text="For some reason, this picture should be compressed." FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="ExtraLight" Margin="0,10" />
-                <Button Click="retryClick" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
+                <Button x:Name="retryBtn" Click="retryClick" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
                     <Border Background="{StaticResource MomentThemeColor}">
                         <TextBlock x:Name="retryTB" Foreground="{StaticResource MomentThemeBlack}" Text="Compress and retry" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>

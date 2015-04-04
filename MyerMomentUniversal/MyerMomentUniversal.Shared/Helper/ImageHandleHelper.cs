@@ -78,7 +78,6 @@ namespace MyerMomentUniversal.Helper
         /// <returns></returns>
         public async Task<ImageSaveResult> SaveImageAsync(UIElement elementToRender)
         {
-
             try
             {
                 uint targetWidth = Width;
@@ -95,13 +94,13 @@ namespace MyerMomentUniversal.Helper
                 }
 #endif
                 var bitmap = new RenderTargetBitmap();
-                await bitmap.RenderAsync(elementToRender, (int)(targetWidth), (int)(targetHeight));
+                await bitmap.RenderAsync(elementToRender, (int)(targetWidth), 0);
                 var pixels = await bitmap.GetPixelsAsync();
 
                 exceptionFlag++; //now it's 1
 
 
-                StorageFile fileToSave = await GetFileToSaved(this.FileName);
+                StorageFile fileToSave = await GetFileToSaved(this.FileName,CreationCollisionOption.ReplaceExisting);
                
                 if (fileToSave == null) return ImageSaveResult.FileNotOpen;
 
@@ -121,7 +120,7 @@ namespace MyerMomentUniversal.Helper
 
                 return ImageSaveResult.Successful;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 if (exceptionFlag == 0) return ImageSaveResult.FailToGetPixels;
                 else return ImageSaveResult.FailToFlush;
@@ -140,10 +139,11 @@ namespace MyerMomentUniversal.Helper
             this.outputHeight = height;
             this.outputWidth = width;
 
-            if(width==height)
+            var minus = Math.Abs((int)width - (int)height);
+            if (minus < 10)
             {
-                this.outputHeight = scaledLong;
-                this.outputWidth = scaledLong;
+                this.outputHeight = 1200;
+                this.outputWidth = 1200;
                 return;
             }
 
@@ -171,30 +171,60 @@ namespace MyerMomentUniversal.Helper
                 "&outputHeight" + outputHeight + "&dpiX=" + DpiX + "&dpiY=" + DpiY;
         }
 
-        public async static Task<StorageFile> GetFileToSaved(string fileName)
+        public async static Task<StorageFile> GetFileToSaved(string fileName,CreationCollisionOption createoption)
         {
             var positon = LocalSettingHelper.GetValue("Position");
             StorageFile fileToSave = null;
             switch (positon)
             {
-                case "0": fileToSave = await KnownFolders.SavedPictures.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName); break;
+                case "0": fileToSave = await KnownFolders.SavedPictures.CreateFileAsync(fileName, createoption); break;
                 case "1":
                     {
                         var folderToSave = await KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
-                        fileToSave = await folderToSave.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+                        fileToSave = await folderToSave.CreateFileAsync(fileName, createoption);
                     }; break;
                 case "2":
                     {
-                        fileToSave = await KnownFolders.CameraRoll.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+                        fileToSave = await KnownFolders.CameraRoll.CreateFileAsync(fileName, createoption);
                     }; break;
                 default:
                     {
                         var folderToSave = await KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
-                        fileToSave = await folderToSave.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+                        fileToSave = await folderToSave.CreateFileAsync(fileName, createoption);
                     }; break;
             }
 
             return fileToSave;
+        }
+
+        public async static Task<bool> DeleteFailedImage(string fileName)
+        {
+            var positon = LocalSettingHelper.GetValue("Position");
+            StorageFile fileToDelete = null;
+            switch (positon)
+            {
+                case "0": fileToDelete = await KnownFolders.SavedPictures.GetFileAsync(fileName); break;
+                case "1":
+                    {
+                        var folderToSave = await KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
+                        fileToDelete = await folderToSave.GetFileAsync(fileName);
+                    }; break;
+                case "2":
+                    {
+                        fileToDelete = await KnownFolders.CameraRoll.GetFileAsync(fileName);
+                    }; break;
+                default:
+                    {
+                        var folderToSave = await KnownFolders.PicturesLibrary.CreateFolderAsync("MyerMoment", CreationCollisionOption.OpenIfExists);
+                        fileToDelete = await folderToSave.GetFileAsync(fileName);
+                    }; break;
+            }
+
+            if (fileToDelete == null) return false;
+
+            await fileToDelete.DeleteAsync();
+
+            return true;
         }
     }
 

@@ -85,13 +85,13 @@ namespace MyerMomentUniversal
                 // 将框架放在当前窗口中
                 Window.Current.Content = rootFrame;
 
-                
+#if WINDOWS_PHONE_APP
                 if (!LocalSettingHelper.IsExist("feature1"))
                 {
                     LocalSettingHelper.AddValue("feature1", true);
                     rootFrame.Navigate(typeof(FeaturePage));
                 }
-                
+#endif    
             }
 
             if (rootFrame.Content == null)
@@ -265,7 +265,7 @@ namespace MyerMomentUniversal
                 ShareOperation shareOperation = args.ShareOperation;
                 if (shareOperation.Data.Contains(StandardDataFormats.StorageItems))
                 {
-                    rootFrame.Navigate(typeof(ImageHandlePage), shareOperation);
+                    rootFrame.Navigate(typeof(CropImagePage), shareOperation);
                     Window.Current.Content = rootFrame;
                     Window.Current.Activate();
                 }

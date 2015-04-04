@@ -10,16 +10,21 @@ using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Imaging;
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
@@ -74,11 +79,14 @@ namespace MyerMomentUniversal
             selectedRegion = new SelectedRegion { MinSelectRegionSize = 2 * CornerSize };
             this.DataContext = selectedRegion;
 
-            
+#if WINDOWS_PHONE_APP
+            StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
+#endif
 
             ConfigLang();
         }
 
+        #region CONFIG
         private void ConfigLang()
         {
             var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
@@ -87,32 +95,9 @@ namespace MyerMomentUniversal
             this.nextTB.Text = loader.GetString("ContinueBtn");
             this.cropHeaderTB.Text= loader.GetString("CropHeader");
         }
+        #endregion
 
-        private async void CancelClick(object sender, RoutedEventArgs e)
-        {
-            var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
-            var title = loader.GetString("DiscardTitle");
-            var content = loader.GetString("DiscardContent");
-            var discardBtn = loader.GetString("DiscardOK");
-            var discardCancel = loader.GetString("DiscardCancel");
-
-            var rootFrame = Window.Current.Content as Frame;
-
-            MessageDialog md = new MessageDialog(content, title);
-            md.Commands.Add(new UICommand(discardBtn, act =>
-            {
-                if (rootFrame.CanGoBack)
-                {
-                    rootFrame.GoBack();
-                }
-            }));
-            md.Commands.Add(new UICommand(discardCancel, act =>
-            {
-                return;
-            }));
-
-            await md.ShowAsync();
-        }
+        
 
         private void SetToSquareClick(object sender, RoutedEventArgs e)
         {
@@ -144,9 +129,9 @@ namespace MyerMomentUniversal
                 this.SelectedShape = SelectedRegionShape.Square;
                 selectedRegion.UpdateCorner((string)topRightCorner.Tag, widthChanged, 0);
 
-                VisualStateManager.GoToState(squareBtn, "OnState", false);
-                VisualStateManager.GoToState(wideBtn, "OffState", false);
-                VisualStateManager.GoToState(resetBtn, "OffState", false);
+                //VisualStateManager.GoToState(squareBtn, "OnState", false);
+                //VisualStateManager.GoToState(wideBtn, "OffState", false);
+                //VisualStateManager.GoToState(resetBtn, "OffState", false);
             }
             else
             {
@@ -158,52 +143,14 @@ namespace MyerMomentUniversal
             
         }
 
-        private void SetToWideClick(object sender, RoutedEventArgs e)
-        {
-            if (SelectedShape == SelectedRegionShape.Wide) return;
-
-            var topLeftX = Canvas.GetLeft(topLeftCorner);
-            var bottomLeftX = Canvas.GetLeft(bottomLeftCorner);
-
-            var topRightX = Canvas.GetLeft(topRightCorner);
-            var bottomRightX = Canvas.GetLeft(bottomRightCorner);
-
-            var topLeftY = Canvas.GetTop(topLeftCorner);
-            var bottomLeftY = Canvas.GetTop(bottomLeftCorner);
-
-            var topRightY = Canvas.GetTop(topRightCorner);
-            var bottomRightY = Canvas.GetTop(bottomRightCorner);
-
-            if(SelectedShape==SelectedRegionShape.Square)
-            {
-                this.selectedRegion.ResetCorner(0, 0, sourceImage.ActualWidth, sourceImage.ActualHeight);
-            }
-           
-            //minilize width
-            if (sourceImage.ActualWidth > sourceImage.ActualHeight)
-            {
-                var targetHeight = (sourceImage.ActualWidth * 9)/16;
-
-                var heightChange = -(bottomRightY - targetHeight);
-
-                this.SelectedShape = SelectedRegionShape.Wide;
-                selectedRegion.UpdateCorner((string)bottomRightCorner.Tag, 0, heightChange);
-
-                VisualStateManager.GoToState(squareBtn, "OffState", false);
-                VisualStateManager.GoToState(wideBtn, "OnState", false);
-                VisualStateManager.GoToState(resetBtn, "OffState", false);
-            }
-            
-        }
-
         private void ResetClick(object sender,RoutedEventArgs e)
         {
             this.selectedRegion.ResetCorner(0, 0, sourceImage.ActualWidth, sourceImage.ActualHeight);
             this.SelectedShape = SelectedRegionShape.Free;
 
-            VisualStateManager.GoToState(squareBtn, "OffState", false);
-            VisualStateManager.GoToState(wideBtn, "OffState", false);
-            VisualStateManager.GoToState(resetBtn, "OnState", false);
+            //VisualStateManager.GoToState(squareBtn, "OffState", false);
+            //VisualStateManager.GoToState(wideBtn, "OffState", false);
+            //VisualStateManager.GoToState(resetBtn, "OnState", false);
         }
 
         private void AddCornerEvents(Control corner)
@@ -243,34 +190,38 @@ namespace MyerMomentUniversal
 
                     this.sourceImagePixelHeight = decoder.PixelHeight;
                     this.sourceImagePixelWidth = decoder.PixelWidth;
+
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.SetSource(fileStream);
+                    sourceImage.Source = bitmap;
                 }
 
-                if (this.sourceImagePixelHeight < 2 * this.CornerSize || this.sourceImagePixelWidth < 2 * this.CornerSize)
-                {
-                    return;
-                }
-                else
-                {
-                    double sourceImageScale = 1;
+                //if (this.sourceImagePixelHeight < 2 * this.CornerSize || this.sourceImagePixelWidth < 2 * this.CornerSize)
+                //{
+                //    return;
+                //}
+                //else
+                //{
+                //    double sourceImageScale = 1;
 
-                    if (this.sourceImagePixelHeight < this.sourceImageGrid.ActualHeight &&
-                        this.sourceImagePixelWidth < this.sourceImageGrid.ActualWidth)
-                    {
-                        this.sourceImage.Stretch = Windows.UI.Xaml.Media.Stretch.None;
-                    }
-                    else
-                    {
-                        sourceImageScale = Math.Min(this.sourceImageGrid.ActualWidth / this.sourceImagePixelWidth,
-                             this.sourceImageGrid.ActualHeight / this.sourceImagePixelHeight);
-                        this.sourceImage.Stretch = Windows.UI.Xaml.Media.Stretch.Uniform;
-                    }
+                //    if (this.sourceImagePixelHeight < this.sourceImageGrid.ActualHeight &&
+                //        this.sourceImagePixelWidth < this.sourceImageGrid.ActualWidth)
+                //    {
+                //        this.sourceImage.Stretch = Windows.UI.Xaml.Media.Stretch.None;
+                //    }
+                //    else
+                //    {
+                //        sourceImageScale = Math.Min(this.sourceImageGrid.ActualWidth / this.sourceImagePixelWidth,
+                //             this.sourceImageGrid.ActualHeight / this.sourceImagePixelHeight);
+                //        this.sourceImage.Stretch = Windows.UI.Xaml.Media.Stretch.Uniform;
+                //    }
 
-                    this.sourceImage.Source = await CropBitmap.GetCroppedBitmapAsync(
-                        this.sourceImageFile,
-                        new Point(0, 0),
-                        new Size(this.sourceImagePixelWidth, this.sourceImagePixelHeight),
-                        sourceImageScale);
-                }
+                //    this.sourceImage.Source = await CropBitmap.GetCroppedBitmapAsync(
+                //        this.sourceImageFile,
+                //        new Point(0, 0),
+                //        new Size(this.sourceImagePixelWidth, this.sourceImagePixelHeight),
+                //        sourceImageScale);
+                //}
 
             }
         }
@@ -324,7 +275,7 @@ namespace MyerMomentUniversal
             double heightScale = imageCanvas.Height / this.sourceImagePixelHeight;
 
 
-            var fileToSave =await ImageHandleHelper.GetFileToSaved(fileName);
+            var fileToSave =await ImageHandleHelper.GetFileToSaved(fileName,CreationCollisionOption.GenerateUniqueName);
 
             if (fileToSave != null)
             {
@@ -338,6 +289,32 @@ namespace MyerMomentUniversal
 
                 Frame.Navigate(typeof(ImageHandlePage), fileToSave);
             }
+        }
+
+        private async void CancelClick(object sender, RoutedEventArgs e)
+        {
+            var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var title = loader.GetString("DiscardTitle");
+            var content = loader.GetString("DiscardContent");
+            var discardBtn = loader.GetString("DiscardOK");
+            var discardCancel = loader.GetString("DiscardCancel");
+
+            var rootFrame = Window.Current.Content as Frame;
+
+            MessageDialog md = new MessageDialog(content, title);
+            md.Commands.Add(new UICommand(discardBtn, act =>
+            {
+                if (rootFrame.CanGoBack)
+                {
+                    rootFrame.GoBack();
+                }
+            }));
+            md.Commands.Add(new UICommand(discardCancel, act =>
+            {
+                return;
+            }));
+
+            await md.ShowAsync();
         }
 
         #endregion
@@ -423,9 +400,14 @@ namespace MyerMomentUniversal
 
         #endregion
 
+        #region NAVIGATE
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+#if WINDOWS_PHONE_APP
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+#endif
 
             if (e.Parameter != null)
             {
@@ -471,6 +453,9 @@ namespace MyerMomentUniversal
         {
             base.OnNavigatedFrom(e);
 
+#if WINDOWS_PHONE_APP
+            HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+#endif
 
             // Handle the pointer events of the corners. 
             RemoveCornerEvents(topLeftCorner);
@@ -484,5 +469,15 @@ namespace MyerMomentUniversal
             this.sourceImage.SizeChanged -= sourceImage_SizeChanged;
 
         }
+
+#if WINDOWS_PHONE_APP
+        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            e.Handled = true;
+            
+            CancelClick(null, null);
+        }
+#endif
+        #endregion
     }
 }

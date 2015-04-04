@@ -31,7 +31,7 @@ namespace MyerMomentUniversal
 
         private void ConfigLang()
         {
-            enterTextblock.Text = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView().GetString("EnterHint");
+            //enterTextblock.Text = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView().GetString("EnterHint");
         }
 
         private void EnterClick(object sender,RoutedEventArgs e)

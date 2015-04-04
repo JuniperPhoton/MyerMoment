@@ -166,7 +166,7 @@
     <value>字体</value>
   </data>
   <data name="FontPlaceHolderText" xml:space="preserve">
-    <value>为这张照片写点东西</value>
+    <value>点击进行编辑</value>
   </data>
   <data name="getpixelsErrorHint" xml:space="preserve">
     <value>抱歉，因为图片太大以致无法正常保存，请期待未来的更新支持。</value>
@@ -247,9 +247,9 @@
     <value>下一步</value>
   </data>
   <data name="CropHeader" xml:space="preserve">
-    <value>裁剪</value>
+    <value>裁切</value>
   </data>
   <data name="CroppingHint" xml:space="preserve">
-    <value>努力裁剪中...</value>
+    <value>努力裁切中...</value>
   </data>
 </root>

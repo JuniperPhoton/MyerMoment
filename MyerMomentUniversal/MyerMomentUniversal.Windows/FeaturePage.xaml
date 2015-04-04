@@ -22,10 +22,11 @@
                 <Image Source="Assets/WinPage3.jpg" Stretch="UniformToFill" />
 
             </FlipView>
-        <Button   Grid.Row="1"  MaxWidth="400" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" Click="EnterClick" BorderThickness="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="0,0,0,10" Height="45">
-                <Border Background="{StaticResource MomentThemeColor}">
-                    <TextBlock x:Name="enterTextblock" Text="Enter MyerMoment" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{StaticResource MomentThemeBlack}"/>
-                </Border>
+        <Button Width="60" Height="60" MinHeight="10" MinWidth="10" Grid.Row="1"  MaxWidth="400"  Style="{StaticResource ButtonStyle2}"  Click="EnterClick" BorderThickness="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="0,0,0,10" >
+            <Grid  >
+                <Ellipse Width="60" Height="60" Fill="{StaticResource MomentThemeColor}"/>
+                <SymbolIcon Symbol="Forward" Foreground="Black"/>
+            </Grid>
             </Button>
         
     </Grid>

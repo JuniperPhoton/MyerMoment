@@ -71,8 +71,8 @@ namespace MyerMomentUniversal
             //errorLogTextblock.Text = loader.GetString("SendLogHint");
             feedbackTextblock.Text = loader.GetString("SendEmailHint");
             //creditTB.Text = loader.GetString("CreditHint");
-            importHint.Text = loader.GetString("ImportHint");
-            importTB.Text = loader.GetString("ImportHeader");
+            //importHint.Text = loader.GetString("ImportHint");
+            //importTB.Text = loader.GetString("ImportHeader");
             tileColorTextblock.Text = loader.GetString("TileColorHeader");
             transparantTextblock.Text = loader.GetString("TransparantHint");
             solidcolorTextblock.Text = loader.GetString("ThemeHint");

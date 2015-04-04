@@ -172,7 +172,7 @@
     <value>FONT FAMILY</value>
   </data>
   <data name="FontPlaceHolderText" xml:space="preserve">
-    <value>The moment of this Photo</value>
+    <value>Tap to write sth.</value>
   </data>
   <data name="getpixelsErrorHint" xml:space="preserve">
     <value>Sorry for saving the photo because the photo is too large. May fix this issue in the future.</value>

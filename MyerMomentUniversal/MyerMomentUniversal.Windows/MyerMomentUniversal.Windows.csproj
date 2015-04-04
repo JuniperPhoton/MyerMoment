@@ -19,7 +19,7 @@
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <PackageCertificateThumbprint>FD19B4DD63C69DF794452D59119494894C6CBCF4</PackageCertificateThumbprint>
-    <NuGetPackageImportStamp>d84c0cbd</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>41448bd3</NuGetPackageImportStamp>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -165,10 +165,9 @@
       <Project>{9c909fed-d859-4cab-b4d2-dfb7fd31ee58}</Project>
       <Name>ChaoFunctionRT</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NotificationsExtensions\NotificationsExtensions.csproj">
-      <Project>{6e87464b-b064-40ca-8161-7c18c337adff}</Project>
-      <Name>NotificationsExtensions</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

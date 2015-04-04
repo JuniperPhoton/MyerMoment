@@ -32,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ImageHandlePage.xaml.cs">
       <DependentUpon>ImageHandlePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Model\GetPixelsException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\StyleList.cs" />
   </ItemGroup>
@@ -40,6 +41,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Alone.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Brave.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Brave.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Coffee.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Coffee.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\color.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Couple.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Couple.png" />

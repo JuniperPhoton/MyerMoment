@@ -58,13 +58,22 @@
                         <Grid>
                             <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                                 <Image x:Name="backImage1" Width="200" Height="200" Stretch="UniformToFill" Source="Asset/LOGO_TRAN_300.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                <TextBlock x:Name="pickHintTextblock" FontSize="30" TextWrapping="Wrap" FontWeight="ExtraBold" Opacity="0.3" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center" Foreground="Black" Text="Take or pick a photo" Margin="0,0,0,30"/>
-                                <Button Click="OpenPhotoClick" HorizontalAlignment="Center" VerticalAlignment="Bottom"  BorderThickness="0" MinHeight="50" MinWidth="50" Style="{StaticResource ButtonStyle1}">
-                                    <Grid Width="70" Height="70">
-                                        <Ellipse Fill="{StaticResource MomentThemeColor}"/>
-                                        <SymbolIcon Symbol="Add" Foreground="{StaticResource MomentThemeBlack}"/>
-                                    </Grid>
-                                </Button>
+                                <TextBlock x:Name="pickHintTextblock" FontSize="30" TextWrapping="Wrap" FontWeight="ExtraBold" Opacity="0.3" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center" Foreground="Black" Text="Take or pick a photo" Margin="0" FontFamily="Segoe WP"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Click="OpenPhotoClick" HorizontalAlignment="Center" VerticalAlignment="Bottom"  BorderThickness="0" MinHeight="50" MinWidth="50" Style="{StaticResource ButtonStyle1}">
+                                        <Grid Width="50" Height="50">
+                                            <Ellipse Fill="{StaticResource MomentThemeColor}"/>
+                                            <SymbolIcon Symbol="Pictures" Foreground="{StaticResource MomentThemeBlack}"/>
+                                        </Grid>
+                                    </Button>
+                                    <Button Click="CameraClick" HorizontalAlignment="Center" VerticalAlignment="Bottom"  BorderThickness="0" MinHeight="50" MinWidth="50" Style="{StaticResource ButtonStyle1}">
+                                        <Grid Width="50" Height="50">
+                                            <Ellipse Fill="{StaticResource MomentThemeColor}"/>
+                                            <SymbolIcon Symbol="Camera" Foreground="{StaticResource MomentThemeBlack}"/>
+                                        </Grid>
+                                    </Button>
+                                </StackPanel>
+                                
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -72,7 +81,7 @@
                 </DataTemplate>
                 
             </HubSection>
-            <HubSection>
+            <HubSection MinWidth="500">
                 <HubSection.HeaderTemplate>
                     <DataTemplate>
                         <TextBlock  FontSize="30" Text="SETTING" FontWeight="Light" Foreground="White" VerticalAlignment="Center"/>
@@ -85,7 +94,7 @@
                                 <Border Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
                                     <TextBlock x:Name="savingPositionTextblock"  Margin="5" Text="SAVING POSITON" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}"/>
                                 </Border>
-                                <ComboBox Width="220"   SelectionChanged="positionCom_SelectionChanged" x:Name="positionCom" PlaceholderText="Select the default saving position" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeColor}" Margin="0,20,0,0" >
+                                <ComboBox Width="220"   SelectionChanged="positionCom_SelectionChanged" x:Name="positionCom" PlaceholderText="Select the default saving position" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeColor}" Margin="0,20,0,0" Background="{StaticResource MomentThemeBlack}" Foreground="White" >
                                     <ComboBoxItem>
                                         <TextBlock  x:Name="savedPictureTextblock"  Text="SavedPicture" />
                                     </ComboBoxItem>
@@ -107,7 +116,7 @@
                 </DataTemplate>
 
             </HubSection>
-            <HubSection>
+            <HubSection MinWidth="500">
                 <HubSection.HeaderTemplate>
                     <DataTemplate>
                         <TextBlock  FontSize="30" Text="ABOUT" FontWeight="Light" Foreground="White" VerticalAlignment="Center"/>
@@ -117,17 +126,17 @@
                     <Grid>
                         <ScrollViewer VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Auto">
                             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Orientation="Vertical">
-                                <TextBlock Text="Avaliable on Phone" FontSize="20" FontWeight="Bold" Foreground="{StaticResource MomentThemeColor}" FontFamily="Segoe WP"/>
+                                <TextBlock Text="Avaliable on Phone" FontSize="20" FontWeight="Light" Foreground="{StaticResource MomentThemeColor}" FontFamily="Segoe WP"/>
 
                                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                                     <Border Margin="0" HorizontalAlignment="Left"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
-                                        <TextBlock Margin="5" Text="VERSION" FontSize="15" FontWeight="Bold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Segoe WP"/>
+                                        <TextBlock Margin="5" Text="VERSION" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Segoe WP"/>
                                     </Border>
-                                    <HyperlinkButton  x:Name="VersionHLB" Content="0.98 RC" NavigateUri="" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Margin="0,0,0,0" Foreground="White" />
+                                    <HyperlinkButton  x:Name="VersionHLB" Content="0.99 RC" NavigateUri="" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Margin="0,0,0,0" Foreground="White" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                                     <Border Margin="0,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
-                                        <TextBlock Margin="5" Text="CREDIT" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" />
+                                        <TextBlock Margin="5" Text="CREDIT" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Segoe WP" />
                                     </Border>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="15,10,0,0">
@@ -143,8 +152,9 @@
                                     </Path>
 
                                     <TextBlock  Margin="15,0,0,0" Text="JuniperPhoton" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                                    <TextBlock  Margin="30,0,0,0" Text="Churwin" FontSize="25"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
+
                                 </StackPanel>
-                                <TextBlock  Margin="60,0,0,0" Text="Churwin" FontSize="25"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
 
                                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                                     <Border  Margin="0,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
@@ -156,7 +166,7 @@
                                 <Button Click="ReviewClick"  HorizontalAlignment="Left" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
                                     <Border>
                                         <StackPanel Orientation="Horizontal">
-                                            <SymbolIcon Symbol="Emoji" Foreground="White" />
+                                            <SymbolIcon Symbol="Emoji" Foreground="{StaticResource MomentThemeColor}" />
                                             <TextBlock x:Name="rateTextblock" FontSize="20" Text="Give me a rate" Margin="15,0,0,0" Foreground="White"/>
                                         </StackPanel>
                                     </Border>
@@ -164,14 +174,14 @@
                                 <Button Click="EmailClick"  HorizontalAlignment="Left" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
                                     <Border>
                                         <StackPanel Orientation="Horizontal">
-                                            <SymbolIcon Symbol="Mail" Foreground="White" />
+                                            <SymbolIcon Symbol="Mail" Foreground="{StaticResource MomentThemeColor}" />
                                             <TextBlock x:Name="feedbackTextblock" FontSize="20" Text="Send me an email" Margin="15,0,0,0" Foreground="White"/>
                                         </StackPanel>
                                     </Border>
                                 </Button>
                                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                                     <Border Margin="0,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
-                                        <TextBlock Margin="5" Text="OTHER APP" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Segoe WP"/>
+                                        <TextBlock Margin="5" FontWeight="ExtraBold" FontFamily="Segoe WP" Text="OTHER APP" FontSize="15"  Foreground="{StaticResource MomentThemeBlack}" />
                                     </Border>
                                     <HyperlinkButton Content="MyerList" NavigateUri="http://apps.microsoft.com/windows/app/myerlist/31eb52eb-aaee-43d9-b573-22ee91490502" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Margin="15,0,0,0" Foreground="White" />
 

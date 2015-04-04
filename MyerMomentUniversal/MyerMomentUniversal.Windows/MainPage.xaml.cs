@@ -1,5 +1,6 @@
 ﻿using ChaoFunctionRT;
 using System;
+using Windows.Media.Capture;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -48,6 +49,16 @@ namespace MyerMomentUniversal
                 Frame.Navigate(typeof(CropImagePage), file);
             }
             
+        }
+
+        private async void CameraClick(object sender,RoutedEventArgs e)
+        {
+            var ui = new CameraCaptureUI();
+            var file = await ui.CaptureFileAsync(CameraCaptureUIMode.Photo);
+            if (file != null)
+            {
+                Frame.Navigate(typeof(CropImagePage), file);
+            }
         }
 
         private void positionCom_SelectionChanged(object sender, SelectionChangedEventArgs e)

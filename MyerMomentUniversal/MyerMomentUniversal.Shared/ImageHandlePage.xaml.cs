@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.ViewManagement;
 
 
 namespace MyerMomentUniversal
@@ -61,6 +62,10 @@ namespace MyerMomentUniversal
 
             _imageHandleHelper = new ImageHandleHelper();
 
+#if WINDOWS_PHONE_APP
+            StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
+#endif
+
             ConfigLang();
             ConfigQuality();
             ConfigStyle();
@@ -73,7 +78,7 @@ namespace MyerMomentUniversal
             var qualitySetting = LocalSettingHelper.GetValue("QualityCompress");
             if (qualitySetting == "0")
             {
-                _imageHandleHelper.ScaleLong = 1500;
+                _imageHandleHelper.ScaleLong = 1200;
 
                 Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
                 var firmwareVersion = deviceInfo.SystemFirmwareVersion;
@@ -156,6 +161,7 @@ namespace MyerMomentUniversal
             retryTB.Text = loader.GetString("ChangeToCompressHint");
             errorHintTB.Text = loader.GetString("CompressHint");
             backTB.Text = loader.GetString("BackErrorHint");
+            contentTB.PlaceholderText = loader.GetString("FontPlaceHolderText");
         }
 
         /// <summary>
@@ -657,11 +663,11 @@ namespace MyerMomentUniversal
                 var result = await _imageHandleHelper.SaveImageAsync(renderGrid);
                 switch(result)
                 {
-                    case ImageSaveResult.FileNotOpen:
+                    case ImageSaveResult.FailToGetPixels:
                         {
-                            var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
-                            errorHintTB.Text = loader.GetString("getpixelsErrorHint");
-                        };break;
+                            
+                            throw new GetPixelsException();
+                        };
                 }
 
                 MaskGrid.Visibility = Visibility.Collapsed;
@@ -673,12 +679,25 @@ namespace MyerMomentUniversal
             }
             catch (Exception e)
             {
+                ImageHandleHelper.DeleteFailedImage(_imageHandleHelper.FileName);
+
+                if(e.GetType()==typeof(GetPixelsException))
+                {
+                    MaskGrid.Visibility = Visibility.Collapsed;
+                    ErrorGrid.Visibility = Visibility.Visible;
+                    _isInErrorMode = true;
+                    var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                    errorHintTB.Text = loader.GetString("getpixelsErrorHint");
+                    retryBtn.Visibility = Visibility.Collapsed;
+                    return;
+                }
+
                 var task = ExceptionUtils.WriteRecord(e);
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ErrorGrid.Visibility = Visibility.Visible;
                 _isInErrorMode = true;
 
-                var sendTask=HttpHelper.SendDeviceInfo("");
+                //var sendTask=HttpHelper.SendDeviceInfo("");
             }
         }
 
