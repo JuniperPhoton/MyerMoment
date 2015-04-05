@@ -78,7 +78,7 @@ namespace MyerMomentUniversal
             var qualitySetting = LocalSettingHelper.GetValue("QualityCompress");
             if (qualitySetting == "0")
             {
-                _imageHandleHelper.ScaleLong = 1200;
+                _imageHandleHelper.ScaleLong = 1500;
 
                 Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
                 var firmwareVersion = deviceInfo.SystemFirmwareVersion;
@@ -820,11 +820,11 @@ namespace MyerMomentUniversal
             if(e.Parameter!=null)
             {
                
-                if (e.Parameter.GetType() == typeof(StorageFile))
+                if (e.Parameter.GetType() == typeof(PageNavigateData))
                 {
-                    StorageFile args = e.Parameter as StorageFile;
-                    
-                    ShowImage(args);
+                    var file = (e.Parameter as PageNavigateData).file;
+                    this._isFromShareTarget = (e.Parameter as PageNavigateData).isFromShare;
+                    if (file != null) ShowImage(file);
                 }
                 
                 if (e.Parameter.GetType() == typeof(ShareOperation))

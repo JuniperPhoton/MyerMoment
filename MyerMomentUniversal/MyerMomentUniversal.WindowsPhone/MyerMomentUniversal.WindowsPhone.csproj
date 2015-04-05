@@ -158,6 +158,10 @@
       <Project>{9c909fed-d859-4cab-b4d2-dfb7fd31ee58}</Project>
       <Name>ChaoFunctionRT</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NotificationsExtensions\NotificationsExtensions.csproj">
+      <Project>{6e87464b-b064-40ca-8161-7c18c337adff}</Project>
+      <Name>NotificationsExtensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helper\" />

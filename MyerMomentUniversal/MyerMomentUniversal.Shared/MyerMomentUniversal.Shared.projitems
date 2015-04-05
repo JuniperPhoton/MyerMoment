@@ -34,6 +34,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Model\GetPixelsException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\PageNavigateData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\StyleList.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -26,6 +26,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using MyerMomentUniversal.Model;
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=234238 上提供
 
@@ -43,6 +44,8 @@ namespace MyerMomentUniversal
         string fileName = "";
 
         private SelectedRegionShape SelectedShape = SelectedRegionShape.Free;
+
+        private PageNavigateData navigateData = new PageNavigateData();
 
         uint sourceImagePixelWidth;
         uint sourceImagePixelHeight;
@@ -84,6 +87,8 @@ namespace MyerMomentUniversal
 #endif
 
             ConfigLang();
+
+            
         }
 
         #region CONFIG
@@ -97,12 +102,15 @@ namespace MyerMomentUniversal
         }
         #endregion
 
-        
+        #region COMMAND
 
         private void SetToSquareClick(object sender, RoutedEventArgs e)
         {
 
-            if (SelectedShape == SelectedRegionShape.Square) return;
+            if (SelectedShape == SelectedRegionShape.Square || SelectedShape==SelectedRegionShape.Free)
+            {
+                this.selectedRegion.ResetCorner(0, 0, sourceImage.ActualWidth, sourceImage.ActualHeight);
+            }
 
             var topLeftX = Canvas.GetLeft(topLeftCorner);
             var bottomLeftX = Canvas.GetLeft(bottomLeftCorner);
@@ -116,12 +124,9 @@ namespace MyerMomentUniversal
             var topRightY=Canvas.GetTop(topRightCorner);
             var bottomRightY=Canvas.GetTop(bottomRightCorner);
 
-            if(SelectedShape==SelectedRegionShape.Wide)
-            {
-                this.selectedRegion.ResetCorner(0, 0, sourceImage.ActualWidth, sourceImage.ActualHeight);
-            }
             
-            //minilize width
+            
+            //the photo is in wide
             if (sourceImage.ActualWidth > sourceImage.ActualHeight)
             {
                 var widthChanged = -(topRightX - (topLeftX + sourceImage.ActualHeight));
@@ -129,15 +134,12 @@ namespace MyerMomentUniversal
                 this.SelectedShape = SelectedRegionShape.Square;
                 selectedRegion.UpdateCorner((string)topRightCorner.Tag, widthChanged, 0);
 
-                //VisualStateManager.GoToState(squareBtn, "OnState", false);
-                //VisualStateManager.GoToState(wideBtn, "OffState", false);
-                //VisualStateManager.GoToState(resetBtn, "OffState", false);
             }
-            else
+            else //the photo is in height
             {
                 var heightChanged = -(topRightY - (topLeftY + sourceImage.ActualWidth));
-
-                selectedRegion.UpdateCorner((string)topRightCorner.Tag, 0, -heightChanged);
+                this.SelectedShape = SelectedRegionShape.Square;
+                selectedRegion.UpdateCorner((string)bottomRightCorner.Tag, 0, -heightChanged);
             }
 
             
@@ -153,6 +155,9 @@ namespace MyerMomentUniversal
             //VisualStateManager.GoToState(resetBtn, "OnState", false);
         }
 
+        #endregion
+
+        #region EVENT METHOD
         private void AddCornerEvents(Control corner)
         {
             corner.PointerPressed += Corner_PointerPressed;
@@ -166,9 +171,9 @@ namespace MyerMomentUniversal
             corner.PointerMoved -= Corner_PointerMoved;
             corner.PointerReleased -= Corner_PointerReleased;
         }
+        #endregion
 
-
-        #region Open an image, handle the select region changed event and save the image.
+        #region SHOW AND CROP IMAGE
 
         /// <summary>
         /// Let user choose an image and load it.
@@ -287,7 +292,9 @@ namespace MyerMomentUniversal
 
                 MaskGrid.Visibility = Visibility.Collapsed;
 
-                Frame.Navigate(typeof(ImageHandlePage), fileToSave);
+                navigateData.file = fileToSave;
+
+                Frame.Navigate(typeof(ImageHandlePage), navigateData);
             }
         }
 
@@ -431,6 +438,7 @@ namespace MyerMomentUniversal
                         var fileToOpen = await StorageFile.GetFileFromPathAsync(path);
                         ShowImage(fileToOpen);
 
+                        navigateData.isFromShare = true;
                     }
 
                 }

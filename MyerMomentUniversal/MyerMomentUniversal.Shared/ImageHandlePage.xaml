@@ -627,7 +627,16 @@
         <Grid Grid.Row="0" >
             <Grid Background="{StaticResource MomentThemeColor}">
                 <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                    <SymbolIcon Symbol="Edit"  Foreground="Black"/>
+                    <Path Width="25" Height="25" Data="M2.1589241,55.361L58.320009,55.361C59.509005,55.361,60.479002,56.331158,60.479002,57.521202L60.479002,61.84C60.479002,63.031345,59.509005,64,58.320009,64L2.1589241,64C0.96614265,64,0,63.031345,0,61.84L0,57.521202C0,56.331158,0.96614265,55.361,2.1589241,55.361z M17.295765,38.002052C17.819014,37.984489,18.349938,38.186958,18.762737,38.615349L25.359023,45.490055C26.184622,46.354732,26.252422,47.81039,25.507524,48.734768L25.008924,49.354648C24.270526,50.281624,22.687129,51.042003,21.498332,51.042003L6.6377821,51.042003C5.450285,51.042003,5.1442957,50.331123,5.9607038,49.470444L12.58575,42.43034C13.398149,41.560566,14.696346,40.107406,15.460644,39.199932L15.874843,38.708946C16.256942,38.25721,16.772516,38.019615,17.295765,38.002052z M56.840979,0.00017729906C58.546705,0.012494504 60.245329,0.66664832 61.548548,1.971259 64.009672,4.4230884 64.160574,8.2813262 62.053953,10.94155L62.113752,10.994851 61.548548,11.560062 30.052281,43.057999 20.461,33.466804 51.949568,1.9804095 52.521173,1.4074076 52.575972,1.4607495C53.825342,0.47814019,55.335924,-0.010691157,56.840979,0.00017729906z" Stretch="Uniform" Fill="{StaticResource MomentThemeBlack}"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <TransformGroup.Children>
+                                    <RotateTransform Angle="0" />
+                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                </TransformGroup.Children>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
                     <TextBlock x:Name="editTB" Text="EDIT" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0"  FontWeight="Light"/>
                 </StackPanel>
             </Grid>

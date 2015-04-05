@@ -166,15 +166,35 @@
                                 <Button Click="ReviewClick"  HorizontalAlignment="Left" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
                                     <Border>
                                         <StackPanel Orientation="Horizontal">
-                                            <SymbolIcon Symbol="Emoji" Foreground="{StaticResource MomentThemeColor}" />
-                                            <TextBlock x:Name="rateTextblock" FontSize="20" Text="Give me a rate" Margin="15,0,0,0" Foreground="White"/>
+                                            <Path Width="30" Height="30" Data="M342,0L447.7,225.156 684,261.275 513,436.536 553.399,684 342,567.162 130.709,684 171,436.536 0,261.275 236.3,225.156z" Stretch="Uniform" Fill="{StaticResource MomentThemeColor}"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                                <Path.RenderTransform>
+                                                    <TransformGroup>
+                                                        <TransformGroup.Children>
+                                                            <RotateTransform Angle="0" />
+                                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                        </TransformGroup.Children>
+                                                    </TransformGroup>
+                                                </Path.RenderTransform>
+                                            </Path>
+                                            <!--<SymbolIcon Symbol="Emoji" Foreground="{StaticResource MomentThemeColor}" />-->
+                                            <TextBlock x:Name="rateTextblock" FontSize="20" Text="Give me a rate" Margin="15,0,0,0" Foreground="White" VerticalAlignment="Center"/>
                                         </StackPanel>
                                     </Border>
                                 </Button>
                                 <Button Click="EmailClick"  HorizontalAlignment="Left" Margin="0,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
                                     <Border>
                                         <StackPanel Orientation="Horizontal">
-                                            <SymbolIcon Symbol="Mail" Foreground="{StaticResource MomentThemeColor}" />
+                                            <Path Width="30" Height="30"  Data="M0,1.4200591L0.040033408,1.4200591 12.618441,13.742285 26.626588,27.494828 40.634736,13.742285 53.213021,1.4200591 53.333001,1.4200591 53.333001,39.08706 0,39.08706z M3.1698927,0L26.665893,0 50.161893,0 38.413892,9.8814956 26.665893,19.76299 14.917893,9.8814956z" Stretch="Uniform" Fill="{StaticResource MomentThemeColor}" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                                <Path.RenderTransform>
+                                                    <TransformGroup>
+                                                        <TransformGroup.Children>
+                                                            <RotateTransform Angle="0" />
+                                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                        </TransformGroup.Children>
+                                                    </TransformGroup>
+                                                </Path.RenderTransform>
+                                            </Path>
+                                            <!--<SymbolIcon Symbol="Mail" Foreground="{StaticResource MomentThemeColor}" />-->
                                             <TextBlock x:Name="feedbackTextblock" FontSize="20" Text="Send me an email" Margin="15,0,0,0" Foreground="White"/>
                                         </StackPanel>
                                     </Border>

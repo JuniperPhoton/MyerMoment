@@ -19,7 +19,16 @@
         </Grid.RowDefinitions>
         <Grid x:Name="titleGrid" Grid.Row="0" Background="{StaticResource MomentThemeColor}">
             <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                <SymbolIcon Symbol="Crop"  Foreground="Black"/>
+                <Path Width="30" Height="30" Data="M282.837,258.174L282.837,499.861 493.409,499.861 493.409,258.174z M149.125,0L282.837,0 282.837,136.122 627.162,136.122 627.162,499.861 777.764,499.861 777.764,621.913 628.641,621.913 628.641,758 494.965,758 494.965,621.913 149.125,621.913 149.125,258.174 0,258.174 0,136.122 149.125,136.122z" Stretch="Uniform" Fill="{StaticResource MomentThemeBlack}"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <TransformGroup.Children>
+                                <RotateTransform Angle="0" />
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </TransformGroup.Children>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
                 <TextBlock x:Name="cropHeaderTB" Text="CROP" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0"  FontWeight="Light"/>
             </StackPanel>
         </Grid>
