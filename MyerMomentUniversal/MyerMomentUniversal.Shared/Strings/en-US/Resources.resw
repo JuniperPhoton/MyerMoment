@@ -250,7 +250,7 @@
     <value>Transparant</value>
   </data>
   <data name="ContinueBtn" xml:space="preserve">
-    <value>NEXT</value>
+    <value>Crop</value>
   </data>
   <data name="CropHeader" xml:space="preserve">
     <value>CROP</value>

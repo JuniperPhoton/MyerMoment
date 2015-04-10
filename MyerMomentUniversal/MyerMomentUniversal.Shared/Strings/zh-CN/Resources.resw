@@ -244,7 +244,7 @@
     <value>背景透明</value>
   </data>
   <data name="ContinueBtn" xml:space="preserve">
-    <value>下一步</value>
+    <value>裁剪</value>
   </data>
   <data name="CropHeader" xml:space="preserve">
     <value>裁切</value>

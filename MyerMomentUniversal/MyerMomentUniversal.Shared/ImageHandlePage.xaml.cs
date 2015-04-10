@@ -23,6 +23,7 @@ using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.Graphics.Imaging;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.ApplicationModel.Resources;
 
 
 namespace MyerMomentUniversal
@@ -189,10 +190,11 @@ namespace MyerMomentUniversal
         /// </summary>
         private void ConfigLang()
         {
-            var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var loader = ResourceLoader.GetForCurrentView();
             editTB.Text = loader.GetString("EditHeader");
             saveTB.Text = loader.GetString("SaveAsCopyBtn");
             cancelTB.Text = loader.GetString("CancleBtn");
+            cancelTB2.Text = loader.GetString("CancleBtn");
             TextView1.PlaceholderText = loader.GetString("FontPlaceHolderText");
             TextView2.PlaceholderText = loader.GetString("FontPlaceHolderText");
             TextView3.PlaceholderText = loader.GetString("FontPlaceHolderText");
@@ -204,6 +206,7 @@ namespace MyerMomentUniversal
             errorHintTB.Text = loader.GetString("CompressHint");
             backTB.Text = loader.GetString("BackErrorHint");
             contentTB.PlaceholderText = loader.GetString("FontPlaceHolderText");
+            nextTB.Text = loader.GetString("ContinueBtn");
         }
 
         /// <summary>

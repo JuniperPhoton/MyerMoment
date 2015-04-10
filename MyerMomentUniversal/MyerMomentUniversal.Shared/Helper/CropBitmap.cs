@@ -42,7 +42,6 @@ namespace MyerMomentUniversal.Helper
     public class CropBitmap
     {
 
-
         /// <summary>
         /// Get a cropped bitmap from a image file.
         /// </summary>
@@ -58,7 +57,7 @@ namespace MyerMomentUniversal.Helper
         /// <returns>
         /// The cropped image.
         /// </returns>
-        async public static Task<ImageSource> GetCroppedBitmapAsync(StorageFile originalImageFile,
+        public static async Task<ImageSource> GetCroppedBitmapAsync(StorageFile originalImageFile,
             Point startPoint, Size corpSize, double scale)
         {
             if (double.IsNaN(scale) || double.IsInfinity(scale))
@@ -127,7 +126,7 @@ namespace MyerMomentUniversal.Helper
         /// <returns>
         /// Whether the operation is successful.
         /// </returns>
-        async public static Task SaveCroppedBitmapAsync(StorageFile originalImageFile, StorageFile newImageFile,
+        public async static Task SaveCroppedBitmapAsync(StorageFile originalImageFile, StorageFile newImageFile,
             Point startPoint, Size cropSize)
         {
 
@@ -205,7 +204,7 @@ namespace MyerMomentUniversal.Helper
         /// Use BitmapTransform to define the region to crop, and then get the pixel data in the region
         /// </summary>
         /// <returns></returns>
-        async static private Task<byte[]> GetPixelData(BitmapDecoder decoder, uint startPointX, uint startPointY,
+        private async static Task<byte[]> GetPixelData(BitmapDecoder decoder, uint startPointX, uint startPointY,
             uint width, uint height)
         {
             return await GetPixelData(decoder,startPointX, startPointY, width, height,
@@ -218,7 +217,7 @@ namespace MyerMomentUniversal.Helper
         /// of the scaled image.
         /// </summary>
         /// <returns></returns>
-        async static private Task<byte[]> GetPixelData(BitmapDecoder decoder, uint startPointX, uint startPointY,
+        private async static Task<byte[]> GetPixelData(BitmapDecoder decoder, uint startPointX, uint startPointY,
             uint width, uint height, uint scaledWidth, uint scaledHeight)
         {
 
@@ -240,6 +239,7 @@ namespace MyerMomentUniversal.Helper
                 transform,
                 ExifOrientationMode.IgnoreExifOrientation,
                 ColorManagementMode.ColorManageToSRgb);
+
             byte[] pixels = pix.DetachPixelData();
             return pixels;
         }
