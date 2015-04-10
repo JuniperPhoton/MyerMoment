@@ -21,7 +21,7 @@ using System.ComponentModel;
 using System.Linq;
 using Windows.Foundation;
 
-namespace CSWindowsStoreAppCropBitmap
+namespace MyerMomentUniversal.Helper
 {
     public enum SelectedRegionShape
     {

@@ -8,12 +8,8 @@
     mc:Ignorable="d"
     Background="{StaticResource MomentThemeColor}" 
    >
-
+    
     <Grid Background="{StaticResource MomentThemeBlack}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="183*"/>
-            <ColumnDefinition Width="500*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition />
@@ -21,7 +17,7 @@
             <RowDefinition Height="70"/>
 
         </Grid.RowDefinitions>
-        <Grid x:Name="titleGrid" Grid.Row="0" Background="{StaticResource MomentThemeColor}" Grid.ColumnSpan="2">
+        <Grid x:Name="titleGrid" Grid.Row="0" Background="{StaticResource MomentThemeColor}">
             <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
                 <Path Width="30" Height="30" Data="M282.837,258.174L282.837,499.861 493.409,499.861 493.409,258.174z M149.125,0L282.837,0 282.837,136.122 627.162,136.122 627.162,499.861 777.764,499.861 777.764,621.913 628.641,621.913 628.641,758 494.965,758 494.965,621.913 149.125,621.913 149.125,258.174 0,258.174 0,136.122 149.125,136.122z" Stretch="Uniform" Fill="{StaticResource MomentThemeBlack}"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
                     <Path.RenderTransform>
@@ -36,7 +32,7 @@
                 <TextBlock x:Name="cropHeaderTB" Text="CROP" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0"  FontWeight="Light"/>
             </StackPanel>
         </Grid>
-        <Grid x:Name="sourceImageGrid" Grid.RowSpan="1" Grid.Row="1" Grid.ColumnSpan="2">
+        <Grid x:Name="sourceImageGrid" Grid.RowSpan="1" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -74,8 +70,8 @@
                 </Canvas>
             </Grid>
         </Grid>
-
-        <Grid x:Name="cropRecGrid" Grid.Row="2" Grid.ColumnSpan="2">
+        
+        <Grid x:Name="cropRecGrid" Grid.Row="2">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="squareBtn" Click="SetToSquareClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                     <Grid Height="50" Width="50">
@@ -83,7 +79,13 @@
                         <TextBlock Text="1:1" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
                 </Button>
-               
+                <!--<Button x:Name="wideBtn" Click="SetToWideClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                    <Grid Height="50" Width="50">
+                        <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                       
+                        <TextBlock Text="16:9" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>-->
                 <Button x:Name="resetBtn" Click="ResetClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                     <Grid Height="50" Width="50">
                         <Ellipse StrokeThickness="4" Fill="White"/>
@@ -91,10 +93,10 @@
                     </Grid>
                 </Button>
             </StackPanel>
-
+            
         </Grid>
-        <Grid x:Name="commandGrid" Grid.Row="3" Grid.ColumnSpan="2" >
-
+        <Grid x:Name="commandGrid" Grid.Row="3" >
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition />
@@ -117,13 +119,13 @@
             </Button>
         </Grid>
 
-        <Grid x:Name="MaskGrid" Grid.Row="0"  Grid.RowSpan="4" Margin="0,-52,0,0" Visibility="Collapsed" Grid.ColumnSpan="2">
+        <Grid x:Name="MaskGrid" Grid.Row="0"  Grid.RowSpan="4" Margin="0,-52,0,0" Visibility="Collapsed">
             <Border Background="Black" Opacity="0.8"/>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
                 <ProgressRing IsActive="True" HorizontalAlignment="Center" Background="Transparent" Foreground="{StaticResource MomentThemeColor}"/>
                 <TextBlock x:Name="cropingTB" Text="Working on croping..." FontSize="30" FontWeight="SemiLight" />
             </StackPanel>
         </Grid>
-
+        
     </Grid>
 </Page>

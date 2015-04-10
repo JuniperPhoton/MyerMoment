@@ -1,4 +1,5 @@
 ﻿using ChaoFunctionRT;
+using MyerMomentUniversal.Model;
 using System;
 using Windows.Media.Capture;
 using Windows.Storage.Pickers;
@@ -46,7 +47,10 @@ namespace MyerMomentUniversal
             var file=await picker.PickSingleFileAsync();
             if(file!=null)
             {
-                Frame.Navigate(typeof(CropImagePage), file);
+                var data = new PageNavigateData();
+                data.file = file;
+                data.isFromShare = false;
+                Frame.Navigate(typeof(ImageHandlePage), data);
             }
             
         }
@@ -57,7 +61,12 @@ namespace MyerMomentUniversal
             var file = await ui.CaptureFileAsync(CameraCaptureUIMode.Photo);
             if (file != null)
             {
-                Frame.Navigate(typeof(CropImagePage), file);
+                var data = new PageNavigateData();
+                data.file = file;
+                data.isFromShare = false;
+                Frame.Navigate(typeof(ImageHandlePage), data);
+
+
             }
         }
 

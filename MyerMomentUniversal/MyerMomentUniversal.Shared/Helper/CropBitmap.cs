@@ -37,7 +37,7 @@ using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace CSWindowsStoreAppCropBitmap
+namespace MyerMomentUniversal.Helper
 {
     public class CropBitmap
     {

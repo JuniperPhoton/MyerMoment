@@ -135,6 +135,7 @@
     <Content Include="Assets\SplashScreen.scale-180.png" />
     <Content Include="Assets\Square70x70Logo.scale-100.png" />
     <Content Include="Assets\Square70x70Logo.scale-140.png" />
+    <Content Include="Assets\Square70x70Logo.scale-180.png" />
     <Content Include="Assets\Square70x70Logo.scale-80.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-140.png" />
@@ -161,13 +162,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ChaoFunctionRT\ChaoFunctionRT.csproj">
       <Project>{9c909fed-d859-4cab-b4d2-dfb7fd31ee58}</Project>
       <Name>ChaoFunctionRT</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

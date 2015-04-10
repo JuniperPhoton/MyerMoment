@@ -19,6 +19,10 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
+using Windows.Foundation;
+using Windows.Storage.Streams;
+using Windows.Graphics.Imaging;
+using Windows.UI.Xaml.Media.Imaging;
 
 
 namespace MyerMomentUniversal
@@ -32,6 +36,7 @@ namespace MyerMomentUniversal
         private bool _isInErrorMode = false;
         private bool _isInMoreLineMode = false;
         private bool _isInEditMode = false;
+        private bool _isInCropMode = false;
 
         private bool _isFromShareTarget = false;
 
@@ -43,6 +48,7 @@ namespace MyerMomentUniversal
         private TextBox _currentTextBox = null;
         private int _currentTextViewFlag = 1;
 
+        //用于样式和文字的手势
         private CompositeTransform _compositeTransform1 = new CompositeTransform();
         private CompositeTransform _compositeTransform2 = new CompositeTransform();
         private CompositeTransform _compositeTransform3 = new CompositeTransform();
@@ -50,7 +56,35 @@ namespace MyerMomentUniversal
 
         private MomentStyleList styleList;
 
+        //储存图像相关的数据
         private ImageHandleHelper _imageHandleHelper;
+
+        SelectedRegion selectedRegion;
+
+        //传进来的源文件
+        StorageFile sourceImageFile = null;
+
+        private SelectedRegionShape SelectedShape = SelectedRegionShape.Free;
+
+        double cornerSize;
+        double CornerSize
+        {
+            get
+            {
+                if (cornerSize <= 0)
+                {
+                    cornerSize = (double)Application.Current.Resources["Size"];
+                }
+                return cornerSize;
+            }
+        }
+
+        private bool _isLoadImage = false;
+
+        /// <summary>
+        /// The previous points of all the pointers.
+        /// </summary>
+        Dictionary<uint, Point?> pointerPositionHistory = new Dictionary<uint, Point?>();
 
         public ImageHandlePage()
         {
@@ -62,6 +96,14 @@ namespace MyerMomentUniversal
 
             _imageHandleHelper = new ImageHandleHelper();
 
+            selectRegion.ManipulationMode = ManipulationModes.Scale |
+                ManipulationModes.TranslateX | ManipulationModes.TranslateY;
+
+            selectedRegion = new SelectedRegion { MinSelectRegionSize = 2 * CornerSize };
+            this.DataContext = selectedRegion;
+
+            this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+
 #if WINDOWS_PHONE_APP
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
 #endif
@@ -71,7 +113,7 @@ namespace MyerMomentUniversal
             ConfigStyle();
         }
 
-        #region CONFIGURATION
+        #region Configuration
         private void ConfigQuality()
         {
 #if WINDOWS_PHONE_APP
@@ -186,7 +228,7 @@ namespace MyerMomentUniversal
 
 #endregion
 
-        #region FUNCTION
+        #region Function
         private void TapBlack(object sender, TappedRoutedEventArgs e)
         {
             HandleBack();
@@ -386,9 +428,203 @@ namespace MyerMomentUniversal
         {
             HandleBack();
         }
+
+        private void cropClick(object sender, RoutedEventArgs e)
+        {
+            this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Visible;
+
+            this.imageCanvas.Height = image.ActualHeight;
+            this.imageCanvas.Width = image.ActualWidth;
+            this.selectedRegion.OuterRect = new Rect(0, 0, image.ActualWidth, image.ActualHeight);
+
+            this.selectedRegion.ResetCorner(0, 0, image.ActualWidth, image.ActualHeight);
+
+            CropInStory.Begin();
+            _isInCropMode = true;
+        }
         #endregion
 
-        #region TEXT_MANI 关于所有手势操作
+        #region Crop Command
+
+        private void SetToSquareClick(object sender, RoutedEventArgs e)
+        {
+            if (SelectedShape == SelectedRegionShape.Square || SelectedShape == SelectedRegionShape.Free)
+            {
+                this.selectedRegion.ResetCorner(0, 0, image.ActualWidth, image.ActualHeight);
+            }
+
+            var topLeftX = Canvas.GetLeft(topLeftCorner);
+            var bottomLeftX = Canvas.GetLeft(bottomLeftCorner);
+
+            var topRightX = Canvas.GetLeft(topRightCorner);
+            var bottomRightX = Canvas.GetLeft(bottomRightCorner);
+
+            var topLeftY = Canvas.GetTop(topLeftCorner);
+            var bottomLeftY = Canvas.GetTop(bottomLeftCorner);
+
+            var topRightY = Canvas.GetTop(topRightCorner);
+            var bottomRightY = Canvas.GetTop(bottomRightCorner);
+
+            //the photo is in wide
+            if (image.ActualWidth > image.ActualHeight)
+            {
+                var widthChanged = -(topRightX - (topLeftX + image.ActualHeight));
+
+                this.SelectedShape = SelectedRegionShape.Square;
+                selectedRegion.UpdateCorner((string)topRightCorner.Tag, widthChanged, 0);
+
+            }
+            else if(image.ActualHeight>image.ActualWidth)
+            {
+                var heightChanged = -(bottomRightY - (topLeftY + image.ActualWidth));
+                this.SelectedShape = SelectedRegionShape.Square;
+                selectedRegion.UpdateCorner((string)bottomRightCorner.Tag, 0, heightChanged);
+            }
+        }
+
+        private void ResetClick(object sender, RoutedEventArgs e)
+        {
+            this.selectedRegion.ResetCorner(0, 0, image.ActualWidth, image.ActualHeight);
+            this.SelectedShape = SelectedRegionShape.Free;
+        }
+
+        void sourceImage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (!_isLoadImage)
+            {
+                _isLoadImage = true;
+                return;
+            }
+            if (e.PreviousSize.Height <= 0 || e.PreviousSize.Width <= 0)
+            {
+                return;
+            }
+            if (e.NewSize.IsEmpty || double.IsNaN(e.NewSize.Height) || e.NewSize.Height <= 0)
+            {
+                this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                this.selectedRegion.OuterRect = Rect.Empty;
+                this.selectedRegion.ResetCorner(0, 0, 0, 0);
+            }
+            else
+            {
+                this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Visible;
+
+                this.imageCanvas.Height = e.NewSize.Height;
+                this.imageCanvas.Width = e.NewSize.Width;
+                this.selectedRegion.OuterRect = new Rect(0, 0, e.NewSize.Width, e.NewSize.Height);
+
+                if (e.PreviousSize.IsEmpty || double.IsNaN(e.PreviousSize.Height) || e.PreviousSize.Height <= 0)
+                {
+                    this.selectedRegion.ResetCorner(0, 0, e.NewSize.Width, e.NewSize.Height);
+                }
+                else
+                {
+                    double scale = e.NewSize.Height / e.PreviousSize.Height;
+                    this.selectedRegion.ResizeSelectedRect(scale);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Event Method
+        private void AddCornerEvents(Control corner)
+        {
+            corner.PointerPressed += Corner_PointerPressed;
+            corner.PointerMoved += Corner_PointerMoved;
+            corner.PointerReleased += Corner_PointerReleased;
+        }
+
+        private void RemoveCornerEvents(Control corner)
+        {
+            corner.PointerPressed -= Corner_PointerPressed;
+            corner.PointerMoved -= Corner_PointerMoved;
+            corner.PointerReleased -= Corner_PointerReleased;
+        }
+        #endregion
+
+        #region Select Region methods
+
+        /// <summary>
+        /// If a pointer presses in the corner, it means that the user starts to move the corner.
+        /// 1. Capture the pointer, so that the UIElement can get the Pointer events (PointerMoved,
+        ///    PointerReleased...) even the pointer is outside of the UIElement.
+        /// 2. Record the start position of the move.
+        /// </summary>
+        private void Corner_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            (sender as UIElement).CapturePointer(e.Pointer);
+
+            Windows.UI.Input.PointerPoint pt = e.GetCurrentPoint(this);
+
+            // Record the start point of the pointer.
+            pointerPositionHistory[pt.PointerId] = pt.Position;
+
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// If a pointer which is captured by the corner moves，the select region will be updated.
+        /// </summary>
+        void Corner_PointerMoved(object sender, PointerRoutedEventArgs e)
+        {
+
+            Windows.UI.Input.PointerPoint pt = e.GetCurrentPoint(this);
+            uint ptrId = pt.PointerId;
+
+            if (pointerPositionHistory.ContainsKey(ptrId) && pointerPositionHistory[ptrId].HasValue)
+            {
+                Point currentPosition = pt.Position;
+                Point previousPosition = pointerPositionHistory[ptrId].Value;
+
+                double xUpdate = currentPosition.X - previousPosition.X;
+                double yUpdate = currentPosition.Y - previousPosition.Y;
+
+                if (SelectedShape == SelectedRegionShape.Free)
+                {
+                    this.selectedRegion.UpdateCorner((sender as ContentControl).Tag as string, xUpdate, yUpdate);
+                    pointerPositionHistory[ptrId] = currentPosition;
+                }
+
+                pointerPositionHistory[ptrId] = currentPosition;
+            }
+
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// The pressed pointer is released, which means that the move is ended.
+        /// 1. Release the Pointer.
+        /// 2. Clear the position history of the Pointer.
+        /// </summary>
+        private void Corner_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            uint ptrId = e.GetCurrentPoint(this).PointerId;
+            if (this.pointerPositionHistory.ContainsKey(ptrId))
+            {
+                this.pointerPositionHistory.Remove(ptrId);
+            }
+
+            (sender as UIElement).ReleasePointerCapture(e.Pointer);
+
+
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// The user manipulates the selectRegion. The manipulation includes
+        /// 1. Translate
+        /// 2. Scale
+        /// </summary>
+        void selectRegion_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            this.selectedRegion.UpdateSelectedRect(e.Delta.Scale, e.Delta.Translation.X, e.Delta.Translation.Y);
+            e.Handled = true;
+        }
+
+        #endregion
+
+        #region 关于所有手势操作
 
         /// <summary>
         /// 旋转图像
@@ -441,6 +677,7 @@ namespace MyerMomentUniversal
                     break;
             }
         }
+
         private void TextView1_OnPointerEntered(object sender, PointerRoutedEventArgs e)
         {
             textGrid1.ManipulationDelta -= TextView1_ManipulationDelta;
@@ -602,8 +839,38 @@ namespace MyerMomentUniversal
 
 #endregion
 
-        #region DISPLAY AND SAVE
-        
+        #region 裁剪 保存 显示图像
+
+        /// <summary>
+        /// Save the cropped image.
+        /// </summary>
+        private async void CropClick(object sender, RoutedEventArgs e)
+        {
+            MaskGrid.Visibility = Visibility.Visible;
+
+            double widthScale = imageCanvas.Width / _imageHandleHelper.Width;
+            double heightScale = imageCanvas.Height / _imageHandleHelper.Height;
+
+            var fileToSave = await ImageHandleHelper.GetFileToSaved(_imageHandleHelper.FileName, CreationCollisionOption.GenerateUniqueName);
+
+            if (fileToSave != null)
+            {
+                await CropBitmap.SaveCroppedBitmapAsync(
+                    sourceImageFile,
+                    fileToSave,
+                    new Point(this.selectedRegion.SelectedRect.X / widthScale, this.selectedRegion.SelectedRect.Y / heightScale),
+                    new Size(this.selectedRegion.SelectedRect.Width / widthScale, this.selectedRegion.SelectedRect.Height / heightScale));
+
+                MaskGrid.Visibility = Visibility.Collapsed;
+
+                ShowImage(fileToSave);
+
+                CropOutStory.Begin();
+                imageCanvas.Visibility = Visibility.Collapsed;
+                _isInCropMode = false;
+                _isLoadImage = false;
+            }
+        }
         /// <summary>
         /// 保存按钮
         /// </summary>
@@ -632,23 +899,21 @@ namespace MyerMomentUniversal
         /// <param name="file">选取后的文件</param>
         private async void ShowImage(StorageFile file)
         {
+            TextView1.Visibility = Visibility.Collapsed;
+            ring.IsActive = true;
+            sourceImageFile = file;
             try
             {
-                TextView1.Visibility = Visibility.Collapsed;
-
-                ring.IsActive = true;
-
                 var bitmap = await _imageHandleHelper.GetBitmapFromFileAsync(file);
                 image.Source = bitmap;
-
-                ring.IsActive = false;
-
-                TextView1.Visibility = Visibility.Visible;
             }
             catch (Exception e)
             {
                 var task = ExceptionUtils.WriteRecord(e);
             }
+
+            ring.IsActive = false;
+            TextView1.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -665,7 +930,6 @@ namespace MyerMomentUniversal
                 {
                     case ImageSaveResult.FailToGetPixels:
                         {
-                            
                             throw new GetPixelsException();
                         };
                 }
@@ -675,7 +939,7 @@ namespace MyerMomentUniversal
                 _isInShareMode = true;
 
                 //从分享打开后，不能再次分享
-                if (_isFromShareTarget) shareBtn.Visibility = Visibility.Collapsed;
+                //if (_isFromShareTarget) shareBtn.Visibility = Visibility.Collapsed;
             }
             catch (Exception e)
             {
@@ -725,6 +989,14 @@ namespace MyerMomentUniversal
             await md.ShowAsync();
         }
 
+        private void DropCropClick(object sender,RoutedEventArgs e)
+        {
+            CropOutStory.Begin();
+            imageCanvas.Visibility = Visibility.Collapsed;
+            _isInCropMode = false;
+           // _isLoadImage = false;
+        }
+
         private void backErrorClick(object sender,RoutedEventArgs e)
         {
             ErrorGrid.Visibility = Visibility.Collapsed;
@@ -741,9 +1013,7 @@ namespace MyerMomentUniversal
             {
                 var task = ExceptionUtils.WriteRecord(ee);
             }
-
         }
-
         
         private async void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
@@ -774,6 +1044,8 @@ namespace MyerMomentUniversal
                 List<IStorageItem> storageItems = new List<IStorageItem>();
                 storageItems.Add(fileToGet);
                 request.Data.SetStorageItems(storageItems);
+
+                
             }
             catch (Exception)
             {
@@ -809,40 +1081,33 @@ namespace MyerMomentUniversal
 
         #endregion
 
-        #region NAVIGATE
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        #region Navigate Override
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 #endif
             UpdatePageLayout();
 
+            // Handle the pointer events of the corners. 
+            AddCornerEvents(topLeftCorner);
+            AddCornerEvents(topRightCorner);
+            AddCornerEvents(bottomLeftCorner);
+            AddCornerEvents(bottomRightCorner);
+
+            // Handle the manipulation events of the selectRegion
+            selectRegion.ManipulationDelta += selectRegion_ManipulationDelta;
+
+            image.SizeChanged += sourceImage_SizeChanged;
+
             if(e.Parameter!=null)
             {
-               
                 if (e.Parameter.GetType() == typeof(PageNavigateData))
                 {
                     var file = (e.Parameter as PageNavigateData).file;
                     this._isFromShareTarget = (e.Parameter as PageNavigateData).isFromShare;
                     if (file != null) ShowImage(file);
                 }
-                
-                if (e.Parameter.GetType() == typeof(ShareOperation))
-                {
-                    var shareOperation = e.Parameter as ShareOperation;
-                    var items=await shareOperation.Data.GetStorageItemsAsync();
-                   
-                    var firstItem = items.FirstOrDefault();
-                    if(firstItem!=null)
-                    {
-                        var path = firstItem.Path;
-                        var fileToOpen = await StorageFile.GetFileFromPathAsync(path);
-                        ShowImage(fileToOpen);
-
-                        _isFromShareTarget = true;
-                    }
-                    
-                }  
             }
         }
 
@@ -851,16 +1116,33 @@ namespace MyerMomentUniversal
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
 #endif
+            // Handle the pointer events of the corners. 
+            RemoveCornerEvents(topLeftCorner);
+            RemoveCornerEvents(topRightCorner);
+            RemoveCornerEvents(bottomLeftCorner);
+            RemoveCornerEvents(bottomRightCorner);
+
+            // Handle the manipulation events of the selectRegion
+            selectRegion.ManipulationDelta -= selectRegion_ManipulationDelta;
+
+            image.SizeChanged -= sourceImage_SizeChanged;
+
         }
 
         private bool HandleBack()
         {
-            if (_isInStyleMode || _isInShareMode || _isInErrorMode || _isInMoreLineMode || _isInEditMode)
+            if (_isInStyleMode || _isInShareMode || _isInErrorMode || _isInMoreLineMode || _isInEditMode || _isInCropMode)
             {
                 if (_isInStyleMode)
                 {
                     MovieOutStory.Begin();
                     _isInStyleMode = false;
+                }
+                if(_isInCropMode)
+                {
+                    CropOutStory.Begin();
+                    imageCanvas.Visibility = Visibility.Collapsed;
+                    _isInCropMode = false;
                 }
                 if (_isInShareMode)
                 {
@@ -886,6 +1168,7 @@ namespace MyerMomentUniversal
             }
             else return false;
         }
+
 #if WINDOWS_PHONE_APP
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {

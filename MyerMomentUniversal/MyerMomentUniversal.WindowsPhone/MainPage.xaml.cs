@@ -1,5 +1,6 @@
 ﻿using ChaoFunctionRT;
 using MyerMomentUniversal.Helper;
+using MyerMomentUniversal.Model;
 using NotificationsExtensions.TileContent;
 using System;
 using System.Collections.Generic;
@@ -73,9 +74,9 @@ namespace MyerMomentUniversal
             //creditTB.Text = loader.GetString("CreditHint");
             //importHint.Text = loader.GetString("ImportHint");
             //importTB.Text = loader.GetString("ImportHeader");
-            tileColorTextblock.Text = loader.GetString("TileColorHeader");
-            transparantTextblock.Text = loader.GetString("TransparantHint");
-            solidcolorTextblock.Text = loader.GetString("ThemeHint");
+            //tileColorTextblock.Text = loader.GetString("TileColorHeader");
+            //transparantTextblock.Text = loader.GetString("TransparantHint");
+            //solidcolorTextblock.Text = loader.GetString("ThemeHint");
             
         }
 
@@ -122,7 +123,10 @@ namespace MyerMomentUniversal
             {
                 case ActivationKind.PickFileContinuation:
                     {
-                        Frame.Navigate(typeof(CropImagePage), args.Files[0]);
+                        var data = new PageNavigateData();
+                        data.file = args.Files[0];
+                        data.isFromShare = false;
+                        Frame.Navigate(typeof(ImageHandlePage), data);
                     }
                     break;
             }
@@ -224,11 +228,11 @@ namespace MyerMomentUniversal
                 positionCom.SelectedIndex = int.Parse(position);
             }
 
-            var color = LocalSettingHelper.GetValue("TileColor");
-            if (color != null)
-            {
-                colorCom.SelectedIndex = int.Parse(color);
-            }
+            //var color = LocalSettingHelper.GetValue("TileColor");
+            //if (color != null)
+            //{
+            //    //colorCom.SelectedIndex = int.Parse(color);
+            //}
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

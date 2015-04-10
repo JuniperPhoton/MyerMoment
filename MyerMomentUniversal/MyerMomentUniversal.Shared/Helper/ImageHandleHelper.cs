@@ -25,11 +25,11 @@ namespace MyerMomentUniversal.Helper
         public int DpiX { get; set; }
         public int DpiY { get; set; }
         public Guid EncodeID { get; set; }
-        public string FileName { get; set; }
+        public string FileName { get; set; } //图像文件原来的名字
         public int ScaleLong { get; set; }
         public BitmapAlphaMode AlphaMode { get; set; }
         public BitmapPixelFormat PixelFormat { get; set; }
-        public string SavedFileName { get; set; }
+        public string SavedFileName { get; set; } //保存的图片的名字
 
         public ImageHandleHelper()
         {
@@ -98,7 +98,6 @@ namespace MyerMomentUniversal.Helper
                 var pixels = await bitmap.GetPixelsAsync();
 
                 exceptionFlag++; //now it's 1
-
 
                 StorageFile fileToSave = await GetFileToSaved(this.FileName,CreationCollisionOption.ReplaceExisting);
                

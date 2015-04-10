@@ -319,7 +319,7 @@
                                         <TextBlock  x:Name="cameraRollTextblock" Text="CameraRoll"/>
                                     </ComboBoxItem>
                                 </ComboBox>
-                                <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
+                                <!--<Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
                                     <TextBlock x:Name="tileColorTextblock"  Margin="5" Text="TILE STYLE" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}"/>
                                 </Border>
                                 <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" SelectionChanged="colorCom_SelectionChanged" x:Name="colorCom" PlaceholderText="Select the default color of Tile" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeColor}" >
@@ -330,7 +330,7 @@
                                         <TextBlock  x:Name="solidcolorTextblock" Text="SolidColor"/>
                                     </ComboBoxItem>
                                    
-                                </ComboBox>
+                                </ComboBox>-->
                                 <!--<TextBlock Text="PERSONALIZE" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="ExtraBold" Opacity="0.3" Margin="0,10,0,0" FontSize="30" Foreground="Black" FontFamily="Segoe WP"/>
                                 <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
                                     <TextBlock x:Name="importTB" Margin="5" Text="IMPORT FONT FAMILY" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" />

@@ -1,6 +1,7 @@
 ﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:MyerMomentUniversal" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="MyerMomentUniversal.App">
   <Application.Resources>
-        <x:String x:Key="AppVersion">0.99 RC</x:String>
+      
+        <x:String x:Key="AppVersion">1.0</x:String>
         <SolidColorBrush x:Key="MomentThemeColor">#FFFFC733</SolidColorBrush>
         <SolidColorBrush x:Key="MomentThemeBlack">#FF303030</SolidColorBrush>
         <x:Int32 x:Key="PivotHeaderFontsize">20</x:Int32>

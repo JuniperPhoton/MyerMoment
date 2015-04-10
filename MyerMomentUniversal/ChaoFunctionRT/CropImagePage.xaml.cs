@@ -1,5 +1,4 @@
 ﻿using ChaoFunctionRT;
-using CSWindowsStoreAppCropBitmap;
 using MyerMomentUniversal.Helper;
 using System;
 using System.Collections.Generic;
@@ -87,6 +86,8 @@ namespace MyerMomentUniversal
 #endif
 
             ConfigLang();
+
+            
         }
 
         #region CONFIG

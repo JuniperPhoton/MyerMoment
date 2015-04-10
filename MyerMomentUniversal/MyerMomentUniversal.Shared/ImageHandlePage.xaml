@@ -613,6 +613,84 @@
                 <EasingDoubleKeyFrame x:Name="endText1Angle" KeyTime="0:0:0.2" Value="90"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Name="CropInStory">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cropRecGrid">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="200"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<CircleEase EasingMode="EaseOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="commandGrid">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="200"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<CircleEase EasingMode="EaseOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="300"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid1">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="300"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="blackGrid">
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Visible</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Visible</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        	</ObjectAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="blackGrid">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="CropOutStory">
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="blackGrid">
+        		<DiscreteObjectKeyFrame KeyTime="0">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Visible</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+        			<DiscreteObjectKeyFrame.Value>
+        				<Visibility>Visible</Visibility>
+        			</DiscreteObjectKeyFrame.Value>
+        		</DiscreteObjectKeyFrame>
+        	</ObjectAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="blackGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="cropRecGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="200"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="commandGrid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="200"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="200"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid1">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="200"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
        
     </Page.Resources>
 
@@ -644,7 +722,7 @@
         <Grid x:Name="blackGrid" Grid.Row="0" Tapped="TapBlack" Grid.RowSpan="4" Visibility="Collapsed" Margin="0,-32,0,0">
             <Border Background="Black" Opacity="0.7"/>
         </Grid>
-        <Grid x:Name="renderGrid" Grid.Row="1" Grid.RowSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,30" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="renderGrid" Grid.Row="1" Grid.RowSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,30" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <CompositeTransform/>
             </Grid.RenderTransform>
@@ -656,6 +734,36 @@
                     <CompositeTransform/>
                 </Image.RenderTransform>
             </Image>
+            <Canvas x:Name="imageCanvas" Visibility="Collapsed" >
+                <Path x:Name="nonselectRegion" Fill="{StaticResource ApplicationSecondaryForegroundThemeBrush}" Opacity="0.7">
+                    <Path.Data>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="{Binding OuterRect,Mode=OneWay}">
+                            </RectangleGeometry>
+                            <RectangleGeometry Rect="{Binding SelectedRect,Mode=OneWay}">
+                            </RectangleGeometry>
+                        </GeometryGroup>
+                    </Path.Data>
+                </Path>
+                <Path x:Name="selectRegion" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" Opacity="0">
+                    <Path.Data>
+                        <RectangleGeometry x:Name="recToSelected" Rect="{Binding SelectedRect,Mode=TwoWay}"/>
+                    </Path.Data>
+                </Path>
+                <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="topLeftCorner" Tag="TopLeftCorner" 
+                                                Canvas.Left="{Binding Path=TopLeftCornerCanvasLeft,Mode=OneWay}" 
+                                                Canvas.Top="{Binding Path=TopLeftCornerCanvasTop,Mode=OneWay}"/>
+                <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="topRightCorner" Tag="TopRightCorner"
+                                                Canvas.Left="{Binding Path=BottomRightCornerCanvasLeft,Mode=OneWay}" 
+                                                Canvas.Top="{Binding Path=TopLeftCornerCanvasTop,Mode=OneWay}" />
+                <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="bottomLeftCorner" Tag="BottomLeftCorner" 
+                                                Canvas.Left="{Binding Path=TopLeftCornerCanvasLeft,Mode=OneWay}" 
+                                                Canvas.Top="{Binding Path=BottomRightCornerCanvasTop,Mode=OneWay}" />
+                <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="bottomRightCorner" Tag="BottomRightCorner" 
+                                                Canvas.Left="{Binding Path=BottomRightCornerCanvasLeft,Mode=OneWay}"
+                                                Canvas.Top="{Binding Path=BottomRightCornerCanvasTop,Mode=OneWay}"/>
+            </Canvas>
+
             <Grid x:Name="textGrid1"  Tapped="textGrid1_Tapped"  PointerEntered="TextView1_OnPointerEntered" ManipulationMode="TranslateX,TranslateY" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
                 
                 <TextBox x:Name="TextView1" FontSize="30"  AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to write sth." FontFamily="Microsoft YaHei" Margin="0" InputScope="Chat"/>
@@ -704,6 +812,12 @@
                             <Grid Height="50" Width="50">
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="Rotate" Foreground="Black"/>
+                            </Grid>
+                        </Button>
+                        <Button x:Name="CropBtn" Click="cropClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                            <Grid Height="50" Width="50">
+                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                <SymbolIcon Symbol="Crop" Foreground="Black"/>
                             </Grid>
                         </Button>
                         <!--<Button x:Name="FilterBtn" Click="fontLineClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
@@ -768,6 +882,54 @@
                 </Border>
             </Button>
         </Grid>
+        <Grid x:Name="cropRecGrid" Margin="0" Grid.Row="2" RenderTransformOrigin="0.5,0.5">
+        	<Grid.RenderTransform>
+        		<CompositeTransform TranslateY="200"/>
+        	</Grid.RenderTransform>
+        	<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        		<Button x:Name="squareBtn" Click="SetToSquareClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+        			<Grid Height="50" Width="50">
+        				<Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+        				<TextBlock Text="1:1" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        			</Grid>
+        		</Button>
+
+        		<Button x:Name="resetBtn" Click="ResetClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+        			<Grid Height="50" Width="50">
+        				<Ellipse StrokeThickness="4" Fill="White"/>
+        				<SymbolIcon Symbol="FullScreen" Foreground="Black"/>
+        			</Grid>
+        		</Button>
+        	</StackPanel>
+
+        </Grid>
+        <Grid x:Name="commandGrid" Margin="0" Grid.Row="3" RenderTransformOrigin="0.5,0.5" >
+        	<Grid.RenderTransform>
+        		<CompositeTransform TranslateY="200"/>
+        	</Grid.RenderTransform>
+
+        	<Grid.ColumnDefinitions>
+        		<ColumnDefinition Width="2*" />
+        		<ColumnDefinition />
+        	</Grid.ColumnDefinitions>
+        	<Button Click="CropClick" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Style="{StaticResource ButtonStyle2}" Grid.ColumnSpan="1" BorderThickness="0" Background="{StaticResource MomentThemeColor}" VerticalAlignment="Stretch">
+        		<Border Background="{StaticResource MomentThemeColor}">
+        			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        				<SymbolIcon Symbol="Crop" Foreground="{StaticResource MomentThemeBlack}"/>
+        				<TextBlock  x:Name="nextTB"  Margin="10,0,0,0" Text="CROP" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraBold"/>
+        			</StackPanel>
+        		</Border>
+        	</Button>
+        	<Button Click="DropCropClick" HorizontalAlignment="Stretch" Grid.Column="1" VerticalContentAlignment="Stretch" Style="{StaticResource ButtonStyle2}" Grid.ColumnSpan="1" BorderThickness="0" Background="{x:Null}" VerticalAlignment="Stretch" >
+        		<Border Background="White">
+        			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        				<SymbolIcon Symbol="Cancel" Foreground="{StaticResource MomentThemeBlack}"/>
+        				<TextBlock  x:Name="cancelTB2" Text="CANCEL" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="ExtraBold" />
+        			</StackPanel>
+        		</Border>
+        	</Button>
+        </Grid>
+
         <Grid x:Name="TextLineGrid" Grid.Row="2" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" Background="#FFE0E0E0" Visibility="Visible">
             <Grid.RenderTransform>
                 <CompositeTransform TranslateY="200"/>

@@ -15,12 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)CropControl.xaml.cs">
-      <DependentUpon>CropControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)CropImagePage.xaml.cs">
-      <DependentUpon>CropImagePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Helper\ContinuationManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\CropBitmap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\HttpHelper.cs" />
@@ -96,14 +90,6 @@
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\zh-CN\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)CropControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)CropImagePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)ImageHandlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

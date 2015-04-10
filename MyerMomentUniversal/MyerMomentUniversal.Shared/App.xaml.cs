@@ -24,6 +24,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using MyerMomentUniversal.Model;
+using Windows.Storage;
 
 // 有关“空白应用程序”模板的信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -47,6 +49,8 @@ namespace MyerMomentUniversal
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+
+            App.Current.RequestedTheme = ApplicationTheme.Dark;
         }
 
         /// <summary>
@@ -66,6 +70,8 @@ namespace MyerMomentUniversal
 #endif
 
             Frame rootFrame = Window.Current.Content as Frame;
+
+            
 
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
@@ -265,11 +271,19 @@ namespace MyerMomentUniversal
                 ShareOperation shareOperation = args.ShareOperation;
                 if (shareOperation.Data.Contains(StandardDataFormats.StorageItems))
                 {
-                    rootFrame.Navigate(typeof(CropImagePage), shareOperation);
-                    Window.Current.Content = rootFrame;
-                    Window.Current.Activate();
+                    var items = await shareOperation.Data.GetStorageItemsAsync();
+                    var firstItem = items.FirstOrDefault();
+                    if (firstItem != null)
+                    {
+                        var path = firstItem.Path;
+                        var fileToOpen = await StorageFile.GetFileFromPathAsync(path);
+                        
+                        PageNavigateData data = new PageNavigateData(fileToOpen, true);
+                        rootFrame.Navigate(typeof(ImageHandlePage), shareOperation);
+                        Window.Current.Content = rootFrame;
+                        Window.Current.Activate();
+                    }
                 }
-
             }
         }
 

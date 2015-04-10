@@ -132,7 +132,7 @@
                                     <Border Margin="0" HorizontalAlignment="Left"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                         <TextBlock Margin="5" Text="VERSION" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Segoe WP"/>
                                     </Border>
-                                    <HyperlinkButton  x:Name="VersionHLB" Content="0.99 RC" NavigateUri="" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Margin="0,0,0,0" Foreground="White" />
+                                    <HyperlinkButton  x:Name="VersionHLB" Content="1.0" NavigateUri="" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Margin="0,0,0,0" Foreground="White" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                                     <Border Margin="0,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
