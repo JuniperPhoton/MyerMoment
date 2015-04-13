@@ -26,10 +26,12 @@ namespace MyerMomentUniversal.Helper
         public int DpiY { get; set; }
         public Guid EncodeID { get; set; }
         public string FileName { get; set; } //图像文件原来的名字
+        public string FileToSavedName { get; set; } //将要保存的名字
+        public string SavedFileName { get; set; } //保存的图片的名字
         public int ScaleLong { get; set; }
         public BitmapAlphaMode AlphaMode { get; set; }
         public BitmapPixelFormat PixelFormat { get; set; }
-        public string SavedFileName { get; set; } //保存的图片的名字
+        
 
         public ImageHandleHelper()
         {
@@ -99,7 +101,7 @@ namespace MyerMomentUniversal.Helper
 
                 exceptionFlag++; //now it's 1
 
-                StorageFile fileToSave = await GetFileToSaved(this.FileName,CreationCollisionOption.ReplaceExisting);
+                StorageFile fileToSave = await GetFileToSave(this.FileName,CreationCollisionOption.GenerateUniqueName);
                
                 if (fileToSave == null) return ImageSaveResult.FileNotOpen;
 
@@ -170,7 +172,7 @@ namespace MyerMomentUniversal.Helper
                 "&outputHeight" + outputHeight + "&dpiX=" + DpiX + "&dpiY=" + DpiY;
         }
 
-        public async static Task<StorageFile> GetFileToSaved(string fileName,CreationCollisionOption createoption)
+        public async static Task<StorageFile> GetFileToSave(string fileName,CreationCollisionOption createoption)
         {
             var positon = LocalSettingHelper.GetValue("Position");
             StorageFile fileToSave = null;
@@ -193,6 +195,12 @@ namespace MyerMomentUniversal.Helper
                     }; break;
             }
 
+            return fileToSave;
+        }
+
+        public async static Task<StorageFile> GetTempFileToSave(string fileName)
+        {
+            var fileToSave = await ApplicationData.Current.TemporaryFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
             return fileToSave;
         }
 
@@ -224,6 +232,17 @@ namespace MyerMomentUniversal.Helper
             await fileToDelete.DeleteAsync();
 
             return true;
+        }
+
+        public async static Task<bool> DeleteTempFile(string fileName)
+        {
+            var file = await ApplicationData.Current.TemporaryFolder.GetFileAsync(fileName);
+            if (file != null)
+            {
+                await file.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                return true;
+            }
+            else return false;
         }
     }
 

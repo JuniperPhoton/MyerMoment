@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChaoFunctionRT", "MyerMomen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationsExtensions", "MyerMomentUniversal\NotificationsExtensions\NotificationsExtensions.csproj", "{6E87464B-B064-40CA-8161-7C18C337ADFF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiboSDKForWinRT", "MyerMomentUniversal\WeiboSDK_RT\WeiboSDKforWinRT\WeiboSDKForWinRT.csproj", "{680C312D-AE8C-41CE-A043-A8B5825A467D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiboSDKForWinRTPhone", "WeiboSDKForWinRTPhone\WeiboSDKForWinRTPhone.csproj", "{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MyerMomentUniversal\MyerMomentUniversal.Shared\MyerMomentUniversal.Shared.projitems*{bc303945-a99a-45d0-b695-41d5ac8b1b36}*SharedItemsImports = 13
@@ -122,6 +126,44 @@ Global
 		{6E87464B-B064-40CA-8161-7C18C337ADFF}.Release|x64.Build.0 = Release|x64
 		{6E87464B-B064-40CA-8161-7C18C337ADFF}.Release|x86.ActiveCfg = Release|x86
 		{6E87464B-B064-40CA-8161-7C18C337ADFF}.Release|x86.Build.0 = Release|x86
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Debug|ARM.ActiveCfg = Debug|ARM
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Debug|ARM.Build.0 = Debug|ARM
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Debug|Win32.ActiveCfg = Debug|x86
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Debug|Win32.Build.0 = Debug|x86
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Debug|x64.ActiveCfg = Debug|x64
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Debug|x64.Build.0 = Debug|x64
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Debug|x86.ActiveCfg = Debug|x86
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Debug|x86.Build.0 = Debug|x86
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Release|ARM.ActiveCfg = Release|ARM
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Release|ARM.Build.0 = Release|ARM
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Release|Win32.ActiveCfg = Release|x86
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Release|Win32.Build.0 = Release|x86
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Release|x64.ActiveCfg = Release|x64
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Release|x64.Build.0 = Release|x64
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Release|x86.ActiveCfg = Release|x86
+		{680C312D-AE8C-41CE-A043-A8B5825A467D}.Release|x86.Build.0 = Release|x86
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Debug|ARM.ActiveCfg = Debug|ARM
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Debug|ARM.Build.0 = Debug|ARM
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Debug|Win32.ActiveCfg = Debug|x86
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Debug|Win32.Build.0 = Debug|x86
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Debug|x86.ActiveCfg = Debug|x86
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Debug|x86.Build.0 = Debug|x86
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Release|ARM.ActiveCfg = Release|ARM
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Release|ARM.Build.0 = Release|ARM
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Release|Win32.ActiveCfg = Release|x86
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Release|Win32.Build.0 = Release|x86
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Release|x64.ActiveCfg = Release|Any CPU
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Release|x86.ActiveCfg = Release|x86
+		{0E4C50F9-0EAA-44F7-B7A2-B6A8513413FE}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

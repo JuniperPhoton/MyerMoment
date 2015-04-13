@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="MyerMomentUniversal.SharePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyerMomentUniversal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition>
+                <EntranceThemeTransition.FromHorizontalOffset>300</EntranceThemeTransition.FromHorizontalOffset>
+            </EntranceThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Image x:Name="image" Stretch="UniformToFill"/>
+        <Border Background="Black" Opacity="0.95"/>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
+            <ProgressRing x:Name="ring" IsActive="True" Foreground="{StaticResource MomentThemeColor}" Width="70" Height="70"/>
+            <TextBlock x:Name="statusTB" Text="Sharing..." FontSize="30" HorizontalAlignment="Center"/>
+            <Button x:Name="retryBtn" Visibility="Collapsed" Width="300" HorizontalAlignment="Center" Click="RetryClick" Height="50" MinHeight="10"  Background="White" Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10">
+                <Border Background="{StaticResource MomentThemeColor}">
+                    <TextBlock x:Name="retryTB" Foreground="{StaticResource MomentThemeBlack}" Text="RETRY" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </Button>
+            <Button x:Name="backHomeBtn" Visibility="Collapsed" Width="300" HorizontalAlignment="Center" Click="BackHomeClick" Height="50" MinHeight="10"  Background="White" Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10">
+                <Border Background="White">
+                    <TextBlock x:Name="backhomeTB" Foreground="{StaticResource MomentThemeBlack}" Text="BACK TO HOME" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+
+</Page>

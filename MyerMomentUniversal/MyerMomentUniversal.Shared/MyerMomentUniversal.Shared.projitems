@@ -30,6 +30,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PageNavigateData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\StyleList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShareControl.xaml.cs">
+      <DependentUpon>ShareControl.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Asset\Alone.jpg" />
@@ -91,6 +94,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)ImageHandlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)ShareControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

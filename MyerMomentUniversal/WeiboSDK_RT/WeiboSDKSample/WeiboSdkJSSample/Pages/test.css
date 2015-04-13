@@ -1,0 +1,39 @@
+﻿.test section[role=main] {
+    margin-left: 120px;
+    margin-right: 120px;
+}
+
+@media screen and (-ms-view-state: snapped) {
+    .test section[role=main] {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media screen and (-ms-view-state: fullscreen-portrait) {
+    .test section[role=main] {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+}
+
+.funcBtn {
+    display:block;
+    margin-right:20px;
+	width:240px;
+	margin:12px 0 12px 12px
+}
+
+.status {
+    vertical-align:bottom;
+	margin-left:12px;
+	font-family:'segoe print';
+    overflow:scroll;
+}
+
+.titleP {
+    color:green;
+    padding-top:24px;
+	margin-left:12px;
+	font-family:'segoe print';
+}

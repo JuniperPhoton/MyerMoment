@@ -21,10 +21,10 @@ namespace MyerMomentUniversal.Helper
                 LocalSettingHelper.AddValue("QualityCompress", "0");
             }
 
-            //if (!LocalSettingHelper.IsExist("TileColor"))
-            //{
-            //    LocalSettingHelper.AddValue("TileColor", "0");
-            //}
+            if (!LocalSettingHelper.IsExist("TileColor"))
+            {
+                LocalSettingHelper.AddValue("TileColor", "1");
+            }
 #endif
         }
     }

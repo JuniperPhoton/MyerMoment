@@ -24,6 +24,8 @@ using Windows.Storage.Streams;
 using Windows.Graphics.Imaging;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.ApplicationModel.Resources;
+using WeiboSDKForWinRT;
+using System.Threading.Tasks;
 
 
 namespace MyerMomentUniversal
@@ -64,6 +66,7 @@ namespace MyerMomentUniversal
 
         //传进来的源文件
         StorageFile sourceImageFile = null;
+        string tempFileName = "";
 
         private SelectedRegionShape SelectedShape = SelectedRegionShape.Free;
 
@@ -854,7 +857,7 @@ namespace MyerMomentUniversal
             double widthScale = imageCanvas.Width / _imageHandleHelper.Width;
             double heightScale = imageCanvas.Height / _imageHandleHelper.Height;
 
-            var fileToSave = await ImageHandleHelper.GetFileToSaved(_imageHandleHelper.FileName, CreationCollisionOption.GenerateUniqueName);
+            var fileToSave = await ImageHandleHelper.GetTempFileToSave(_imageHandleHelper.FileName);
 
             if (fileToSave != null)
             {
@@ -868,12 +871,15 @@ namespace MyerMomentUniversal
 
                 ShowImage(fileToSave);
 
+                tempFileName = fileToSave.Name;
+
                 CropOutStory.Begin();
                 imageCanvas.Visibility = Visibility.Collapsed;
                 _isInCropMode = false;
                 _isLoadImage = false;
             }
         }
+
         /// <summary>
         /// 保存按钮
         /// </summary>
@@ -937,12 +943,14 @@ namespace MyerMomentUniversal
                         };
                 }
 
+                if (tempFileName != "") await ImageHandleHelper.DeleteTempFile(tempFileName);
+                
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ShareGrid.Visibility = Visibility.Visible;
                 _isInShareMode = true;
 
                 //从分享打开后，不能再次分享
-                //if (_isFromShareTarget) shareBtn.Visibility = Visibility.Collapsed;
+               // if (_isFromShareTarget) shareBtn.Visibility = Visibility.Collapsed;
             }
             catch (Exception e)
             {
@@ -1006,17 +1014,21 @@ namespace MyerMomentUniversal
             _isInErrorMode = false;
         }
 
-        private void ShareClick(object sender, RoutedEventArgs e)
+        private async void ShareClick(object sender, RoutedEventArgs e)
         {
             try
-            {
-                DataTransferManager.ShowShareUI();
+            {  
+                PageNavigateData data = new PageNavigateData();
+                data.isFromShare = false;
+                data.file = await GetFileToShare();
+                Frame.Navigate(typeof(SharePage),data);
             }
             catch (Exception ee)
             {
                 var task = ExceptionUtils.WriteRecord(ee);
             }
         }
+
         
         private async void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
@@ -1027,28 +1039,12 @@ namespace MyerMomentUniversal
 
             try
             {
-                var positon = LocalSettingHelper.GetValue("Position");
-                StorageFile fileToGet = null;
-                switch (positon)
-                {
-                    case "0": fileToGet = await KnownFolders.SavedPictures.GetFileAsync(_imageHandleHelper.SavedFileName); break;
-                    case "1":
-                        {
-                            var folderToGet = await KnownFolders.PicturesLibrary.GetFolderAsync("MyerMoment");
-                            fileToGet = await folderToGet.GetFileAsync(_imageHandleHelper.SavedFileName);
-                        }; break;
-                    case "2":
-                        {
-                            fileToGet = await KnownFolders.CameraRoll.GetFileAsync(_imageHandleHelper.SavedFileName);
-                        }; break;
-                }
-                if (fileToGet == null) return;
+                var fileToGet = await GetFileToShare();
 
                 List<IStorageItem> storageItems = new List<IStorageItem>();
                 storageItems.Add(fileToGet);
                 request.Data.SetStorageItems(storageItems);
 
-                
             }
             catch (Exception)
             {
@@ -1063,6 +1059,27 @@ namespace MyerMomentUniversal
             {
                 deferral.Complete();
             }
+        }
+
+        private async Task<StorageFile> GetFileToShare()
+        {
+            var positon = LocalSettingHelper.GetValue("Position");
+            StorageFile fileToGet = null;
+            switch (positon)
+            {
+                case "0": fileToGet = await KnownFolders.SavedPictures.GetFileAsync(_imageHandleHelper.SavedFileName); break;
+                case "1":
+                    {
+                        var folderToGet = await KnownFolders.PicturesLibrary.GetFolderAsync("MyerMoment");
+                        fileToGet = await folderToGet.GetFileAsync(_imageHandleHelper.SavedFileName);
+                    }; break;
+                case "2":
+                    {
+                        fileToGet = await KnownFolders.CameraRoll.GetFileAsync(_imageHandleHelper.SavedFileName);
+                    }; break;
+            }
+            if (fileToGet == null) return null;
+            else return fileToGet;
         }
 
         private void BackHomeClick(object sender, RoutedEventArgs e)
@@ -1105,10 +1122,12 @@ namespace MyerMomentUniversal
 
             if(e.Parameter!=null)
             {
+                
                 if (e.Parameter.GetType() == typeof(PageNavigateData))
                 {
                     var file = (e.Parameter as PageNavigateData).file;
                     this._isFromShareTarget = (e.Parameter as PageNavigateData).isFromShare;
+                   
                     if (file != null) ShowImage(file);
                 }
             }

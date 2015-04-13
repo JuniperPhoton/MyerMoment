@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using WeiboSDKForWinRT;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
@@ -74,9 +75,9 @@ namespace MyerMomentUniversal
             //creditTB.Text = loader.GetString("CreditHint");
             //importHint.Text = loader.GetString("ImportHint");
             //importTB.Text = loader.GetString("ImportHeader");
-            //tileColorTextblock.Text = loader.GetString("TileColorHeader");
-            //transparantTextblock.Text = loader.GetString("TransparantHint");
-            //solidcolorTextblock.Text = loader.GetString("ThemeHint");
+            tileColorTextblock.Text = loader.GetString("TileColorHeader");
+            transparantTextblock.Text = loader.GetString("TransparantHint");
+            solidcolorTextblock.Text = loader.GetString("ThemeHint");
             
         }
 
@@ -132,6 +133,15 @@ namespace MyerMomentUniversal
             }
         }
 
+        private void CancelAuthClick(object sender,RoutedEventArgs e)
+        {
+            var oauthClient = new ClientOAuth();
+            if(oauthClient.IsAuthorized)
+            {
+                oauthClient.IsAuthorized = false;
+            }
+        }
+
         private void qualityCom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (iscomComDirty == false)
@@ -165,23 +175,16 @@ namespace MyerMomentUniversal
                     case 1:
                         {
                             var smallTileContent = TileContentFactory.CreateTileSquare71x71Image();
-                            smallTileContent.Image.Src = "ms-appx:///Asset/logo_71.png";
+                            smallTileContent.Image.Src = "ms-appx:///Assets/newLogo_tran_71.png";
 
                             //medium
                             var mediumTileContent = TileContentFactory.CreateTileSquare150x150Image();
                             mediumTileContent.RequireSquare71x71Content = true;
                             mediumTileContent.Square71x71Content = smallTileContent;
-                            mediumTileContent.Image.Src = "ms-appx:///Assets/LOGO_Mediun_For_Change.png";
-                            mediumTileContent.Branding = TileBranding.None;
+                            mediumTileContent.Image.Src = "ms-appx:///Assets/newLogo_tran.png";
+                            mediumTileContent.Branding = TileBranding.Name;
 
-                            //wide
-                            var wideTileContent = TileContentFactory.CreateTileWide310x150Image();
-                            wideTileContent.RequireSquare150x150Content = true;
-                            wideTileContent.Square150x150Content = mediumTileContent;
-                            wideTileContent.Image.Src = "ms-appx:///Asset/LOGO_WIDE.png";
-                            wideTileContent.Branding = TileBranding.None;
-
-                            var notification = wideTileContent.CreateNotification();
+                            var notification = mediumTileContent.CreateNotification();
                             
                             TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
                         }
@@ -228,11 +231,11 @@ namespace MyerMomentUniversal
                 positionCom.SelectedIndex = int.Parse(position);
             }
 
-            //var color = LocalSettingHelper.GetValue("TileColor");
-            //if (color != null)
-            //{
-            //    //colorCom.SelectedIndex = int.Parse(color);
-            //}
+            var color = LocalSettingHelper.GetValue("TileColor");
+            if (color != null)
+            {
+                colorCom.SelectedIndex = int.Parse(color);
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

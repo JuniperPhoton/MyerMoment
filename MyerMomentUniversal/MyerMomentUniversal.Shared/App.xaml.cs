@@ -65,13 +65,10 @@ namespace MyerMomentUniversal
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 this.DebugSettings.EnableFrameRateCounter = true;
-                
             }
 #endif
 
             Frame rootFrame = Window.Current.Content as Frame;
-
-            
 
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
@@ -90,14 +87,6 @@ namespace MyerMomentUniversal
 
                 // 将框架放在当前窗口中
                 Window.Current.Content = rootFrame;
-
-#if WINDOWS_PHONE_APP
-                if (!LocalSettingHelper.IsExist("feature1"))
-                {
-                    LocalSettingHelper.AddValue("feature1", true);
-                    rootFrame.Navigate(typeof(FeaturePage));
-                }
-#endif    
             }
 
             if (rootFrame.Content == null)
@@ -279,7 +268,8 @@ namespace MyerMomentUniversal
                         var fileToOpen = await StorageFile.GetFileFromPathAsync(path);
                         
                         PageNavigateData data = new PageNavigateData(fileToOpen, true);
-                        rootFrame.Navigate(typeof(ImageHandlePage), shareOperation);
+                        rootFrame.Navigate(typeof(ImageHandlePage), data);
+
                         Window.Current.Content = rootFrame;
                         Window.Current.Activate();
                     }

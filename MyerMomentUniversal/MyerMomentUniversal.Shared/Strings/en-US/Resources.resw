@@ -258,4 +258,28 @@
   <data name="CroppingHint" xml:space="preserve">
     <value>Cropping...</value>
   </data>
+  <data name="backhomeTB.Text" xml:space="preserve">
+    <value>BACK TO HOME</value>
+  </data>
+  <data name="contentTB.PlaceholderText" xml:space="preserve">
+    <value>What's the story about the photo?</value>
+  </data>
+  <data name="errorTB.Text" xml:space="preserve">
+    <value>Error occurred :-(</value>
+  </data>
+  <data name="retryTB.Text" xml:space="preserve">
+    <value>RETRY</value>
+  </data>
+  <data name="shareTB.Text" xml:space="preserve">
+    <value>SHARE</value>
+  </data>
+  <data name="statusTB.Text" xml:space="preserve">
+    <value>Sharing...</value>
+  </data>
+  <data name="successTB.Text" xml:space="preserve">
+    <value>Successfully :D</value>
+  </data>
+  <data name="TitleTB.Text" xml:space="preserve">
+    <value>Share to Weibo</value>
+  </data>
 </root>

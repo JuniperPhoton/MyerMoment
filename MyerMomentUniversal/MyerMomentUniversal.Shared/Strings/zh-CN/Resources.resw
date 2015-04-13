@@ -252,4 +252,28 @@
   <data name="CroppingHint" xml:space="preserve">
     <value>努力裁切中...</value>
   </data>
+  <data name="backhomeTB.Text" xml:space="preserve">
+    <value>回到主页</value>
+  </data>
+  <data name="contentTB.PlaceholderText" xml:space="preserve">
+    <value>这张照片有着怎样的故事？</value>
+  </data>
+  <data name="errorTB.Text" xml:space="preserve">
+    <value>发生错误 :-(</value>
+  </data>
+  <data name="retryTB.Text" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="shareTB.Text" xml:space="preserve">
+    <value>分享</value>
+  </data>
+  <data name="successTB.Text" xml:space="preserve">
+    <value>成功保存 :D</value>
+  </data>
+  <data name="TitleTB.Text" xml:space="preserve">
+    <value>分享到微博</value>
+  </data>
+  <data name="statusTB.Text" xml:space="preserve">
+    <value>分享中...</value>
+  </data>
 </root>

@@ -9,7 +9,13 @@
     mc:Ignorable="d"
     Background="{StaticResource MomentThemeBlack}"
     >
-
+    <Page.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition>
+                <EntranceThemeTransition.FromHorizontalOffset>300</EntranceThemeTransition.FromHorizontalOffset>
+            </EntranceThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
     <Page.Resources>
 
         <SolidColorBrush x:Key="ComboBoxBackgroundThemeBrush" Color="Transparent"/>
@@ -105,10 +111,10 @@
                                         <TextBlock  x:Name="cameraRollTextblock" Text="CameraRoll"/>
                                     </ComboBoxItem>
                                 </ComboBox>
-                                <Border  Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,30,0,0">
+                                <!--<Border  Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,30,0,0">
                                     <TextBlock x:Name="importTB" Margin="5" Text="IMPORT FONT FAMILY" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" />
                                 </Border>
-                                <TextBlock x:Name="importHint" Margin="5,15,5,5" Text="Comming soon" FontSize="25" Foreground="White" />
+                                <TextBlock x:Name="importHint" Margin="5,15,5,5" Text="Comming soon" FontSize="25" Foreground="White" />-->
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -132,7 +138,7 @@
                                     <Border Margin="0" HorizontalAlignment="Left"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >
                                         <TextBlock Margin="5" Text="VERSION" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Segoe WP"/>
                                     </Border>
-                                    <HyperlinkButton  x:Name="VersionHLB" Content="1.0" NavigateUri="" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Margin="0,0,0,0" Foreground="White" />
+                                    <HyperlinkButton  x:Name="VersionHLB" Content="1.1" NavigateUri="" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Margin="0,0,0,0" Foreground="White" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                                     <Border Margin="0,0,0,0" HorizontalAlignment="Center"  Background="{StaticResource MomentThemeColor}" VerticalAlignment="Center" >

@@ -7,6 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="{StaticResource MomentThemeColor}" 
     >
+    <Page.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition>
+                <EntranceThemeTransition.FromHorizontalOffset>120</EntranceThemeTransition.FromHorizontalOffset>
+            </EntranceThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
     <Page.Resources>
         <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="White"></SolidColorBrush>
         <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush">#FFB39239</SolidColorBrush>
@@ -1091,7 +1098,9 @@
                                     </Button>
 
                                 </StackPanel>
+                                
                             </ScrollViewer>
+                            <StackPanel Height="30"/>
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>

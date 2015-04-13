@@ -115,6 +115,10 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharePage.xaml.cs">
+      <DependentUpon>SharePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -155,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="SharePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -168,6 +176,10 @@
     <ProjectReference Include="..\ChaoFunctionRT\ChaoFunctionRT.csproj">
       <Project>{9c909fed-d859-4cab-b4d2-dfb7fd31ee58}</Project>
       <Name>ChaoFunctionRT</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WeiboSDK_RT\WeiboSDKforWinRT\WeiboSDKForWinRT.csproj">
+      <Project>{680c312d-ae8c-41ce-a043-a8b5825a467d}</Project>
+      <Name>WeiboSDKForWinRT</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
