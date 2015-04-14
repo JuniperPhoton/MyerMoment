@@ -141,7 +141,7 @@ namespace MyerMomentUniversal
             if(e.Key==VirtualKey.Enter)
             {
                 shareClick(null, null);
-                
+                this.Focus(Windows.UI.Xaml.FocusState.Pointer);
             }
         }
     }
