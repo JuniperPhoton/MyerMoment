@@ -17,6 +17,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Helper\ContinuationManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\CropBitmap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\FilterApplyHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\HttpHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\ImageHandleHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\MomentConfig.cs" />
@@ -26,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ImageHandlePage.xaml.cs">
       <DependentUpon>ImageHandlePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Model\FilterFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\GetPixelsException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PageNavigateData.cs" />
@@ -37,6 +39,8 @@
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Asset\Alone.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Alone.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Amazing.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Amazing.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Brave.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Brave.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Coffee.jpg" />
@@ -46,6 +50,15 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Couple.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Dinner.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Dinner.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Auto.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Blur.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Boost.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Cartoon.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Gray.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Lomo.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Noise.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Oily.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Original.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Food.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Food.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\LOGO_150.png" />
@@ -54,6 +67,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\LOGO_WIDE.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Love.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Love.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Lumia.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Lumia.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Memory.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Memory.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Music.jpg" />

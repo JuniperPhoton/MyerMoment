@@ -12,11 +12,13 @@ namespace MyerMomentUniversal.Model
         {
             Styles = new List<MomentStyle>();
             Styles.Add(new MomentStyle("Alone",false));
+            Styles.Add(new MomentStyle("Amazing", false));
             Styles.Add(new MomentStyle("Brave",false));
             Styles.Add(new MomentStyle("Couple",false));
             Styles.Add(new MomentStyle("Coffee", false));
             Styles.Add(new MomentStyle("Dinner", false));
             Styles.Add(new MomentStyle("Food", false));
+            Styles.Add(new MomentStyle("Lumia", false));
             Styles.Add(new MomentStyle("Love", false));
             Styles.Add(new MomentStyle("Memory", false));
             Styles.Add(new MomentStyle("Music", false));

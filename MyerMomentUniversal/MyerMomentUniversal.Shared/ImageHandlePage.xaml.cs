@@ -26,6 +26,8 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.ApplicationModel.Resources;
 using WeiboSDKForWinRT;
 using System.Threading.Tasks;
+using Lumia.Imaging;
+using Lumia.Imaging.Artistic; 
 
 
 namespace MyerMomentUniversal
@@ -40,6 +42,7 @@ namespace MyerMomentUniversal
         private bool _isInMoreLineMode = false;
         private bool _isInEditMode = false;
         private bool _isInCropMode = false;
+        private bool _isInFilterMode = false;
 
         private bool _isFromShareTarget = false;
 
@@ -62,11 +65,14 @@ namespace MyerMomentUniversal
         //储存图像相关的数据
         private ImageHandleHelper _imageHandleHelper;
 
-        SelectedRegion selectedRegion;
+        private SelectedRegion selectedRegion;
 
         //传进来的源文件
-        StorageFile sourceImageFile = null;
+        private StorageFile sourceImageFile = null;
+        private StorageFile afterCropImageFile = null;
         string tempFileName = "";
+
+        private FilterKind currentFilter = FilterKind.Original;
 
         private SelectedRegionShape SelectedShape = SelectedRegionShape.Free;
 
@@ -115,6 +121,7 @@ namespace MyerMomentUniversal
             ConfigLang();
             ConfigQuality();
             ConfigStyle();
+            ConfigFilter();
         }
 
         #region Configuration
@@ -129,13 +136,13 @@ namespace MyerMomentUniversal
                 Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
                 var firmwareVersion = deviceInfo.SystemFirmwareVersion;
 
-                ////针对 Lumia 1020 进行配置
-                //if (deviceInfo.SystemProductName.Contains("RM-875") 
-                //    || deviceInfo.SystemProductName.Contains("RM-876") 
-                //    || deviceInfo.SystemProductName.Contains("RM-877"))
-                //{
-                //    _imageHandleHelper.ScaleLong = 1024;
-                //}
+                //针对 Lumia 1020 进行配置
+                if (deviceInfo.SystemProductName.Contains("RM-875") 
+                    || deviceInfo.SystemProductName.Contains("RM-876") 
+                    || deviceInfo.SystemProductName.Contains("RM-877"))
+                {
+                    _imageHandleHelper.ScaleLong = 1024;
+                }
             }
 #endif
         }
@@ -185,6 +192,35 @@ namespace MyerMomentUniversal
                 styleBtn.Content = border;
 
                 styleSP.Children.Add(styleBtn);
+            }
+        }
+
+        //配置滤镜
+        private void ConfigFilter()
+        {
+            int index = -1;
+            var list = FilterFactory.GetFilterList();
+            foreach(var filter in list)
+            {
+                index++;
+
+                var btn = new Button() { Width = 70, Height = 70, BorderThickness = new Thickness(0),Margin=new Thickness(10,10,0,0), MinHeight = 10, MinWidth = 10, VerticalAlignment = VerticalAlignment.Top };
+                btn.Click += this.ApplyFilterClick;
+                btn.Tag = index;
+                btn.Style = (App.Current.Resources["ButtonStyle2"] as Style);
+
+                var border = new Border();
+                ImageBrush brush = new ImageBrush();
+                BitmapImage bitmap = new BitmapImage(new Uri("ms-appx:///Asset/Filter/" + filter+".jpg"));
+                brush.ImageSource = bitmap;
+                border.Background = brush;
+
+                var tb = new TextBlock() { Text = filter,VerticalAlignment=VerticalAlignment.Center,HorizontalAlignment=HorizontalAlignment.Center };
+                tb.Foreground = new SolidColorBrush(Colors.White);
+                border.Child = tb;
+                btn.Content = border;
+
+                filterSP.Children.Add(btn);
             }
         }
 
@@ -334,6 +370,20 @@ namespace MyerMomentUniversal
             }
         }
 
+        private void ToFilterClick(object sender,RoutedEventArgs e)
+        {
+            if(_isInFilterMode)
+            {
+                FilterOutStory.Begin();
+                _isInFilterMode = false;
+            }
+            else
+            {
+                FilterInStory.Begin();
+                _isInFilterMode = true;
+            }
+        }
+
         /// <summary>
         /// 改变文字颜色
         /// </summary>
@@ -444,6 +494,8 @@ namespace MyerMomentUniversal
             this.selectedRegion.OuterRect = new Rect(0, 0, image.ActualWidth, image.ActualHeight);
 
             this.selectedRegion.ResetCorner(0, 0, image.ActualWidth, image.ActualHeight);
+
+            this.SelectedShape = SelectedRegionShape.Free;
 
             CropInStory.Begin();
             _isInCropMode = true;
@@ -845,6 +897,41 @@ namespace MyerMomentUniversal
 
 #endregion
 
+        #region 滤镜
+        private async void ApplyFilterClick(object sender,RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            var tag = (int)btn.Tag;
+            await ApplyFilterAsync((FilterKind)tag);
+        }    
+
+        private async Task ApplyFilterAsync(FilterKind kind)
+        {
+            if(currentFilter==kind)
+            {
+                return;
+            }
+
+            if(kind==FilterKind.Original)
+            {
+                ShowImage(this.afterCropImageFile??sourceImageFile);
+                return;
+            }
+            else
+            {
+                ring.IsActive = true;
+                _isLoadImage = false;
+
+                var fileToApply = afterCropImageFile ?? sourceImageFile;
+                image.Source = await FilterApplyHelper.ApplyFilterAsync(kind, _imageHandleHelper.Width, _imageHandleHelper.Height, fileToApply);
+                
+                this.currentFilter = kind;
+                ring.IsActive = false;
+            }
+        }
+
+        #endregion
+
         #region 裁剪 保存 显示图像
 
         /// <summary>
@@ -869,8 +956,11 @@ namespace MyerMomentUniversal
 
                 MaskGrid.Visibility = Visibility.Collapsed;
 
-                ShowImage(fileToSave);
+                this.afterCropImageFile = fileToSave;
+                //ShowImage(this.afterCropImageFile);
 
+                await ApplyFilterAsync(currentFilter);
+                
                 tempFileName = fileToSave.Name;
 
                 CropOutStory.Begin();
@@ -1153,7 +1243,7 @@ namespace MyerMomentUniversal
 
         private bool HandleBack()
         {
-            if (_isInStyleMode || _isInShareMode || _isInErrorMode || _isInMoreLineMode || _isInEditMode || _isInCropMode)
+            if (_isInStyleMode || _isInShareMode || _isInErrorMode || _isInMoreLineMode || _isInEditMode || _isInCropMode || _isInFilterMode)
             {
                 if (_isInStyleMode)
                 {
@@ -1165,6 +1255,11 @@ namespace MyerMomentUniversal
                     CropOutStory.Begin();
                     imageCanvas.Visibility = Visibility.Collapsed;
                     _isInCropMode = false;
+                }
+                if(_isInFilterMode)
+                {
+                    FilterOutStory.Begin();
+                    _isInFilterMode = false;
                 }
                 if (_isInShareMode)
                 {
