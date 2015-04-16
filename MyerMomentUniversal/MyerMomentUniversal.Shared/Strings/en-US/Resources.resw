@@ -159,9 +159,6 @@
   <data name="DiscardTitle" xml:space="preserve">
     <value>Discard this photo?</value>
   </data>
-  <data name="EditHeader" xml:space="preserve">
-    <value>EDIT</value>
-  </data>
   <data name="EnterHint" xml:space="preserve">
     <value>Enter MyerMoment</value>
   </data>
@@ -237,9 +234,6 @@
   <data name="StartHeader" xml:space="preserve">
     <value>START</value>
   </data>
-  <data name="StyleHeader" xml:space="preserve">
-    <value>STYLE</value>
-  </data>
   <data name="ThemeHint" xml:space="preserve">
     <value>MyerMoment Theme</value>
   </data>
@@ -281,5 +275,29 @@
   </data>
   <data name="TitleTB.Text" xml:space="preserve">
     <value>Share to Weibo</value>
+  </data>
+  <data name="systemShareTB.Text" xml:space="preserve">
+    <value>OTHER</value>
+  </data>
+  <data name="customTB.Text" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="editHeader.Text" xml:space="preserve">
+    <value>EDITING</value>
+  </data>
+  <data name="filterHeader.Text" xml:space="preserve">
+    <value>FILTER</value>
+  </data>
+  <data name="moreLineHeader.Text" xml:space="preserve">
+    <value>MORE LINE</value>
+  </data>
+  <data name="PersonalizePivotItem.Header" xml:space="preserve">
+    <value>PERSONALIZE</value>
+  </data>
+  <data name="SettingPivotItem.Header" xml:space="preserve">
+    <value>SETTING</value>
+  </data>
+  <data name="styleHeader.Text" xml:space="preserve">
+    <value>STYLE</value>
   </data>
 </root>

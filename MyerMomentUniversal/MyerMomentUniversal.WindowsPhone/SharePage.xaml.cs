@@ -43,28 +43,36 @@ namespace MyerMomentUniversal
 
         private void ConfigWeiboShare()
         {
-            if (!ChaoFunctionRT.NetworkHelper.HasNetWork())
+            try
             {
-                shareControl.ShowErrorGrid();
-                return;
-            }
-            var oauthClient = new ClientOAuth();
-            // 判断是否已经授权或者授权是否过期.
-            if (oauthClient.IsAuthorized == false)
-            {
-                oauthClient.LoginCallback += (isSucces, err, response) =>
+                if (!ChaoFunctionRT.NetworkHelper.HasNetWork())
                 {
-                    if (isSucces)
+                    shareControl.ShowErrorGrid();
+                    return;
+                }
+                var oauthClient = new ClientOAuth();
+                // 判断是否已经授权或者授权是否过期.
+                if (oauthClient.IsAuthorized == false)
+                {
+                    oauthClient.LoginCallback += (isSucces, err, response) =>
                     {
-                        
-                    }
-                };
-                oauthClient.BeginOAuth();
+                        if (isSucces)
+                        {
+
+                        }
+                    };
+                    oauthClient.BeginOAuth();
+                }
+                else
+                {
+                    //ShareImage();
+                }
             }
-            else
+            catch(Exception)
             {
-                //ShareImage();
+
             }
+            
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -98,6 +106,7 @@ namespace MyerMomentUniversal
 
         public void ContinueWebAuthentication(WebAuthenticationBrokerContinuationEventArgs args)
         {
+
             var oauthClient = new ClientOAuth();
             oauthClient.LoginCallback += (async (isSucces, err, response) =>
             {

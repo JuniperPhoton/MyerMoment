@@ -42,7 +42,7 @@ namespace MyerMomentUniversal
         {
             if (!ChaoFunctionRT.NetworkHelper.HasNetWork())
             {
-                shareControl.ShowErrorGrid();
+                //shareControl.ShowErrorGrid();
                 return;
             }
             var oauthClient = new ClientOAuth();

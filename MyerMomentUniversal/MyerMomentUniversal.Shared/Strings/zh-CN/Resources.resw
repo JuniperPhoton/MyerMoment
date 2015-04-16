@@ -153,9 +153,6 @@
   <data name="DiscardTitle" xml:space="preserve">
     <value>放弃这张照片吗？</value>
   </data>
-  <data name="EditHeader" xml:space="preserve">
-    <value>编辑</value>
-  </data>
   <data name="EnterHint" xml:space="preserve">
     <value>进入MyerMoment</value>
   </data>
@@ -189,8 +186,8 @@
   <data name="MyerMomentFolderHint" xml:space="preserve">
     <value>MyerMoment 文件夹</value>
   </data>
-  <data name="PersonalizeHeader" xml:space="preserve">
-    <value>个性化</value>
+  <data name="SettingPivotItem.Header" xml:space="preserve">
+    <value>设置</value>
   </data>
   <data name="PhotoSavedHint" xml:space="preserve">
     <value>照片已经保存了 :D</value>
@@ -230,9 +227,6 @@
   </data>
   <data name="StartHeader" xml:space="preserve">
     <value>开始</value>
-  </data>
-  <data name="StyleHeader" xml:space="preserve">
-    <value>样式</value>
   </data>
   <data name="ThemeHint" xml:space="preserve">
     <value>MyerMoment 主题色</value>
@@ -275,5 +269,26 @@
   </data>
   <data name="statusTB.Text" xml:space="preserve">
     <value>分享中...</value>
+  </data>
+  <data name="systemShareTB.Text" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="customTB.Text" xml:space="preserve">
+    <value>自定义</value>
+  </data>
+  <data name="editHeader.Text" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="filterHeader.Text" xml:space="preserve">
+    <value>滤镜</value>
+  </data>
+  <data name="moreLineHeader.Text" xml:space="preserve">
+    <value>多行文本</value>
+  </data>
+  <data name="PersonalizePivotItem.Header" xml:space="preserve">
+    <value>个性化</value>
+  </data>
+  <data name="styleHeader.Text" xml:space="preserve">
+    <value>预设样式</value>
   </data>
 </root>

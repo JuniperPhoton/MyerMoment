@@ -59,7 +59,7 @@ namespace MyerMomentUniversal
             
             var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
             StartPivotItem.Header = loader.GetString("StartHeader");
-            SettingPivotItem.Header = loader.GetString("PersonalizeHeader");
+            //SettingPivotItem.Header = loader.GetString("PersonalizeHeader");
             AboutPivotItem.Header = loader.GetString("AboutHeader");
             pickHintTextblock.Text = loader.GetString("PickPhotoHint");
             savingQualityTextblock.Text = loader.GetString("SavingQuality");
@@ -107,7 +107,7 @@ namespace MyerMomentUniversal
         private void OpenPhotoClick(object sender, RoutedEventArgs e)
         {
             FileOpenPicker picker = new Windows.Storage.Pickers.FileOpenPicker();
-            picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            picker.SuggestedStartLocation = PickerLocationId.Desktop;
             picker.ViewMode = PickerViewMode.Thumbnail;
             picker.FileTypeFilter.Add(".jpg");
             picker.FileTypeFilter.Add(".png");
@@ -184,7 +184,13 @@ namespace MyerMomentUniversal
                             mediumTileContent.Image.Src = "ms-appx:///Assets/newLogo_tran.png";
                             mediumTileContent.Branding = TileBranding.Name;
 
-                            var notification = mediumTileContent.CreateNotification();
+                            //wide
+                            var wideTileContent = TileContentFactory.CreateTileWide310x150Image();
+                            wideTileContent.Square150x150Content = mediumTileContent;
+                            wideTileContent.Image.Src = "ms-appx:///Asset/Tile/LOGO_WIDE_TRAN.png";
+                            wideTileContent.Branding = TileBranding.None;
+
+                            var notification = wideTileContent.CreateNotification();
                             
                             TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
                         }

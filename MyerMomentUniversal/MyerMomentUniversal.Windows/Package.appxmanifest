@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="19204JuniperPhoton.MyerMoment" Publisher="CN=A9291247-1C35-4EE6-8B51-1551AF1EB838" Version="1.1.0.23" />
+  <Identity Name="19204JuniperPhoton.MyerMoment" Publisher="CN=A9291247-1C35-4EE6-8B51-1551AF1EB838" Version="1.1.0.29" />
   <Properties>
     <DisplayName>MyerMoment</DisplayName>
     <PublisherDisplayName>JuniperPhoton</PublisherDisplayName>
@@ -16,7 +16,7 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="MyerMomentUniversal.Windows.App">
       <m2:VisualElements DisplayName="MyerMoment" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="MyerMomentUniversal.Windows" ForegroundText="light" BackgroundColor="#ffc733">
-        <m2:DefaultTile DefaultSize="square150x150Logo" Square70x70Logo="Assets\Square70x70Logo.png">
+        <m2:DefaultTile DefaultSize="wide310x150Logo" Square70x70Logo="Assets\Square70x70Logo.png" Wide310x150Logo="Assets\Wide310x150Logo.png">
           <m2:ShowNameOnTiles>
             <m2:ShowOn Tile="square150x150Logo" />
           </m2:ShowNameOnTiles>

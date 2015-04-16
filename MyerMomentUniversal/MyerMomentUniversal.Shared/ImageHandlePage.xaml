@@ -797,7 +797,7 @@
                             </TransformGroup>
                         </Path.RenderTransform>
                     </Path>
-                    <TextBlock x:Name="editTB" Text="EDIT" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0"  FontWeight="Light"/>
+                    <TextBlock x:Uid="editHeader" Text="EDIT" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0"  FontWeight="Light"/>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -811,41 +811,42 @@
             <Grid.Projection>
                 <PlaneProjection/>
             </Grid.Projection>
-            <Image x:Name="image" Tapped="TapBlack" Source="{Binding Image}" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <CompositeTransform/>
-                </Image.RenderTransform>
-            </Image>
-            <Canvas x:Name="imageCanvas" Visibility="Collapsed" >
-                <Path x:Name="nonselectRegion" Fill="{StaticResource ApplicationSecondaryForegroundThemeBrush}" Opacity="0.7">
-                    <Path.Data>
-                        <GeometryGroup>
-                            <RectangleGeometry Rect="{Binding OuterRect,Mode=OneWay}">
-                            </RectangleGeometry>
-                            <RectangleGeometry Rect="{Binding SelectedRect,Mode=OneWay}">
-                            </RectangleGeometry>
-                        </GeometryGroup>
-                    </Path.Data>
-                </Path>
-                <Path x:Name="selectRegion" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" Opacity="0">
-                    <Path.Data>
-                        <RectangleGeometry x:Name="recToSelected" Rect="{Binding SelectedRect,Mode=TwoWay}"/>
-                    </Path.Data>
-                </Path>
-                <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="topLeftCorner" Tag="TopLeftCorner" 
+            
+                <Image x:Name="image" Tapped="TapBlack" Source="{Binding Image}" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <CompositeTransform/>
+                    </Image.RenderTransform>
+                </Image>
+                <Canvas x:Name="imageCanvas" Visibility="Collapsed" >
+                    <Path x:Name="nonselectRegion" Fill="{StaticResource ApplicationSecondaryForegroundThemeBrush}" Opacity="0.7">
+                        <Path.Data>
+                            <GeometryGroup>
+                                <RectangleGeometry Rect="{Binding OuterRect,Mode=OneWay}">
+                                </RectangleGeometry>
+                                <RectangleGeometry Rect="{Binding SelectedRect,Mode=OneWay}">
+                                </RectangleGeometry>
+                            </GeometryGroup>
+                        </Path.Data>
+                    </Path>
+                    <Path x:Name="selectRegion" Fill="{StaticResource ApplicationPageBackgroundThemeBrush}" Opacity="0">
+                        <Path.Data>
+                            <RectangleGeometry x:Name="recToSelected" Rect="{Binding SelectedRect,Mode=TwoWay}"/>
+                        </Path.Data>
+                    </Path>
+                    <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="topLeftCorner" Tag="TopLeftCorner" 
                                                 Canvas.Left="{Binding Path=TopLeftCornerCanvasLeft,Mode=OneWay}" 
                                                 Canvas.Top="{Binding Path=TopLeftCornerCanvasTop,Mode=OneWay}"/>
-                <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="topRightCorner" Tag="TopRightCorner"
+                    <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="topRightCorner" Tag="TopRightCorner"
                                                 Canvas.Left="{Binding Path=BottomRightCornerCanvasLeft,Mode=OneWay}" 
                                                 Canvas.Top="{Binding Path=TopLeftCornerCanvasTop,Mode=OneWay}" />
-                <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="bottomLeftCorner" Tag="BottomLeftCorner" 
+                    <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="bottomLeftCorner" Tag="BottomLeftCorner" 
                                                 Canvas.Left="{Binding Path=TopLeftCornerCanvasLeft,Mode=OneWay}" 
                                                 Canvas.Top="{Binding Path=BottomRightCornerCanvasTop,Mode=OneWay}" />
-                <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="bottomRightCorner" Tag="BottomRightCorner" 
+                    <ContentControl ContentTemplate="{StaticResource RoundCorner}"  x:Name="bottomRightCorner" Tag="BottomRightCorner" 
                                                 Canvas.Left="{Binding Path=BottomRightCornerCanvasLeft,Mode=OneWay}"
                                                 Canvas.Top="{Binding Path=BottomRightCornerCanvasTop,Mode=OneWay}"/>
-            </Canvas>
-
+                </Canvas>
+           
             <Grid x:Name="textGrid1"  Tapped="textGrid1_Tapped"  PointerEntered="TextView1_OnPointerEntered" ManipulationMode="TranslateX,TranslateY" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
                 
                 <TextBox x:Name="TextView1" FontSize="30"  AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to write sth." FontFamily="Microsoft YaHei" Margin="0" InputScope="Chat"/>
@@ -1022,7 +1023,7 @@
             </Grid.RenderTransform>
             <Border BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="1" Margin="0,0,0,50" Height="5" VerticalAlignment="Top" Background="{StaticResource MomentThemeColor}"/>
             <StackPanel Orientation="Vertical">
-                <TextBlock x:Name="textLineTB"  Text="MORE LINE" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
+                <TextBlock x:Uid="moreLineHeader"  Text="MORE LINE" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
                 <ScrollViewer HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="defaultLineBtn" Height="70" Width="70" Click="LineClick"  Margin="10,0,2,0"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource LineBtnStyle}">
@@ -1050,7 +1051,7 @@
             </Grid.RenderTransform>
             <Border BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="1" VerticalAlignment="Top" Height="5" Background="{StaticResource MomentThemeColor}"/>
             <StackPanel Orientation="Vertical">
-                <TextBlock  x:Name="familyTB"  Text="EDITING" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
+                <TextBlock  x:Uid="editHeader"  Text="EDITING" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
                 <ScrollViewer x:Name="contentSV" Height="230"  VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
                     <StackPanel Orientation="Vertical">
                         <TextBox Text=""  x:Name="contentTB" AcceptsReturn="True" TextChanged="conentChanged"  Foreground="{StaticResource MomentThemeBlack}" FontSize="20" Margin="10,5,10,10" FontFamily="Segoe WP" InputScope="Chat"/>
@@ -1179,14 +1180,14 @@
             </Grid.RenderTransform>
             <Border BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="1" Margin="0" Background="{StaticResource MomentThemeColor}" Height="5" VerticalAlignment="Top"/>
             <StackPanel  Orientation="Vertical">
-                <TextBlock  x:Name="styleTB" Text="STYLE" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
+                <TextBlock  x:Uid="styleHeader" Text="STYLE" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
                 <Grid VerticalAlignment="Top" >
                     <StackPanel Orientation="Vertical">
-                        <ScrollViewer Height="120" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
+                        <ScrollViewer x:Name="styleSV" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
                             <StackPanel x:Name="styleSP" Orientation="Horizontal" Margin="0,0,10,0">
                                 <Button Click="StyleClick" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
                                     <Border Background="White">
-                                        <TextBlock Text="Plain" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <TextBlock x:Uid="customTB"  Text="Custom" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     </Border>
                                 </Button>
                             </StackPanel>
@@ -1211,10 +1212,10 @@
             <Border BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="1" Margin="0" Background="{StaticResource MomentThemeColor}" Height="5" VerticalAlignment="Top"/>
 
             <StackPanel  Orientation="Vertical">
-                <TextBlock  x:Name="filterTB" Text="FILTER" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
+                <TextBlock  x:Uid="filterHeader" Text="FILTER" Foreground="{StaticResource MomentThemeBlack}" FontWeight="ExtraBold" FontSize="20" Margin="10" FontFamily="Segoe WP"/>
                 <Grid VerticalAlignment="Top" >
                     <StackPanel Orientation="Vertical">
-                        <ScrollViewer Height="120" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
+                        <ScrollViewer x:Name="filterSV"  HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
                             <StackPanel x:Name="filterSP" Orientation="Horizontal" Margin="0,0,10,0">
                                 <!--<Button Click="ApplyFilterClick" Tag="0" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
                                     <Border Background="White">
@@ -1310,7 +1311,11 @@
                         <TextBlock x:Name="shareTB" Foreground="{StaticResource MomentThemeBlack}" Text="SHARE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </Button>
-
+                <!--<Button Click="ShareToSystemClick" x:Name="systemBtn" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
+                    <Border Background="#FFFFD360">
+                        <TextBlock x:Uid="systemShareTB" Foreground="{StaticResource MomentThemeBlack}" Text="SHARE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </Button>-->
                 <Button x:Name="backHomeBtn" Click="BackHomeClick" Height="50" MinHeight="10"  Background="White" Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
                     <Border Background="White">
                         <TextBlock x:Name="backhomeTB" Foreground="{StaticResource MomentThemeBlack}" Text="BACK TO HOME" HorizontalAlignment="Center" VerticalAlignment="Center"/>

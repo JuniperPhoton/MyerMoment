@@ -1,10 +1,12 @@
-﻿using System;
+﻿using ChaoFunctionRT;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using WeiboSDKForWinRT;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -29,11 +31,46 @@ namespace MyerMomentUniversal
         public ShareControl()
         {
             this.InitializeComponent();
+
+            DataTransferManager.GetForCurrentView().DataRequested += dataTransferManager_DataRequested;
         }
 
-        private void ConfigLang()
+        private void ShareToSystemClick(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                DataTransferManager.ShowShareUI();
+            }
+            catch (Exception)
+            {
 
+            }
+        }
+       
+
+        private void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            DataRequest request = args.Request;
+            request.Data.Properties.Title = "MyerMoment";
+            request.Data.Properties.Description = "image From MyerMoment";
+            DataRequestDeferral deferral = request.GetDeferral();
+
+            try
+            {
+                
+                List<IStorageItem> storageItems = new List<IStorageItem>();
+                storageItems.Add(fileToShare);
+                request.Data.SetStorageItems(storageItems);
+
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                deferral.Complete();
+            }
         }
 
         public void ShowSharingGrid()
@@ -98,42 +135,50 @@ namespace MyerMomentUniversal
 
         public async void ShareImage()
         {
-            if (!ChaoFunctionRT.NetworkHelper.HasNetWork())
+            try
             {
-                ShowErrorGrid();
-                return;
-            }
-
-            var engine = new SdkNetEngine();
-            CmdPostMsgWithPic cmdBase = new CmdPostMsgWithPic();
-            if (!String.IsNullOrEmpty(contentTB.Text))
-            {
-                cmdBase.Status = contentTB.Text;
-            }
-            else
-            {
-#if WINDOWS_APP
-                cmdBase.Status = "使用 Windows 版 #MyerMoment# 分享一张图片. ";
-#elif WINDOWS_PHONE_APP
-                cmdBase.Status="使用 Windows Phone 版 #MyerMoment# 分享一张图片. ";
-#endif
-            }
-            if (fileToShare != null)
-            {
-                cmdBase.PicPath = fileToShare.Path;
-
-                sharingGrid.Visibility = Visibility.Visible;
-
-                var result = await engine.RequestCmd(SdkRequestType.POST_MESSAGE_PIC, cmdBase);
-                if (result.errCode == 0)
+                if (!ChaoFunctionRT.NetworkHelper.HasNetWork())
                 {
-                    ShowSuccessGrid();
+                    ShowErrorGrid();
+                    return;
+                }
+
+                var engine = new SdkNetEngine();
+                CmdPostMsgWithPic cmdBase = new CmdPostMsgWithPic();
+                if (!String.IsNullOrEmpty(contentTB.Text))
+                {
+                    cmdBase.Status = contentTB.Text;
                 }
                 else
                 {
-                    ShowErrorGrid();
+#if WINDOWS_APP
+                    cmdBase.Status = "使用 Windows 版 #MyerMoment# 分享一张图片. ";
+#elif WINDOWS_PHONE_APP
+                cmdBase.Status="使用 Windows Phone 版 #MyerMoment# 分享一张图片. ";
+#endif
+                }
+                if (fileToShare != null)
+                {
+                    cmdBase.PicPath = fileToShare.Path;
+
+                    sharingGrid.Visibility = Visibility.Visible;
+
+                    var result = await engine.RequestCmd(SdkRequestType.POST_MESSAGE_PIC, cmdBase);
+                    if (result.errCode == 0)
+                    {
+                        ShowSuccessGrid();
+                    }
+                    else
+                    {
+                        ShowErrorGrid();
+                    }
                 }
             }
+            catch(Exception)
+            {
+
+            }
+            
         }
 
         private void UserControl_KeyDown(object sender, KeyRoutedEventArgs e)

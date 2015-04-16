@@ -1,4 +1,5 @@
 ﻿using Lumia.Imaging;
+using Lumia.Imaging.Artistic;
 using MyerMomentUniversal.Model;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
+using System.Linq;
 
 namespace MyerMomentUniversal.Helper
 {
@@ -27,8 +29,8 @@ namespace MyerMomentUniversal.Helper
                     var _effect = new FilterEffect(imageSource);
 
                     //把滤镜加入FilterEffect
-                    var filter = FilterFactory.CreateFilterEffect(kind);
-                    if (filter != null) _effect.Filters = new[] { filter };
+                    var filtersList = FilterFactory.CreateFilterEffects(kind);
+                    if (filtersList != null && filtersList.Count!=0) _effect.Filters = filtersList.AsEnumerable();
 
                     // Render the image to a WriteableBitmap. 
                     var renderer = new WriteableBitmapRenderer(_effect, _imageBitmap);

@@ -1,5 +1,5 @@
-MainPackage=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Debug\MyerMomentUniversal.Windows_1.1.0.23_Bundle\MyerMomentUniversal.Windows_1.1.0.23_ARM_Debug.appx
-SymbolPackage=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\AppPackages\MyerMomentUniversal.Windows_1.1.0.23_Debug_Test\MyerMomentUniversal.Windows_1.1.0.23_ARM_Debug.appxsym
-ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Debug\MyerMomentUniversal.Windows_1.1.0.23_Bundle\MyerMomentUniversal.Windows_1.1.0.23_language-en.appx
-ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Debug\MyerMomentUniversal.Windows_1.1.0.23_Bundle\MyerMomentUniversal.Windows_1.1.0.23_scale-140.appx
-ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Debug\MyerMomentUniversal.Windows_1.1.0.23_Bundle\MyerMomentUniversal.Windows_1.1.0.23_scale-180.appx
+MainPackage=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.29_Bundle\MyerMomentUniversal.Windows_1.1.0.29_ARM.appx
+SymbolPackage=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\AppPackages\MyerMomentUniversal.Windows_1.1.0.29_Test\MyerMomentUniversal.Windows_1.1.0.29_ARM.appxsym
+ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.29_Bundle\MyerMomentUniversal.Windows_1.1.0.29_language-en.appx
+ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.29_Bundle\MyerMomentUniversal.Windows_1.1.0.29_scale-140.appx
+ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.29_Bundle\MyerMomentUniversal.Windows_1.1.0.29_scale-180.appx

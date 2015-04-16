@@ -48,10 +48,10 @@ namespace MyerMomentUniversal.Model
             if(!isFromUser)
             {
                 Image = new BitmapImage();
-                Image.UriSource = new Uri("ms-appx:///Asset/" + nameID + ".png", UriKind.RelativeOrAbsolute);
+                Image.UriSource = new Uri("ms-appx:///Asset/Style/" + nameID + ".png", UriKind.RelativeOrAbsolute);
 
                 PreviewImge = new BitmapImage();
-                PreviewImge.UriSource = new Uri("ms-appx:///Asset/" + nameID + ".jpg", UriKind.RelativeOrAbsolute);
+                PreviewImge.UriSource = new Uri("ms-appx:///Asset/Style/" + nameID + ".jpg", UriKind.RelativeOrAbsolute);
             }
             else
             {

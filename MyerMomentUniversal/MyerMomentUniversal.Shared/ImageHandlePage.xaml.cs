@@ -102,12 +102,12 @@ namespace MyerMomentUniversal
    
             this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
-            DataTransferManager.GetForCurrentView().DataRequested += dataTransferManager_DataRequested;
-
             _imageHandleHelper = new ImageHandleHelper();
 
             selectRegion.ManipulationMode = ManipulationModes.Scale |
                 ManipulationModes.TranslateX | ManipulationModes.TranslateY;
+
+            styleImage.RenderTransform = _compositeTransformStyle;
 
             selectedRegion = new SelectedRegion { MinSelectRegionSize = 2 * CornerSize };
             this.DataContext = selectedRegion;
@@ -122,6 +122,7 @@ namespace MyerMomentUniversal
             ConfigQuality();
             ConfigStyle();
             ConfigFilter();
+
         }
 
         #region Configuration
@@ -182,13 +183,12 @@ namespace MyerMomentUniversal
                 brush.ImageSource = style.PreviewImge;
                 border.Background = brush;
 
-                TextBlock tb = new TextBlock();
-                tb.Text = style.NameID;
-                tb.VerticalAlignment = VerticalAlignment.Center;
-                tb.HorizontalAlignment = HorizontalAlignment.Center;
-                tb.Foreground = new SolidColorBrush(Colors.White);
-
-                border.Child = tb;
+                //TextBlock tb = new TextBlock();
+                //tb.Text = style.NameID;
+                //tb.VerticalAlignment = VerticalAlignment.Center;
+                //tb.HorizontalAlignment = HorizontalAlignment.Center;
+                //tb.Foreground = new SolidColorBrush(Colors.White);
+                //border.Child = tb;
                 styleBtn.Content = border;
 
                 styleSP.Children.Add(styleBtn);
@@ -230,7 +230,7 @@ namespace MyerMomentUniversal
         private void ConfigLang()
         {
             var loader = ResourceLoader.GetForCurrentView();
-            editTB.Text = loader.GetString("EditHeader");
+            //editTB.Text = loader.GetString("EditHeader");
             saveTB.Text = loader.GetString("SaveAsCopyBtn");
             cancelTB.Text = loader.GetString("CancleBtn");
             cancelTB2.Text = loader.GetString("CancleBtn");
@@ -254,17 +254,24 @@ namespace MyerMomentUniversal
         private void UpdatePageLayout()
         {
             #if WINDOWS_PHONE_APP
+            styleSV.Height = filterSV.Height = 120;
+
             if (Frame.ActualHeight < 720)
             {
                 contentGrid.Height = 260;
                 contentSV.Height = 200;
+                
             }
             #elif WINDOWS_APP
             contentGrid.Height = 320;
             contentSV.Height = 300;
             shareBtn.MaxWidth = 300;
+            //systemBtn.MaxWidth = 300;
             backHomeBtn.MaxWidth = 300;
             familySV.Height = familySV2.Height = 60;
+            //styleSV.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
+            //filterSV.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
+
             #endif
         }
 
@@ -427,7 +434,7 @@ namespace MyerMomentUniversal
             var tb = border.Child as TextBlock;
             var text = tb.Text;
 
-            if(text=="Plain")
+            if (text =="Custom"|| text=="自定义")
             {
                 textGrid1.Visibility = Visibility.Visible;
                 MoreLineBtn.Visibility = Visibility.Visible;
@@ -480,6 +487,7 @@ namespace MyerMomentUniversal
                 _currentTextBox.Text = tb.Text;
             }
         }
+
         private void TapMask(object sender,TappedRoutedEventArgs e)
         {
             HandleBack();
@@ -544,6 +552,17 @@ namespace MyerMomentUniversal
         {
             this.selectedRegion.ResetCorner(0, 0, image.ActualWidth, image.ActualHeight);
             this.SelectedShape = SelectedRegionShape.Free;
+        }
+
+        private void ChangeCanvasSize(Size previousSize,Size currentSize)
+        {
+            this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Visible;
+
+            this.imageCanvas.Height = currentSize.Height;
+            this.imageCanvas.Width = currentSize.Width;
+            this.selectedRegion.OuterRect = new Rect(0, 0, currentSize.Width, currentSize.Height);
+
+            this.selectedRegion.ResetCorner(0, 0, currentSize.Width, currentSize.Height);
         }
 
         void sourceImage_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -703,6 +722,8 @@ namespace MyerMomentUniversal
             _imageHandleHelper.Width = temp;
 
             RotateStory.Begin();
+
+            //ChangeCanvasSize(new Size(_imageHandleHelper.Height, _imageHandleHelper.Width), new Size(_imageHandleHelper.Width, _imageHandleHelper.Height));
         }
 
         /// <summary>
@@ -884,7 +905,7 @@ namespace MyerMomentUniversal
 
         private void StyleView_OnPointerEntered(object sender,PointerRoutedEventArgs e)
         {
-            styleImage.RenderTransform = _compositeTransformStyle;
+            
             styleImage.ManipulationDelta -= StyleView_ManipulationDelta;
             styleImage.ManipulationDelta += StyleView_ManipulationDelta;
         }
@@ -1119,38 +1140,6 @@ namespace MyerMomentUniversal
             }
         }
 
-        
-        private async void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
-        {
-            DataRequest request = args.Request;
-            request.Data.Properties.Title = "MyerMoment";
-            request.Data.Properties.Description = "image From MyerMoment";
-            DataRequestDeferral deferral = request.GetDeferral();
-
-            try
-            {
-                var fileToGet = await GetFileToShare();
-
-                List<IStorageItem> storageItems = new List<IStorageItem>();
-                storageItems.Add(fileToGet);
-                request.Data.SetStorageItems(storageItems);
-
-            }
-            catch (Exception)
-            {
-                ShareGrid.Visibility = Visibility.Collapsed;
-                _isInShareMode = false;
-
-                ErrorGrid.Visibility = Visibility.Visible;
-                _isInErrorMode = true;
-
-            }
-            finally
-            {
-                deferral.Complete();
-            }
-        }
-
         private async Task<StorageFile> GetFileToShare()
         {
             var positon = LocalSettingHelper.GetValue("Position");
@@ -1171,6 +1160,8 @@ namespace MyerMomentUniversal
             if (fileToGet == null) return null;
             else return fileToGet;
         }
+
+
 
         private void BackHomeClick(object sender, RoutedEventArgs e)
         {

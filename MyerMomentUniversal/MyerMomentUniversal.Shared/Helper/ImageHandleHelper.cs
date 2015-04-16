@@ -31,7 +31,7 @@ namespace MyerMomentUniversal.Helper
         public int ScaleLong { get; set; }
         public BitmapAlphaMode AlphaMode { get; set; }
         public BitmapPixelFormat PixelFormat { get; set; }
-        
+        private BitmapTransform BitmapTransform { get; set; }
 
         public ImageHandleHelper()
         {
@@ -121,7 +121,7 @@ namespace MyerMomentUniversal.Helper
 
                 return ImageSaveResult.Successful;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 if (exceptionFlag == 0) return ImageSaveResult.FailToGetPixels;
                 else return ImageSaveResult.FailToFlush;
