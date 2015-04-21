@@ -167,6 +167,18 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\..\packages\MvvmLightLibs.5.1.1.0\lib\windows81\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\..\packages\MvvmLightLibs.5.1.1.0\lib\windows81\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform">
+      <HintPath>..\..\packages\MvvmLightLibs.5.1.1.0\lib\windows81\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -175,9 +187,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChaoFunctionRT\ChaoFunctionRT.csproj">
-      <Project>{9c909fed-d859-4cab-b4d2-dfb7fd31ee58}</Project>
-      <Name>ChaoFunctionRT</Name>
+    <ProjectReference Include="..\..\..\..\JP.Utils\JP.Utils\JP.Utils.csproj">
+      <Project>{9d13cebe-a582-4729-b859-22fc78653a56}</Project>
+      <Name>JP.Utils</Name>
     </ProjectReference>
     <ProjectReference Include="..\WeiboSDK_RT\WeiboSDKforWinRT\WeiboSDKForWinRT.csproj">
       <Project>{680c312d-ae8c-41ce-a043-a8b5825a467d}</Project>

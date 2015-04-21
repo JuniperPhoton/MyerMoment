@@ -619,15 +619,8 @@ namespace ChaoFunctionRT
             try
             {
                 ConnectionProfile internetConnectionProfile = NetworkInformation.GetInternetConnectionProfile();
-
-                if (internetConnectionProfile == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+                return internetConnectionProfile == null ? false : true;
+               
             }
             catch (Exception)
             {

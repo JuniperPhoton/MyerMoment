@@ -9,19 +9,6 @@ using Windows.UI;
 
 namespace MyerMomentUniversal.Model
 {
-    public enum FilterKind
-    {
-        Original,
-        AutoEnhanceFilter,
-        CartoonFilter,
-        GrayscaleFilter,
-        LomoFilter,
-        SunFilter,
-        NoiseFilter,
-        OilyFilter,
-        BlurFilter,
-        ColorBoostFilter,
-    }
 
     public class FilterFactory
     {
@@ -40,7 +27,7 @@ namespace MyerMomentUniversal.Model
                 case FilterKind.NoiseFilter: return  new List<IFilter>(){new NoiseFilter(NoiseLevel.Medium)};
                 case FilterKind.OilyFilter: return  new List<IFilter>(){new OilyFilter(OilBrushSize.Small)};
                 case FilterKind.SunFilter: return new List<IFilter>() { new LomoFilter(), new LomoFilter(0.3, 0.2, LomoVignetting.Low, LomoStyle.Yellow) };
-                default: return null;
+                default: return new List<IFilter>(){new AutoEnhanceFilter()};
             }
         }
 

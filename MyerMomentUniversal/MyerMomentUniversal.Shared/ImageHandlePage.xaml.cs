@@ -1,4 +1,4 @@
-﻿using ChaoFunctionRT;
+﻿
 using MyerMomentUniversal.Helper;
 using MyerMomentUniversal.Model;
 using System;
@@ -27,7 +27,10 @@ using Windows.ApplicationModel.Resources;
 using WeiboSDKForWinRT;
 using System.Threading.Tasks;
 using Lumia.Imaging;
-using Lumia.Imaging.Artistic; 
+using Lumia.Imaging.Artistic;
+using JP.Utils.Debug;
+using JP.Utils.Data;
+using MyerMomentUniversal.ViewModel; 
 
 
 namespace MyerMomentUniversal
@@ -59,8 +62,6 @@ namespace MyerMomentUniversal
         private CompositeTransform _compositeTransform2 = new CompositeTransform();
         private CompositeTransform _compositeTransform3 = new CompositeTransform();
         private CompositeTransform _compositeTransformStyle = new CompositeTransform();
-
-        private MomentStyleList styleList;
 
         //储存图像相关的数据
         private ImageHandleHelper _imageHandleHelper;
@@ -116,13 +117,21 @@ namespace MyerMomentUniversal
 
 #if WINDOWS_PHONE_APP
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
+            BottomMessageDialog.Control.BottomMessageDialog dialog = new BottomMessageDialog.Control.BottomMessageDialog();
+            dialog.ShowDialog("CANCEL", "Do you want to leave?", (s,e) =>
+                {
+
+                },
+                (s2,e2) =>
+                {
+
+                });
 #endif
 
             ConfigLang();
             ConfigQuality();
-            ConfigStyle();
             ConfigFilter();
-
+            ConfigStyle();
         }
 
         #region Configuration
@@ -151,7 +160,9 @@ namespace MyerMomentUniversal
         //配置Style 列表
         private void ConfigStyle()
         {
-            styleList = new MomentStyleList();
+            var styleList = new StylesViewModel();
+            styleList.ConfigStyleListAsync();
+
             foreach (var style in styleList.Styles)
             {
                 Button styleBtn = new Button();
@@ -164,7 +175,7 @@ namespace MyerMomentUniversal
                 styleBtn.Click += ((sender, e) =>
                 {
                     //点击Style 按钮的操作
-                    styleImage.Source = style.Image;
+                    styleImage.Source = style.FullSizeImage;
 
                     //所有Text 都隐藏
                     textGrid1.Visibility = Visibility.Collapsed;
@@ -183,12 +194,6 @@ namespace MyerMomentUniversal
                 brush.ImageSource = style.PreviewImge;
                 border.Background = brush;
 
-                //TextBlock tb = new TextBlock();
-                //tb.Text = style.NameID;
-                //tb.VerticalAlignment = VerticalAlignment.Center;
-                //tb.HorizontalAlignment = HorizontalAlignment.Center;
-                //tb.Foreground = new SolidColorBrush(Colors.White);
-                //border.Child = tb;
                 styleBtn.Content = border;
 
                 styleSP.Children.Add(styleBtn);
@@ -926,28 +931,36 @@ namespace MyerMomentUniversal
             await ApplyFilterAsync((FilterKind)tag);
         }    
 
-        private async Task ApplyFilterAsync(FilterKind kind)
+        private async Task ApplyFilterAsync(FilterKind kindToApply)
         {
-            if(currentFilter==kind)
+            if(kindToApply==FilterKind.Original)
             {
+                ShowImage(this.afterCropImageFile ?? sourceImageFile);
                 return;
             }
 
-            if(kind==FilterKind.Original)
-            {
-                ShowImage(this.afterCropImageFile??sourceImageFile);
-                return;
-            }
             else
             {
                 ring.IsActive = true;
                 _isLoadImage = false;
 
-                var fileToApply = afterCropImageFile ?? sourceImageFile;
-                image.Source = await FilterApplyHelper.ApplyFilterAsync(kind, _imageHandleHelper.Width, _imageHandleHelper.Height, fileToApply);
+                try
+                {
+                    var fileToApply = afterCropImageFile ?? sourceImageFile;
+                    var bitmap = await FilterApplyHelper.ApplyFilterAsync(kindToApply, _imageHandleHelper.Width, _imageHandleHelper.Height, fileToApply);
+                    if (bitmap != null)
+                    {
+                        image.Source = bitmap;
+                    }
+
+                    this.currentFilter = kindToApply;
+                    ring.IsActive = false;
+                }
+                catch(Exception e)
+                {
+                    var task=new MessageDialog(e.Message).ShowAsync();
+                }
                 
-                this.currentFilter = kind;
-                ring.IsActive = false;
             }
         }
 
@@ -970,7 +983,7 @@ namespace MyerMomentUniversal
             if (fileToSave != null)
             {
                 await CropBitmap.SaveCroppedBitmapAsync(
-                    sourceImageFile,
+                    afterCropImageFile??sourceImageFile,
                     fileToSave,
                     new Point(this.selectedRegion.SelectedRect.X / widthScale, this.selectedRegion.SelectedRect.Y / heightScale),
                     new Size(this.selectedRegion.SelectedRect.Width / widthScale, this.selectedRegion.SelectedRect.Height / heightScale));
@@ -978,7 +991,7 @@ namespace MyerMomentUniversal
                 MaskGrid.Visibility = Visibility.Collapsed;
 
                 this.afterCropImageFile = fileToSave;
-                //ShowImage(this.afterCropImageFile);
+                ShowImage(this.afterCropImageFile);
 
                 await ApplyFilterAsync(currentFilter);
                 
@@ -1029,11 +1042,14 @@ namespace MyerMomentUniversal
             }
             catch (Exception e)
             {
-                var task = ExceptionUtils.WriteRecord(e);
+                //new MessageDialog(e.Message).ShowAsync();
             }
-
-            ring.IsActive = false;
-            TextView1.Visibility = Visibility.Visible;
+            finally
+            {
+                ring.IsActive = false;
+                TextView1.Visibility = Visibility.Visible;
+            }
+           
         }
 
         /// <summary>
@@ -1065,7 +1081,7 @@ namespace MyerMomentUniversal
             }
             catch (Exception e)
             {
-                ImageHandleHelper.DeleteFailedImage(_imageHandleHelper.FileName);
+                var task=ImageHandleHelper.DeleteFailedImage(_imageHandleHelper.FileName);
 
                 if(e.GetType()==typeof(GetPixelsException))
                 {
@@ -1078,7 +1094,7 @@ namespace MyerMomentUniversal
                     return;
                 }
 
-                var task = ExceptionUtils.WriteRecord(e);
+                var task2 = ExceptionHelper.WriteRecord(e);
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ErrorGrid.Visibility = Visibility.Visible;
                 _isInErrorMode = true;
@@ -1136,7 +1152,7 @@ namespace MyerMomentUniversal
             }
             catch (Exception ee)
             {
-                var task = ExceptionUtils.WriteRecord(ee);
+                var task = ExceptionHelper.WriteRecord(ee);
             }
         }
 

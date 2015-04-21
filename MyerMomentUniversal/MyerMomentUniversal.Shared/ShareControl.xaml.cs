@@ -1,4 +1,5 @@
-﻿using ChaoFunctionRT;
+﻿
+using JP.Utils.Network;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -137,7 +138,7 @@ namespace MyerMomentUniversal
         {
             try
             {
-                if (!ChaoFunctionRT.NetworkHelper.HasNetWork())
+                if (!NetworkHelper.HasNetWork())
                 {
                     ShowErrorGrid();
                     return;
@@ -154,7 +155,7 @@ namespace MyerMomentUniversal
 #if WINDOWS_APP
                     cmdBase.Status = "使用 Windows 版 #MyerMoment# 分享一张图片. ";
 #elif WINDOWS_PHONE_APP
-                cmdBase.Status="使用 Windows Phone 版 #MyerMoment# 分享一张图片. ";
+                    cmdBase.Status="使用 Windows Phone 版 #MyerMoment# 分享一张图片. ";
 #endif
                 }
                 if (fileToShare != null)

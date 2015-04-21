@@ -178,7 +178,7 @@
     <value>敬请期待。</value>
   </data>
   <data name="LowHint" xml:space="preserve">
-    <value>压缩</value>
+    <value>降低尺寸（推荐）</value>
   </data>
   <data name="MediumHint" xml:space="preserve">
     <value>中</value>

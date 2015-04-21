@@ -1,4 +1,5 @@
-﻿using ChaoFunctionRT;
+﻿
+using JP.Utils.Data;
 using System;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -200,7 +201,7 @@ namespace MyerMomentUniversal.Helper
 
         public async static Task<StorageFile> GetTempFileToSave(string fileName)
         {
-            var fileToSave = await ApplicationData.Current.TemporaryFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+            var fileToSave = await ApplicationData.Current.TemporaryFolder.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
             return fileToSave;
         }
 

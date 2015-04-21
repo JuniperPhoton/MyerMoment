@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Linq;
+using Windows.UI.Popups;
 
 namespace MyerMomentUniversal.Helper
 {
@@ -32,15 +33,15 @@ namespace MyerMomentUniversal.Helper
                     var filtersList = FilterFactory.CreateFilterEffects(kind);
                     if (filtersList != null && filtersList.Count!=0) _effect.Filters = filtersList.AsEnumerable();
 
-                    // Render the image to a WriteableBitmap. 
                     var renderer = new WriteableBitmapRenderer(_effect, _imageBitmap);
                     _imageBitmap = await renderer.RenderAsync();
                     _imageBitmap.Invalidate();
 
                     return _imageBitmap;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    new MessageDialog(e.Message).ShowAsync();
                     return null;
                 }
             }

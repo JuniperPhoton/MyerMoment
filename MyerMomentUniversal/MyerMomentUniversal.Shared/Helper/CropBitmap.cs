@@ -139,7 +139,6 @@ namespace MyerMomentUniversal.Helper
             using (IRandomAccessStream originalImgFileStream = await originalImageFile.OpenReadAsync())
             {
 
-
                 // Create a decoder from the stream. With the decoder, we can get 
                 // the properties of the image.
                 BitmapDecoder decoder = await BitmapDecoder.CreateAsync(originalImgFileStream);

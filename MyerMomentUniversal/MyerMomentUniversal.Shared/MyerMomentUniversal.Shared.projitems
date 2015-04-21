@@ -28,13 +28,14 @@
       <DependentUpon>ImageHandlePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Model\FilterFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\FilterKind.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\GetPixelsException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PageNavigateData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\StyleList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ShareControl.xaml.cs">
       <DependentUpon>ShareControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\StylesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Auto.jpg" />

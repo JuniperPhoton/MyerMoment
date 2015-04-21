@@ -1,4 +1,5 @@
-﻿using MyerMomentUniversal.Helper;
+﻿using JP.Utils.Network;
+using MyerMomentUniversal.Helper;
 using MyerMomentUniversal.Model;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace MyerMomentUniversal
         {
             try
             {
-                if (!ChaoFunctionRT.NetworkHelper.HasNetWork())
+                if (!NetworkHelper.HasNetWork())
                 {
                     shareControl.ShowErrorGrid();
                     return;

@@ -96,7 +96,7 @@
                 </DataTemplate>
                 
             </HubSection>
-            <!--<HubSection MinWidth="500">
+            <HubSection MinWidth="500">
                 <HubSection.HeaderTemplate>
                     <DataTemplate>
                         <TextBlock  FontSize="30" Text="PERSONALIZATION" FontWeight="Light" Foreground="White" VerticalAlignment="Center"/>
@@ -104,12 +104,14 @@
                 </HubSection.HeaderTemplate>
                 <DataTemplate>
                     <Grid Grid.Row="1">
-
+                        <GridView>
+                           
+                        </GridView>
                     </Grid>
 
                 </DataTemplate>
 
-            </HubSection>-->
+            </HubSection>
             <HubSection MinWidth="500">
                 <HubSection.HeaderTemplate>
                     <DataTemplate>

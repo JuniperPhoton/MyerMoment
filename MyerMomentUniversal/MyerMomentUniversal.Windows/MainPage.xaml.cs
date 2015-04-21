@@ -1,4 +1,5 @@
-﻿using ChaoFunctionRT;
+﻿
+using JP.Utils.Data;
 using MyerMomentUniversal.Model;
 using System;
 using Windows.Media.Capture;

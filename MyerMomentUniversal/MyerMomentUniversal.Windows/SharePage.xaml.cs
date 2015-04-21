@@ -1,4 +1,5 @@
-﻿using MyerMomentUniversal.Model;
+﻿using JP.Utils.Network;
+using MyerMomentUniversal.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,7 +41,7 @@ namespace MyerMomentUniversal
 
         private void ConfigWeiboShare()
         {
-            if (!ChaoFunctionRT.NetworkHelper.HasNetWork())
+            if (!NetworkHelper.HasNetWork())
             {
                 //shareControl.ShowErrorGrid();
                 return;
