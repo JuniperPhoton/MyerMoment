@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
+    
     mc:Ignorable="d"
     Background="{StaticResource MomentThemeBlack}"
     >
@@ -96,7 +97,7 @@
                 </DataTemplate>
                 
             </HubSection>
-            <HubSection MinWidth="500">
+            <!--<HubSection MinWidth="500">
                 <HubSection.HeaderTemplate>
                     <DataTemplate>
                         <TextBlock  FontSize="30" Text="PERSONALIZATION" FontWeight="Light" Foreground="White" VerticalAlignment="Center"/>
@@ -104,14 +105,32 @@
                 </HubSection.HeaderTemplate>
                 <DataTemplate>
                     <Grid Grid.Row="1">
-                        <GridView>
-                           
-                        </GridView>
+                        <ScrollViewer>
+                            <StackPanel>
+                                <TextBlock Text="Download styles from web is coming..." FontSize="20" Foreground="{StaticResource MomentThemeColor}"></TextBlock>
+                                <GridView x:Name="styleGridView" 
+                                      Margin="0,0,20,0" 
+                                      CanReorderItems="False" 
+                                      CanDragItems="False" 
+                                      SelectionMode="None"
+                                      ItemsSource="{Binding Styles}"
+                                      ItemTemplate="{StaticResource StyleDateTemplete}">
+                                    <GridView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapGrid Orientation="Horizontal" MaximumRowsOrColumns="3"/>
+                                        </ItemsPanelTemplate>
+                                    </GridView.ItemsPanel>
+                                    
+                                </GridView>
+                            </StackPanel>
+                       
+                        </ScrollViewer>
+                      
                     </Grid>
 
                 </DataTemplate>
 
-            </HubSection>
+            </HubSection>-->
             <HubSection MinWidth="500">
                 <HubSection.HeaderTemplate>
                     <DataTemplate>

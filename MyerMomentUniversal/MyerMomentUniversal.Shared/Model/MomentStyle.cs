@@ -37,7 +37,7 @@ namespace MyerMomentUniversal.Model
         }
 
         private BitmapImage _previewImage;
-        public BitmapImage PreviewImge
+        public BitmapImage PreviewImage
         {
             get
             {
@@ -46,7 +46,7 @@ namespace MyerMomentUniversal.Model
             set
             {
                 _previewImage = value;
-                RaisePropertyChanged(() => PreviewImge);
+                RaisePropertyChanged(() => PreviewImage);
             }
         }
 
@@ -62,8 +62,8 @@ namespace MyerMomentUniversal.Model
             FullSizeImage = new BitmapImage();
             FullSizeImage.UriSource = new Uri("ms-appx:///Asset/Style/" + nameID + ".png", UriKind.RelativeOrAbsolute);
 
-            PreviewImge = new BitmapImage();
-            PreviewImge.UriSource = new Uri("ms-appx:///Asset/Style/" + nameID + ".jpg", UriKind.RelativeOrAbsolute);
+            PreviewImage = new BitmapImage();
+            PreviewImage.UriSource = new Uri("ms-appx:///Asset/Style/" + nameID + ".jpg", UriKind.RelativeOrAbsolute);
         }
 
         public MomentStyle(string nameID,Uri thumbUri,Uri fullSizeUri)
@@ -92,8 +92,8 @@ namespace MyerMomentUniversal.Model
             var thumbFile = await folder.GetFileAsync(this.NameID+".jpg");
             if(thumbFile!=null)
             {
-                PreviewImge = new BitmapImage();
-                PreviewImge.UriSource =new Uri(thumbFile.Path);
+                PreviewImage = new BitmapImage();
+                PreviewImage.UriSource =new Uri(thumbFile.Path);
 
                 var fullSizeFile = await folder.GetFileAsync(this.NameID + ".png");
                 if (fullSizeFile != null)
@@ -119,8 +119,8 @@ namespace MyerMomentUniversal.Model
             var thumbStream = await GetStreamFromFileAsync(thumbFile);
             var fullsizeStream = await GetStreamFromFileAsync(fullsizeFile);
 
-            PreviewImge = new BitmapImage();
-            await PreviewImge.SetSourceAsync(thumbStream);
+            PreviewImage = new BitmapImage();
+            await PreviewImage.SetSourceAsync(thumbStream);
 
             FullSizeImage = new BitmapImage();
             await FullSizeImage.SetSourceAsync(fullsizeStream);

@@ -1,5 +1,5 @@
-MainPackage=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.32_Bundle\MyerMomentUniversal.Windows_1.1.0.32_ARM.appx
-SymbolPackage=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\AppPackages\MyerMomentUniversal.Windows_1.1.0.32_Test\MyerMomentUniversal.Windows_1.1.0.32_ARM.appxsym
-ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.32_Bundle\MyerMomentUniversal.Windows_1.1.0.32_language-en.appx
-ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.32_Bundle\MyerMomentUniversal.Windows_1.1.0.32_scale-140.appx
-ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.32_Bundle\MyerMomentUniversal.Windows_1.1.0.32_scale-180.appx
+MainPackage=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.33_ARM.appx
+SymbolPackage=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\AppPackages\MyerMomentUniversal.Windows_1.1.0.33_Test\MyerMomentUniversal.Windows_1.1.0.33_ARM.appxsym
+ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.33_language-en.appx
+ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.33_scale-140.appx
+ResourcePack=D:\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.1.0.33_scale-180.appx

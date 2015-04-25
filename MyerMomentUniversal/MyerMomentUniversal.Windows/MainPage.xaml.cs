@@ -1,6 +1,7 @@
 ﻿
 using JP.Utils.Data;
 using MyerMomentUniversal.Model;
+using MyerMomentUniversal.ViewModel;
 using System;
 using Windows.Media.Capture;
 using Windows.Storage.Pickers;
@@ -26,8 +27,14 @@ namespace MyerMomentUniversal
             this.NavigationCacheMode = NavigationCacheMode.Required;
             
             ConfigLang();
-            //VersionHLB.Content = (string)(App.Current.Resources["AppVersion"]);
+            ConfigStyle();
+        }
 
+        private void ConfigStyle()
+        {
+            var styleList = new StylesViewModel();
+            styleList.ConfigStyleListAsync();
+            this.DataContext = styleList;
         }
 
         private void ConfigLang()

@@ -62,6 +62,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Dinner.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Food.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Food.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Style\GTA5.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Style\GTA5.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Love.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Love.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Lumia.jpg" />
@@ -85,6 +87,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Tile\LOGO_TRAN_300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Tile\LOGO_WIDE.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Tile\LOGO_WIDE_TRAN.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\blockline.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\ClubNight.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Cubos.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Digiform_demo.otf" />
@@ -99,7 +102,9 @@
     <Content Include="$(MSBuildThisFileDirectory)Font\penna.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\PRISTINA.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Reswysokr.otf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Sigma Five Sans Italic.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\SOFT ADDICTIONS.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Thank you Drf.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\TpldKhangXiDictTrial.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Western Bang Bang.ttf" />
   </ItemGroup>

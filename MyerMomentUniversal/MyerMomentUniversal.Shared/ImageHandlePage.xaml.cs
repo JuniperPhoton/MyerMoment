@@ -8,6 +8,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.ShareTarget;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
+using DialogExt;
 #endif
 using Windows.Storage;
 using Windows.UI;
@@ -30,8 +31,10 @@ using Lumia.Imaging;
 using Lumia.Imaging.Artistic;
 using JP.Utils.Debug;
 using JP.Utils.Data;
-using MyerMomentUniversal.ViewModel; 
-
+using MyerMomentUniversal.ViewModel;
+using Windows.Security.ExchangeActiveSyncProvisioning;
+using Windows.Devices.Enumeration;
+using System.Text.RegularExpressions;
 
 namespace MyerMomentUniversal
 {
@@ -46,6 +49,7 @@ namespace MyerMomentUniversal
         private bool _isInEditMode = false;
         private bool _isInCropMode = false;
         private bool _isInFilterMode = false;
+        private bool _isInExitMode = false;
 
         private bool _isFromShareTarget = false;
 
@@ -117,15 +121,8 @@ namespace MyerMomentUniversal
 
 #if WINDOWS_PHONE_APP
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
-            BottomMessageDialog.Control.BottomMessageDialog dialog = new BottomMessageDialog.Control.BottomMessageDialog();
-            dialog.ShowDialog("CANCEL", "Do you want to leave?", (s,e) =>
-                {
 
-                },
-                (s2,e2) =>
-                {
-
-                });
+            
 #endif
 
             ConfigLang();
@@ -135,7 +132,7 @@ namespace MyerMomentUniversal
         }
 
         #region Configuration
-        private void ConfigQuality()
+        private async void ConfigQuality()
         {
 #if WINDOWS_PHONE_APP
             var qualitySetting = LocalSettingHelper.GetValue("QualityCompress");
@@ -143,8 +140,7 @@ namespace MyerMomentUniversal
             {
                 _imageHandleHelper.ScaleLong = 1500;
 
-                Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
-                var firmwareVersion = deviceInfo.SystemFirmwareVersion;
+                EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
 
                 //针对 Lumia 1020 进行配置
                 if (deviceInfo.SystemProductName.Contains("RM-875") 
@@ -156,6 +152,7 @@ namespace MyerMomentUniversal
             }
 #endif
         }
+       
 
         //配置Style 列表
         private void ConfigStyle()
@@ -176,7 +173,7 @@ namespace MyerMomentUniversal
                 {
                     //点击Style 按钮的操作
                     styleImage.Source = style.FullSizeImage;
-
+                    
                     //所有Text 都隐藏
                     textGrid1.Visibility = Visibility.Collapsed;
                     textGrid2.Visibility = Visibility.Collapsed;
@@ -191,7 +188,7 @@ namespace MyerMomentUniversal
 
                 Border border = new Border();
                 ImageBrush brush = new ImageBrush();
-                brush.ImageSource = style.PreviewImge;
+                brush.ImageSource = style.PreviewImage;
                 border.Background = brush;
 
                 styleBtn.Content = border;
@@ -285,6 +282,7 @@ namespace MyerMomentUniversal
         #region Function
         private void TapBlack(object sender, TappedRoutedEventArgs e)
         {
+            e.Handled = true;
             HandleBack();
         }
       
@@ -495,6 +493,7 @@ namespace MyerMomentUniversal
 
         private void TapMask(object sender,TappedRoutedEventArgs e)
         {
+            e.Handled = true;
             HandleBack();
         }
 
@@ -764,6 +763,8 @@ namespace MyerMomentUniversal
 
         private void TextView1_OnPointerEntered(object sender, PointerRoutedEventArgs e)
         {
+            e.Handled = true;
+
             textGrid1.ManipulationDelta -= TextView1_ManipulationDelta;
             textGrid1.ManipulationDelta += TextView1_ManipulationDelta;
 
@@ -781,6 +782,7 @@ namespace MyerMomentUniversal
 
         private void textGrid1_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            e.Handled = true;
             if (!_isInEditMode)
             {
                 //在其他模式下先exit
@@ -1113,6 +1115,7 @@ namespace MyerMomentUniversal
 
             var rootFrame = Window.Current.Content as Frame;
 
+#if WINDOWS_APP
             MessageDialog md = new MessageDialog(content, title);
             md.Commands.Add(new UICommand(discardBtn, act =>
             {
@@ -1125,6 +1128,31 @@ namespace MyerMomentUniversal
             }));
             
             await md.ShowAsync();
+#elif WINDOWS_PHONE_APP
+            if (_isInExitMode)
+            {
+                _isInExitMode = false;
+                return;
+            }
+            var dialog = new BottomDialog(
+            (senderl, largs) =>
+            {
+                (senderl as BottomDialog).Hide();
+                if (_isFromShareTarget) App.Current.Exit();
+                Frame.Navigate(typeof(MainPage));
+                _isInExitMode = false;
+            }, (senderr, rargs) =>
+            {
+                (senderr as BottomDialog).Hide();
+                _isInExitMode = false;
+            });
+            dialog.LeftButtonContent = discardBtn;
+            dialog.RightButtonContent = discardCancel;
+            dialog.TitleContent = title;
+            dialog.ContentContent = content;
+            dialog.Show();
+            _isInExitMode = true;
+#endif
         }
 
         private void DropCropClick(object sender,RoutedEventArgs e)
@@ -1177,8 +1205,6 @@ namespace MyerMomentUniversal
             else return fileToGet;
         }
 
-
-
         private void BackHomeClick(object sender, RoutedEventArgs e)
         {
             if (_isFromShareTarget) App.Current.Exit();
@@ -1196,9 +1222,9 @@ namespace MyerMomentUniversal
 
         }
 
-        #endregion
+#endregion
 
-        #region Navigate Override
+#region Navigate Override
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 #if WINDOWS_PHONE_APP
@@ -1228,6 +1254,8 @@ namespace MyerMomentUniversal
                     if (file != null) ShowImage(file);
                 }
             }
+
+            
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

@@ -299,15 +299,31 @@
                         </StackPanel>
                     </Grid>
                 </PivotItem>
-                <PivotItem x:Uid="PersonalizePivotItem" Header="PERSONALIZE" Margin="0,23,0,-0.333">
+                <!--<PivotItem x:Uid="PersonalizePivotItem" Header="PERSONALIZE" Margin="0,23,0,-0.333">
                     <Grid>
-                        <GridView>
-                            <GridView.Items>
-                                
-                            </GridView.Items>
-                        </GridView>
+                        <ScrollViewer>
+                            <StackPanel>
+                                <TextBlock Text="Download styles from web is coming..." FontSize="20" Foreground="{StaticResource MomentThemeColor}"></TextBlock>
+                                <GridView x:Name="styleGridView" 
+                                      Margin="0,0,20,0" 
+                                      CanReorderItems="False" 
+                                      CanDragItems="False" 
+                                      SelectionMode="None"
+                                      ItemsSource="{Binding Styles}"
+                                      ItemTemplate="{StaticResource StyleDateTemplete}">
+                                    <GridView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapGrid Orientation="Horizontal" MaximumRowsOrColumns="3"/>
+                                        </ItemsPanelTemplate>
+                                    </GridView.ItemsPanel>
+
+                                </GridView>
+                            </StackPanel>
+
+                        </ScrollViewer>
+
                     </Grid>
-                </PivotItem>
+                </PivotItem>-->
 
                 <PivotItem  x:Uid="SettingPivotItem"  Header="SETTING">
                     <Grid>

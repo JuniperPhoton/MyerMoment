@@ -2,6 +2,7 @@
 using JP.Utils.Data;
 using MyerMomentUniversal.Helper;
 using MyerMomentUniversal.Model;
+using MyerMomentUniversal.ViewModel;
 using NotificationsExtensions.TileContent;
 using System;
 using System.Collections.Generic;
@@ -48,13 +49,19 @@ namespace MyerMomentUniversal
             Current = this;
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            ConfigLang();
-
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
 
             VersionHLB.Content = (string)(App.Current.Resources["AppVersion"]);
-        }
 
+            ConfigLang();
+            ConfigStyle();
+        }
+        private void ConfigStyle()
+        {
+            var styleList = new StylesViewModel();
+            styleList.ConfigStyleListAsync();
+            this.DataContext = styleList;
+        }
         private void ConfigLang()
         {
             

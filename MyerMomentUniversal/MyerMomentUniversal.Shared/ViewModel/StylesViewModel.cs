@@ -42,6 +42,7 @@ namespace MyerMomentUniversal.ViewModel
             Styles.Add(new MomentStyle("Coffee"));
             Styles.Add(new MomentStyle("Dinner"));
             Styles.Add(new MomentStyle("Food"));
+            Styles.Add(new MomentStyle("GTA5"));
             Styles.Add(new MomentStyle("Lumia"));
             Styles.Add(new MomentStyle("Love"));
             Styles.Add(new MomentStyle("Memory"));
