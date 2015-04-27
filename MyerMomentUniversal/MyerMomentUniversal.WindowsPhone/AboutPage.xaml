@@ -1,0 +1,118 @@
+﻿<Page
+    x:Class="MyerMomentUniversal.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyerMomentUniversal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{StaticResource MomentThemeColor}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    <Grid>
+        <Grid x:Name="AboutGrid" Grid.Row="1" Opacity="100" Grid.RowSpan="2" Background="{StaticResource MomentThemeBlack}" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid Background="{StaticResource MomentThemeColor}">
+                    <TextBlock x:Uid="AboutTitle" Text="ABOUT" Margin="15,0,0,0" FontWeight="Light"  FontSize="30" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Segoe WP" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Grid>
+
+            <StackPanel Margin="10" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Orientation="Vertical">
+
+                <Border  Margin="0,0,0,0" VerticalAlignment="Center" >
+                    <TextBlock x:Uid="PCAvailableTB" Text="Also available on PC" Margin="5" FontWeight="Light"  FontSize="25" Foreground="{StaticResource MomentThemeColor}" FontFamily="Segoe WP"/>
+                </Border>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                        <TextBlock x:Uid="VersionTB" Margin="5" Text="Version" FontSize="25" FontFamily="Segoe WP" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
+                    </Border>
+                    <HyperlinkButton x:Name="VersionHLB" FontSize="20" Margin="5,0,0,0" Foreground="White" Content="0.98 RC" NavigateUri="http://www.windowsphone.com/en-us/store/app/myermoment/126a1e6d-0f68-4b89-a67c-fe3d204508ec" HorizontalAlignment="Left" VerticalAlignment="Center"    />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                    <Border  Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                        <TextBlock x:Uid="CreditTB" Margin="5" Text="Credit" FontSize="25" FontFamily="Segoe WP" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
+                    </Border>
+                    <!--<Button Click="DonateClick" Style="{StaticResource ButtonStyle2}" BorderThickness="0" MinHeight="10" Width="10">
+                        <Border Background="{StaticResource MomentThemeColor}">
+                            <TextBlock Text="捐赠" FontSize="20"/>
+                        </Border>
+                    </Button>-->
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                    <Path  Data="M20.310787,9.2370556E-14C20.607692,-1.0715498E-07 20.852493,0.089841817 21.043896,0.2669013 21.236598,0.44396062 21.333,0.68089373 21.333,0.97782357 21.333,1.4205002 21.051796,1.7903726 20.48929,2.0871462 19.142776,2.7837817 18.158464,3.4698974 17.536059,4.1521629 16.944952,4.7876204 16.649348,5.2537402 16.649348,5.5493239 16.649348,5.8318485 16.87065,6.0023745 17.314655,6.0610637L17.603759,6.1040024 17.935761,6.1274623C18.899372,6.2745289 19.679381,6.7225198 20.278288,7.4698142 20.877193,8.2172679 21.178097,9.1235293 21.178097,10.189887 21.178097,11.284764 20.808193,12.231444 20.068586,13.030929 19.223676,13.933309 18.150665,14.384999 16.848551,14.384999 15.575136,14.384999 14.487825,13.89021 13.585415,12.898131 13.15591,12.43854 12.815906,11.881252 12.564604,11.222466 12.312101,10.563479 12.187,9.9020432 12.187,9.2354077 12.187,7.8291162 12.645405,6.4047765 13.563315,4.9621166 14.480025,3.5193664 15.709238,2.294202 17.248254,1.2876929 18.550468,0.42958693 19.571279,-1.0715498E-07 20.310787,9.2370556E-14z M8.1250539,9.2370556E-14C8.4206457,-1.0715498E-07 8.6654673,0.089841817 8.8569286,0.2669013 9.0509598,0.44396065 9.1460004,0.68089373 9.1460004,0.97782357 9.1460004,1.4205003 8.8646786,1.7903726 8.302305,2.0871462 6.9557962,2.7837819 5.9714098,3.4698976 5.3490353,4.1521634 4.7578416,4.78762 4.4623694,5.2537402 4.4623694,5.5493244 4.4623694,5.8318485 4.6837511,6.002375 5.1276541,6.0610637L5.4167261,6.1040028 5.7487583,6.1274623C6.7123842,6.2745293 7.4922395,6.7225198 8.0912437,7.4698142 8.6902475,8.2172688 8.9911494,9.1235303 8.9911494,10.189888 8.9911494,11.284765 8.6211469,12.231445 7.8815823,13.030929 7.0365467,13.933309 5.9635997,14.385 4.6615911,14.385 3.3880825,14.385 2.3009157,13.89021 1.3984499,12.898131 0.96893978,12.43854 0.62903214,11.881252 0.37762737,11.222466 0.12500095,10.56348 0,9.9020432 0,9.2354077 0,7.8291167 0.45837688,6.4047765 1.3763494,4.9621166 2.292985,3.5193666 3.5221834,2.294202 5.0612535,1.2876929 6.363502,0.42958693 7.3842688,-1.0715498E-07 8.1250539,9.2370556E-14z" Stretch="Uniform" 
+							Fill="{StaticResource MomentThemeColor}" 
+							Width="30" Height="30"  Margin="0" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="0" />
+                                <ScaleTransform ScaleX="1" ScaleY="1" />
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+
+                    <TextBlock  Margin="15,0,0,0" Text="JuniperPhoton" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBlock  Margin="15,0,0,0" Text="Churwin" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                        <TextBlock x:Uid="FeedbackTitleTB" Margin="5" Text="Feedback" FontSize="25" FontFamily="Segoe WP" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
+                    </Border>
+
+                </StackPanel>
+
+                <Button Click="ReviewClick"  HorizontalAlignment="Left" Margin="5,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                    <Border>
+                        <StackPanel Orientation="Horizontal">
+                            <Path Width="30" Height="30" Data="M342,0L447.7,225.156 684,261.275 513,436.536 553.399,684 342,567.162 130.709,684 171,436.536 0,261.275 236.3,225.156z" Stretch="Uniform" Fill="{StaticResource MomentThemeColor}"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <TransformGroup.Children>
+                                            <RotateTransform Angle="0" />
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        </TransformGroup.Children>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                            <TextBlock x:Uid="RateTB" FontSize="20" Text="Give me a rate" Margin="15,0,0,0" Foreground="White" VerticalAlignment="Center" FontWeight="Normal"/>
+                        </StackPanel>
+                    </Border>
+                </Button>
+
+                <Button Click="EmailClick"  HorizontalAlignment="Left" Margin="5,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                    <Border>
+                        <StackPanel Orientation="Horizontal">
+                            <Path Width="30" Height="30"  Data="M0,1.4200591L0.040033408,1.4200591 12.618441,13.742285 26.626588,27.494828 40.634736,13.742285 53.213021,1.4200591 53.333001,1.4200591 53.333001,39.08706 0,39.08706z M3.1698927,0L26.665893,0 50.161893,0 38.413892,9.8814956 26.665893,19.76299 14.917893,9.8814956z" Stretch="Uniform" Fill="{StaticResource MomentThemeColor}" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <TransformGroup.Children>
+                                            <RotateTransform Angle="0" />
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        </TransformGroup.Children>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                            <TextBlock x:Uid="FeedbackTB" FontSize="20" Text="Send me an email" Margin="15,0,0,0" Foreground="White" VerticalAlignment="Center" FontWeight="Normal"/>
+                        </StackPanel>
+                    </Border>
+                </Button>
+                <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                    <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                        <TextBlock x:Uid="OtherAppTB" Margin="5" Text="Other App" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
+                    </Border>
+                    <HyperlinkButton  Content="MyerList" Margin="10,0,0,0" NavigateUri="http://www.windowsphone.com/s?appid=52172f00-cfe1-4695-b4f7-a2be0c1bfacc" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Foreground="White" />
+
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -167,7 +167,7 @@ namespace MyerMomentUniversal.Model
                         await encoder.FlushAsync();
                         return file;
                     }
-                    catch(Exception e)
+                    catch(Exception)
                     {
                         return null;
                     }

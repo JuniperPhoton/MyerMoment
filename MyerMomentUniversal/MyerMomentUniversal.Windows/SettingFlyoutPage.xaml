@@ -1,0 +1,35 @@
+﻿<SettingsFlyout
+    x:Class="MyerMomentUniversal.SettingFlyoutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyerMomentUniversal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="Setting"
+    d:DesignWidth="346" Background="{StaticResource MomentThemeBlack}">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Top" Orientation="Vertical">
+            <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                <TextBlock x:Uid="PositionTB" Margin="5" Text="Saving Position" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
+            </Border>
+            <ComboBox Width="220"   SelectionChanged="positionCom_SelectionChanged" x:Name="positionCom" PlaceholderText="Select the default saving position" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeColor}" Margin="0,20,0,0" Background="{StaticResource MomentThemeBlack}" Foreground="White" >
+                <ComboBoxItem>
+                    <TextBlock  x:Uid="SavedPictureTB"  Text="SavedPicture" />
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock  x:Uid="MyerMomentFolderTB" Text="MyerMoment Folder"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock  x:Uid="CameraRollTB" Text="CameraRoll"/>
+                </ComboBoxItem>
+            </ComboBox>
+            <!--<Border  Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,30,0,0">
+                                    <TextBlock x:Name="importTB" Margin="5" Text="IMPORT FONT FAMILY" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" />
+                                </Border>
+                                <TextBlock x:Name="importHint" Margin="5,15,5,5" Text="Comming soon" FontSize="25" Foreground="White" />-->
+        </StackPanel>
+    </Grid>
+</SettingsFlyout>

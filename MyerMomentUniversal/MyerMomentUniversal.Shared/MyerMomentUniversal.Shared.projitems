@@ -32,6 +32,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\GetPixelsException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PageNavigateData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NewMainPage.xaml.cs">
+      <DependentUpon>NewMainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ShareControl.xaml.cs">
       <DependentUpon>ShareControl.xaml</DependentUpon>
     </Compile>
@@ -48,6 +51,9 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Oily.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Original.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Sun.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\DSC00069.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\DSC00073.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\DSC01202.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Alone.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Alone.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Amazing.jpg" />
@@ -114,6 +120,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)ImageHandlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)NewMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -73,8 +73,6 @@ namespace MyerMomentUniversal
                 data.file = file;
                 data.isFromShare = false;
                 Frame.Navigate(typeof(ImageHandlePage), data);
-
-
             }
         }
 

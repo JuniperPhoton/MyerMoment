@@ -1,4 +1,5 @@
 ﻿
+using JP.Utils.Debug;
 using JP.Utils.Network;
 using System;
 using System.Collections.Generic;
@@ -101,6 +102,7 @@ namespace MyerMomentUniversal
             sharingGrid.Visibility = Visibility.Collapsed;
             errorGrid.Visibility = Visibility.Collapsed;
             successGrid.Visibility = Visibility.Visible;
+
         }
         public void HideSuccessGrid()
         {
@@ -112,7 +114,7 @@ namespace MyerMomentUniversal
             var rootFrame = Window.Current.Content as Frame;
             if(rootFrame!=null)
             {
-                rootFrame.Navigate(typeof(MainPage));
+                rootFrame.Navigate(typeof(NewMainPage));
             }
         }
 

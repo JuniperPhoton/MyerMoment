@@ -300,4 +300,79 @@
   <data name="styleHeader.Text" xml:space="preserve">
     <value>STYLE</value>
   </data>
+  <data name="AboutTB.Text" xml:space="preserve">
+    <value>ABOUT</value>
+  </data>
+  <data name="PickTB.Text" xml:space="preserve">
+    <value>PICK A PHOTO</value>
+  </data>
+  <data name="SettingTB.Text" xml:space="preserve">
+    <value>SETTING</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>SubTitleTB.Text</value>
+  </data>
+  <data name="SubTitleTB.Text" xml:space="preserve">
+    <value>Photos tell story</value>
+  </data>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>ABOUT</value>
+  </data>
+  <data name="CameraRollTB.Text" xml:space="preserve">
+    <value>CameraRoll</value>
+  </data>
+  <data name="CompressTB.Text" xml:space="preserve">
+    <value>Compress</value>
+  </data>
+  <data name="FeedbackTB.Text" xml:space="preserve">
+    <value>Send me an email</value>
+  </data>
+  <data name="FullsizeTB.Text" xml:space="preserve">
+    <value>Fullsize</value>
+  </data>
+  <data name="MyerMomentFolderTB.Text" xml:space="preserve">
+    <value>MyerMoment Folder</value>
+  </data>
+  <data name="PositionTB.Text" xml:space="preserve">
+    <value>Saving Position</value>
+  </data>
+  <data name="QualityTB.Text" xml:space="preserve">
+    <value>Saving Quality</value>
+  </data>
+  <data name="RateTB.Text" xml:space="preserve">
+    <value>Give me a rate</value>
+  </data>
+  <data name="SavedPictureTB.Text" xml:space="preserve">
+    <value>SavedPicture</value>
+  </data>
+  <data name="SettingTitle.Text" xml:space="preserve">
+    <value>SETTING</value>
+  </data>
+  <data name="SolidColorTB.Text" xml:space="preserve">
+    <value>SolidColor</value>
+  </data>
+  <data name="TileStyleTB.Text" xml:space="preserve">
+    <value>Tile Style</value>
+  </data>
+  <data name="TransparentTB.Text" xml:space="preserve">
+    <value>Transparent</value>
+  </data>
+  <data name="CreditTB.Text" xml:space="preserve">
+    <value>Credit</value>
+  </data>
+  <data name="FeedbackTitle.Text" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="OtherAppTB.Text" xml:space="preserve">
+    <value>Other App</value>
+  </data>
+  <data name="PCAvailableTB.Text" xml:space="preserve">
+    <value>Also available on PC</value>
+  </data>
+  <data name="PhoneAvailableTB.Text" xml:space="preserve">
+    <value>Also available on Phone</value>
+  </data>
+  <data name="VersionTB.Text" xml:space="preserve">
+    <value>Version</value>
+  </data>
 </root>

@@ -183,9 +183,6 @@
   <data name="MediumHint" xml:space="preserve">
     <value>中</value>
   </data>
-  <data name="MyerMomentFolderHint" xml:space="preserve">
-    <value>MyerMoment 文件夹</value>
-  </data>
   <data name="SettingPivotItem.Header" xml:space="preserve">
     <value>设置</value>
   </data>
@@ -195,14 +192,8 @@
   <data name="PickPhotoHint" xml:space="preserve">
     <value>选一张照片</value>
   </data>
-  <data name="RateHint" xml:space="preserve">
-    <value>给一个好评</value>
-  </data>
   <data name="SaveAsCopyBtn" xml:space="preserve">
     <value>保存为副本</value>
-  </data>
-  <data name="SavedPictureHint" xml:space="preserve">
-    <value>保存的照片</value>
   </data>
   <data name="SavingHint" xml:space="preserve">
     <value>努力画图中...</value>
@@ -219,23 +210,11 @@
   <data name="SendLogHint" xml:space="preserve">
     <value>发送错误报告</value>
   </data>
-  <data name="SettingHint" xml:space="preserve">
-    <value>设置</value>
-  </data>
   <data name="ShareHint" xml:space="preserve">
     <value>共享</value>
   </data>
   <data name="StartHeader" xml:space="preserve">
     <value>开始</value>
-  </data>
-  <data name="ThemeHint" xml:space="preserve">
-    <value>MyerMoment 主题色</value>
-  </data>
-  <data name="TileColorHeader" xml:space="preserve">
-    <value>磁贴样式</value>
-  </data>
-  <data name="TransparantHint" xml:space="preserve">
-    <value>背景透明</value>
   </data>
   <data name="ContinueBtn" xml:space="preserve">
     <value>裁剪</value>
@@ -290,5 +269,77 @@
   </data>
   <data name="styleHeader.Text" xml:space="preserve">
     <value>预设样式</value>
+  </data>
+  <data name="AboutTB.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="PickTB.Text" xml:space="preserve">
+    <value>选一张照片</value>
+  </data>
+  <data name="SettingTB.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SubTitleTB.Text" xml:space="preserve">
+    <value>以图叙事</value>
+  </data>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="CameraRollTB.Text" xml:space="preserve">
+    <value>本机照片</value>
+  </data>
+  <data name="CompressTB.Text" xml:space="preserve">
+    <value>降低尺寸（推荐）</value>
+  </data>
+  <data name="FeedbackTB.Text" xml:space="preserve">
+    <value>发邮件给我</value>
+  </data>
+  <data name="FullsizeTB.Text" xml:space="preserve">
+    <value>全尺寸（部分机型适用）</value>
+  </data>
+  <data name="MyerMomentFolderTB.Text" xml:space="preserve">
+    <value>MyerMoment 文件夹</value>
+  </data>
+  <data name="PositionTB.Text" xml:space="preserve">
+    <value>保存的位置</value>
+  </data>
+  <data name="QualityTB.Text" xml:space="preserve">
+    <value>保存质量</value>
+  </data>
+  <data name="RateTB.Text" xml:space="preserve">
+    <value>给一个好评</value>
+  </data>
+  <data name="SavedPictureTB.Text" xml:space="preserve">
+    <value>保存的照片</value>
+  </data>
+  <data name="SettingTitle.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SolidColorTB.Text" xml:space="preserve">
+    <value>MyerMoment 主题色</value>
+  </data>
+  <data name="TileStyleTB.Text" xml:space="preserve">
+    <value>磁贴样式</value>
+  </data>
+  <data name="TransparentTB.Text" xml:space="preserve">
+    <value>背景透明</value>
+  </data>
+  <data name="CreditTB.Text" xml:space="preserve">
+    <value>感谢</value>
+  </data>
+  <data name="FeedbackTitleTB.Text" xml:space="preserve">
+    <value>反馈</value>
+  </data>
+  <data name="OtherAppTB.Text" xml:space="preserve">
+    <value>其他应用</value>
+  </data>
+  <data name="PCAvailableTB.Text" xml:space="preserve">
+    <value>同样适用于PC</value>
+  </data>
+  <data name="PhoneAvailableTB.Text" xml:space="preserve">
+    <value>同样适用于手机</value>
+  </data>
+  <data name="VersionTB.Text" xml:space="preserve">
+    <value>版本</value>
   </data>
 </root>

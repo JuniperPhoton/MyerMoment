@@ -121,14 +121,20 @@ namespace MyerMomentUniversal
 
 #if WINDOWS_PHONE_APP
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
-
-            
+#endif
+#if WINDOWS_APP
+            this.SizeChanged += ImageHandlePage_SizeChanged;
 #endif
 
             ConfigLang();
             ConfigQuality();
             ConfigFilter();
             ConfigStyle();
+        }
+
+        private void ImageHandlePage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            _isLoadImage = false;
         }
 
         #region Configuration
@@ -255,7 +261,7 @@ namespace MyerMomentUniversal
         /// </summary>
         private void UpdatePageLayout()
         {
-            #if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP
             styleSV.Height = filterSV.Height = 120;
 
             if (Frame.ActualHeight < 720)
@@ -264,7 +270,7 @@ namespace MyerMomentUniversal
                 contentSV.Height = 200;
                 
             }
-            #elif WINDOWS_APP
+#elif WINDOWS_APP
             contentGrid.Height = 320;
             contentSV.Height = 300;
             shareBtn.MaxWidth = 300;
@@ -274,12 +280,12 @@ namespace MyerMomentUniversal
             //styleSV.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
             //filterSV.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
 
-            #endif
+#endif
         }
 
 #endregion
 
-        #region Function
+#region Function
         private void TapBlack(object sender, TappedRoutedEventArgs e)
         {
             e.Handled = true;
@@ -512,9 +518,9 @@ namespace MyerMomentUniversal
             CropInStory.Begin();
             _isInCropMode = true;
         }
-        #endregion
+#endregion
 
-        #region Crop Command
+#region Crop Command
 
         private void SetToSquareClick(object sender, RoutedEventArgs e)
         {
@@ -606,9 +612,9 @@ namespace MyerMomentUniversal
             }
         }
 
-        #endregion
+#endregion
 
-        #region Event Method
+#region Event Method
         private void AddCornerEvents(Control corner)
         {
             corner.PointerPressed += Corner_PointerPressed;
@@ -622,9 +628,9 @@ namespace MyerMomentUniversal
             corner.PointerMoved -= Corner_PointerMoved;
             corner.PointerReleased -= Corner_PointerReleased;
         }
-        #endregion
+#endregion
 
-        #region Select Region methods
+#region Select Region methods
 
         /// <summary>
         /// If a pointer presses in the corner, it means that the user starts to move the corner.
@@ -703,9 +709,9 @@ namespace MyerMomentUniversal
             e.Handled = true;
         }
 
-        #endregion
+#endregion
 
-        #region 关于所有手势操作
+#region 关于所有手势操作
 
         /// <summary>
         /// 旋转图像
@@ -925,7 +931,7 @@ namespace MyerMomentUniversal
 
 #endregion
 
-        #region 滤镜
+#region 滤镜
         private async void ApplyFilterClick(object sender,RoutedEventArgs e)
         {
             var btn = sender as Button;
@@ -966,9 +972,9 @@ namespace MyerMomentUniversal
             }
         }
 
-        #endregion
+#endregion
 
-        #region 裁剪 保存 显示图像
+#region 裁剪 保存 显示图像
 
         /// <summary>
         /// Save the cropped image.
@@ -1120,7 +1126,7 @@ namespace MyerMomentUniversal
             md.Commands.Add(new UICommand(discardBtn, act =>
             {
                 if (_isFromShareTarget) App.Current.Exit();
-                Frame.Navigate(typeof(MainPage));
+                Frame.Navigate(typeof(NewMainPage));
             }));
             md.Commands.Add(new UICommand(discardCancel, act =>
             {
@@ -1139,7 +1145,7 @@ namespace MyerMomentUniversal
             {
                 (senderl as BottomDialog).Hide();
                 if (_isFromShareTarget) App.Current.Exit();
-                Frame.Navigate(typeof(MainPage));
+                Frame.Navigate(typeof(NewMainPage));
                 _isInExitMode = false;
             }, (senderr, rargs) =>
             {
@@ -1208,7 +1214,7 @@ namespace MyerMomentUniversal
         private void BackHomeClick(object sender, RoutedEventArgs e)
         {
             if (_isFromShareTarget) App.Current.Exit();
-            Frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof(NewMainPage));
         }
 
         private void retryClick(object sender,RoutedEventArgs e)
