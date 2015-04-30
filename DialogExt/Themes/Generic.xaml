@@ -123,7 +123,7 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <TextBlock x:Name="TitleTB" Grid.Row="0" Foreground="{TemplateBinding DialogForeground}" FontSize="33.333" VerticalAlignment="Center" Text="{TemplateBinding TitleContent}" FontWeight="SemiBold" Margin="15,0,0,0"/>
-                            <TextBlock x:Name="ContentTB" Grid.Row="1" Foreground="{TemplateBinding DialogForeground}" FontSize="23.333" Text="{TemplateBinding ContentContent}" Margin="15,0,20,5"/>
+                            <TextBlock x:Name="ContentTB" Grid.Row="1" Foreground="{TemplateBinding DialogForeground}" FontSize="23.333" Text="{TemplateBinding ContentContent}" Margin="15,0,20,5" TextWrapping="Wrap"/>
                             <Grid Grid.Row="2">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>

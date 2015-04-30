@@ -36,7 +36,7 @@ namespace MyerMomentUniversal
 
         private void EnterClick(object sender,RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof(NewMainPage));
         }
         
         protected override void OnNavigatedTo(NavigationEventArgs e)

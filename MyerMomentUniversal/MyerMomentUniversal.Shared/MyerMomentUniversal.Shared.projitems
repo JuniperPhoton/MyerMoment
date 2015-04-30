@@ -52,8 +52,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Original.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Sun.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Image\DSC00069.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\DSC00073.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\DSC01202.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Alone.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Alone.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Amazing.jpg" />

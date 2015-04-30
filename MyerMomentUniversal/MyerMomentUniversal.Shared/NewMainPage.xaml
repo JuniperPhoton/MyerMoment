@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="{StaticResource MomentThemeBlack}">
+    
     <Page.Resources>
         <Storyboard x:Name="NavigateStory">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="stackPanel">
@@ -60,6 +61,7 @@
     </Page.Resources>
 
     <Grid Margin="0,-30,0,0">
+      
         <Image Stretch="UniformToFill" Source="Asset/Image/DSC00069.jpg" />
         <Border Background="Black" Opacity="0.3"/>
         <Grid x:Name="ContentGrid">

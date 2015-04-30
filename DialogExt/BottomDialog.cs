@@ -201,7 +201,6 @@ namespace DialogExt
                       return;
                   }
                   Hide();
-                  
               });
 
             inStory = rootGrid.Resources["InStory"] as Storyboard;

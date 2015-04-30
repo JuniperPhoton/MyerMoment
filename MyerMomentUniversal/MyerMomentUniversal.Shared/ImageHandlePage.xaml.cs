@@ -53,6 +53,8 @@ namespace MyerMomentUniversal
 
         private bool _isFromShareTarget = false;
 
+        private bool _hasCopy = false;
+
         private double _styleAngle = 0;
         private double _text1Angle = 0;
         private double _text2Angle = 0;
@@ -285,7 +287,7 @@ namespace MyerMomentUniversal
 
 #endregion
 
-#region Function
+        #region Function
         private void TapBlack(object sender, TappedRoutedEventArgs e)
         {
             e.Handled = true;
@@ -507,6 +509,14 @@ namespace MyerMomentUniversal
         {
             this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
+            InitialCrop();
+
+            CropInStory.Begin();
+            _isInCropMode = true;
+        }
+
+        private void InitialCrop()
+        {
             this.imageCanvas.Height = image.ActualHeight;
             this.imageCanvas.Width = image.ActualWidth;
             this.selectedRegion.OuterRect = new Rect(0, 0, image.ActualWidth, image.ActualHeight);
@@ -514,13 +524,10 @@ namespace MyerMomentUniversal
             this.selectedRegion.ResetCorner(0, 0, image.ActualWidth, image.ActualHeight);
 
             this.SelectedShape = SelectedRegionShape.Free;
-
-            CropInStory.Begin();
-            _isInCropMode = true;
         }
-#endregion
+        #endregion
 
-#region Crop Command
+        #region Crop Command
 
         private void SetToSquareClick(object sender, RoutedEventArgs e)
         {
@@ -575,7 +582,7 @@ namespace MyerMomentUniversal
             this.selectedRegion.ResetCorner(0, 0, currentSize.Width, currentSize.Height);
         }
 
-        void sourceImage_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void sourceImage_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (!_isLoadImage)
             {
@@ -594,11 +601,7 @@ namespace MyerMomentUniversal
             }
             else
             {
-                this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Visible;
-
-                this.imageCanvas.Height = e.NewSize.Height;
-                this.imageCanvas.Width = e.NewSize.Width;
-                this.selectedRegion.OuterRect = new Rect(0, 0, e.NewSize.Width, e.NewSize.Height);
+                ResetCropCanvas(e.NewSize.Width, e.NewSize.Height, e.NewSize.Height / e.PreviousSize.Height);
 
                 if (e.PreviousSize.IsEmpty || double.IsNaN(e.PreviousSize.Height) || e.PreviousSize.Height <= 0)
                 {
@@ -612,9 +615,19 @@ namespace MyerMomentUniversal
             }
         }
 
-#endregion
+        private void ResetCropCanvas(double newWidth,double newHeight,double scale)
+        {
+            this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
-#region Event Method
+            this.imageCanvas.Height = newHeight;
+            this.imageCanvas.Width = newWidth;
+            this.selectedRegion.OuterRect = new Rect(0, 0, newWidth, newHeight);
+
+        }
+
+        #endregion
+
+        #region Event Method
         private void AddCornerEvents(Control corner)
         {
             corner.PointerPressed += Corner_PointerPressed;
@@ -628,9 +641,9 @@ namespace MyerMomentUniversal
             corner.PointerMoved -= Corner_PointerMoved;
             corner.PointerReleased -= Corner_PointerReleased;
         }
-#endregion
+        #endregion
 
-#region Select Region methods
+        #region Select Region methods
 
         /// <summary>
         /// If a pointer presses in the corner, it means that the user starts to move the corner.
@@ -711,7 +724,7 @@ namespace MyerMomentUniversal
 
 #endregion
 
-#region 关于所有手势操作
+        #region 关于所有手势操作
 
         /// <summary>
         /// 旋转图像
@@ -732,7 +745,7 @@ namespace MyerMomentUniversal
             _imageHandleHelper.Width = temp;
 
             RotateStory.Begin();
-
+            
             //ChangeCanvasSize(new Size(_imageHandleHelper.Height, _imageHandleHelper.Width), new Size(_imageHandleHelper.Width, _imageHandleHelper.Height));
         }
 
@@ -931,7 +944,7 @@ namespace MyerMomentUniversal
 
 #endregion
 
-#region 滤镜
+        #region 滤镜
         private async void ApplyFilterClick(object sender,RoutedEventArgs e)
         {
             var btn = sender as Button;
@@ -974,7 +987,26 @@ namespace MyerMomentUniversal
 
 #endregion
 
-#region 裁剪 保存 显示图像
+        #region 裁剪 保存 显示图像
+
+        private async void RotateImageClick(object sender,RoutedEventArgs e)
+        {
+            var file= await ImageHandleHelper.GetTempFileToSave(_imageHandleHelper.FileName);
+            var fileToRotate = afterCropImageFile ?? sourceImageFile;
+            using (var fileStream = await fileToRotate.OpenAsync(FileAccessMode.ReadWrite))
+            {
+                var decoder =await BitmapDecoder.CreateAsync(fileStream);
+                var encoder = await BitmapEncoder.CreateForTranscodingAsync(fileStream,decoder);
+
+                encoder.BitmapTransform.Rotation = BitmapRotation.Clockwise90Degrees;
+
+                await encoder.FlushAsync();
+            }
+            _isLoadImage = false;
+            ShowImage(fileToRotate);
+
+            //await ApplyFilterAsync(currentFilter);
+        }
 
         /// <summary>
         /// Save the cropped image.
@@ -1047,6 +1079,14 @@ namespace MyerMomentUniversal
             {
                 var bitmap = await _imageHandleHelper.GetBitmapFromFileAsync(file);
                 image.Source = bitmap;
+
+                InitialCrop();
+
+                if(!_hasCopy)
+                {
+                    await CopyNewSourceFile(file);
+                    _hasCopy = true;
+                }
             }
             catch (Exception e)
             {
@@ -1228,6 +1268,24 @@ namespace MyerMomentUniversal
 
         }
 
+        private async Task CopyNewSourceFile(StorageFile srcFile)
+        {
+            var fileToSave = await ImageHandleHelper.GetTempFileToSave(_imageHandleHelper.FileName);
+            using (var fileStream = await srcFile.OpenReadAsync())
+            {
+                var decoder =await BitmapDecoder.CreateAsync(fileStream);
+                var pixel = await decoder.GetPixelDataAsync();
+                using (var fileToSaveStream = await fileToSave.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    var encoder = await BitmapEncoder.CreateAsync(_imageHandleHelper.EncodeID, fileToSaveStream);
+                    encoder.SetPixelData(_imageHandleHelper.PixelFormat, _imageHandleHelper.AlphaMode, _imageHandleHelper.Width, _imageHandleHelper.Height, _imageHandleHelper.DpiX, _imageHandleHelper.DpiY,
+                        pixel.DetachPixelData());
+                    await encoder.FlushAsync();
+                }
+            }
+            this.sourceImageFile = fileToSave;
+        }
+
 #endregion
 
 #region Navigate Override
@@ -1256,8 +1314,10 @@ namespace MyerMomentUniversal
                 {
                     var file = (e.Parameter as PageNavigateData).file;
                     this._isFromShareTarget = (e.Parameter as PageNavigateData).isFromShare;
-                   
+
+                    
                     if (file != null) ShowImage(file);
+                    
                 }
             }
 
