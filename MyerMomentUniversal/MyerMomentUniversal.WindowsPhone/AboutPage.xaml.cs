@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 
@@ -30,6 +31,7 @@ namespace MyerMomentUniversal
             VersionHLB.Content = (string)(App.Current.Resources["AppVersion"]);
 
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
+
         }
 
         private void DonateClick(object sender,RoutedEventArgs e)

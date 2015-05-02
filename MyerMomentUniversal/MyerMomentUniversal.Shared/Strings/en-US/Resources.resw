@@ -360,7 +360,7 @@
   <data name="CreditTB.Text" xml:space="preserve">
     <value>Credit</value>
   </data>
-  <data name="FeedbackTitle.Text" xml:space="preserve">
+  <data name="FeedbackTitleTB.Text" xml:space="preserve">
     <value>Feedback</value>
   </data>
   <data name="OtherAppTB.Text" xml:space="preserve">
