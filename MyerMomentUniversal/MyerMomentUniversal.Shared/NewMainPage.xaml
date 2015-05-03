@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="{StaticResource MomentThemeBlack}">
-    
+
     <Page.Resources>
         <Storyboard x:Name="NavigateStory">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="stackPanel">
@@ -58,11 +58,32 @@
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Name="BackgrdStory" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image">
+                <EasingDoubleKeyFrame KeyTime="0:0:5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image_Copy">
+                <EasingDoubleKeyFrame KeyTime="0:0:8" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:9" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Page.Resources>
 
     <Grid Margin="0,-30,0,0">
-      
-        <Image Stretch="UniformToFill" Source="Asset/Image/DSC00069.jpg" />
+
+        <Image x:Name="image1_Copy" Stretch="UniformToFill" Source="Asset/Image/DSC00069.jpg" />
+
+        <Image x:Name="image_Copy" Stretch="UniformToFill" Source="Asset/Image/time_alone3_hires.JPG"/>
+
+        <Image x:Name="image" Stretch="UniformToFill" Source="Asset/Image/257108-106.jpg"/>
+
+        <Image x:Name="image1" Stretch="UniformToFill" Source="Asset/Image/DSC00069.jpg" />
         <Border Background="Black" Opacity="0.3"/>
         <Grid x:Name="ContentGrid">
             <Grid.RowDefinitions>
@@ -76,10 +97,10 @@
                 </StackPanel.RenderTransform>
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                     <TextBlock  FontSize="50" FontFamily="Segoe WP" Foreground="{StaticResource MomentThemeColor}" VerticalAlignment="Center" Margin="15,0,0,0">
-                <Run FontWeight="Light">Myer</Run>
+                <Run FontWeight="Light" Text="Myer"/>
                     </TextBlock>
                     <TextBlock  FontSize="50" FontFamily="Segoe WP" Foreground="{StaticResource MomentThemeColor}" VerticalAlignment="Center" Margin="0,0,0,0">
-                <Run FontWeight="Bold">Moment</Run>
+                <Run FontWeight="Bold" Text="Moment"/>
                     </TextBlock>
                 </StackPanel>
                 <TextBlock x:Uid="SubTitleTB" Foreground="White"  FontWeight="Light" FontSize="30" FontFamily="Segoe WP" Text="Photos tell story" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -91,7 +112,7 @@
                         <Button.RenderTransform>
                             <CompositeTransform TranslateX="200"/>
                         </Button.RenderTransform>
-                        <Border Width="300" Height="60"  BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="4" Background="{StaticResource MomentThemeColor}">
+                        <Border Width="300" Height="60"  BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="0" Background="{StaticResource MomentThemeColor}">
                             <TextBlock x:Uid="PickTB" Text="PICK PHOTOS" FontWeight="Light" Foreground="{StaticResource MomentThemeBlack}" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </Button>

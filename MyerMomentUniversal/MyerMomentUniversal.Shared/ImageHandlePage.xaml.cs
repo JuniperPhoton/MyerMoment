@@ -140,7 +140,7 @@ namespace MyerMomentUniversal
         }
 
         #region Configuration
-        private async void ConfigQuality()
+        private void ConfigQuality()
         {
 #if WINDOWS_PHONE_APP
             var qualitySetting = LocalSettingHelper.GetValue("QualityCompress");
@@ -288,6 +288,14 @@ namespace MyerMomentUniversal
 #endregion
 
         #region Function
+
+        private void FrameClick(object sender,RoutedEventArgs e)
+        {
+            if (FrameGrid.Visibility == Visibility.Collapsed) FrameGrid.Visibility = Visibility.Visible;
+            else FrameGrid.Visibility = Visibility.Collapsed;
+        }
+
+        //Tap the mask view to hide 
         private void TapBlack(object sender, TappedRoutedEventArgs e)
         {
             e.Handled = true;
@@ -330,7 +338,6 @@ namespace MyerMomentUniversal
             _compositeTransformStyle.ScaleX += 0.2;
             _compositeTransformStyle.ScaleY += 0.2;
             
-            //new MessageDialog(_scaleTransformStyle.ScaleX + ", y" + _scaleTransformStyle.ScaleY).ShowAsync();
         }
 
         /// <summary>
@@ -587,6 +594,7 @@ namespace MyerMomentUniversal
             if (!_isLoadImage)
             {
                 _isLoadImage = true;
+                ResetFontCanvas();
                 return;
             }
             if (e.PreviousSize.Height <= 0 || e.PreviousSize.Width <= 0)
@@ -623,6 +631,25 @@ namespace MyerMomentUniversal
             this.imageCanvas.Width = newWidth;
             this.selectedRegion.OuterRect = new Rect(0, 0, newWidth, newHeight);
 
+            fontCanvas.Width = newWidth;
+            fontCanvas.Height = newHeight;
+
+            ResetFontCanvas();
+        }
+
+        private void ResetFontCanvas()
+        {
+            Canvas.SetLeft(textGrid1, fontCanvas.ActualWidth / 2.0-50);
+            Canvas.SetTop(textGrid1, fontCanvas.ActualHeight / 2.0);
+
+            Canvas.SetLeft(textGrid2, fontCanvas.ActualWidth / 2.0- 50);
+            Canvas.SetTop(textGrid2, fontCanvas.ActualHeight/2.0+50);
+
+            Canvas.SetLeft(textGrid3, fontCanvas.ActualWidth / 2.0 - 50);
+            Canvas.SetTop(textGrid3, fontCanvas.ActualHeight / 2.0 - 50);
+
+            Canvas.SetLeft(styleImage, fontCanvas.ActualWidth / 2.0 - styleImage.ActualWidth / 2.0);
+            Canvas.SetTop(styleImage, fontCanvas.ActualHeight / 2.0);
         }
 
         #endregion
@@ -746,7 +773,6 @@ namespace MyerMomentUniversal
 
             RotateStory.Begin();
             
-            //ChangeCanvasSize(new Size(_imageHandleHelper.Height, _imageHandleHelper.Width), new Size(_imageHandleHelper.Width, _imageHandleHelper.Height));
         }
 
         /// <summary>
@@ -792,11 +818,17 @@ namespace MyerMomentUniversal
 
         private void TextView1_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _compositeTransform1.TranslateX += e.Delta.Translation.X/_compositeTransform1.ScaleX;
-            _compositeTransform1.TranslateY += e.Delta.Translation.Y/ _compositeTransform1.ScaleY;
+            var newX=Canvas.GetLeft(textGrid1)+e.Delta.Translation.X;
+            var newY= Canvas.GetTop(textGrid1)+ e.Delta.Translation.Y;
 
-            _compositeTransform1.CenterX = 0;
-            _compositeTransform1.CenterY = 0;
+            if(newX<fontCanvas.ActualWidth-textGrid1.ActualWidth && newX>0) Canvas.SetLeft(textGrid1, newX);
+            if(newY<fontCanvas.ActualHeight-textGrid1.ActualHeight && newY>0) Canvas.SetTop(textGrid1, newY);
+
+            //_compositeTransform1.TranslateX += e.Delta.Translation.X
+            //_compositeTransform1.TranslateY += e.Delta.Translation.Y/ _compositeTransform1.ScaleY;
+
+            //_compositeTransform1.CenterX = 0;
+            //_compositeTransform1.CenterY = 0;
         }
 
         private void textGrid1_Tapped(object sender, TappedRoutedEventArgs e)
@@ -844,11 +876,16 @@ namespace MyerMomentUniversal
 
         private void TextView2_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _compositeTransform2.TranslateX += e.Delta.Translation.X/ _compositeTransform2.ScaleX;
-            _compositeTransform2.TranslateY += e.Delta.Translation.Y/ _compositeTransform2.ScaleY;
+            var newX = Canvas.GetLeft(textGrid2) + e.Delta.Translation.X;
+            var newY = Canvas.GetTop(textGrid2) + e.Delta.Translation.Y;
 
-            _compositeTransform2.CenterX = 0;
-            _compositeTransform2.CenterY = 0;
+            if (newX < fontCanvas.ActualWidth - textGrid2.ActualWidth && newX > 0) Canvas.SetLeft(textGrid2, newX);
+            if (newY < fontCanvas.ActualHeight - textGrid2.ActualHeight && newY > 0) Canvas.SetTop(textGrid2, newY);
+            //_compositeTransform2.TranslateX += e.Delta.Translation.X/ _compositeTransform2.ScaleX;
+            //_compositeTransform2.TranslateY += e.Delta.Translation.Y/ _compositeTransform2.ScaleY;
+
+            //_compositeTransform2.CenterX = 0;
+            //_compositeTransform2.CenterY = 0;
         }
 
         private void textGrid2_Tapped(object sender, TappedRoutedEventArgs e)
@@ -890,11 +927,16 @@ namespace MyerMomentUniversal
 
         private void TextView3_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _compositeTransform3.TranslateX += e.Delta.Translation.X/ _compositeTransform3.ScaleX;
-            _compositeTransform3.TranslateY += e.Delta.Translation.Y/ _compositeTransform3.ScaleY;
+            var newX = Canvas.GetLeft(textGrid3) + e.Delta.Translation.X;
+            var newY = Canvas.GetTop(textGrid3) + e.Delta.Translation.Y;
 
-            _compositeTransform3.CenterX = 0;
-            _compositeTransform3.CenterY = 0;
+            if (newX < fontCanvas.ActualWidth - textGrid3.ActualWidth && newX > 0) Canvas.SetLeft(textGrid3, newX);
+            if (newY < fontCanvas.ActualHeight - textGrid3.ActualHeight && newY > 0) Canvas.SetTop(textGrid3, newY);
+            //_compositeTransform3.TranslateX += e.Delta.Translation.X/ _compositeTransform3.ScaleX;
+            //_compositeTransform3.TranslateY += e.Delta.Translation.Y/ _compositeTransform3.ScaleY;
+
+            //_compositeTransform3.CenterX = 0;
+            //_compositeTransform3.CenterY = 0;
         }
 
         private void textGrid3_Tapped(object sender, TappedRoutedEventArgs e)
@@ -938,8 +980,13 @@ namespace MyerMomentUniversal
 
         private void StyleView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            _compositeTransformStyle.TranslateX += e.Delta.Translation.X;
-            _compositeTransformStyle.TranslateY += e.Delta.Translation.Y;
+            var newX = Canvas.GetLeft(styleImage) + e.Delta.Translation.X;
+            var newY = Canvas.GetTop(styleImage) + e.Delta.Translation.Y;
+
+            if (newX < fontCanvas.ActualWidth - styleImage.ActualWidth && newX > 0) Canvas.SetLeft(styleImage, newX);
+            if (newY < fontCanvas.ActualHeight - styleImage.ActualHeight && newY > 0) Canvas.SetTop(styleImage, newY);
+            //_compositeTransformStyle.TranslateX += e.Delta.Translation.X;
+            //_compositeTransformStyle.TranslateY += e.Delta.Translation.Y;
         }
 
 #endregion
@@ -1063,6 +1110,7 @@ namespace MyerMomentUniversal
             {
                 TextView3.Visibility = Visibility.Collapsed;
             }
+            FrameGrid.Visibility = Visibility.Collapsed;
             SaveImage();
         }
 
@@ -1288,7 +1336,7 @@ namespace MyerMomentUniversal
 
 #endregion
 
-#region Navigate Override
+        #region Navigate Override
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
 #if WINDOWS_PHONE_APP

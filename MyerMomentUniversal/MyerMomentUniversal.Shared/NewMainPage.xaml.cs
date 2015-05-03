@@ -113,6 +113,7 @@ namespace MyerMomentUniversal
                 await Task.Delay(TimeSpan.FromSeconds(0.5));
                 NavigateStory.Begin();
                 _isNavigate = true;
+                BackgrdStory.Begin();
             }
             
         }
