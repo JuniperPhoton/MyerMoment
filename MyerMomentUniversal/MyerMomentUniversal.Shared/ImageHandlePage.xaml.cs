@@ -3,9 +3,6 @@ using MyerMomentUniversal.Helper;
 using MyerMomentUniversal.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Windows.ApplicationModel.DataTransfer;
-using Windows.ApplicationModel.DataTransfer.ShareTarget;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using DialogExt;
@@ -17,24 +14,17 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.ViewManagement;
 using Windows.Foundation;
-using Windows.Storage.Streams;
 using Windows.Graphics.Imaging;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.ApplicationModel.Resources;
-using WeiboSDKForWinRT;
 using System.Threading.Tasks;
-using Lumia.Imaging;
-using Lumia.Imaging.Artistic;
 using JP.Utils.Debug;
 using JP.Utils.Data;
 using MyerMomentUniversal.ViewModel;
 using Windows.Security.ExchangeActiveSyncProvisioning;
-using Windows.Devices.Enumeration;
-using System.Text.RegularExpressions;
+using Windows.UI.ViewManagement;
 
 namespace MyerMomentUniversal
 {
@@ -75,8 +65,8 @@ namespace MyerMomentUniversal
         private SelectedRegion selectedRegion;
 
         //传进来的源文件
-        private StorageFile sourceImageFile = null;
-        private StorageFile afterCropImageFile = null;
+        private StorageFile sourceImageFileCopy = null;
+        //private StorageFile afterCropImageFile = null;
         string tempFileName = "";
 
         private FilterKind currentFilter = FilterKind.Original;
@@ -139,7 +129,7 @@ namespace MyerMomentUniversal
             _isLoadImage = false;
         }
 
-        #region Configuration
+        #region 配置
         private void ConfigQuality()
         {
 #if WINDOWS_PHONE_APP
@@ -287,7 +277,7 @@ namespace MyerMomentUniversal
 
 #endregion
 
-        #region Function
+        #region 下方功能区的操作
 
         private void FrameClick(object sender,RoutedEventArgs e)
         {
@@ -296,11 +286,11 @@ namespace MyerMomentUniversal
         }
 
         //Tap the mask view to hide 
-        private void TapBlack(object sender, TappedRoutedEventArgs e)
-        {
-            e.Handled = true;
-            HandleBack();
-        }
+        //private void TapBlack(object sender, TappedRoutedEventArgs e)
+        //{
+        //    e.Handled = true;
+        //    HandleBack();
+        //}
       
         /// <summary>
         /// 增加文字大小
@@ -437,7 +427,6 @@ namespace MyerMomentUniversal
             {
                 _currentTextBox.FontFamily = textblock.FontFamily;
             }
-            
         }
 
         /// <summary>
@@ -512,11 +501,13 @@ namespace MyerMomentUniversal
             HandleBack();
         }
 
-        private void cropClick(object sender, RoutedEventArgs e)
+        private void ToCropClick(object sender, RoutedEventArgs e)
         {
             this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
             InitialCrop();
+
+            imageCanvas.Visibility = Visibility.Visible;
 
             CropInStory.Begin();
             _isInCropMode = true;
@@ -531,10 +522,12 @@ namespace MyerMomentUniversal
             this.selectedRegion.ResetCorner(0, 0, image.ActualWidth, image.ActualHeight);
 
             this.SelectedShape = SelectedRegionShape.Free;
+            imageCanvas.Visibility = Visibility.Collapsed;
+
         }
         #endregion
 
-        #region Crop Command
+        #region 裁剪操作
 
         private void SetToSquareClick(object sender, RoutedEventArgs e)
         {
@@ -595,6 +588,7 @@ namespace MyerMomentUniversal
             {
                 _isLoadImage = true;
                 ResetFontCanvas();
+                imageCanvas.Visibility = Visibility.Collapsed;
                 return;
             }
             if (e.PreviousSize.Height <= 0 || e.PreviousSize.Width <= 0)
@@ -1003,7 +997,7 @@ namespace MyerMomentUniversal
         {
             if(kindToApply==FilterKind.Original)
             {
-                ShowImage(this.afterCropImageFile ?? sourceImageFile);
+                ShowImage(sourceImageFileCopy);
                 return;
             }
 
@@ -1014,7 +1008,7 @@ namespace MyerMomentUniversal
 
                 try
                 {
-                    var fileToApply = afterCropImageFile ?? sourceImageFile;
+                    var fileToApply = sourceImageFileCopy;
                     var bitmap = await FilterApplyHelper.ApplyFilterAsync(kindToApply, _imageHandleHelper.Width, _imageHandleHelper.Height, fileToApply);
                     if (bitmap != null)
                     {
@@ -1038,9 +1032,8 @@ namespace MyerMomentUniversal
 
         private async void RotateImageClick(object sender,RoutedEventArgs e)
         {
-            var file= await ImageHandleHelper.GetTempFileToSave(_imageHandleHelper.FileName);
-            var fileToRotate = afterCropImageFile ?? sourceImageFile;
-            using (var fileStream = await fileToRotate.OpenAsync(FileAccessMode.ReadWrite))
+
+            using (var fileStream = await sourceImageFileCopy.OpenAsync(FileAccessMode.ReadWrite))
             {
                 var decoder =await BitmapDecoder.CreateAsync(fileStream);
                 var encoder = await BitmapEncoder.CreateForTranscodingAsync(fileStream,decoder);
@@ -1050,45 +1043,40 @@ namespace MyerMomentUniversal
                 await encoder.FlushAsync();
             }
             _isLoadImage = false;
-            ShowImage(fileToRotate);
+            //ShowImage(sourceImageFileCopy);
 
-            //await ApplyFilterAsync(currentFilter);
+            await ApplyFilterAsync(currentFilter);
         }
 
         /// <summary>
         /// Save the cropped image.
         /// </summary>
-        private async void CropClick(object sender, RoutedEventArgs e)
+        private async void CropSaveClick(object sender, RoutedEventArgs e)
         {
             MaskGrid.Visibility = Visibility.Visible;
 
             double widthScale = imageCanvas.Width / _imageHandleHelper.Width;
             double heightScale = imageCanvas.Height / _imageHandleHelper.Height;
 
-            var fileToSave = await ImageHandleHelper.GetTempFileToSave(_imageHandleHelper.FileName);
+            //var fileToSave = await ImageHandleHelper.GetTempFileToSave(_imageHandleHelper.FileCopyName);
 
-            if (fileToSave != null)
-            {
-                await CropBitmap.SaveCroppedBitmapAsync(
-                    afterCropImageFile??sourceImageFile,
-                    fileToSave,
-                    new Point(this.selectedRegion.SelectedRect.X / widthScale, this.selectedRegion.SelectedRect.Y / heightScale),
-                    new Size(this.selectedRegion.SelectedRect.Width / widthScale, this.selectedRegion.SelectedRect.Height / heightScale));
+            await CropBitmap.SaveCroppedBitmapAsync(
+                sourceImageFileCopy,
+                sourceImageFileCopy,
+                new Point(this.selectedRegion.SelectedRect.X / widthScale, this.selectedRegion.SelectedRect.Y / heightScale),
+                new Size(this.selectedRegion.SelectedRect.Width / widthScale, this.selectedRegion.SelectedRect.Height / heightScale));
 
-                MaskGrid.Visibility = Visibility.Collapsed;
+            MaskGrid.Visibility = Visibility.Collapsed;
 
-                this.afterCropImageFile = fileToSave;
-                ShowImage(this.afterCropImageFile);
+            //ShowImage(this.sourceImageFileCopy);
 
-                await ApplyFilterAsync(currentFilter);
-                
-                tempFileName = fileToSave.Name;
+            await ApplyFilterAsync(currentFilter);
 
-                CropOutStory.Begin();
-                imageCanvas.Visibility = Visibility.Collapsed;
-                _isInCropMode = false;
-                _isLoadImage = false;
-            }
+            CropOutStory.Begin();
+            imageCanvas.Visibility = Visibility.Collapsed;
+            _isInCropMode = false;
+            _isLoadImage = false;
+
         }
 
         /// <summary>
@@ -1122,30 +1110,21 @@ namespace MyerMomentUniversal
         {
             TextView1.Visibility = Visibility.Collapsed;
             ring.IsActive = true;
-            sourceImageFile = file;
             try
             {
                 var bitmap = await _imageHandleHelper.GetBitmapFromFileAsync(file);
                 image.Source = bitmap;
 
                 InitialCrop();
-
-                if(!_hasCopy)
-                {
-                    await CopyNewSourceFile(file);
-                    _hasCopy = true;
-                }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                //new MessageDialog(e.Message).ShowAsync();
             }
             finally
             {
                 ring.IsActive = false;
                 TextView1.Visibility = Visibility.Visible;
             }
-           
         }
 
         /// <summary>
@@ -1164,44 +1143,51 @@ namespace MyerMomentUniversal
                         {
                             throw new GetPixelsException();
                         };
+                    case ImageSaveResult.FailToFlush:
+                        {
+                            throw new Exception();
+                        }
+                    case ImageSaveResult.FileNotOpen:
+                        {
+                            throw new Exception();
+                        }
                 }
 
-                if (tempFileName != "") await ImageHandleHelper.DeleteTempFile(tempFileName);
+                await ImageHandleHelper.DeleteTempFile(_imageHandleHelper.FileCopyName);
                 
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ShareGrid.Visibility = Visibility.Visible;
                 _isInShareMode = true;
 
                 //从分享打开后，不能再次分享
-               // if (_isFromShareTarget) shareBtn.Visibility = Visibility.Collapsed;
+                if (_isFromShareTarget) shareBtn.Visibility = Visibility.Collapsed;
             }
             catch (Exception e)
             {
-                var task=ImageHandleHelper.DeleteFailedImage(_imageHandleHelper.FileName);
+                var task=ImageHandleHelper.DeleteFailedImage(_imageHandleHelper.FileCopyName);
+                var loader = ResourceLoader.GetForCurrentView();
 
-                if(e.GetType()==typeof(GetPixelsException))
+                if (e.GetType() == typeof(GetPixelsException))
                 {
-                    MaskGrid.Visibility = Visibility.Collapsed;
-                    ErrorGrid.Visibility = Visibility.Visible;
-                    _isInErrorMode = true;
-                    var loader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
                     errorHintTB.Text = loader.GetString("getpixelsErrorHint");
                     retryBtn.Visibility = Visibility.Collapsed;
-                    return;
+                }
+                else
+                {
+                    errorHintTB.Text = loader.GetString("ErrorOther");
+                    retryBtn.Visibility = Visibility.Visible;
                 }
 
                 var task2 = ExceptionHelper.WriteRecord(e);
                 MaskGrid.Visibility = Visibility.Collapsed;
                 ErrorGrid.Visibility = Visibility.Visible;
                 _isInErrorMode = true;
-
-                //var sendTask=HttpHelper.SendDeviceInfo("");
             }
         }
 
         private async void CancelClick(object sender,RoutedEventArgs e)
         {
-            var loader=Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var loader=ResourceLoader.GetForCurrentView();
             var title = loader.GetString("DiscardTitle");
             var content = loader.GetString("DiscardContent");
             var discardBtn = loader.GetString("DiscardOK");
@@ -1316,28 +1302,10 @@ namespace MyerMomentUniversal
 
         }
 
-        private async Task CopyNewSourceFile(StorageFile srcFile)
-        {
-            var fileToSave = await ImageHandleHelper.GetTempFileToSave(_imageHandleHelper.FileName);
-            using (var fileStream = await srcFile.OpenReadAsync())
-            {
-                var decoder =await BitmapDecoder.CreateAsync(fileStream);
-                var pixel = await decoder.GetPixelDataAsync();
-                using (var fileToSaveStream = await fileToSave.OpenAsync(FileAccessMode.ReadWrite))
-                {
-                    var encoder = await BitmapEncoder.CreateAsync(_imageHandleHelper.EncodeID, fileToSaveStream);
-                    encoder.SetPixelData(_imageHandleHelper.PixelFormat, _imageHandleHelper.AlphaMode, _imageHandleHelper.Width, _imageHandleHelper.Height, _imageHandleHelper.DpiX, _imageHandleHelper.DpiY,
-                        pixel.DetachPixelData());
-                    await encoder.FlushAsync();
-                }
-            }
-            this.sourceImageFile = fileToSave;
-        }
-
 #endregion
 
         #region Navigate Override
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
@@ -1357,19 +1325,17 @@ namespace MyerMomentUniversal
 
             if(e.Parameter!=null)
             {
-                
                 if (e.Parameter.GetType() == typeof(PageNavigateData))
                 {
                     var file = (e.Parameter as PageNavigateData).file;
                     this._isFromShareTarget = (e.Parameter as PageNavigateData).isFromShare;
 
-                    
-                    if (file != null) ShowImage(file);
-                    
+                    var folder =await ApplicationData.Current.TemporaryFolder.CreateFolderAsync("Temp",CreationCollisionOption.OpenIfExists);
+                    var newfile=await file.CopyAsync(folder,file.Name,NameCollisionOption.ReplaceExisting);
+                    sourceImageFileCopy = newfile;
+                    if (sourceImageFileCopy != null) ShowImage(newfile);
                 }
             }
-
-            
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

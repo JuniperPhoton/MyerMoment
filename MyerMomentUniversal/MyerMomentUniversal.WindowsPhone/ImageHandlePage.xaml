@@ -700,8 +700,8 @@
                             </Grid>
                         </Button>
 
-                        <Button x:Name="increaseStyleBtn" Visibility="Collapsed" Click="IncreaseStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                            <Grid Height="50" Width="50">
+                        <Button x:Name="increaseStyleBtn" Visibility="Collapsed"  Click="IncreaseStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                            <Grid Height="50" Width="50" >
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="FontIncrease" Foreground="Black"/>
                             </Grid>

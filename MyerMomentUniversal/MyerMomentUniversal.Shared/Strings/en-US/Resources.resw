@@ -375,4 +375,10 @@
   <data name="VersionTB.Text" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="StoreTB.Text" xml:space="preserve">
+    <value>STORE</value>
+  </data>
+  <data name="ErrorOther" xml:space="preserve">
+    <value>Some error occurred. Please try again.</value>
+  </data>
 </root>

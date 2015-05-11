@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22609.0
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MyerMomentUniversal", "MyerMomentUniversal", "{5442E67E-0F46-4096-8880-226B9852771F}"
 EndProject
@@ -23,8 +23,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogExt", "DialogExt\Dial
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestLibraryForWin", "UnitTestLibraryForWin\UnitTestLibraryForWin.csproj", "{F63A89D5-514E-4EF3-87E2-6F956CB9E3B5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImageHandleLib", "ImageHandleLib", "{A9FDA88D-F00B-4BD3-9A17-CDA0CB42AA1B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageHandleLib.Shared", "ImageHandleLib\ImageHandleLib.Shared\ImageHandleLib.Shared.vcxitems", "{639F3D4B-629F-4DEF-B2F3-09BD0B7EB305}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageHandleLib.Windows", "ImageHandleLib\ImageHandleLib.Windows\ImageHandleLib.Windows.vcxproj", "{5558583C-32F0-47DA-8DB0-8389F553D38A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageHandleLib.WindowsPhone", "ImageHandleLib\ImageHandleLib.WindowsPhone\ImageHandleLib.WindowsPhone.vcxproj", "{2B264606-3D79-40BD-86F0-1BA450A5E204}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ImageHandleLib\ImageHandleLib.Shared\ImageHandleLib.Shared.vcxitems*{5558583c-32f0-47da-8db0-8389f553d38a}*SharedItemsImports = 4
+		ImageHandleLib\ImageHandleLib.Shared\ImageHandleLib.Shared.vcxitems*{639f3d4b-629f-4def-b2f3-09bd0b7eb305}*SharedItemsImports = 9
+		ImageHandleLib\ImageHandleLib.Shared\ImageHandleLib.Shared.vcxitems*{2b264606-3d79-40bd-86f0-1ba450a5e204}*SharedItemsImports = 4
 		MyerMomentUniversal\MyerMomentUniversal.Shared\MyerMomentUniversal.Shared.projitems*{bc303945-a99a-45d0-b695-41d5ac8b1b36}*SharedItemsImports = 13
 		MyerMomentUniversal\MyerMomentUniversal.Shared\MyerMomentUniversal.Shared.projitems*{02fea98f-6658-427f-bff6-3afd217aa480}*SharedItemsImports = 4
 		MyerMomentUniversal\MyerMomentUniversal.Shared\MyerMomentUniversal.Shared.projitems*{9f628fc7-f337-48b7-a3a9-17de51f071c0}*SharedItemsImports = 4
@@ -266,6 +277,48 @@ Global
 		{F63A89D5-514E-4EF3-87E2-6F956CB9E3B5}.Release|x86.ActiveCfg = Release|x86
 		{F63A89D5-514E-4EF3-87E2-6F956CB9E3B5}.Release|x86.Build.0 = Release|x86
 		{F63A89D5-514E-4EF3-87E2-6F956CB9E3B5}.Release|x86.Deploy.0 = Release|x86
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Debug|ARM.ActiveCfg = Debug|ARM
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Debug|ARM.Build.0 = Debug|ARM
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Debug|Win32.Build.0 = Debug|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Debug|x64.ActiveCfg = Debug|x64
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Debug|x64.Build.0 = Debug|x64
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Debug|x86.ActiveCfg = Debug|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Debug|x86.Build.0 = Debug|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Release|Any CPU.ActiveCfg = Release|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Release|ARM.ActiveCfg = Release|ARM
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Release|ARM.Build.0 = Release|ARM
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Release|Win32.ActiveCfg = Release|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Release|Win32.Build.0 = Release|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Release|x64.ActiveCfg = Release|x64
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Release|x64.Build.0 = Release|x64
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Release|x86.ActiveCfg = Release|Win32
+		{5558583C-32F0-47DA-8DB0-8389F553D38A}.Release|x86.Build.0 = Release|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Debug|ARM.ActiveCfg = Debug|ARM
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Debug|ARM.Build.0 = Debug|ARM
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Debug|Win32.Build.0 = Debug|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Debug|x64.ActiveCfg = Debug|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Debug|x86.ActiveCfg = Debug|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Debug|x86.Build.0 = Debug|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Release|Any CPU.ActiveCfg = Release|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Release|ARM.ActiveCfg = Release|ARM
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Release|ARM.Build.0 = Release|ARM
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Release|Win32.ActiveCfg = Release|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Release|Win32.Build.0 = Release|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Release|x64.ActiveCfg = Release|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Release|x86.ActiveCfg = Release|Win32
+		{2B264606-3D79-40BD-86F0-1BA450A5E204}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -274,5 +327,8 @@ Global
 		{BC303945-A99A-45D0-B695-41D5AC8B1B36} = {5442E67E-0F46-4096-8880-226B9852771F}
 		{9F628FC7-F337-48B7-A3A9-17DE51F071C0} = {5442E67E-0F46-4096-8880-226B9852771F}
 		{02FEA98F-6658-427F-BFF6-3AFD217AA480} = {5442E67E-0F46-4096-8880-226B9852771F}
+		{639F3D4B-629F-4DEF-B2F3-09BD0B7EB305} = {A9FDA88D-F00B-4BD3-9A17-CDA0CB42AA1B}
+		{5558583C-32F0-47DA-8DB0-8389F553D38A} = {A9FDA88D-F00B-4BD3-9A17-CDA0CB42AA1B}
+		{2B264606-3D79-40BD-86F0-1BA450A5E204} = {A9FDA88D-F00B-4BD3-9A17-CDA0CB42AA1B}
 	EndGlobalSection
 EndGlobal

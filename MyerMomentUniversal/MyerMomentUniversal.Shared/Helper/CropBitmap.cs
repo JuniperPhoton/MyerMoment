@@ -77,11 +77,11 @@ namespace MyerMomentUniversal.Helper
                 // Create a decoder from the stream. With the decoder, we can get 
                 // the properties of the image.
                 BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
-          
+
                 // The scaledSize of original image.
                 uint scaledWidth = (uint)Math.Floor(decoder.PixelWidth * scale);
                 uint scaledHeight = (uint)Math.Floor(decoder.PixelHeight * scale);
-              
+
 
                 // Refine the start point and the size. 
                 if (startPointX + width > scaledWidth)
@@ -136,7 +136,7 @@ namespace MyerMomentUniversal.Helper
             uint height = (uint)Math.Floor(cropSize.Height);
             uint width = (uint)Math.Floor(cropSize.Width);
 
-            using (IRandomAccessStream originalImgFileStream = await originalImageFile.OpenReadAsync())
+            using (IRandomAccessStream originalImgFileStream = await originalImageFile.OpenAsync(FileAccessMode.ReadWrite))
             {
 
                 // Create a decoder from the stream. With the decoder, we can get 
@@ -146,55 +146,56 @@ namespace MyerMomentUniversal.Helper
                 // Refine the start point and the size. 
                 if (startPointX + width > decoder.PixelWidth)
                 {
-                    startPointX = decoder.PixelWidth - width;
+                    startPointX = decoder.OrientedPixelWidth - width;
                 }
 
                 if (startPointY + height > decoder.PixelHeight)
                 {
-                    startPointY = decoder.PixelHeight - height;
+                    startPointY = decoder.OrientedPixelHeight - height;
                 }
 
                 // Get the cropped pixels.
-                byte[] pixels = await GetPixelData(decoder,startPointX, startPointY, width, height,
-                    decoder.PixelWidth,decoder.PixelHeight);
+                byte[] pixels = await GetPixelData(decoder, startPointX, startPointY, width, height,
+                    decoder.PixelWidth, decoder.PixelHeight);
 
-                using (IRandomAccessStream newImgFileStream = await newImageFile.OpenAsync(FileAccessMode.ReadWrite))
+                //using (IRandomAccessStream newImgFileStream = await newImageFile.OpenAsync(FileAccessMode.ReadWrite))
+                //{
+
+                Guid encoderID = Guid.Empty;
+
+                switch (newImageFile.FileType.ToLower())
                 {
-
-                    Guid encoderID = Guid.Empty;
-
-                    switch (newImageFile.FileType.ToLower())
-                    {
-                        case ".png":
-                            encoderID = BitmapEncoder.PngEncoderId;
-                            break;
-                        case ".bmp":
-                            encoderID = BitmapEncoder.BmpEncoderId;
-                            break;
-                        default:
-                            encoderID = BitmapEncoder.JpegEncoderId;
-                            break;
-                    }
-
-                    // Create a bitmap encoder
-
-                    BitmapEncoder bmpEncoder = await BitmapEncoder.CreateAsync(
-                        encoderID,
-                        newImgFileStream);
-
-                    // Set the pixel data to the cropped image.
-                    bmpEncoder.SetPixelData(
-                        BitmapPixelFormat.Bgra8,
-                        BitmapAlphaMode.Straight,
-                        width,
-                        height,
-                        decoder.DpiX,
-                        decoder.DpiY,
-                        pixels);
-
-                    // Flush the data to file.
-                    await bmpEncoder.FlushAsync();
+                    case ".png":
+                        encoderID = BitmapEncoder.PngEncoderId;
+                        break;
+                    case ".bmp":
+                        encoderID = BitmapEncoder.BmpEncoderId;
+                        break;
+                    default:
+                        encoderID = BitmapEncoder.JpegEncoderId;
+                        break;
                 }
+
+                // Create a bitmap encoder
+                originalImgFileStream.Seek(0);
+
+                BitmapEncoder bmpEncoder = await BitmapEncoder.CreateAsync(
+                    encoderID,
+                    originalImgFileStream);
+
+                // Set the pixel data to the cropped image.
+                bmpEncoder.SetPixelData(
+                    BitmapPixelFormat.Bgra8,
+                    BitmapAlphaMode.Straight,
+                    width,
+                    height,
+                    decoder.DpiX,
+                    decoder.DpiY,
+                    pixels);
+
+                // Flush the data to file.
+                await bmpEncoder.FlushAsync();
+                //}
             }
 
         }
@@ -206,8 +207,8 @@ namespace MyerMomentUniversal.Helper
         private async static Task<byte[]> GetPixelData(BitmapDecoder decoder, uint startPointX, uint startPointY,
             uint width, uint height)
         {
-            return await GetPixelData(decoder,startPointX, startPointY, width, height,
-                decoder.PixelWidth,decoder.PixelHeight);
+            return await GetPixelData(decoder, startPointX, startPointY, width, height,
+                decoder.PixelWidth, decoder.PixelHeight);
         }
 
         /// <summary>
@@ -230,13 +231,13 @@ namespace MyerMomentUniversal.Helper
 
             transform.ScaledWidth = scaledWidth;
             transform.ScaledHeight = scaledHeight;
-            
+
             // Get the cropped pixels within the bounds of transform.
             PixelDataProvider pix = await decoder.GetPixelDataAsync(
                 BitmapPixelFormat.Bgra8,
                 BitmapAlphaMode.Straight,
                 transform,
-                ExifOrientationMode.IgnoreExifOrientation,
+                ExifOrientationMode.RespectExifOrientation,
                 ColorManagementMode.ColorManageToSRgb);
 
             byte[] pixels = pix.DetachPixelData();

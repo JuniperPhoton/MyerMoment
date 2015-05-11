@@ -25,6 +25,10 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
+            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="storeBtn">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>-->
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="button1">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
@@ -34,13 +38,21 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="button">
-                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="150"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <CubicEase EasingMode="EaseOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
+            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="storeBtn">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>-->
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="button1">
                 <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
@@ -116,6 +128,14 @@
                             <TextBlock x:Uid="PickTB" Text="PICK PHOTOS" FontWeight="Light" Foreground="{StaticResource MomentThemeBlack}" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </Button>
+                    <!--<Button x:Name="storeBtn" Style="{StaticResource ButtonStyle2}" Click="PickClick" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Margin="0,20,0,0" RenderTransformOrigin="0.5,0.5" Opacity="0">
+                        <Button.RenderTransform>
+                            <CompositeTransform TranslateX="200"/>
+                        </Button.RenderTransform>
+                        <Border Width="300" Height="60"  BorderBrush="{StaticResource MomentThemeColor}" BorderThickness="0" Background="White">
+                            <TextBlock x:Uid="StoreTB" Text="STORE" FontWeight="Light" Foreground="{StaticResource MomentThemeBlack}" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Button>-->
                     <Button x:Name="button1" Style="{StaticResource ButtonStyle2}" Click="GoSettingClick" VerticalAlignment="Center" HorizontalAlignment="Center" BorderThickness="0" Margin="0,20,0,0" RenderTransformOrigin="0.5,0.5" Opacity="0">
                         <Button.RenderTransform>
                             <CompositeTransform TranslateX="300"/>

@@ -701,7 +701,7 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Grid x:Name="blackGrid" Grid.Row="0" Tapped="TapBlack" Grid.RowSpan="4" Visibility="Collapsed" Margin="0,-32,0,0">
+        <Grid x:Name="blackGrid" Grid.Row="0" Tapped="TapMask" Grid.RowSpan="4" Visibility="Collapsed" Margin="0,-32,0,0">
             <Border Background="Black" Opacity="0.7"/>
         </Grid>
         <Grid x:Name="renderGrid" Grid.Row="1" Grid.RowSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,30" RenderTransformOrigin="0.5,0.5">
@@ -711,19 +711,19 @@
             <Grid.Projection>
                 <PlaneProjection/>
             </Grid.Projection>
-            
-                <Image x:Name="image" Tapped="TapBlack" Source="{Binding Image}" RenderTransformOrigin="0.5,0.5">
+
+            <Image x:Name="image" Tapped="TapMask" Source="{Binding Image}" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
                         <CompositeTransform/>
                     </Image.RenderTransform>
                 </Image>
-            <Grid x:Name="FrameGrid" Visibility="Collapsed">
-                <Border Background="White" Height="3" VerticalAlignment="Top"/>
-                <Border Background="White" Height="3" VerticalAlignment="Bottom"/>
-                <Border Background="White" Height="3" VerticalAlignment="Center"/>
-                <Border Background="White"  HorizontalAlignment="Left" Width="3"/>
-                <Border Background="White"  HorizontalAlignment="Right" Width="3"/>
-                <Border Background="White"  HorizontalAlignment="Center" Width="3"/>
+            <Grid x:Name="FrameGrid" Visibility="Collapsed" Opacity="0.6">
+                <Border Background="White" Height="1" VerticalAlignment="Top"/>
+                <Border Background="White" Height="1" VerticalAlignment="Bottom"/>
+                <Border Background="White" Height="1" VerticalAlignment="Center"/>
+                <Border Background="White"  HorizontalAlignment="Left" Width="1"/>
+                <Border Background="White"  HorizontalAlignment="Right" Width="1"/>
+                <Border Background="White"  HorizontalAlignment="Center" Width="1"/>
             </Grid>
                 <Canvas x:Name="imageCanvas" Visibility="Collapsed" >
                     <Path x:Name="nonselectRegion" Fill="{StaticResource ApplicationSecondaryForegroundThemeBrush}" Opacity="0.7">
@@ -791,7 +791,7 @@
                                 <SymbolIcon Symbol="Rotate" Foreground="Black"/>
                             </Grid>
                         </Button>
-                        <Button x:Name="CropBtn" Click="cropClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                        <Button x:Name="CropBtn"  Click="ToCropClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <Path Width="20" Height="20" Data="M282.837,258.174L282.837,499.861 493.409,499.861 493.409,258.174z M149.125,0L282.837,0 282.837,136.122 627.162,136.122 627.162,499.861 777.764,499.861 777.764,621.913 628.641,621.913 628.641,758 494.965,758 494.965,621.913 149.125,621.913 149.125,258.174 0,258.174 0,136.122 149.125,136.122z" Stretch="Uniform" Fill="Black"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
@@ -900,7 +900,7 @@
         		<ColumnDefinition Width="2*" />
         		<ColumnDefinition />
         	</Grid.ColumnDefinitions>
-        	<Button Click="CropClick" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Style="{StaticResource ButtonStyle2}" Grid.ColumnSpan="1" BorderThickness="0" Background="{StaticResource MomentThemeColor}" VerticalAlignment="Stretch">
+        	<Button Click="CropSaveClick" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Style="{StaticResource ButtonStyle2}" Grid.ColumnSpan="1" BorderThickness="0" Background="{StaticResource MomentThemeColor}" VerticalAlignment="Stretch">
         		<Border Background="{StaticResource MomentThemeColor}">
         			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
         				<SymbolIcon Symbol="Crop" Foreground="{StaticResource MomentThemeBlack}"/>

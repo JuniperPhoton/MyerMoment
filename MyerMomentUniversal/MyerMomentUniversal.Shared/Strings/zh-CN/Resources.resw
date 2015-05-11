@@ -342,4 +342,10 @@
   <data name="VersionTB.Text" xml:space="preserve">
     <value>版本</value>
   </data>
+  <data name="StoreTB.Text" xml:space="preserve">
+    <value>商店</value>
+  </data>
+  <data name="ErrorOther" xml:space="preserve">
+    <value>发生错误，请尝试重试。</value>
+  </data>
 </root>

@@ -15,9 +15,9 @@ namespace MyerMomentUniversal.Helper
 {
     public class ImageHandleHelper
     {
-        public uint outputWidth;
-        public uint outputHeight;
-        public IRandomAccessStream outputStream;
+        private uint outputWidth;
+        private uint outputHeight;
+        private IRandomAccessStream outputStream;
 
         private int exceptionFlag = 0; //the result is either 0 or 1
 
@@ -26,7 +26,7 @@ namespace MyerMomentUniversal.Helper
         public int DpiX { get; set; }
         public int DpiY { get; set; }
         public Guid EncodeID { get; set; }
-        public string FileName { get; set; } //图像文件原来的名字
+        public string FileCopyName { get; set; } //图像文件原来的名字
         public string FileToSavedName { get; set; } //将要保存的名字
         public string SavedFileName { get; set; } //保存的图片的名字
         public int ScaleLong { get; set; }
@@ -46,6 +46,9 @@ namespace MyerMomentUniversal.Helper
         /// <returns></returns>
         public async Task<BitmapImage> GetBitmapFromFileAsync(StorageFile file)
         {
+          
+            //return ImageHandleLib.ImageHandleHelper.OpenImageFile(file);
+
             using (var fileStream = await file.OpenAsync(FileAccessMode.Read))
             {
                 //从文件流里创建解码器
@@ -56,14 +59,15 @@ namespace MyerMomentUniversal.Helper
                 this.DpiY = (int)decoder.DpiY;
                 this.Height = decoder.OrientedPixelHeight;
                 this.Width = decoder.OrientedPixelWidth;
-                this.FileName = file.Name;
+                this.FileCopyName = file.Name;
                 this.PixelFormat = decoder.BitmapPixelFormat;
                 this.AlphaMode = decoder.BitmapAlphaMode;
 
-                switch (file.FileType)
+                switch (file.FileType.ToLower())
                 {
                     case ".jpg": this.EncodeID = BitmapEncoder.JpegEncoderId; break;
                     case ".png": this.EncodeID = BitmapEncoder.PngEncoderId; break;
+                    default:this.EncodeID = BitmapEncoder.JpegEncoderId;break;
                 }
 
                 //显示图像
@@ -102,7 +106,7 @@ namespace MyerMomentUniversal.Helper
 
                 exceptionFlag++; //now it's 1
 
-                StorageFile fileToSave = await GetFileToSave(this.FileName,CreationCollisionOption.GenerateUniqueName);
+                StorageFile fileToSave = await GetFileToSave(this.FileCopyName,CreationCollisionOption.GenerateUniqueName);
                
                 if (fileToSave == null) return ImageSaveResult.FileNotOpen;
 
@@ -122,7 +126,7 @@ namespace MyerMomentUniversal.Helper
 
                 return ImageSaveResult.Successful;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 if (exceptionFlag == 0) return ImageSaveResult.FailToGetPixels;
                 else return ImageSaveResult.FailToFlush;
@@ -237,7 +241,8 @@ namespace MyerMomentUniversal.Helper
 
         public async static Task<bool> DeleteTempFile(string fileName)
         {
-            var file = await ApplicationData.Current.TemporaryFolder.GetFileAsync(fileName);
+            var folder = await ApplicationData.Current.TemporaryFolder.GetFolderAsync("Temp");
+            var file = await folder.GetFileAsync(fileName);
             if (file != null)
             {
                 await file.DeleteAsync(StorageDeleteOption.PermanentDelete);

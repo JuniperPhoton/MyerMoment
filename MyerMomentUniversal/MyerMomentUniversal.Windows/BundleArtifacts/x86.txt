@@ -1,2 +1,2 @@
-MainPackage=C:\Users\dengw\Documents\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\x86\Release\MyerMomentUniversal.Windows_1.6.0.1_x86.appx
-SymbolPackage=C:\Users\dengw\Documents\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\AppPackages\MyerMomentUniversal.Windows_1.6.0.1_Test\MyerMomentUniversal.Windows_1.6.0.1_x86.appxsym
+MainPackage=C:\Users\dengw\Documents\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\x86\Release\MyerMomentUniversal.Windows_1.6.0.2_x86.appx
+SymbolPackage=C:\Users\dengw\Documents\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\AppPackages\MyerMomentUniversal.Windows_1.6.0.2_Test\MyerMomentUniversal.Windows_1.6.0.2_x86.appxsym

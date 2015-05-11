@@ -121,7 +121,6 @@
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-140.png" />
     <Content Include="Assets\StoreLogo.scale-240.png" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Design\projectGuides.guides" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="StoreManifest.xml" />

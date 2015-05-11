@@ -32,6 +32,7 @@ namespace MyerMomentUniversal
 
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
 
+            VersionHLB.Content = (App.Current.Resources["AppVersion"]) as string;
         }
 
         private void DonateClick(object sender,RoutedEventArgs e)
