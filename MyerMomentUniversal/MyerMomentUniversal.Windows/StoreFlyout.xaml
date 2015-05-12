@@ -1,0 +1,16 @@
+﻿<SettingsFlyout
+    x:Class="MyerMomentUniversal.StoreFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyerMomentUniversal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="/"
+    Title="STORE"
+    d:DesignWidth="346" Padding="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HeaderBackground="{StaticResource MomentThemeColor}" Background="{StaticResource MomentThemeBlack}" HeaderForeground="{StaticResource MomentThemeBlack}">
+    <Grid >
+        
+        <local:StoreContentControl Grid.Row="1"/>
+    </Grid>
+</SettingsFlyout>

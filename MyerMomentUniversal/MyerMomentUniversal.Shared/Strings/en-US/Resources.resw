@@ -381,4 +381,13 @@
   <data name="ErrorOther" xml:space="preserve">
     <value>Some error occurred. Please try again.</value>
   </data>
+  <data name="PrivacyHLB.Content" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="NewStyleTB.Text" xml:space="preserve">
+    <value>WHAT'S NEW</value>
+  </data>
+  <data name="PackageStyleTB.Text" xml:space="preserve">
+    <value>PACKAGE</value>
+  </data>
 </root>

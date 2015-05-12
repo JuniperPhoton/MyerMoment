@@ -184,21 +184,21 @@
     <Language Code="vi-vn" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>19204JuniperPhoton.MyerMomentBETA</MainPackageIdentityName>
+    <MainPackageIdentityName>19204JuniperPhoton.MyerMoment</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>MyerMoment BETA</ReservedName>
+      <ReservedName>MyerMoment</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>19204JuniperPhoton.Myers</MainPackageIdentityName>
-    <MainPackageIdentityName>19204JuniperPhoton.MyerMoment</MainPackageIdentityName>
+    <MainPackageIdentityName>19204JuniperPhoton.MyerMomentBETA</MainPackageIdentityName>
     <MainPackageIdentityName>19204JuniperPhoton.2828271CA5F95</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=6a3f5667-4c3b-44d1-a241-cf8d4c9707f9">
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=f5d259bc-3ea4-4a35-be26-fd2494321d3f">
     <PackageInfo>
       <OsMinVersion>6.3.0.0</OsMinVersion>
       <PackageArchitecture>arm</PackageArchitecture>
-      <PackageMaxArchitectureVersion>1.6.1.0</PackageMaxArchitectureVersion>
+      <PackageMaxArchitectureVersion>1.6.0.0</PackageMaxArchitectureVersion>
     </PackageInfo>
   </PackageInfoList>
 </StoreAssociation>

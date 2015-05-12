@@ -99,6 +99,16 @@ namespace MyerMomentUniversal
 #endif
         }
 
+        private void ToStoreClick(object sender,RoutedEventArgs e)
+        {
+#if WINDOWS_PHONE_APP
+            Frame.Navigate(typeof(StorePage));
+#else
+            StoreFlyout flyout=new StoreFlyout();
+            flyout.ShowIndependent();
+#endif
+        }
+
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
 #if WINDOWS_PHONE_APP

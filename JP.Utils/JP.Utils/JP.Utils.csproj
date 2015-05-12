@@ -47,6 +47,7 @@
     <Compile Include="Application\SuspensionManager.cs" />
     <Compile Include="Data\LocalSettingHelper.cs" />
     <Compile Include="Data\SerializerHelper.cs" />
+    <Compile Include="Data\StorageItemHelper.cs" />
     <Compile Include="Debug\ExceptionHelper.cs" />
     <Compile Include="Device\DeviceManager.cs" />
     <Compile Include="Device\PhoneNameResolver.cs" />

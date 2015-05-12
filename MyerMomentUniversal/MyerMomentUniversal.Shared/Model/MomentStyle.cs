@@ -50,11 +50,35 @@ namespace MyerMomentUniversal.Model
             }
         }
 
+        private bool _isDownloaded;
+        public bool IsDownloaded
+        {
+           get
+            {
+                return _isDownloaded;
+            }
+            set
+            {
+                _isDownloaded = value;
+                RaisePropertyChanged(() => IsDownloaded);
+            }
+        }
+
+        public int imageNum;
+        public BitmapImage RandomBackGrd
+        {
+            get
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.UriSource =new Uri("ms-appx:///Asset/Backgrd/" +imageNum+ ".jpg");
+                return bitmap;
+            }
+        }
+
         /// <summary>
-        /// 初始化Style类
-        /// </summary>  
-        /// <param name="nameID">图片的名字ID</param>
-        /// <param name="isFromWeb">是否来自Web的导入</param>
+        /// From local storage
+        /// </summary>
+        /// <param name="nameID"></param>
         public MomentStyle(string nameID)
         {
             NameID = nameID;
@@ -66,29 +90,23 @@ namespace MyerMomentUniversal.Model
             PreviewImage.UriSource = new Uri("ms-appx:///Asset/Style/" + nameID + ".jpg", UriKind.RelativeOrAbsolute);
         }
 
+        /// <summary>
+        /// From web
+        /// </summary>
+        /// <param name="nameID"></param>
+        /// <param name="thumbUri"></param>
+        /// <param name="fullSizeUri"></param>
         public MomentStyle(string nameID,Uri thumbUri,Uri fullSizeUri)
         {
             this.NameID = nameID;
             this.thumbUri = thumbUri;
             this.fullSizeUri = fullSizeUri;
-            
-        }
-
-        /// <summary>
-        /// 检查当前样式是否在已经存在本地
-        /// </summary>
-        /// <param name="styleName"></param>
-        /// <returns></returns>
-        public static async Task<bool> CheckStyleExist(string styleName)
-        {
-            var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("MyerMomentStyleList", CreationCollisionOption.OpenIfExists);
-            var thumbFile = await folder.GetFileAsync(styleName + ".jpg");
-            return thumbFile == null ? false : true;
         }
 
         public async Task CheckStyleExistAndSaveAsync()
         {
-            var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("MyerMomentStyleList", CreationCollisionOption.OpenIfExists);
+            var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
+            
             var thumbFile = await folder.GetFileAsync(this.NameID+".jpg");
             if(thumbFile!=null)
             {
@@ -101,29 +119,33 @@ namespace MyerMomentUniversal.Model
                     FullSizeImage = new BitmapImage();
                     FullSizeImage.UriSource = new Uri(fullSizeFile.Path);
                 }
+                else
+                {
+                    await GetStyle(ImageFileType.Png);
+                }
             }
             else
             {
-                await SaveWebStyleToStorageAsync();
+                await GetStyle(ImageFileType.Jpeg);
             }
-
         }
 
-        
-
-        public async Task SaveWebStyleToStorageAsync()
+        public async Task GetStyle(ImageFileType type)
         {
-            var thumbFile = await DownLoadAndSaveAsync(NameID + ".jpg", "jpg", thumbUri);
-            var fullsizeFile = await DownLoadAndSaveAsync(NameID + ".png", "png", fullSizeUri);
+            var ext = type == ImageFileType.Jpeg ? "jpg" : "png";
+            var file = await DownLoadAndSaveAsync(NameID + "."+ ext, ext, thumbUri);
+            var fileStream = await GetStreamFromFileAsync(file);
 
-            var thumbStream = await GetStreamFromFileAsync(thumbFile);
-            var fullsizeStream = await GetStreamFromFileAsync(fullsizeFile);
-
-            PreviewImage = new BitmapImage();
-            await PreviewImage.SetSourceAsync(thumbStream);
-
-            FullSizeImage = new BitmapImage();
-            await FullSizeImage.SetSourceAsync(fullsizeStream);
+            if(type == ImageFileType.Jpeg)
+            {
+                PreviewImage = new BitmapImage();
+                await PreviewImage.SetSourceAsync(fileStream);
+            }
+            else
+            {
+                FullSizeImage = new BitmapImage();
+                await FullSizeImage.SetSourceAsync(fileStream);
+            }
         }
 
         private async Task<StorageFile> DownLoadAndSaveAsync(string name,string fileType, Uri uri)
@@ -139,7 +161,7 @@ namespace MyerMomentUniversal.Model
                 mem.Seek(0, SeekOrigin.Begin);
                 var decoder = await BitmapDecoder.CreateAsync(stream.AsRandomAccessStream());
 
-                var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("MyerMomentStyleList", CreationCollisionOption.OpenIfExists);
+                var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
                 var file = await folder.CreateFileAsync(name, CreationCollisionOption.ReplaceExisting);
                 using (var fileStream = await file.OpenAsync(FileAccessMode.ReadWrite))
                 {
@@ -183,5 +205,11 @@ namespace MyerMomentUniversal.Model
            
         }
 
+    }
+
+    public enum ImageFileType
+    {
+        Png,
+        Jpeg
     }
 }

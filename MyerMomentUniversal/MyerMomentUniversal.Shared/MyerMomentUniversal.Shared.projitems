@@ -38,9 +38,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)ShareControl.xaml.cs">
       <DependentUpon>ShareControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserControl\StoreContentControl.xaml.cs">
+      <DependentUpon>StoreContentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\StylesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\1.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\2.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\3.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\4.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\5.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\6.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\0.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Auto.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Blur.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Boost.jpg" />
@@ -128,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)ShareControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)UserControl\StoreContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

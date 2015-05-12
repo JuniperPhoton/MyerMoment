@@ -97,7 +97,7 @@ namespace MyerMomentUniversal
         {
             this.InitializeComponent();
    
-            this.NavigationCacheMode = NavigationCacheMode.Disabled;
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
 
             _imageHandleHelper = new ImageHandleHelper();
 
@@ -156,9 +156,9 @@ namespace MyerMomentUniversal
         private void ConfigStyle()
         {
             var styleList = new StylesViewModel();
-            styleList.ConfigStyleListAsync();
+            styleList.ConfigPackageStyle();
 
-            foreach (var style in styleList.Styles)
+            foreach (var style in styleList.PackageStyles)
             {
                 Button styleBtn = new Button();
                 styleBtn.BorderThickness = new Thickness(0);

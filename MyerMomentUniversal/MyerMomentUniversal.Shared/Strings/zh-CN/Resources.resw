@@ -348,4 +348,13 @@
   <data name="ErrorOther" xml:space="preserve">
     <value>发生错误，请尝试重试。</value>
   </data>
+  <data name="PrivacyHLB.Content" xml:space="preserve">
+    <value>隐私政策</value>
+  </data>
+  <data name="NewStyleTB.Text" xml:space="preserve">
+    <value>新鲜到货</value>
+  </data>
+  <data name="PackageStyleTB.Text" xml:space="preserve">
+    <value>自带</value>
+  </data>
 </root>

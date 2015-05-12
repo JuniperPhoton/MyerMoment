@@ -757,7 +757,7 @@
            <Canvas x:Name="fontCanvas">
                 <Grid x:Name="textGrid1"  Tapped="textGrid1_Tapped"  PointerEntered="TextView1_OnPointerEntered" ManipulationMode="TranslateX,TranslateY" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
 
-                    <TextBox x:Name="TextView1" IsEnabled="False" FontSize="30" AcceptsReturn="True" Background="Transparent" BorderThickness="0"   VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to write sth." FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" Margin="0" InputScope="Chat"/>
+                    <TextBox x:Name="TextView1" IsEnabled="False" FontSize="30" AcceptsReturn="True" Background="Transparent" BorderThickness="0"   VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to edit" FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" Margin="0" InputScope="Chat"/>
                     <Border x:Name="maskBorder1" Background="Black" Opacity="0.01"/>
                 </Grid>
                 <Grid x:Name="textGrid2" Tapped="textGrid2_Tapped" PointerEntered="TextView2_OnPointerEntered" ManipulationMode="TranslateX,TranslateY"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">

@@ -1,4 +1,6 @@
 ﻿
+using MyerMomentUniversal.Model;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,28 +12,20 @@ namespace MyerMomentUniversal.Helper
     public class HttpHelper
     {
         private static string SendDeviceInfoUri = "http://121.41.21.21/";
-        private static Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
+        private static string GetAllStylesRequestUrl = "http://127.0.0.1:3000/styles";
 
-
-        public async static Task<bool> SendDeviceInfo(string photoinfo)
+        public static Uri GetUri(string name, string extwithdot)
         {
-            string content = "";
-#if WINDOWS_PHONE_APP
-            content="?deviceInfo="+ deviceInfo.SystemFirmwareVersion+"&deviceName="+deviceInfo.FriendlyName+"&osVersion="+deviceInfo.OperatingSystem+ photoinfo;
-#else
-            content = "&device_name=" + deviceInfo.FriendlyName + "&os_version=" + deviceInfo.OperatingSystem + photoinfo;
-#endif
-            
-            HttpClient client = new HttpClient();
-            var response=await client.GetAsync(new Uri(SendDeviceInfoUri+content,UriKind.Absolute));
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
-            else return false;
+            return new Uri("http://121.41.21.21/moment/styles/" + name + extwithdot);
         }
 
-
+        public async static Task<string[]> GetAllStylesAsync()
+        {
+            HttpClient client = new HttpClient();
+            var stylesStr = await client.GetStringAsync(new Uri(GetAllStylesRequestUrl));
+            var styles = stylesStr.Split(',');
+            return styles;
+        }
 
     }
 }
