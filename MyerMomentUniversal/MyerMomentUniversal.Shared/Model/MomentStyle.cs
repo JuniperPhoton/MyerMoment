@@ -14,6 +14,7 @@ using Windows.UI.Xaml;
 using Windows.Graphics.Display;
 using Windows.Storage.Streams;
 using GalaSoft.MvvmLight;
+using JP.Utils.Data;
 
 namespace MyerMomentUniversal.Model
 {
@@ -103,26 +104,15 @@ namespace MyerMomentUniversal.Model
             this.fullSizeUri = fullSizeUri;
         }
 
-        public async Task CheckStyleExistAndSaveAsync()
+        public async Task CheckThumbExistAndSaveAsync()
         {
             var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
-            
-            var thumbFile = await folder.GetFileAsync(this.NameID+".jpg");
+
+            var thumbFile = await StorageFileHandleHelper.TryGetFile(folder, this.NameID + ".jpg"); 
             if(thumbFile!=null)
             {
                 PreviewImage = new BitmapImage();
                 PreviewImage.UriSource =new Uri(thumbFile.Path);
-
-                var fullSizeFile = await folder.GetFileAsync(this.NameID + ".png");
-                if (fullSizeFile != null)
-                {
-                    FullSizeImage = new BitmapImage();
-                    FullSizeImage.UriSource = new Uri(fullSizeFile.Path);
-                }
-                else
-                {
-                    await GetStyle(ImageFileType.Png);
-                }
             }
             else
             {

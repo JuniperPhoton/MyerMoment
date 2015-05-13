@@ -8,9 +8,10 @@
     mc:Ignorable="d"
     IconSource="/"
     Title="STORE"
-    d:DesignWidth="346" Padding="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HeaderBackground="{StaticResource MomentThemeColor}" Background="{StaticResource MomentThemeBlack}" HeaderForeground="{StaticResource MomentThemeBlack}">
+    Width="600"
+    d:DesignWidth="600" Padding="0" HorizontalContentAlignment="Stretch"  HeaderBackground="{StaticResource MomentThemeColor}" Background="{StaticResource MomentThemeBlack}" HeaderForeground="{StaticResource MomentThemeBlack}">
+    
     <Grid >
-        
-        <local:StoreContentControl Grid.Row="1"/>
+        <local:StoreContentControl />
     </Grid>
 </SettingsFlyout>

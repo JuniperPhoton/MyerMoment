@@ -5,7 +5,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+#if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
+#endif
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -28,20 +30,29 @@ namespace MyerMomentUniversal
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
-            StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
 
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+#if WINDOWS_PHONE_APP
+
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-            StatusBar.GetForCurrentView().BackgroundOpacity = 0;
+            StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
+
+            //StatusBar.GetForCurrentView().BackgroundOpacity = 0;
+#endif
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+#if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
+#endif
         }
+
+#if WINDOWS_PHONE_APP
+
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             if (Frame.CanGoBack)
@@ -50,5 +61,6 @@ namespace MyerMomentUniversal
                 e.Handled = true;
             }
         }
+#endif
     }
 }

@@ -146,8 +146,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StorePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

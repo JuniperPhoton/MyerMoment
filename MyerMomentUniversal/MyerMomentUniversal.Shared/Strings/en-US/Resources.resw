@@ -376,7 +376,7 @@
     <value>Version</value>
   </data>
   <data name="StoreTB.Text" xml:space="preserve">
-    <value>STORE</value>
+    <value>STORE BETA</value>
   </data>
   <data name="ErrorOther" xml:space="preserve">
     <value>Some error occurred. Please try again.</value>
@@ -388,6 +388,15 @@
     <value>WHAT'S NEW</value>
   </data>
   <data name="PackageStyleTB.Text" xml:space="preserve">
-    <value>PACKAGE</value>
+    <value>INSTALLED</value>
+  </data>
+  <data name="LoadingTB.Text" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="NoItemTB.Text" xml:space="preserve">
+    <value>No new styles, check out later :D</value>
+  </data>
+  <data name="Store" xml:space="preserve">
+    <value>Store BETA</value>
   </data>
 </root>

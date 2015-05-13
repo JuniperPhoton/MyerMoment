@@ -45,12 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\1.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\10.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\11.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\12.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\13.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\2.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\3.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\4.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\5.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\6.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\0.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\7.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\8.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\9.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Auto.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Blur.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Boost.jpg" />

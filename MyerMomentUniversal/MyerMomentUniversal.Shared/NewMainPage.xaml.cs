@@ -103,9 +103,8 @@ namespace MyerMomentUniversal
         {
 #if WINDOWS_PHONE_APP
             Frame.Navigate(typeof(StorePage));
-#else
-            StoreFlyout flyout=new StoreFlyout();
-            flyout.ShowIndependent();
+#else 
+            (new StoreFlyout()).ShowIndependent();
 #endif
         }
 

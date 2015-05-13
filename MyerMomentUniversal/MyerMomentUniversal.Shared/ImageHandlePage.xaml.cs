@@ -156,8 +156,7 @@ namespace MyerMomentUniversal
         private void ConfigStyle()
         {
             var styleList = new StylesViewModel();
-            styleList.ConfigPackageStyle();
-
+            
             foreach (var style in styleList.PackageStyles)
             {
                 Button styleBtn = new Button();

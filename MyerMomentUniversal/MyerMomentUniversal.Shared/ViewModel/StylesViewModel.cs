@@ -8,11 +8,46 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using System.Linq;
+using Windows.UI.Xaml;
+using JP.Utils.Debug;
+using GalaSoft.MvvmLight.Command;
+using Windows.UI.Xaml.Controls;
 
 namespace MyerMomentUniversal.ViewModel
 {
     public class StylesViewModel:ViewModelBase
     {
+        private const  int IMAGE_NUM=13;
+
+        private Visibility _noItemsVisibility;
+        public Visibility NoItemsVisibility
+        {
+            get
+            {
+                return _noItemsVisibility;
+            }
+            set
+            {
+                _noItemsVisibility = value;
+                RaisePropertyChanged(() => NoItemsVisibility);
+            }
+
+        }
+
+        private Visibility _isLoadingVisibility;
+        public Visibility IsLoadingVisibility
+        {
+            get
+            {
+                return _isLoadingVisibility;
+            }
+            set
+            {
+                _isLoadingVisibility = value;
+                RaisePropertyChanged(() => IsLoadingVisibility);
+            }
+        }
+
         private ObservableCollection<MomentStyle> _newStyles;
         public ObservableCollection<MomentStyle> NewStyles
         {
@@ -47,16 +82,20 @@ namespace MyerMomentUniversal.ViewModel
             }
         }
 
+       
         public StylesViewModel()
         {
             NewStyles = new ObservableCollection<MomentStyle>();
             PackageStyles = new ObservableCollection<MomentStyle>();
             ConfigPackageStyle();
-            //ConfigInstalledStyle();
-            NumStyle();
+            ConfigInstalledStyle();
+            NumStyle(PackageStyles);
         }
 
-        public void ConfigPackageStyle()
+        /// <summary>
+        /// 加载预安装的样式
+        /// </summary>
+        private void ConfigPackageStyle()
         {
             PackageStyles.Add(new MomentStyle("Alone"));
             PackageStyles.Add(new MomentStyle("Amazing"));
@@ -76,38 +115,61 @@ namespace MyerMomentUniversal.ViewModel
             PackageStyles.Add(new MomentStyle("Scene"));
             PackageStyles.Add(new MomentStyle("Thanks"));
             PackageStyles.Add(new MomentStyle("Time"));
-
-            NewStyles.Add(new MomentStyle("Time"));
         }
 
-        public async void ConfigInstalledStyle()
+        /// <summary>
+        /// 加载来自Web的已经安装的样式
+        /// </summary>
+        private void ConfigInstalledStyle()
         {
-            var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
-            var files = await folder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByName);
-            foreach(var file in files)
+            ExceptionHelper.TryExecute(async() =>
             {
-                var newStyle = new MomentStyle(file.DisplayName, new Uri(file.Path), new Uri(file.Path));
+                var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
+                var files = await folder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByName);
+                if (files.Count == 0) return;
+                foreach (var file in files)
+                {
+                    var newStyle = new MomentStyle(file.DisplayName, new Uri(file.Path), new Uri(file.Path));
+                }
+            });
+           
+        }
+
+        /// <summary>
+        /// 为样式添加背景图案
+        /// </summary>
+        private void NumStyle(ObservableCollection<MomentStyle> list)
+        {
+           for(int i=0;i<= list.Count-1;i++)
+            {
+                var style= list.ToList().ElementAt(i);
+                style.imageNum = i % IMAGE_NUM;
             }
         }
 
-        public void NumStyle()
+        public async Task ConfigWebStyle(string[] styleNames)
         {
-           for(int i=0;i<=PackageStyles.Count-1;i++)
-            {
-                var style= PackageStyles.ToList().ElementAt(i);
-                style.imageNum = i % 7;
-            }
-        }
-
-        public async void ConfigWebStyle(string[] styleNames)
-        {
+            IsLoadingVisibility = Visibility.Visible;
             foreach(var name in styleNames)
             {
                 if (string.IsNullOrEmpty(name)) continue;
                 var style = new MomentStyle(name, HttpHelper.GetUri(name, ".jpg"), HttpHelper.GetUri(name, ".png"));
-                await style.CheckStyleExistAndSaveAsync();
+                await style.CheckThumbExistAndSaveAsync();
                 NewStyles.Add(style);
+                NumStyle(NewStyles);
             }
+
+            if (NewStyles.Count == 0) NoItemsVisibility = Visibility.Visible;
+            else NoItemsVisibility = Visibility.Collapsed;
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += ((sendert, et) =>
+              {
+                  IsLoadingVisibility = Visibility.Collapsed;
+              });
+            timer.Start();
+            
         }
     }
 }

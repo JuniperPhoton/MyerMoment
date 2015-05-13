@@ -23,7 +23,7 @@
         <Thickness x:Key="ComboBoxPlaceholderTextThemeMargin">6.5,0.8</Thickness>
         <SolidColorBrush x:Key="ComboBoxDisabledBackgroundThemeBrush" Color="Transparent"/>
         <Style x:Key="ComboBoxStyle1" TargetType="ComboBox">
-            <Setter Property="Foreground" Value="{ThemeResource ComboBoxForegroundThemeBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource MomentThemeBlack}"/>
             <Setter Property="Background" Value="{ThemeResource ComboBoxBackgroundThemeBrush}"/>
             <Setter Property="BorderBrush" Value="{ThemeResource ComboBoxBorderThemeBrush}"/>
             <Setter Property="BorderThickness" Value="{ThemeResource ComboBoxBorderThemeThickness}"/>
@@ -195,14 +195,14 @@
                             <ContentPresenter x:Name="HeaderContentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" FlowDirection="{TemplateBinding FlowDirection}" HorizontalAlignment="Left" Margin="0,0,0,-4.5" Style="{StaticResource HeaderContentPresenterStyle}" Visibility="Collapsed"/>
                             <Button x:Name="FlyoutButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" FontWeight="Normal" FlowDirection="{TemplateBinding FlowDirection}" FontSize="{ThemeResource ContentControlFontSize}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" MinHeight="{ThemeResource ComboBoxItemMinHeightThemeSize}" Padding="6.5,0,0,0" Grid.Row="1">
                                 <ContentPresenter x:Name="ContentPresenter" Margin="0,0.8,0,0" MinHeight="32.5">
-                                    <TextBlock x:Name="PlaceholderTextBlock" Margin="0" Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}" Text="{TemplateBinding PlaceholderText}"/>
+                                    <TextBlock x:Name="PlaceholderTextBlock" Margin="0" Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}" Text="{TemplateBinding PlaceholderText}" Foreground="{StaticResource MomentThemeBlack}"/>
                                 </ContentPresenter>
                             </Button>
                             <Border x:Name="ShortListOuterBorder" Margin="{ThemeResource PhoneTouchTargetOverhang}" Grid.Row="1" Visibility="Collapsed">
                                 <Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
                                     <UserControl x:Name="UserControl" Foreground="{TemplateBinding Foreground}" FlowDirection="{TemplateBinding FlowDirection}" IsHitTestVisible="False">
                                         <Canvas x:Name="ItemsPresenterHost" HorizontalAlignment="Left" MinHeight="{ThemeResource ComboBoxItemMinHeightThemeSize}">
-                                            <ContentPresenter x:Name="PlaceholderTextContentPresenter" Content="{TemplateBinding PlaceholderText}" Margin="{ThemeResource ComboBoxPlaceholderTextThemeMargin}" Opacity="0" Style="{StaticResource PlaceholderContentPresenterStyle}" Foreground="#99FFFFFF"/>
+                                            <ContentPresenter x:Name="PlaceholderTextContentPresenter" Content="{TemplateBinding PlaceholderText}" Margin="{ThemeResource ComboBoxPlaceholderTextThemeMargin}" Opacity="0" Style="{StaticResource PlaceholderContentPresenterStyle}" Foreground="{StaticResource MomentThemeBlack}"/>
                                             <ItemsPresenter x:Name="ItemsPresenter" Margin="0,0.8,0,0">
                                                 <ItemsPresenter.RenderTransform>
                                                     <TranslateTransform x:Name="ItemsPresenterTranslateTransform"/>
@@ -225,18 +225,19 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition />
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Grid Background="{StaticResource MomentThemeColor}">
-                <TextBlock x:Uid="SettingTitle" Text="SETTING" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="Light"  Margin="10,0,0,0" FontSize="30" Foreground="Black" FontFamily="Segoe WP" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Grid>
+                <Border Background="{StaticResource MomentThemeColor}" />
+                <TextBlock x:Uid="SettingTitle" Text="SETTING" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="Bold"  Margin="10,0,0,20" FontSize="50" Foreground="Black" FontFamily="Segoe WP" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
             </Grid>
-            <Grid Grid.Row="1" Background="{StaticResource MomentThemeBlack}">
+            <Grid Grid.Row="1" Background="#FFFFDB7B">
                 <StackPanel Grid.Row="1" VerticalAlignment="Top" Orientation="Vertical" Margin="10,10,10,0">
                     <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                        <TextBlock x:Uid="QualityTB" Margin="5" Text="Saving Quality" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
+                        <TextBlock x:Uid="QualityTB" Margin="5" Text="Saving Quality" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeBlack}" />
                     </Border>
-                    <ComboBox Pivot.SlideInAnimationGroup="GroupThree" x:Name="qualityCom" SelectedIndex="0" PlaceholderText="Select the default saving quality" SelectionChanged="qualityCom_SelectionChanged" BorderBrush="{StaticResource MomentThemeColor}" Style="{StaticResource ComboBoxStyle1}" >
+                    <ComboBox Pivot.SlideInAnimationGroup="GroupThree" x:Name="qualityCom" SelectedIndex="0" PlaceholderText="Select the default saving quality" SelectionChanged="qualityCom_SelectionChanged" BorderBrush="{StaticResource MomentThemeBlack}" Style="{StaticResource ComboBoxStyle1}" >
                         <ComboBoxItem>
                             <TextBlock x:Uid="CompressTB" Text="Compress" SelectionHighlightColor="White" />
                         </ComboBoxItem>
@@ -245,9 +246,9 @@
                         </ComboBoxItem>
                     </ComboBox>
                     <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                        <TextBlock x:Uid="PositionTB" Margin="5" Text="Saving Position" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
+                        <TextBlock x:Uid="PositionTB" Margin="5" Text="Saving Position" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeBlack}" />
                     </Border>
-                    <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" SelectionChanged="positionCom_SelectionChanged" x:Name="positionCom" PlaceholderText="Select the default saving position" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeColor}" >
+                    <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" Style="{StaticResource ComboBoxStyle1}" SelectionChanged="positionCom_SelectionChanged" x:Name="positionCom" PlaceholderText="Select the default saving position" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeBlack}" >
                         <ComboBoxItem>
                             <TextBlock x:Uid="SavedPictureTB"  Text="SavedPicture" />
                         </ComboBoxItem>
@@ -259,9 +260,9 @@
                         </ComboBoxItem>
                     </ComboBox>
                     <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                        <TextBlock x:Uid="TileStyleTB" Margin="5" Text="TileStyle" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
+                        <TextBlock x:Uid="TileStyleTB" Margin="5" Text="TileStyle" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeBlack}" />
                     </Border>
-                    <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" SelectionChanged="colorCom_SelectionChanged" x:Name="colorCom" PlaceholderText="Select the default color of Tile" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeColor}" >
+                    <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" Style="{StaticResource ComboBoxStyle1}" SelectionChanged="colorCom_SelectionChanged" x:Name="colorCom" PlaceholderText="Select the default color of Tile" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeBlack}" >
                         <ComboBoxItem>
                             <TextBlock  x:Uid="SolidColorTB" Text="SolidColor"/>
                         </ComboBoxItem>

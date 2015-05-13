@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="19204JuniperPhoton.MyerMoment" Publisher="CN=A9291247-1C35-4EE6-8B51-1551AF1EB838" Version="1.6.3.0" />
+  <Identity Name="19204JuniperPhoton.MyerMoment" Publisher="CN=A9291247-1C35-4EE6-8B51-1551AF1EB838" Version="1.9.0.0" />
   <mp:PhoneIdentity PhoneProductId="b2233acb-547e-4d71-b707-b1a7f44e9ef4" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>MyerMoment</DisplayName>

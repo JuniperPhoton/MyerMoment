@@ -343,7 +343,7 @@
     <value>版本</value>
   </data>
   <data name="StoreTB.Text" xml:space="preserve">
-    <value>商店</value>
+    <value>商店 BETA</value>
   </data>
   <data name="ErrorOther" xml:space="preserve">
     <value>发生错误，请尝试重试。</value>
@@ -355,6 +355,15 @@
     <value>新鲜到货</value>
   </data>
   <data name="PackageStyleTB.Text" xml:space="preserve">
-    <value>自带</value>
+    <value>已安装</value>
+  </data>
+  <data name="LoadingTB.Text" xml:space="preserve">
+    <value>加载中</value>
+  </data>
+  <data name="NoItemTB.Text" xml:space="preserve">
+    <value>没有新样式，迟点试试 :D</value>
+  </data>
+  <data name="Store" xml:space="preserve">
+    <value>商店 BETA</value>
   </data>
 </root>

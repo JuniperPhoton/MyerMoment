@@ -29,16 +29,21 @@ namespace MyerMomentUniversal
 
             StylesVM = new StylesViewModel();
             this.DataContext = StylesVM;
+            GetNewStyle();
         }
 
-        private async void GetAllStyle()
+        private async void GetNewStyle()
         {
-            
+            var names = await HttpHelper.GetAllStylesAsync();
+            await StylesVM.ConfigWebStyle(names);
+        }
 
-            //var names=await HttpHelper.GetAllStylesAsync();
-            //styleListVM.ConfigWebStyle(names);
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            var grid = sender as Grid;
+            var image = grid.Children.FirstOrDefault() as Image;
 
-            //this.DataContext = styleListVM;
+            image.Width = image.Height = (installedListView.ActualWidth-40)/2;
 
         }
     }

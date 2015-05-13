@@ -16,15 +16,22 @@ namespace MyerMomentUniversal.Helper
 
         public static Uri GetUri(string name, string extwithdot)
         {
-            return new Uri("http://121.41.21.21/moment/styles/" + name + extwithdot);
+            return new Uri("http://121.41.21.21/MyerMoment/public/images/Styles/" + name + extwithdot);
         }
 
         public async static Task<string[]> GetAllStylesAsync()
         {
-            HttpClient client = new HttpClient();
-            var stylesStr = await client.GetStringAsync(new Uri(GetAllStylesRequestUrl));
-            var styles = stylesStr.Split(',');
-            return styles;
+            try
+            {
+                HttpClient client = new HttpClient();
+                var stylesStr = await client.GetStringAsync(new Uri(GetAllStylesRequestUrl));
+                var styles = stylesStr.Split(',');
+                return styles;
+            }
+            catch(Exception)
+            {
+                return new string[0] { };
+            }
         }
 
     }

@@ -6,84 +6,87 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="1280"
-    d:DesignWidth="768">
-    <UserControl.Resources>
-        <Style x:Key="ListViewItemStyle1" TargetType="ListViewItem">
-            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
-            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="TabNavigation" Value="Local"/>
-            <Setter Property="IsHoldingEnabled" Value="False"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="VerticalContentAlignment" Value="Top"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListViewItem">
-                        <Border x:Name="OuterContainer" RenderTransformOrigin="0.5,0.5">
-                            <Border.RenderTransform>
-                                <ScaleTransform x:Name="ContentScaleTransform"/>
-                            </Border.RenderTransform>
-                            <Grid x:Name="ReorderHintContent" Background="Transparent">
-                                <Border x:Name="ContentContainer">
-                                    <Border x:Name="TiltContainer">
-                                        <Border x:Name="ContentBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
-                                            <Border.RenderTransform>
-                                                <TranslateTransform x:Name="ContentBorderTranslateTransform"/>
-                                            </Border.RenderTransform>
-                                            <Grid>
-                                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                            </Grid>
-                                        </Border>
-                                    </Border>
-                                </Border>
-                                
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
-    <Grid Background="{StaticResource MomentThemeBlack}">
-        <ScrollViewer>
+    d:DesignHeight="800"
+    d:DesignWidth="480">
 
+    <Grid Background="{StaticResource MomentThemeBlack}">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Auto">
             <StackPanel Orientation="Vertical" >
-            <Button Style="{StaticResource ButtonStyle2}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0">
-                <Border BorderThickness="0,0,0,3" BorderBrush="{StaticResource MomentThemeColor}">
-                    <TextBlock x:Uid="NewStyleTB" Text="WHAT'S NEW" Foreground="{StaticResource MomentThemeColor}" FontSize="26.667" VerticalAlignment="Bottom" FontWeight="Light"/>
-                </Border>
-            </Button>
-                <ListView ItemContainerStyle="{StaticResource ListViewItemStyle1}" ItemsSource="{Binding NewStyles}" Margin="0,20,0,0"  SelectionMode="None">
+                <Button Style="{StaticResource ButtonStyle2}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0">
+                    <Border BorderThickness="0,0,0,0" BorderBrush="{StaticResource MomentThemeColor}">
+                        <TextBlock x:Uid="NewStyleTB" Text="WHAT'S NEW" Foreground="{StaticResource MomentThemeColor}" FontSize="25" VerticalAlignment="Bottom" FontWeight="Light"/>
+                    </Border>
+                </Button>
+                <ListView x:Name="newStyleListView" 
+                          ItemContainerStyle="{StaticResource ListViewItemStyle1}" 
+                          ItemsSource="{Binding NewStyles}" 
+                          Margin="10,20,0,0"  
+                          SelectionMode="None">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid MaximumRowsOrColumns="3" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Image Source="{Binding RandomBackGrd}" />
-                                <Border Background="Black" Opacity="0.4"/>
-                                <Image Source="{Binding FullSizeImage}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Image Source="{Binding RandomBackGrd}" Stretch="UniformToFill" />
+                                <Border Background="Black" Opacity="0.1"/>
+                                <Image Source="{Binding PreviewImage}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10">
+                                    <Grid>
+                                        <Ellipse Width="40" Height="40" Fill="{x:Null}" Stroke="White" StrokeThickness="2"/>
+                                        <Path Data="M122.615982294083,0L179.229538202286,0 179.28903222084,237.477661132813 261.842437982559,175.42463684082 301.904999017715,205.524368286133 150.942795038223,319 0,205.553573608398 40.0637896060944,175.42463684082 122.676689386368,237.507781982422z" Stretch="Uniform" Fill="White" Width="20" Height="20" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"/>
+
+                                    </Grid>
+                                </Button>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            <Button Style="{StaticResource ButtonStyle2}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0">
-                <Border BorderThickness="0,0,0,3" BorderBrush="{StaticResource MomentThemeColor}">
-                        <TextBlock x:Uid="PackageStyleTB" Text="PACKAGE" Foreground="{StaticResource MomentThemeColor}" FontSize="26.667" VerticalAlignment="Bottom" FontWeight="Light"/>
-                </Border>
-            </Button>
-                <ListView ItemContainerStyle="{StaticResource ListViewItemStyle1}" ItemsSource="{Binding PackageStyles}" Margin="0,20,0,0"  SelectionMode="None">
+                <Grid Visibility="{Binding NoItemsVisibility}">
+                    <TextBlock x:Uid="NoItemTB" TextWrapping="Wrap" Text="No items" FontSize="25" Margin="10,0,0,0" Foreground="White"/>
+                </Grid>
+                <Button Style="{StaticResource ButtonStyle2}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0">
+                    <Border BorderThickness="0,0,0,0" BorderBrush="{StaticResource MomentThemeColor}">
+                        <TextBlock x:Uid="PackageStyleTB" Text="PACKAGE" Foreground="{StaticResource MomentThemeColor}" FontSize="25" VerticalAlignment="Bottom" FontWeight="Light"/>
+                    </Border>
+                </Button>
+                <ListView x:Name="installedListView" 
+                          ItemContainerStyle="{StaticResource ListViewItemStyle1}" 
+                          ItemsSource="{Binding PackageStyles}" 
+                          Margin="10,20,0,0"  
+                          SelectionMode="None"
+                         >
                     <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Image Source="{Binding RandomBackGrd}" />
-                                <Border Background="Black" Opacity="0.4"/>
+                        <DataTemplate >
+                            <Grid Loaded="Grid_Loaded" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image Source="{Binding RandomBackGrd}" Stretch="UniformToFill" />
+                                <Border Background="Black" Opacity="0.2"/>
                                 <Image Source="{Binding FullSizeImage}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                   
                 </ListView>
-           
-        </StackPanel>
+
+            </StackPanel>
         </ScrollViewer>
+        <Grid Visibility="{Binding IsLoadingVisibility}">
+            <Border Background="Black" Opacity="0.8"/>
+
+            <StackPanel x:Name="sp" Margin="0,300,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <ProgressRing Margin="0" Foreground="{StaticResource MomentThemeColor}" Background="{x:Null}" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="True" />
+
+                <TextBlock x:Uid="LoadingTB" Text="LOADING..." FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="White"/>
+
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

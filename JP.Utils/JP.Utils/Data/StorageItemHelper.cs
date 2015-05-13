@@ -8,27 +8,24 @@ using Windows.Storage;
 
 namespace JP.Utils.Data
 {
-    public class StorageItemHelper
+    public class StorageFileHandleHelper
     {
-        public static StorageFile CheckFileExist(StorageFolder folder,string filename)
+        public static async Task<StorageFile> TryGetFile(StorageFolder folder,string filename)
         {
             if(folder==null || string.IsNullOrEmpty(filename))
             {
-                return default(StorageFile);
+                return null;
             }
 
-            StorageFile fileToReturn = default(StorageFile);
-            ExceptionHelper.TryExecute<StorageFile>(async() =>
+            try
             {
-               var file=await folder.GetFileAsync(filename);
-                fileToReturn = file;
-            }, (e) =>
-             {
-                 fileToReturn = default(StorageFile);
-             });
-
-            return fileToReturn;
-
+                var file = await folder.GetFileAsync(filename);
+                return file;
+            }
+            catch(System.IO.FileNotFoundException)
+            {
+                return null;
+            }
         }
     }
 }

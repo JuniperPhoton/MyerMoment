@@ -20,7 +20,7 @@
     <AppxBundle>Always</AppxBundle>
     <PackageCertificateThumbprint>FD19B4DD63C69DF794452D59119494894C6CBCF4</PackageCertificateThumbprint>
     <NuGetPackageImportStamp>59ab78b7</NuGetPackageImportStamp>
-    <AppxBundlePlatforms>x86|arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -136,7 +136,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\HomeBackGrd.jpg" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-140.png" />
     <Content Include="Assets\Logo.scale-180.png" />
@@ -149,13 +148,11 @@
     <Content Include="Assets\Square70x70Logo.scale-140.png" />
     <Content Include="Assets\Square70x70Logo.scale-180.png" />
     <Content Include="Assets\Square70x70Logo.scale-80.png" />
+    <Content Include="Assets\Store.jpg" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-140.png" />
     <Content Include="Assets\StoreLogo.scale-180.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
-    <Content Include="Assets\WinPage1.jpg" />
-    <Content Include="Assets\WinPage2.jpg" />
-    <Content Include="Assets\WinPage3.jpg" />
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
