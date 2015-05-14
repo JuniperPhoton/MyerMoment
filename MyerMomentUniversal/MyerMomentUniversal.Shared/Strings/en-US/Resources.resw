@@ -399,4 +399,13 @@
   <data name="Store" xml:space="preserve">
     <value>Store BETA</value>
   </data>
+  <data name="DownloadTB.Text" xml:space="preserve">
+    <value>DOWNLOAD</value>
+  </data>
+  <data name="DownloadedHint" xml:space="preserve">
+    <value>INSTALLED</value>
+  </data>
+  <data name="DownloadHint" xml:space="preserve">
+    <value>DOWNLOAD</value>
+  </data>
 </root>

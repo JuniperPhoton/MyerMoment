@@ -15,11 +15,15 @@ using Windows.Graphics.Display;
 using Windows.Storage.Streams;
 using GalaSoft.MvvmLight;
 using JP.Utils.Data;
+using JP.Utils.Debug;
+using Windows.ApplicationModel.Resources;
 
 namespace MyerMomentUniversal.Model
 {
     public class MomentStyle:ViewModelBase
     {
+        private const int IMAGE_NUM = 17;
+
         private Uri thumbUri;
         private Uri fullSizeUri;
 
@@ -62,17 +66,38 @@ namespace MyerMomentUniversal.Model
             {
                 _isDownloaded = value;
                 RaisePropertyChanged(() => IsDownloaded);
+                RaisePropertyChanged(() => DownloadHint);
             }
         }
 
-        public int imageNum;
+        public string DownloadHint
+        {
+            get
+            {
+                var downStr = ResourceLoader.GetForCurrentView().GetString("DownloadHint");
+                var downedStr = ResourceLoader.GetForCurrentView().GetString("DownloadedHint");
+                if (IsDownloaded)
+                {
+                    return downedStr;
+                }
+                else return downStr;
+            }
+        }
+
+       
+        public static int ImageNum { get; set; }=1;
         public BitmapImage RandomBackGrd
         {
             get
             {
                 BitmapImage bitmap = new BitmapImage();
-                bitmap.UriSource =new Uri("ms-appx:///Asset/Backgrd/" +imageNum+ ".jpg");
-                return bitmap;
+               
+                bitmap.UriSource =new Uri("ms-appx:///Asset/Backgrd/" + ImageNum + ".jpg");
+
+                ImageNum++;
+                if (ImageNum > IMAGE_NUM) ImageNum =1;
+
+                return bitmap;  
             }
         }
 
@@ -89,6 +114,8 @@ namespace MyerMomentUniversal.Model
 
             PreviewImage = new BitmapImage();
             PreviewImage.UriSource = new Uri("ms-appx:///Asset/Style/" + nameID + ".jpg", UriKind.RelativeOrAbsolute);
+
+            IsDownloaded = true;
         }
 
         /// <summary>
@@ -102,104 +129,139 @@ namespace MyerMomentUniversal.Model
             this.NameID = nameID;
             this.thumbUri = thumbUri;
             this.fullSizeUri = fullSizeUri;
+
+            IsDownloaded = false;
         }
+
+        public void SetUpInstalledStyle()
+        {
+            PreviewImage = new BitmapImage();
+            PreviewImage.UriSource = thumbUri;
+
+            FullSizeImage = new BitmapImage();
+            FullSizeImage.UriSource = fullSizeUri;
+        }
+
 
         public async Task CheckThumbExistAndSaveAsync()
         {
-            var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
-
-            var thumbFile = await StorageFileHandleHelper.TryGetFile(folder, this.NameID + ".jpg"); 
-            if(thumbFile!=null)
+            await ExceptionHelper.TryExecute(async () =>
             {
-                PreviewImage = new BitmapImage();
-                PreviewImage.UriSource =new Uri(thumbFile.Path);
-            }
-            else
-            {
-                await GetStyle(ImageFileType.Jpeg);
-            }
-        }
-
-        public async Task GetStyle(ImageFileType type)
-        {
-            var ext = type == ImageFileType.Jpeg ? "jpg" : "png";
-            var file = await DownLoadAndSaveAsync(NameID + "."+ ext, ext, thumbUri);
-            var fileStream = await GetStreamFromFileAsync(file);
-
-            if(type == ImageFileType.Jpeg)
-            {
-                PreviewImage = new BitmapImage();
-                await PreviewImage.SetSourceAsync(fileStream);
-            }
-            else
-            {
-                FullSizeImage = new BitmapImage();
-                await FullSizeImage.SetSourceAsync(fileStream);
-            }
-        }
-
-        private async Task<StorageFile> DownLoadAndSaveAsync(string name,string fileType, Uri uri)
-        {
-            HttpClient client = new HttpClient();
-            var buffer = await client.GetBufferAsync(uri);
-            var stream = buffer.AsStream();
-
-            using (var mem = new MemoryStream())
-            {
-                stream.Seek(0, SeekOrigin.Begin);
-                await stream.CopyToAsync(mem);
-                mem.Seek(0, SeekOrigin.Begin);
-                var decoder = await BitmapDecoder.CreateAsync(stream.AsRandomAccessStream());
-
                 var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
-                var file = await folder.CreateFileAsync(name, CreationCollisionOption.ReplaceExisting);
-                using (var fileStream = await file.OpenAsync(FileAccessMode.ReadWrite))
+
+                var thumbFile = await StorageFileHandleHelper.TryGetFile(folder, this.NameID + "2" + ".png");
+                if (thumbFile != null)
                 {
-                    var data = (await decoder.GetPixelDataAsync()).DetachPixelData();
+                    PreviewImage = new BitmapImage();
+                    PreviewImage.UriSource = new Uri(thumbFile.Path);
+                }
+                else
+                {
+                    await GetStyle(StyleFileType.Thumb);
+                }
+            }); 
+        }
 
-                    try
+        public async Task GetStyle(StyleFileType type)
+        {
+            try
+            {
+                var fileName = this.NameID + (type == StyleFileType.Thumb ? "2" : "") + ".png";
+                var file = await DownLoadAndSaveAsync(fileName, type==StyleFileType.Thumb?thumbUri:fullSizeUri);
+
+                if (file == null) return;
+
+                var fileStream = await GetStreamFromFileAsync(file);
+                if (type == StyleFileType.Thumb)
+                {
+                    PreviewImage = new BitmapImage();
+                    await PreviewImage.SetSourceAsync(fileStream);
+                }
+                else
+                {
+                    FullSizeImage = new BitmapImage();
+                    await FullSizeImage.SetSourceAsync(fileStream);
+                    IsDownloaded = true;
+                }
+            }
+            catch(Exception)
+            {
+
+            }
+        }
+
+        private async Task<StorageFile> DownLoadAndSaveAsync(string name, Uri uri)
+        {
+            try
+            {
+                HttpClient client = new HttpClient();
+                var response =await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var buffer = await response.Content.ReadAsBufferAsync();
+                    var stream = buffer.AsStream();
+
+                    using (var mem = new MemoryStream())
                     {
-                        Guid decodeID;
-                        switch(fileType)
+                        stream.Seek(0, SeekOrigin.Begin);
+                        await stream.CopyToAsync(mem);
+                        mem.Seek(0, SeekOrigin.Begin);
+                        var decoder = await BitmapDecoder.CreateAsync(stream.AsRandomAccessStream());
+
+                        var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
+                        var file = await folder.CreateFileAsync(name, CreationCollisionOption.ReplaceExisting);
+                        using (var fileStream = await file.OpenAsync(FileAccessMode.ReadWrite))
                         {
-                            case "jpg": decodeID = BitmapEncoder.JpegEncoderId; break;
-                            case "png": decodeID = BitmapEncoder.PngEncoderId; break;
-                            default: decodeID = BitmapEncoder.JpegEncoderId; break;
-                        }
-                        var encoder = await BitmapEncoder.CreateAsync(decodeID, fileStream);
-                        encoder.SetPixelData(
-                            BitmapPixelFormat.Bgra8,
-                            BitmapAlphaMode.Premultiplied,
-                            decoder.OrientedPixelWidth,
-                            decoder.OrientedPixelHeight,
-                            decoder.DpiX,
-                            decoder.DpiY,
-                            data);
+                            var data = (await decoder.GetPixelDataAsync()).DetachPixelData();
 
-                        await encoder.FlushAsync();
-                        return file;
-                    }
-                    catch(Exception)
-                    {
-                        return null;
+                            try
+                            {
+                                Guid decodeID = BitmapEncoder.PngEncoderId;
+
+                                var encoder = await BitmapEncoder.CreateAsync(decodeID, fileStream);
+                                encoder.SetPixelData(
+                                    BitmapPixelFormat.Bgra8,
+                                    BitmapAlphaMode.Premultiplied,
+                                    decoder.OrientedPixelWidth,
+                                    decoder.OrientedPixelHeight,
+                                    decoder.DpiX,
+                                    decoder.DpiY,
+                                    data);
+
+                                await encoder.FlushAsync();
+                                return file;
+                            }
+                            catch (Exception)
+                            {
+                                return null;
+                            }
+                        }
                     }
                 }
+                else return null;
+            }
+            catch(Exception)
+            {
+                return null;
             }
         }
 
         private async Task<IRandomAccessStream> GetStreamFromFileAsync(StorageFile fileToOpen)
         {
-            var fileStream = await fileToOpen.OpenStreamForReadAsync();
-            
-           return fileStream.AsRandomAccessStream();
+            return await ExceptionHelper.TryExecute(async() =>
+            {
+                var fileStream = await fileToOpen.OpenStreamForReadAsync();
+
+                return fileStream.AsRandomAccessStream();
+            });
            
         }
 
     }
 
-    public enum ImageFileType
+    public enum StyleFileType
     {
-        Png,
-        Jpeg
+        Thumb,
+        FullSize,
     }
 }

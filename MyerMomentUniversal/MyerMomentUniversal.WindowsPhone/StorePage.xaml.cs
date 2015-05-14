@@ -29,7 +29,7 @@ namespace MyerMomentUniversal
         public StorePage()
         {
             this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+            this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
         }
 

@@ -1,4 +1,4 @@
-﻿<UserControl
+ <UserControl
     x:Class="MyerMomentUniversal.StoreContentControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -30,15 +30,17 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Image Source="{Binding RandomBackGrd}" Stretch="UniformToFill" />
+                                <Image Height="200" Source="{Binding RandomBackGrd}" Stretch="UniformToFill" />
                                 <Border Background="Black" Opacity="0.1"/>
                                 <Image Source="{Binding PreviewImage}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10">
-                                    <Grid>
-                                        <Ellipse Width="40" Height="40" Fill="{x:Null}" Stroke="White" StrokeThickness="2"/>
-                                        <Path Data="M122.615982294083,0L179.229538202286,0 179.28903222084,237.477661132813 261.842437982559,175.42463684082 301.904999017715,205.524368286133 150.942795038223,319 0,205.553573608398 40.0637896060944,175.42463684082 122.676689386368,237.507781982422z" Stretch="Uniform" Fill="White" Width="20" Height="20" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"/>
-
-                                    </Grid>
+                                <Button  Click="DownloadClick" Tag="{Binding NameID}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10">
+                                    <Border Background="{StaticResource MomentThemeColor}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock  Text="{Binding DownloadHint}" Foreground="{StaticResource MomentThemeBlack}" FontSize="26.667" FontFamily="Segoe WP" FontWeight="Bold" Margin="5,0"/>
+                                            <!--<Ellipse Width="40" Height="40" Fill="{x:Null}" Stroke="White" StrokeThickness="2" Visibility="Collapsed"/>-->
+                                            <!--<Path Data="M122.615982294083,0L179.229538202286,0 179.28903222084,237.477661132813 261.842437982559,175.42463684082 301.904999017715,205.524368286133 150.942795038223,319 0,205.553573608398 40.0637896060944,175.42463684082 122.676689386368,237.507781982422z" Stretch="Uniform" Fill="{StaticResource MomentThemeBlack}" Width="20" Height="20" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"/>-->
+                                        </StackPanel>
+                                    </Border>
                                 </Button>
                             </Grid>
                         </DataTemplate>
@@ -64,7 +66,6 @@
                                 <Image Source="{Binding RandomBackGrd}" Stretch="UniformToFill" />
                                 <Border Background="Black" Opacity="0.2"/>
                                 <Image Source="{Binding FullSizeImage}" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -73,7 +74,7 @@
                             <ItemsWrapGrid MaximumRowsOrColumns="10" Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
-                   
+
                 </ListView>
 
             </StackPanel>
@@ -88,5 +89,6 @@
 
             </StackPanel>
         </Grid>
+       
     </Grid>
 </UserControl>

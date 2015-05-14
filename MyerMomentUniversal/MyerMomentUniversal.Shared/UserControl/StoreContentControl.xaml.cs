@@ -1,4 +1,5 @@
-﻿using MyerMomentUniversal.Helper;
+﻿using JP.Utils.Debug;
+using MyerMomentUniversal.Helper;
 using MyerMomentUniversal.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace MyerMomentUniversal
     public sealed partial class StoreContentControl : UserControl
     {
 
-        StylesViewModel StylesVM;
+        public StylesViewModel StylesVM;
         public StoreContentControl()
         {
             this.InitializeComponent();
@@ -34,8 +35,20 @@ namespace MyerMomentUniversal
 
         private async void GetNewStyle()
         {
-            var names = await HttpHelper.GetAllStylesAsync();
-            await StylesVM.ConfigWebStyle(names);
+            await ExceptionHelper.TryExecute(async () =>
+            {
+                var names = await HttpHelper.GetAllStylesAsync();
+                await StylesVM.ConfigWebStyle(names);
+            });
+            
+        }
+
+        private async void DownloadClick(object sender,RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            var tag = btn.Tag as string;
+
+            await StylesVM.DownloadFullsizeCommand(tag);
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -43,8 +56,11 @@ namespace MyerMomentUniversal
             var grid = sender as Grid;
             var image = grid.Children.FirstOrDefault() as Image;
 
-            image.Width = image.Height = (installedListView.ActualWidth-40)/2;
+            image.Width = (installedListView.ActualWidth-30)/2;
+            image.Height = image.Width;
 
+            var image2 = grid.Children.LastOrDefault() as Image;
+            image2.Width = image2.Height = (image.Width) / 2;
         }
     }
 }

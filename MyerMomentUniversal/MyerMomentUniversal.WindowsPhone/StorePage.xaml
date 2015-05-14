@@ -13,12 +13,15 @@
             </NavigationThemeTransition>
         </TransitionCollection>
     </Page.Transitions>
+    
     <Grid Background="{StaticResource MomentThemeBlack}">
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition/>
+          
         </Grid.RowDefinitions>
         <Grid Background="{StaticResource MomentThemeColor}">
+
             <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                 <Path Data="M11.842,37.780999L11.842,55.412002 31.993,55.412002 31.993,37.780999z M6.8060247,10.075L57.179516,10.075C58.566315,10.075,59.697811,11.206607,59.697811,12.593915L59.697811,15.337431 63.988098,27.6298C63.988098,27.6298 64.302002,30.208615 61.705601,30.208615 60.630108,30.208615 60.040211,29.763213 59.697811,29.245811L59.697811,60.448989C59.697811,61.836398,58.566315,62.968001,57.179516,62.968001L52.141834,62.968001 52.141834,37.780961 39.548069,37.780961 39.548069,62.968001 6.8060247,62.968001C5.417998,62.968001,4.2877814,61.836398,4.2877819,60.448989L4.2877819,29.241811C3.9779023,29.761415 3.459654,30.208615 2.5560361,30.208615 -0.041615853,30.208615 4.0528144E-05,27.6298 4.0197572E-05,27.6298L4.2877819,15.338731 4.2877819,12.593915C4.2877814,11.206607,5.417998,10.075,6.8060247,10.075z M6.8052875,0L57.179661,0C58.566483,0,59.697998,1.1314697,59.697998,2.5188003L59.697998,5.0377202C59.697998,6.4244096,58.566483,7.5559995,57.179661,7.5559993L6.8052875,7.5559993C5.4172365,7.5559995,4.2869998,6.4244096,4.2869998,5.0377202L4.2869998,2.5188003C4.2869998,1.1314697,5.4172365,0,6.8052875,0z" Stretch="Uniform" Fill="{StaticResource MomentThemeBlack}" Width="30" Height="30" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center">
                     <Path.RenderTransform>
@@ -33,6 +36,8 @@
                 <TextBlock x:Uid="StoreTB" Text="Store" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Segoe WP" FontSize="33.333" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,5" FontWeight="Light"/>
             </StackPanel>
         </Grid>
+
         <local:StoreContentControl Grid.Row="1"/>
+        
     </Grid>
 </Page>

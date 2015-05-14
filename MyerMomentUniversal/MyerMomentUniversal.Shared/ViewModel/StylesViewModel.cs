@@ -17,7 +17,9 @@ namespace MyerMomentUniversal.ViewModel
 {
     public class StylesViewModel:ViewModelBase
     {
-        private const  int IMAGE_NUM=13;
+       
+
+        public List<string> InstalledStylesList = new List<string>();
 
         private Visibility _noItemsVisibility;
         public Visibility NoItemsVisibility
@@ -82,14 +84,37 @@ namespace MyerMomentUniversal.ViewModel
             }
         }
 
-       
-        public StylesViewModel()
+        private RelayCommand<string> _downloadCommand;
+        public RelayCommand<string> DownloadCommand
+        {
+            get
+            {
+                if (_downloadCommand != null) return _downloadCommand;
+                else
+                {
+                    return _downloadCommand = new RelayCommand<string>(async (name) =>
+                    {
+                        await DownloadFullsizeCommand(name);
+                    });
+                }
+            }
+        }
+
+        public StylesViewModel(bool ConfigLocalStyle=true)
         {
             NewStyles = new ObservableCollection<MomentStyle>();
             PackageStyles = new ObservableCollection<MomentStyle>();
+            if (ConfigLocalStyle)
+            {
+                var task = Config();
+            }
+        }
+
+        public async Task Config()
+        {
             ConfigPackageStyle();
-            ConfigInstalledStyle();
-            NumStyle(PackageStyles);
+            await ConfigInstalledStyle();
+            //NumStyle(PackageStyles);
         }
 
         /// <summary>
@@ -120,32 +145,29 @@ namespace MyerMomentUniversal.ViewModel
         /// <summary>
         /// 加载来自Web的已经安装的样式
         /// </summary>
-        private void ConfigInstalledStyle()
+        private async Task ConfigInstalledStyle()
         {
-            ExceptionHelper.TryExecute(async() =>
+            try
             {
                 var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
-                var files = await folder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByName);
+                var files = await folder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.DefaultQuery);
                 if (files.Count == 0) return;
                 foreach (var file in files)
                 {
+                    if (file.DisplayName.EndsWith("2")) continue;
                     var newStyle = new MomentStyle(file.DisplayName, new Uri(file.Path), new Uri(file.Path));
+                    newStyle.SetUpInstalledStyle();
+                    PackageStyles.Insert(0,newStyle);
+                    InstalledStylesList.Add(file.DisplayName);
                 }
-            });
+            }
+            catch(Exception e)
+            {
+                await ExceptionHelper.WriteRecord(e);
+            }
            
         }
 
-        /// <summary>
-        /// 为样式添加背景图案
-        /// </summary>
-        private void NumStyle(ObservableCollection<MomentStyle> list)
-        {
-           for(int i=0;i<= list.Count-1;i++)
-            {
-                var style= list.ToList().ElementAt(i);
-                style.imageNum = i % IMAGE_NUM;
-            }
-        }
 
         public async Task ConfigWebStyle(string[] styleNames)
         {
@@ -153,11 +175,16 @@ namespace MyerMomentUniversal.ViewModel
             foreach(var name in styleNames)
             {
                 if (string.IsNullOrEmpty(name)) continue;
-                var style = new MomentStyle(name, HttpHelper.GetUri(name, ".jpg"), HttpHelper.GetUri(name, ".png"));
+                var style = new MomentStyle(name, HttpHelper.GetUri(name+ "2.png"), HttpHelper.GetUri(name+ ".png"));
                 await style.CheckThumbExistAndSaveAsync();
-                NewStyles.Add(style);
-                NumStyle(NewStyles);
+                NewStyles.Insert(0,style);
+                if(InstalledStylesList.Contains(style.NameID))
+                {
+                    style.IsDownloaded = true;
+                }
             }
+
+            //NumStyle(NewStyles);
 
             if (NewStyles.Count == 0) NoItemsVisibility = Visibility.Visible;
             else NoItemsVisibility = Visibility.Collapsed;
@@ -170,6 +197,23 @@ namespace MyerMomentUniversal.ViewModel
               });
             timer.Start();
             
+        }
+
+        public async Task DownloadFullsizeCommand(string name)
+        {
+            var style = NewStyles.ToList().Find((s) =>
+            {
+                if (s.NameID == name) return true;
+                else return false;
+            });
+            if (style != null && !style.IsDownloaded)
+            {
+                await style.GetStyle(StyleFileType.FullSize);
+                PackageStyles.Clear();
+                ConfigPackageStyle();
+                await ConfigInstalledStyle();
+                //NumStyle(PackageStyles);
+            }
         }
     }
 }

@@ -31,6 +31,7 @@ namespace MyerMomentUniversal
 
     public sealed partial class ImageHandlePage : Page
     {
+        private StylesViewModel StylesVM;
 
         private bool _isInStyleMode = false;
         private bool _isInShareMode = false;
@@ -153,11 +154,11 @@ namespace MyerMomentUniversal
        
 
         //配置Style 列表
-        private void ConfigStyle()
+        private async void ConfigStyle()
         {
-            var styleList = new StylesViewModel();
-            
-            foreach (var style in styleList.PackageStyles)
+            StylesVM = new StylesViewModel(false);
+            await StylesVM.Config();
+            foreach (var style in StylesVM.PackageStyles)
             {
                 Button styleBtn = new Button();
                 styleBtn.BorderThickness = new Thickness(0);
@@ -184,9 +185,10 @@ namespace MyerMomentUniversal
                 });
 
                 Border border = new Border();
-                ImageBrush brush = new ImageBrush();
-                brush.ImageSource = style.PreviewImage;
-                border.Background = brush;
+                Image image = new Image();
+                image.Source = style.PreviewImage;
+                border.Background = new SolidColorBrush(Colors.Black);
+                border.Child = image;
 
                 styleBtn.Content = border;
 

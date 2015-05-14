@@ -366,4 +366,13 @@
   <data name="Store" xml:space="preserve">
     <value>商店 BETA</value>
   </data>
+  <data name="DownloadTB.Text" xml:space="preserve">
+    <value>下载</value>
+  </data>
+  <data name="DownloadedHint" xml:space="preserve">
+    <value>已安装</value>
+  </data>
+  <data name="DownloadHint" xml:space="preserve">
+    <value>下载</value>
+  </data>
 </root>

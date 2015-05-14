@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\DownloadHintConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\ContinuationManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\CropBitmap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\FilterApplyHelper.cs" />
@@ -49,12 +50,15 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\11.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\12.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\13.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\14.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\15.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\16.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\17.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\2.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\3.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\4.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\5.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\6.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\0.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\7.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\8.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\9.jpg" />

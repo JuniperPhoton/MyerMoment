@@ -1,4 +1,4 @@
-﻿
+﻿#define WEB
 using MyerMomentUniversal.Model;
 using Newtonsoft.Json.Linq;
 using System;
@@ -11,12 +11,22 @@ namespace MyerMomentUniversal.Helper
 {
     public class HttpHelper
     {
-        private static string SendDeviceInfoUri = "http://121.41.21.21/";
-        private static string GetAllStylesRequestUrl = "http://127.0.0.1:3000/styles";
+        private static string BaseUri = "http://121.41.21.21/ghost/MyerMoment/public/images/Styles/";
+        private static string GetAllStylesRequestUrl = "http://121.41.21.21/moment/styles";
+        private static string StyleDir = "http://121.0.0.1:3000/public/images/styles/";
 
-        public static Uri GetUri(string name, string extwithdot)
+
+        private static string DeployUriBase =
+#if WEB
+            BaseUri;
+#else
+            StyleDir;
+#endif
+
+
+        public static Uri GetUri(string name)
         {
-            return new Uri("http://121.41.21.21/MyerMoment/public/images/Styles/" + name + extwithdot);
+            return new Uri(DeployUriBase + name);
         }
 
         public async static Task<string[]> GetAllStylesAsync()
