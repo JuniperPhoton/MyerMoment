@@ -10,6 +10,7 @@
     d:DesignWidth="480">
 
     <Grid Background="{StaticResource MomentThemeBlack}">
+
         <ScrollViewer VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Auto">
             <StackPanel Orientation="Vertical" >
                 <Button Style="{StaticResource ButtonStyle2}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Margin="10,0">

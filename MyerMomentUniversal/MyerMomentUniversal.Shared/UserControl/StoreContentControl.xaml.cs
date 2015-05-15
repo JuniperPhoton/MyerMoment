@@ -54,13 +54,14 @@ namespace MyerMomentUniversal
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             var grid = sender as Grid;
-            var image = grid.Children.FirstOrDefault() as Image;
+            var backgrdImage = grid.Children.FirstOrDefault() as Image;
 
-            image.Width = (installedListView.ActualWidth-30)/2;
-            image.Height = image.Width;
+            backgrdImage.Width = (installedListView.ActualWidth-30)/2;
+            backgrdImage.Height = backgrdImage.Width;
 
-            var image2 = grid.Children.LastOrDefault() as Image;
-            image2.Width = image2.Height = (image.Width) / 2;
+            var styleImage = grid.Children.LastOrDefault() as Image;
+            styleImage.Width = styleImage.Height = (backgrdImage.Width) / 1.7;
         }
+
     }
 }

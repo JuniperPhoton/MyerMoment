@@ -355,13 +355,13 @@
     <value>新鲜到货</value>
   </data>
   <data name="PackageStyleTB.Text" xml:space="preserve">
-    <value>已安装</value>
+    <value>已拥有</value>
   </data>
   <data name="LoadingTB.Text" xml:space="preserve">
     <value>加载中</value>
   </data>
   <data name="NoItemTB.Text" xml:space="preserve">
-    <value>没有新样式，迟点试试 :D</value>
+    <value>没有新样式，下次再来看看？</value>
   </data>
   <data name="Store" xml:space="preserve">
     <value>商店 BETA</value>

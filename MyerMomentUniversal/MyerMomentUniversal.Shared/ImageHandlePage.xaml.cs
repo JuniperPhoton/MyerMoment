@@ -98,7 +98,7 @@ namespace MyerMomentUniversal
         {
             this.InitializeComponent();
    
-            this.NavigationCacheMode = NavigationCacheMode.Enabled;
+            this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
             _imageHandleHelper = new ImageHandleHelper();
 
@@ -644,7 +644,7 @@ namespace MyerMomentUniversal
             Canvas.SetTop(textGrid3, fontCanvas.ActualHeight / 2.0 - 50);
 
             Canvas.SetLeft(styleImage, fontCanvas.ActualWidth / 2.0 - styleImage.ActualWidth / 2.0);
-            Canvas.SetTop(styleImage, fontCanvas.ActualHeight / 2.0);
+            Canvas.SetTop(styleImage, fontCanvas.ActualHeight / 2.0-styleImage.ActualHeight/2.0);
         }
 
         #endregion
@@ -807,13 +807,22 @@ namespace MyerMomentUniversal
 
             textGrid1.ManipulationDelta -= TextView1_ManipulationDelta;
             textGrid1.ManipulationDelta += TextView1_ManipulationDelta;
+            textGrid1.ManipulationCompleted -= TextGrid1_ManipulationCompleted;
+            textGrid1.ManipulationCompleted += TextGrid1_ManipulationCompleted;
 
             textGrid1.RenderTransform = _compositeTransform1;
         }
 
+        private void TextGrid1_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            FrameGrid.Visibility = Visibility.Collapsed;
+        }
+
         private void TextView1_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            var newX=Canvas.GetLeft(textGrid1)+e.Delta.Translation.X;
+            FrameGrid.Visibility = Visibility.Visible;
+
+            var newX =Canvas.GetLeft(textGrid1)+e.Delta.Translation.X;
             var newY= Canvas.GetTop(textGrid1)+ e.Delta.Translation.Y;
 
             if(newX<fontCanvas.ActualWidth-textGrid1.ActualWidth && newX>0) Canvas.SetLeft(textGrid1, newX);
@@ -866,11 +875,22 @@ namespace MyerMomentUniversal
             textGrid2.ManipulationDelta -= TextView2_ManipulationDelta;
             textGrid2.ManipulationDelta += TextView2_ManipulationDelta;
 
+            textGrid2.ManipulationCompleted -= TextGrid2_ManipulationCompleted;
+
+            textGrid2.ManipulationCompleted += TextGrid2_ManipulationCompleted;
+
             textGrid2.RenderTransform = _compositeTransform2;
+        }
+
+        private void TextGrid2_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            FrameGrid.Visibility = Visibility.Visible;
         }
 
         private void TextView2_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
+            FrameGrid.Visibility = Visibility.Visible;
+
             var newX = Canvas.GetLeft(textGrid2) + e.Delta.Translation.X;
             var newY = Canvas.GetTop(textGrid2) + e.Delta.Translation.Y;
 
@@ -916,12 +936,21 @@ namespace MyerMomentUniversal
         {
             textGrid3.ManipulationDelta -= TextView3_ManipulationDelta;
             textGrid3.ManipulationDelta += TextView3_ManipulationDelta;
+            textGrid3.ManipulationCompleted -= TextGrid3_ManipulationCompleted;
 
+            textGrid3.ManipulationCompleted += TextGrid3_ManipulationCompleted;
             textGrid3.RenderTransform = _compositeTransform3;
+        }
+
+        private void TextGrid3_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            FrameGrid.Visibility = Visibility.Collapsed;
         }
 
         private void TextView3_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
+            FrameGrid.Visibility = Visibility.Visible;
+
             var newX = Canvas.GetLeft(textGrid3) + e.Delta.Translation.X;
             var newY = Canvas.GetTop(textGrid3) + e.Delta.Translation.Y;
 
@@ -971,10 +1000,19 @@ namespace MyerMomentUniversal
             
             styleImage.ManipulationDelta -= StyleView_ManipulationDelta;
             styleImage.ManipulationDelta += StyleView_ManipulationDelta;
+            styleImage.ManipulationCompleted -= StyleImage_ManipulationCompleted;
+            styleImage.ManipulationCompleted += StyleImage_ManipulationCompleted;
+        }
+
+        private void StyleImage_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            FrameGrid.Visibility = Visibility.Collapsed;
         }
 
         private void StyleView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
+            FrameGrid.Visibility = Visibility.Visible;
+
             var newX = Canvas.GetLeft(styleImage) + e.Delta.Translation.X;
             var newY = Canvas.GetTop(styleImage) + e.Delta.Translation.Y;
 

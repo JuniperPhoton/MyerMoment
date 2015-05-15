@@ -100,10 +100,15 @@ namespace MyerMomentUniversal.ViewModel
             }
         }
 
+        private TaskCompletionSource<int> tcs;
+
         public StylesViewModel(bool ConfigLocalStyle=true)
         {
             NewStyles = new ObservableCollection<MomentStyle>();
             PackageStyles = new ObservableCollection<MomentStyle>();
+
+            tcs = new TaskCompletionSource<int>();
+
             if (ConfigLocalStyle)
             {
                 var task = Config();
@@ -149,21 +154,31 @@ namespace MyerMomentUniversal.ViewModel
         {
             try
             {
+                tcs = new TaskCompletionSource<int>();
+
                 var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
                 var files = await folder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.DefaultQuery);
-                if (files.Count == 0) return;
+                if (files.Count == 0)
+                {
+                    tcs.SetResult(0);
+                    return;
+                }
                 foreach (var file in files)
                 {
                     if (file.DisplayName.EndsWith("2")) continue;
                     var newStyle = new MomentStyle(file.DisplayName, new Uri(file.Path), new Uri(file.Path));
                     newStyle.SetUpInstalledStyle();
                     PackageStyles.Insert(0,newStyle);
+                    
                     InstalledStylesList.Add(file.DisplayName);
                 }
+
+                tcs.SetResult(0);
             }
             catch(Exception e)
             {
                 await ExceptionHelper.WriteRecord(e);
+                tcs.SetResult(0);
             }
            
         }
@@ -171,17 +186,21 @@ namespace MyerMomentUniversal.ViewModel
 
         public async Task ConfigWebStyle(string[] styleNames)
         {
+            await tcs.Task;
+
             IsLoadingVisibility = Visibility.Visible;
             foreach(var name in styleNames)
             {
                 if (string.IsNullOrEmpty(name)) continue;
+
+                if (InstalledStylesList.Contains(name))
+                {
+                    continue;
+                }
+                
                 var style = new MomentStyle(name, HttpHelper.GetUri(name+ "2.png"), HttpHelper.GetUri(name+ ".png"));
                 await style.CheckThumbExistAndSaveAsync();
                 NewStyles.Insert(0,style);
-                if(InstalledStylesList.Contains(style.NameID))
-                {
-                    style.IsDownloaded = true;
-                }
             }
 
             //NumStyle(NewStyles);
@@ -196,7 +215,7 @@ namespace MyerMomentUniversal.ViewModel
                   IsLoadingVisibility = Visibility.Collapsed;
               });
             timer.Start();
-            
+
         }
 
         public async Task DownloadFullsizeCommand(string name)

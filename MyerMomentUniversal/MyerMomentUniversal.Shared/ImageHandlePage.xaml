@@ -771,7 +771,7 @@
                     <Border x:Name="maskBorder3" Background="Black" Opacity="0.01"/>
                 </Grid>
 
-                <Image x:Name="styleImage" ManipulationMode="TranslateX,TranslateY"   PointerEntered="StyleView_OnPointerEntered" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Source="Asset/along.png"  RenderTransformOrigin="0.5,0.5"/>
+                <Image x:Name="styleImage" ManipulationMode="TranslateX,TranslateY"   PointerEntered="StyleView_OnPointerEntered" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="120" Source="Asset/along.png"  RenderTransformOrigin="0.5,0.5"/>
 
 
             </Canvas>
@@ -806,7 +806,7 @@
                                 </Path>
                             </Grid>
                         </Button>
-                        <Button Click="FrameClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                        <Button Visibility="Collapsed" Click="FrameClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="ViewAll" Foreground="Black"/>
