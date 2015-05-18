@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="19204JuniperPhoton.MyerMoment" Publisher="CN=A9291247-1C35-4EE6-8B51-1551AF1EB838" Version="1.9.0.0" />
+  <Identity Name="19204JuniperPhoton.MyerMoment" Publisher="CN=A9291247-1C35-4EE6-8B51-1551AF1EB838" Version="1.9.0.2" />
   <Properties>
     <DisplayName>MyerMoment</DisplayName>
     <PublisherDisplayName>JuniperPhoton</PublisherDisplayName>

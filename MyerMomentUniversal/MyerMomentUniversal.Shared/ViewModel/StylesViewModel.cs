@@ -1,17 +1,17 @@
 ﻿using GalaSoft.MvvmLight;
-using MyerMomentUniversal.Helper;
 using MyerMomentUniversal.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using System.Linq;
 using Windows.UI.Xaml;
 using JP.Utils.Debug;
 using GalaSoft.MvvmLight.Command;
-using Windows.UI.Xaml.Controls;
+using Newtonsoft.Json.Linq;
+using Windows.ApplicationModel;
+using Windows.Storage.Streams;
 
 namespace MyerMomentUniversal.ViewModel
 {
@@ -117,6 +117,8 @@ namespace MyerMomentUniversal.ViewModel
             {
                 var task = Config();
             }
+
+            IsLoadingVisibility = Visibility.Collapsed;
         }
 
         public async Task Config()
@@ -129,26 +131,36 @@ namespace MyerMomentUniversal.ViewModel
         /// <summary>
         /// 加载预安装的样式
         /// </summary>
-        private void ConfigPackageStyle()
+        private async void ConfigPackageStyle()
         {
-            PackageStyles.Add(new MomentStyle("Alone"));
-            PackageStyles.Add(new MomentStyle("Amazing"));
-            PackageStyles.Add(new MomentStyle("Brave"));
-            PackageStyles.Add(new MomentStyle("Couple"));
-            PackageStyles.Add(new MomentStyle("Coffee"));
-            PackageStyles.Add(new MomentStyle("Dinner"));
-            PackageStyles.Add(new MomentStyle("Food"));
-            PackageStyles.Add(new MomentStyle("GTA5"));
-            PackageStyles.Add(new MomentStyle("Lumia"));
-            PackageStyles.Add(new MomentStyle("Love"));
-            PackageStyles.Add(new MomentStyle("Memory"));
-            PackageStyles.Add(new MomentStyle("Music"));
-            PackageStyles.Add(new MomentStyle("Night"));
-            PackageStyles.Add(new MomentStyle("Place"));
-            PackageStyles.Add(new MomentStyle("Sad"));
-            PackageStyles.Add(new MomentStyle("Scene"));
-            PackageStyles.Add(new MomentStyle("Thanks"));
-            PackageStyles.Add(new MomentStyle("Time"));
+            var folder =await Package.Current.InstalledLocation.GetFolderAsync("Config");
+            var file = await folder.GetFileAsync("LocalStyleConfig.txt");
+            
+                var str=await FileIO.ReadTextAsync(file);
+                var styles = str.Split(',');
+                foreach(var stylename in styles)
+                {
+                    PackageStyles.Add(new MomentStyle(stylename));
+                }
+           
+            //PackageStyles.Add(new MomentStyle("Alone"));
+            //PackageStyles.Add(new MomentStyle("Amazing"));
+            //PackageStyles.Add(new MomentStyle("Brave"));
+            //PackageStyles.Add(new MomentStyle("Couple"));
+            //PackageStyles.Add(new MomentStyle("Coffee"));
+            //PackageStyles.Add(new MomentStyle("Dinner"));
+            //PackageStyles.Add(new MomentStyle("Food"));
+            //PackageStyles.Add(new MomentStyle("GTA5"));
+            //PackageStyles.Add(new MomentStyle("Lumia"));
+            //PackageStyles.Add(new MomentStyle("Love"));
+            //PackageStyles.Add(new MomentStyle("Memory"));
+            //PackageStyles.Add(new MomentStyle("Music"));
+            //PackageStyles.Add(new MomentStyle("Night"));
+            //PackageStyles.Add(new MomentStyle("Place"));
+            //PackageStyles.Add(new MomentStyle("Sad"));
+            //PackageStyles.Add(new MomentStyle("Scene"));
+            //PackageStyles.Add(new MomentStyle("Thanks"));
+            //PackageStyles.Add(new MomentStyle("Time"));
         }
 
         /// <summary>
@@ -159,6 +171,8 @@ namespace MyerMomentUniversal.ViewModel
             try
             {
                 tcs = new TaskCompletionSource<int>();
+
+                IsLoadingVisibility = Visibility.Visible;
 
                 var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
                 var files = await folder.GetFilesAsync();
@@ -178,6 +192,15 @@ namespace MyerMomentUniversal.ViewModel
                 }
 
                 tcs.SetResult(0);
+
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Tick += ((st, et) =>
+                  {
+                      IsLoadingVisibility = Visibility.Collapsed;
+                      timer.Stop();
+                  });
+                timer.Start();
             }
             catch(Exception e)
             {
@@ -188,25 +211,27 @@ namespace MyerMomentUniversal.ViewModel
         }
 
 
-        public async Task ConfigWebStyle(string[] styleNames)
+        public async Task ConfigWebStyle(JArray styles)
         {
             await tcs.Task;
 
             IsLoadingVisibility = Visibility.Visible;
             NewStyles = new ObservableCollection<MomentStyle>();
 
-            foreach(var name in styleNames)
+            foreach(var style in styles)
             {
-                if (string.IsNullOrEmpty(name)) continue;
-
-                if (InstalledStylesList.Contains(name))
+                if (style == null) continue;
+                var nameid = (string)style["name"];
+                var thumbUri = (string)style["basicUrl"] + nameid + ".png";
+                var fullsizeUri = (string)style["basicUrl"] + nameid + "2.png";
+                if (InstalledStylesList.Contains(nameid))
                 {
                     continue;
                 }
                 
-                var style = new MomentStyle(name, HttpHelper.GetUri(name+ "2.png"), HttpHelper.GetUri(name+ ".png"));
-                await style.CheckThumbExistAndSaveAsync();
-                NewStyles.Insert(0,style);
+                var newstyle = new MomentStyle(nameid, new Uri(thumbUri), new Uri(fullsizeUri));
+                await newstyle.CheckThumbExistAndSaveAsync();
+                NewStyles.Insert(0,newstyle);
             }
 
             if (NewStyles.Count == 0) NoItemsVisibility = Visibility.Visible;
@@ -217,6 +242,7 @@ namespace MyerMomentUniversal.ViewModel
             timer.Tick += ((sendert, et) =>
               {
                   IsLoadingVisibility = Visibility.Collapsed;
+                  timer.Stop();
               });
             timer.Start();
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,7 +26,7 @@ namespace MyerMomentUniversal
         public SettingFlyoutPage()
         {
             this.InitializeComponent();
-
+            this.Title = ResourceLoader.GetForCurrentView().GetString("SettingHeader");
             //var position = LocalSettingHelper.GetValue("Position");
             //if (position != null)
             //{

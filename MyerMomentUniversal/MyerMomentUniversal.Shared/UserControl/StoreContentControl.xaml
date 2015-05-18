@@ -13,11 +13,7 @@
 
         <ScrollViewer VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Auto">
             <StackPanel Orientation="Vertical">
-                <StackPanel.ChildrenTransitions>
-                    <TransitionCollection>
-                        <AddDeleteThemeTransition/>
-                    </TransitionCollection>
-                </StackPanel.ChildrenTransitions>
+                
                 <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
                     <TextBlock x:Uid="NewStyleTB" Text="WHAT'S NEW" Foreground="{StaticResource MomentThemeColor}" FontSize="25" VerticalAlignment="Bottom" FontWeight="Light" Margin="10,0,0,0" HorizontalAlignment="Center"/>
                     <!--<Button Click="RefreshClick" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" HorizontalAlignment="Center">

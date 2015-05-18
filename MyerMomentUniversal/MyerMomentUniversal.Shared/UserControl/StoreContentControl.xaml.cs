@@ -1,21 +1,11 @@
 ﻿using JP.Utils.Debug;
+using JP.Utils.Network;
 using MyerMomentUniversal.Helper;
 using MyerMomentUniversal.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 
 namespace MyerMomentUniversal
@@ -35,15 +25,17 @@ namespace MyerMomentUniversal
 
             StylesVM = new StylesViewModel();
             this.DataContext = StylesVM;
-            GetNewStyle();
+
+           GetNewStyle();
+            
         }
 
         private async void GetNewStyle()
         {
             await ExceptionHelper.TryExecute(async () =>
             {
-                var names = await HttpHelper.GetAllStylesAsync();
-                await StylesVM.ConfigWebStyle(names);
+                var namesArray = await HttpHelper.GetAllStylesAsync();
+                await StylesVM.ConfigWebStyle(namesArray);
             });
             
         }

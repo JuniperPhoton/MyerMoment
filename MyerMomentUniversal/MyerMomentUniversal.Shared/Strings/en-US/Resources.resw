@@ -376,7 +376,7 @@
     <value>Version</value>
   </data>
   <data name="StoreTB.Text" xml:space="preserve">
-    <value>STORE BETA</value>
+    <value>STYLE STORE</value>
   </data>
   <data name="ErrorOther" xml:space="preserve">
     <value>Some error occurred. Please try again.</value>
@@ -416,5 +416,8 @@
   </data>
   <data name="RefreshTB.Text" xml:space="preserve">
     <value>REFRESH</value>
+  </data>
+  <data name="SettingHeader" xml:space="preserve">
+    <value>SETTING</value>
   </data>
 </root>

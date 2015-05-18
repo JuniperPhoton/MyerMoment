@@ -11,25 +11,9 @@ namespace MyerMomentUniversal.Helper
 {
     public class HttpHelper
     {
-        private static string BaseUri = "http://121.41.21.21/ghost/MyerMoment/public/images/Styles/";
         private static string GetAllStylesRequestUrl = "http://121.41.21.21/moment/styles";
-        private static string StyleDir = "http://121.0.0.1:3000/public/images/styles/";
 
-
-        private static string DeployUriBase =
-#if WEB
-            BaseUri;
-#else
-            StyleDir;
-#endif
-
-
-        public static Uri GetUri(string name)
-        {
-            return new Uri(DeployUriBase + name);
-        }
-
-        public async static Task<string[]> GetAllStylesAsync()
+        public async static Task<JArray> GetAllStylesAsync()
         {
             try
             {
@@ -38,17 +22,19 @@ namespace MyerMomentUniversal.Helper
                 if(resp.IsSuccessStatusCode)
                 {
                     var content =await resp.Content.ReadAsStringAsync();
-                    var styles = content.Split(',');
-                    return styles;
+                    JObject job = JObject.Parse(content);
+                    JArray array = job["styles"] as JArray;
+
+                    return array;
                 }
                else
                 {
-                    return new string[0] { };
+                    return default(JArray);
                 }
             }
             catch(Exception)
             {
-                return new string[0] { };
+                return default(JArray);
             }
         }
 

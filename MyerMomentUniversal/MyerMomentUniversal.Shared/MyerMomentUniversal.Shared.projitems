@@ -94,8 +94,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Food.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\GTA5.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\GTA5.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Love.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Love.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Lumia.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Lumia.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Memory.jpg" />
@@ -116,6 +114,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Time.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Tile\LOGO_WIDE.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Tile\LOGO_WIDE_TRAN.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Config\LocalStyleConfig.txt" />
     <Content Include="$(MSBuildThisFileDirectory)Font\blockline.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\ClubNight.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Cubos.ttf" />

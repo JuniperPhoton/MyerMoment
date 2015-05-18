@@ -62,7 +62,7 @@ namespace JP.Utils.Network
             try
             {
                 ConnectionProfile internetConnectionProfile = NetworkInformation.GetInternetConnectionProfile();
-                return internetConnectionProfile == null ? false : true;
+                return internetConnectionProfile.WwanConnectionProfileDetails == null ? false : true;
             }
             catch (Exception)
             {

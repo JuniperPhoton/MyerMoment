@@ -343,7 +343,7 @@
     <value>版本</value>
   </data>
   <data name="StoreTB.Text" xml:space="preserve">
-    <value>商店 BETA</value>
+    <value>水印商店</value>
   </data>
   <data name="ErrorOther" xml:space="preserve">
     <value>发生错误，请尝试重试。</value>
@@ -364,7 +364,7 @@
     <value>没有新样式，下次再来看看？</value>
   </data>
   <data name="Store" xml:space="preserve">
-    <value>商店 BETA</value>
+    <value>水印商店 BETA</value>
   </data>
   <data name="DownloadTB.Text" xml:space="preserve">
     <value>下载</value>
@@ -383,5 +383,8 @@
   </data>
   <data name="RefreshTB.Text" xml:space="preserve">
     <value>刷新</value>
+  </data>
+  <data name="SettingHeader" xml:space="preserve">
+    <value>设置</value>
   </data>
 </root>
