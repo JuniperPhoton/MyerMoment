@@ -16,17 +16,21 @@ namespace MyerMomentUniversal.Helper
             {
                 LocalSettingHelper.AddValue("Position", "0");
             }
-#if WINDOWS_PHONE_APP
+
             if (!LocalSettingHelper.IsExist("QualityCompress"))
             {
+#if WINDOWS_PHONE_APP
                 LocalSettingHelper.AddValue("QualityCompress", "0");
+#else
+                LocalSettingHelper.AddValue("QualityCompress", "1");
+#endif
             }
 
             if (!LocalSettingHelper.IsExist("TileColor"))
             {
                 LocalSettingHelper.AddValue("TileColor", "1");
             }
-#endif
+
         }
     }
 }

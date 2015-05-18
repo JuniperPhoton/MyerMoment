@@ -26,11 +26,11 @@ namespace MyerMomentUniversal
         {
             this.InitializeComponent();
 
-            var position = LocalSettingHelper.GetValue("Position");
-            if (position != null)
-            {
-                positionCom.SelectedIndex = int.Parse(position);
-            }
+            //var position = LocalSettingHelper.GetValue("Position");
+            //if (position != null)
+            //{
+            //    positionCom.SelectedIndex = int.Parse(position);
+            //}
         }
 
 

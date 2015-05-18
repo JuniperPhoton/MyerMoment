@@ -26,6 +26,8 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using MyerMomentUniversal.Model;
 using Windows.Storage;
+using JP.Utils.Data;
+using Windows.Globalization;
 
 // 有关“空白应用程序”模板的信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -67,6 +69,19 @@ namespace MyerMomentUniversal
                 this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
+
+            if (LocalSettingHelper.IsExist("AppLang") == false)
+            {
+                var lang = Windows.System.UserProfile.GlobalizationPreferences.Languages[0];
+                if (lang.Contains("zh"))
+                {
+                    ApplicationLanguages.PrimaryLanguageOverride = "zh-CN";
+                }
+                else ApplicationLanguages.PrimaryLanguageOverride = "en-US";
+
+                LocalSettingHelper.AddValue("AppLang", ApplicationLanguages.PrimaryLanguageOverride);
+            }
+            else ApplicationLanguages.PrimaryLanguageOverride = LocalSettingHelper.GetValue("AppLang");
 
             Frame rootFrame = Window.Current.Content as Frame;
 

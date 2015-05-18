@@ -33,7 +33,6 @@ namespace MyerMomentUniversal.ViewModel
                 _noItemsVisibility = value;
                 RaisePropertyChanged(() => NoItemsVisibility);
             }
-
         }
 
         private Visibility _isLoadingVisibility;
@@ -63,7 +62,12 @@ namespace MyerMomentUniversal.ViewModel
                 {
                     _newStyles = value;
                     RaisePropertyChanged(() => NewStyles);
+                    if (NewStyles.Count == 0)
+                    {
+                        NoItemsVisibility = Visibility.Visible;
+                    }
                 }
+              
             }
         }
 
@@ -157,7 +161,7 @@ namespace MyerMomentUniversal.ViewModel
                 tcs = new TaskCompletionSource<int>();
 
                 var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
-                var files = await folder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.DefaultQuery);
+                var files = await folder.GetFilesAsync();
                 if (files.Count == 0)
                 {
                     tcs.SetResult(0);
@@ -189,6 +193,8 @@ namespace MyerMomentUniversal.ViewModel
             await tcs.Task;
 
             IsLoadingVisibility = Visibility.Visible;
+            NewStyles = new ObservableCollection<MomentStyle>();
+
             foreach(var name in styleNames)
             {
                 if (string.IsNullOrEmpty(name)) continue;
@@ -202,8 +208,6 @@ namespace MyerMomentUniversal.ViewModel
                 await style.CheckThumbExistAndSaveAsync();
                 NewStyles.Insert(0,style);
             }
-
-            //NumStyle(NewStyles);
 
             if (NewStyles.Count == 0) NoItemsVisibility = Visibility.Visible;
             else NoItemsVisibility = Visibility.Collapsed;
@@ -227,12 +231,60 @@ namespace MyerMomentUniversal.ViewModel
             });
             if (style != null && !style.IsDownloaded)
             {
-                await style.GetStyle(StyleFileType.FullSize);
-                PackageStyles.Clear();
-                ConfigPackageStyle();
-                await ConfigInstalledStyle();
-                //NumStyle(PackageStyles);
+                var success=await style.GetStyle(StyleFileType.FullSize);
+                if(success)
+                {
+                    NewStyles.Remove(style);
+                    PackageStyles.Insert(0, style);
+
+                    if(NewStyles.Count==0)
+                    {
+                        NoItemsVisibility = Visibility.Visible;
+                    }
+                }
             }
+        }
+
+        public async Task DeleteStyle(string name)
+        {
+            var delete=await DeleteStyleFile(name);
+            if(!delete)
+            {
+                return;
+            }
+            InstalledStylesList.Remove(InstalledStylesList.ToList().Find(n =>
+            {
+                if (n ==name) return true;
+                else return false;
+            }));
+            PackageStyles.Remove(PackageStyles.ToList().Find(s=>
+            {
+                if (s.NameID == name) return true;
+                else return false;
+            }));
+            
+        }
+
+        private async Task<bool> DeleteStyleFile(string displayName)
+        {
+            return await ExceptionHelper.TryExecute<bool>(async () =>
+            {
+                var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("WebStyles");
+                var thumbFile = await JP.Utils.Data.StorageFileHandleHelper.TryGetFile(folder, displayName + ".png");
+                if(thumbFile==null)
+                {
+                    return false;
+                }
+                var fullSizeFile = await JP.Utils.Data.StorageFileHandleHelper.TryGetFile(folder, displayName + "2.png");
+                if(fullSizeFile==null)
+                {
+                    return false;
+                }
+                await thumbFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                await fullSizeFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+
+                return true;
+            });     
         }
     }
 }

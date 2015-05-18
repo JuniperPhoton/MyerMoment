@@ -23,7 +23,7 @@ namespace MyerMomentUniversal
         {
             this.InitializeComponent();
 
-            VersionHLB.Content = (string)(App.Current.Resources["AppVersion"]);
+            //VersionHLB.Content = (string)(App.Current.Resources["AppVersion"]);
         }
 
         private async void EmailClick(object sender, RoutedEventArgs e)

@@ -83,21 +83,48 @@ namespace MyerMomentUniversal.Model
                 else return downStr;
             }
         }
-
        
-        public static int ImageNum { get; set; }=1;
+        public static int ImageNum { get; set; } = 1;
         public BitmapImage RandomBackGrd
         {
             get
             {
                 BitmapImage bitmap = new BitmapImage();
-               
-                bitmap.UriSource =new Uri("ms-appx:///Asset/Backgrd/" + ImageNum + ".jpg");
+
+                bitmap.UriSource = new Uri("ms-appx:///Asset/Backgrd/" + ImageNum + ".jpg");
 
                 ImageNum++;
-                if (ImageNum > IMAGE_NUM) ImageNum =1;
+                if (ImageNum > IMAGE_NUM) ImageNum = 1;
 
-                return bitmap;  
+                return bitmap;
+            }
+        }
+
+        private Visibility _isDownloadingVisibility;
+        public Visibility IsDownloadingVisibility
+        {
+            get
+            {
+                return _isDownloadingVisibility;
+            }
+            set
+            {
+                _isDownloadingVisibility = value;
+                RaisePropertyChanged(() => IsDownloadingVisibility);
+            }
+        }
+
+        private Visibility _canUninstallVisibility;
+        public Visibility CanUninstallVisibility
+        {
+            get
+            {
+                return _canUninstallVisibility;
+            }
+            set
+            {
+                _canUninstallVisibility = value;
+                RaisePropertyChanged(() => CanUninstallVisibility);
             }
         }
 
@@ -116,6 +143,8 @@ namespace MyerMomentUniversal.Model
             PreviewImage.UriSource = new Uri("ms-appx:///Asset/Style/" + nameID + ".jpg", UriKind.RelativeOrAbsolute);
 
             IsDownloaded = true;
+            IsDownloadingVisibility = Visibility.Collapsed;
+            CanUninstallVisibility = Visibility.Collapsed;
         }
 
         /// <summary>
@@ -131,6 +160,8 @@ namespace MyerMomentUniversal.Model
             this.fullSizeUri = fullSizeUri;
 
             IsDownloaded = false;
+            IsDownloadingVisibility = Visibility.Collapsed;
+            CanUninstallVisibility = Visibility.Visible;
         }
 
         public void SetUpInstalledStyle()
@@ -162,14 +193,16 @@ namespace MyerMomentUniversal.Model
             }); 
         }
 
-        public async Task GetStyle(StyleFileType type)
+        public async Task<bool> GetStyle(StyleFileType type)
         {
             try
             {
+                IsDownloadingVisibility = Visibility.Visible;
+
                 var fileName = this.NameID + (type == StyleFileType.Thumb ? "2" : "") + ".png";
                 var file = await DownLoadAndSaveAsync(fileName, type==StyleFileType.Thumb?thumbUri:fullSizeUri);
 
-                if (file == null) return;
+                if (file == null) return false;
 
                 var fileStream = await GetStreamFromFileAsync(file);
                 if (type == StyleFileType.Thumb)
@@ -183,10 +216,12 @@ namespace MyerMomentUniversal.Model
                     await FullSizeImage.SetSourceAsync(fileStream);
                     IsDownloaded = true;
                 }
+                IsDownloadingVisibility = Visibility.Collapsed;
+                return true;
             }
             catch(Exception)
             {
-
+                return false;
             }
         }
 

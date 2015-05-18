@@ -89,14 +89,14 @@
 
     <Grid Margin="0,-30,0,0">
 
-        <Image x:Name="image1_Copy" Stretch="UniformToFill" Source="Asset/Image/DSC00069.jpg" />
+        <Image x:Name="image1_Copy" Stretch="UniformToFill" Source="Asset/Image/0.jpg" />
 
-        <Image x:Name="image_Copy" Stretch="UniformToFill" Source="Asset/Image/time_alone3_hires.JPG"/>
+        <Image x:Name="image_Copy" Stretch="UniformToFill" Source="Asset/Image/2.JPG"/>
 
-        <Image x:Name="image" Stretch="UniformToFill" Source="Asset/Image/257108-106.jpg"/>
+        <Image x:Name="image" Stretch="UniformToFill" Source="Asset/Image/1.jpg"/>
 
-        <Image x:Name="image1" Stretch="UniformToFill" Source="Asset/Image/DSC00069.jpg" />
-        <Border Background="Black" Opacity="0.3"/>
+        <Image x:Name="image1" Source="Asset/Image/0.jpg" Stretch="UniformToFill" />
+        <Border Background="Black" Opacity="0.4"/>
         <Grid x:Name="ContentGrid">
             <Grid.RowDefinitions>
                 <RowDefinition/>

@@ -697,7 +697,7 @@
                             </TransformGroup>
                         </Path.RenderTransform>
                     </Path>
-                    <TextBlock x:Uid="editHeader" Text="EDIT" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0"  FontWeight="Light"/>
+                    <TextBlock x:Uid="editHeader" Text="EDIT" Foreground="{StaticResource MomentThemeBlack}" FontSize="33.333" VerticalAlignment="Center" Margin="10,0,0,0" FontFamily="Segoe WP" FontWeight="Bold"/>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -777,101 +777,102 @@
             </Canvas>
             <ProgressRing x:Name="ring"  VerticalAlignment="Center" HorizontalAlignment="Center" IsActive="True" Background="{x:Null}" Foreground="{StaticResource MomentThemeColor}"/>
         </Grid>
-        <Grid x:Name="grid" Grid.Row="2" RenderTransformOrigin="0.5,0.5">
-            <Grid.RenderTransform>
-                <CompositeTransform/>
-            </Grid.RenderTransform>
-            <StackPanel Orientation="Vertical">
-                
-                <ScrollViewer HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Click="RotateImageClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                            <Grid Height="50" Width="50">
-                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                                <SymbolIcon Symbol="Rotate" Foreground="Black"/>
-                            </Grid>
-                        </Button>
-                        <Button x:Name="CropBtn"  Click="ToCropClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                            <Grid Height="50" Width="50">
-                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                                <Path Width="20" Height="20" Data="M282.837,258.174L282.837,499.861 493.409,499.861 493.409,258.174z M149.125,0L282.837,0 282.837,136.122 627.162,136.122 627.162,499.861 777.764,499.861 777.764,621.913 628.641,621.913 628.641,758 494.965,758 494.965,621.913 149.125,621.913 149.125,258.174 0,258.174 0,136.122 149.125,136.122z" Stretch="Uniform" Fill="Black"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
-                                    <Path.RenderTransform>
-                                        <TransformGroup>
-                                            <TransformGroup.Children>
-                                                <RotateTransform Angle="0" />
-                                                <ScaleTransform ScaleX="1" ScaleY="1" />
-                                            </TransformGroup.Children>
-                                        </TransformGroup>
-                                    </Path.RenderTransform>
-                                </Path>
-                            </Grid>
-                        </Button>
-                        <Button Visibility="Collapsed" Click="FrameClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                            <Grid Height="50" Width="50">
-                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                                <SymbolIcon Symbol="ViewAll" Foreground="Black"/>
-                            </Grid>
-                        </Button>
-                        <Button x:Name="FilterBtn" Click="ToFilterClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                            <Grid Height="50" Width="50">
-                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                                <SymbolIcon Symbol="Filter" Foreground="Black"/>
-                            </Grid>
-                        </Button>
-                        <Button x:Name="MoreLineBtn" Click="fontLineClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                            <Grid Height="50" Width="50">
-                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                                <SymbolIcon Symbol="Bullets" Foreground="Black"/>
-                            </Grid>
-                        </Button>
-                        <Button Click="ToStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                            <Grid Height="50" Width="50">
-                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                                <SymbolIcon Symbol="Favorite" Foreground="Black"/>
-                            </Grid>
-                        </Button>
+            <Grid x:Name="grid" Grid.Row="2" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <CompositeTransform/>
+                </Grid.RenderTransform>
+                <StackPanel Orientation="Vertical">
 
-                        <Button x:Name="increaseStyleBtn" Visibility="Collapsed" Click="IncreaseStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                            <Grid Height="50" Width="50">
-                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                                <SymbolIcon Symbol="FontIncrease" Foreground="Black"/>
-                            </Grid>
-                        </Button>
-                        <Button x:Name="decreaseStyleBtn" Visibility="Collapsed" Click="DecreaseStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                            <Grid Height="50" Width="50">
-                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                                <SymbolIcon Symbol="FontDecrease" Foreground="Black"/>
-                            </Grid>
-                        </Button>
-                    </StackPanel>
-                </ScrollViewer>
-            </StackPanel>
-        </Grid>
-        <Grid x:Name="grid1" Grid.Row="3" RenderTransformOrigin="0.5,0.5">
-            <Grid.RenderTransform>
-                <CompositeTransform/>
-            </Grid.RenderTransform>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Button Click="SaveClick" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Style="{StaticResource ButtonStyle2}" Grid.ColumnSpan="1" BorderThickness="0" Background="{StaticResource MomentThemeColor}" VerticalAlignment="Stretch">
-                <Border Background="{StaticResource MomentThemeColor}">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <SymbolIcon Symbol="Save" Foreground="{StaticResource MomentThemeBlack}"/>
-                        <TextBlock  x:Name="saveTB"  Margin="10,0,0,0" Text="SAVE AS COPY" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraBold"/>
-                    </StackPanel>
-                </Border>
-            </Button>
-            <Button Click="CancelClick" HorizontalAlignment="Stretch" Grid.Column="1" VerticalContentAlignment="Stretch" Style="{StaticResource ButtonStyle2}" Grid.ColumnSpan="1" BorderThickness="0" Background="{x:Null}" VerticalAlignment="Stretch" >
-                <Border Background="White">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <SymbolIcon Symbol="Cancel" Foreground="{StaticResource MomentThemeBlack}"/>
-                        <TextBlock  x:Name="cancelTB" Text="CANCEL" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="ExtraBold" />
-                    </StackPanel>
-                </Border>
-            </Button>
-        </Grid>
+                    <ScrollViewer HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Button Click="RotateImageClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                                <Grid Height="50" Width="50">
+                                    <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                    <SymbolIcon Symbol="Rotate" Foreground="Black"/>
+                                </Grid>
+                            </Button>
+                            <Button x:Name="CropBtn"  Click="ToCropClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                                <Grid Height="50" Width="50">
+                                    <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                    <Path Width="20" Height="20" Data="M282.837,258.174L282.837,499.861 493.409,499.861 493.409,258.174z M149.125,0L282.837,0 282.837,136.122 627.162,136.122 627.162,499.861 777.764,499.861 777.764,621.913 628.641,621.913 628.641,758 494.965,758 494.965,621.913 149.125,621.913 149.125,258.174 0,258.174 0,136.122 149.125,136.122z" Stretch="Uniform" Fill="Black"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                        <Path.RenderTransform>
+                                            <TransformGroup>
+                                                <TransformGroup.Children>
+                                                    <RotateTransform Angle="0" />
+                                                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                </TransformGroup.Children>
+                                            </TransformGroup>
+                                        </Path.RenderTransform>
+                                    </Path>
+                                </Grid>
+                            </Button>
+                            <Button Visibility="Collapsed" Click="FrameClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                                <Grid Height="50" Width="50">
+                                    <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                    <SymbolIcon Symbol="ViewAll" Foreground="Black"/>
+                                </Grid>
+                            </Button>
+                            <Button x:Name="FilterBtn" Click="ToFilterClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                                <Grid Height="50" Width="50">
+                                    <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                    <SymbolIcon Symbol="Filter" Foreground="Black"/>
+                                </Grid>
+                            </Button>
+                            <Button x:Name="MoreLineBtn" Click="fontLineClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                                <Grid Height="50" Width="50">
+                                    <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                    <SymbolIcon Symbol="Bullets" Foreground="Black"/>
+                                </Grid>
+                            </Button>
+                            <Button Click="ToStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                                <Grid Height="50" Width="50">
+                                    <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                    <SymbolIcon Symbol="Favorite" Foreground="Black"/>
+                                </Grid>
+                            </Button>
+
+                            <Button x:Name="increaseStyleBtn" Visibility="Collapsed" Click="IncreaseStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                                <Grid Height="50" Width="50">
+                                    <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                    <SymbolIcon Symbol="FontIncrease" Foreground="Black"/>
+                                </Grid>
+                            </Button>
+                            <Button x:Name="decreaseStyleBtn" Visibility="Collapsed" Click="DecreaseStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                                <Grid Height="50" Width="50">
+                                    <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                    <SymbolIcon Symbol="FontDecrease" Foreground="Black"/>
+                                </Grid>
+                            </Button>
+                        </StackPanel>
+                    </ScrollViewer>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="grid1" Grid.Row="3" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom">
+                <Grid.RenderTransform>
+                    <CompositeTransform/>
+                </Grid.RenderTransform>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Click="SaveClick" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Style="{StaticResource ButtonStyle2}" Grid.ColumnSpan="1" BorderThickness="0" Background="{StaticResource MomentThemeColor}" VerticalAlignment="Stretch">
+                    <Border Background="{StaticResource MomentThemeColor}">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <SymbolIcon Symbol="Save" Foreground="{StaticResource MomentThemeBlack}"/>
+                            <TextBlock  x:Name="saveTB"  Margin="10,0,0,0" Text="SAVE AS COPY" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraBold"/>
+                        </StackPanel>
+                    </Border>
+                </Button>
+                <Button Click="CancelClick" HorizontalAlignment="Stretch" Grid.Column="1" VerticalContentAlignment="Stretch" Style="{StaticResource ButtonStyle2}" Grid.ColumnSpan="1" BorderThickness="0" Background="{x:Null}" VerticalAlignment="Stretch" >
+                    <Border Background="White">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <SymbolIcon Symbol="Cancel" Foreground="{StaticResource MomentThemeBlack}"/>
+                            <TextBlock  x:Name="cancelTB" Text="CANCEL" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="ExtraBold" />
+                        </StackPanel>
+                    </Border>
+                </Button>
+            </Grid>
+
         <Grid x:Name="cropRecGrid" Margin="0" Grid.Row="2" RenderTransformOrigin="0.5,0.5">
         	<Grid.RenderTransform>
         		<CompositeTransform TranslateY="200"/>

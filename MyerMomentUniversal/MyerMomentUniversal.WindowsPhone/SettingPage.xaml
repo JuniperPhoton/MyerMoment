@@ -226,18 +226,19 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Grid>
                 <Border Background="{StaticResource MomentThemeColor}" />
-                <TextBlock x:Uid="SettingTitle" Text="SETTING" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="Bold"  Margin="10,0,0,20" FontSize="50" Foreground="Black" FontFamily="Segoe WP" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <TextBlock x:Uid="SettingTitle" Text="SETTING" Pivot.SlideInAnimationGroup="GroupOne"  Margin="10,0,0,20" FontSize="50" Foreground="Black" FontFamily="Segoe WP" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
             </Grid>
-            <Grid Grid.Row="1" Background="#FFFFDB7B">
-                <StackPanel Grid.Row="1" VerticalAlignment="Top" Orientation="Vertical" Margin="10,10,10,0">
+            <Grid Grid.Row="1" Background="{StaticResource MomentThemeBlack}">
+                <local:SettingContent/>
+                <!--<StackPanel Grid.Row="1" VerticalAlignment="Top" Orientation="Vertical" Margin="10,10,10,0">
                     <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                        <TextBlock x:Uid="QualityTB" Margin="5" Text="Saving Quality" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeBlack}" />
+                        <TextBlock x:Uid="QualityTB" Margin="5" Text="Saving Quality" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="White" />
                     </Border>
-                    <ComboBox Pivot.SlideInAnimationGroup="GroupThree" x:Name="qualityCom" SelectedIndex="0" PlaceholderText="Select the default saving quality" SelectionChanged="qualityCom_SelectionChanged" BorderBrush="{StaticResource MomentThemeBlack}" Style="{StaticResource ComboBoxStyle1}" >
+                    <ComboBox Pivot.SlideInAnimationGroup="GroupThree" x:Name="qualityCom" SelectedIndex="0" PlaceholderText="Select the default saving quality" SelectionChanged="qualityCom_SelectionChanged" BorderBrush="White" Style="{StaticResource ComboBoxStyle1}" Foreground="White" >
                         <ComboBoxItem>
                             <TextBlock x:Uid="CompressTB" Text="Compress" SelectionHighlightColor="White" />
                         </ComboBoxItem>
@@ -246,23 +247,23 @@
                         </ComboBoxItem>
                     </ComboBox>
                     <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                        <TextBlock x:Uid="PositionTB" Margin="5" Text="Saving Position" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeBlack}" />
+                        <TextBlock x:Uid="PositionTB" Margin="5" Text="Saving Position" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="White" />
                     </Border>
-                    <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" Style="{StaticResource ComboBoxStyle1}" SelectionChanged="positionCom_SelectionChanged" x:Name="positionCom" PlaceholderText="Select the default saving position" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeBlack}" >
+                    <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" Style="{StaticResource ComboBoxStyle1}" SelectionChanged="positionCom_SelectionChanged" x:Name="positionCom" PlaceholderText="Select the default saving position" SelectedIndex="0"  BorderBrush="White" Foreground="White" >
                         <ComboBoxItem>
                             <TextBlock x:Uid="SavedPictureTB"  Text="SavedPicture" />
                         </ComboBoxItem>
-                        <ComboBoxItem>
+                        <ComboBoxItem Foreground="{StaticResource MomentThemeBlack}">
                             <TextBlock  x:Uid="MyerMomentFolderTB" Text="MyerMoment Folder"/>
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            <TextBlock  x:Uid="CameraRollTB" Text="CameraRoll"/>
+                            <TextBlock  x:Uid="CameraRollTB" Text="CameraRoll" Foreground="{StaticResource MomentThemeBlack}"/>
                         </ComboBoxItem>
                     </ComboBox>
                     <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                        <TextBlock x:Uid="TileStyleTB" Margin="5" Text="TileStyle" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeBlack}" />
+                        <TextBlock x:Uid="TileStyleTB" Margin="5" Text="TileStyle" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="White" />
                     </Border>
-                    <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" Style="{StaticResource ComboBoxStyle1}" SelectionChanged="colorCom_SelectionChanged" x:Name="colorCom" PlaceholderText="Select the default color of Tile" SelectedIndex="0"  BorderBrush="{StaticResource MomentThemeBlack}" >
+                    <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" Style="{StaticResource ComboBoxStyle1}" SelectionChanged="colorCom_SelectionChanged" x:Name="colorCom" PlaceholderText="Select the default color of Tile" SelectedIndex="0"  BorderBrush="White" Foreground="White" >
                         <ComboBoxItem>
                             <TextBlock  x:Uid="SolidColorTB" Text="SolidColor"/>
                         </ComboBoxItem>
@@ -271,18 +272,20 @@
                         </ComboBoxItem>
 
                     </ComboBox>
-                    <!--<Button x:Name="weiboAuthBtn" Height="40" MinHeight="10" Style="{StaticResource ButtonStyle2}" HorizontalAlignment="Stretch" Click="CancelAuthClick" BorderThickness="0">
-                                    <Border Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Stretch">
-                                        <TextBlock Text="Unauthorize weibo" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </Button>-->
-                    <!--<TextBlock Text="PERSONALIZE" Pivot.SlideInAnimationGroup="GroupOne" FontWeight="ExtraBold" Opacity="0.3" Margin="0,10,0,0" FontSize="30" Foreground="Black" FontFamily="Segoe WP"/>
-                                <Border Pivot.SlideInAnimationGroup="GroupTwo" Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,10,0,0">
-                                    <TextBlock x:Name="importTB" Margin="5" Text="IMPORT FONT FAMILY" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" />
-                                </Border>
-                                <TextBlock x:Name="importHint" Pivot.SlideInAnimationGroup="GroupThree" Margin="5,15,5,5" Text="Comming soon" FontSize="25" Foreground="White" />-->
+                    <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                        <TextBlock x:Uid="LangTB" Margin="5" Text="Language" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="White" />
+                    </Border>
+                    <ComboBox  Pivot.SlideInAnimationGroup="GroupThree" Style="{StaticResource ComboBoxStyle1}" SelectionChanged="lang_SelectionChanged" x:Name="langCom" PlaceholderText="Select the language" SelectedIndex="1"  BorderBrush="White" Foreground="White" >
+                        <ComboBoxItem>
+                            <TextBlock  Text="English"/>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Text="简体中文"/>
+                        </ComboBoxItem>
 
-                </StackPanel>
+                    </ComboBox>
+                  
+                </StackPanel>-->
 
             </Grid>
         </Grid>

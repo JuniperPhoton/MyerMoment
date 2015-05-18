@@ -8,7 +8,9 @@
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
     Title="About"
-    d:DesignWidth="346" Background="{StaticResource MomentThemeBlack}">
+    Padding="5"
+    Width="400"
+    d:DesignWidth="346" Background="{StaticResource MomentThemeBlack}" HeaderForeground="{StaticResource MomentThemeBlack}" HeaderBackground="{StaticResource MomentThemeColor}">
 
     <Grid>
 
@@ -20,8 +22,72 @@
                     </EntranceThemeTransition>
                 </TransitionCollection>
             </StackPanel.ChildrenTransitions>
-            <TextBlock x:Uid="PhoneAvailableTB"  Text="Also available on Phone"  FontWeight="Light"  Margin="15,0,0,0" FontSize="25" Foreground="{StaticResource MomentThemeColor}" FontFamily="Segoe WP"/>
-            <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+            <StackPanel Grid.Row="1" Orientation="Vertical" Background="{StaticResource MomentThemeBlack}">
+                <!--<StackPanel Orientation="Horizontal" Margin="10,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Border Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                            <TextBlock x:Uid="VersionTB"   Margin="0" Text="Version" FontSize="33.333" FontFamily="Microsoft YaHei" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Light" />
+                        </Border>
+                        <HyperlinkButton x:Name="VersionHLB" FontSize="20" Margin="20,0,0,0" Foreground="White" Content="1.61" NavigateUri="http://www.windowsphone.com/en-us/store/app/myermoment/126a1e6d-0f68-4b89-a67c-fe3d204508ec" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Null}" FontFamily="Segoe WP" FontWeight="Light"    />
+                    </StackPanel>-->
+                <StackPanel Orientation="Vertical" Margin="10,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Border  Margin="0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                        <TextBlock x:Uid="CreditTB" Margin="0" Text="Credit" FontSize="33.333" FontFamily="Microsoft YaHei" Foreground="{StaticResource MomentThemeColor}" />
+                    </Border>
+                    <ScrollViewer HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <Border Height="15" Width="15" Background="{StaticResource MomentThemeColor}" BorderBrush="{StaticResource MomentThemeColor}"/>
+                            <TextBlock  Margin="10,0,0,0" Text="JuniperPhoton" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Light"/>
+                            <!--<TextBlock  Margin="15,0,0,0" Text="Churwin" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Light"/>-->
+                            <TextBlock  Margin="15,0,0,0" Text="Natsuki" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Light"/>
+
+                            <TextBlock  Margin="15,0,0,0" Text="Ray" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Light"/>
+                        </StackPanel>
+
+                    </ScrollViewer>
+
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="10,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                        <TextBlock x:Uid="FeedbackTitleTB" Margin="0" Text="Feedback" FontSize="33.333" FontFamily="Microsoft YaHei" Foreground="{StaticResource MomentThemeColor}" />
+                    </Border>
+                    <Button Click="ReviewClick"  HorizontalAlignment="Left" Margin="0,5,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                        <Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Height="15" Width="15" Background="{StaticResource MomentThemeColor}" BorderBrush="{StaticResource MomentThemeColor}"/>
+
+                                <TextBlock x:Uid="RateTB" FontSize="20" Text="Give me a rate" Margin="10,0,0,0" Foreground="White" VerticalAlignment="Center" FontWeight="Light"/>
+                            </StackPanel>
+                        </Border>
+                    </Button>
+
+                    <Button Click="EmailClick"  HorizontalAlignment="Left" Margin="0,5,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+                        <Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Border Height="15" Width="15" Background="{StaticResource MomentThemeColor}" BorderBrush="{StaticResource MomentThemeColor}"/>
+
+                                <TextBlock x:Uid="FeedbackTB" FontSize="20" Text="Send me an email" Margin="10,0,0,0" Foreground="White" VerticalAlignment="Center" FontWeight="Light" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </Border>
+                    </Button>
+
+                </StackPanel>
+
+
+                <StackPanel Orientation="Vertical" Margin="10,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                        <TextBlock x:Uid="OtherAppTB" Margin="0" Text="Other App" FontFamily="Microsoft YaHei" FontSize="33.333" Foreground="{StaticResource MomentThemeColor}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Height="15" Width="15" Background="{StaticResource MomentThemeColor}" BorderBrush="{StaticResource MomentThemeColor}"/>
+                        <HyperlinkButton Padding="0" Content="MyerList" Margin="10,0,0,0" NavigateUri="http://www.windowsphone.com/s?appid=52172f00-cfe1-4695-b4f7-a2be0c1bfacc" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Foreground="White" Background="{x:Null}" FontWeight="Light" />
+
+                    </StackPanel>
+
+                </StackPanel>
+            </StackPanel>
+
+            <!--<TextBlock x:Uid="PhoneAvailableTB"  Text="Also available on Phone"  FontWeight="Light"  Margin="15,0,0,0" FontSize="25" Foreground="{StaticResource MomentThemeColor}" FontFamily="Segoe WP"/>-->
+            <!--<StackPanel Orientation="Vertical" Margin="0,10,0,0">
                 <Border  Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
                     <TextBlock x:Uid="VersionTB"  Margin="5" Text="Version" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
                 </Border>
@@ -46,16 +112,16 @@
 
                 <TextBlock  Margin="15,0,0,0" Text="JuniperPhoton" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                 <TextBlock  Margin="15,0,0,0" Text="Churwin" FontSize="16"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
-            </StackPanel>
+            </StackPanel>-->
 
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+            <!--<StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <Border  Margin="15,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
                     <TextBlock x:Uid="FeedbackTitleTB"  Margin="5" Text="Feedback" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
                 </Border>
 
-            </StackPanel>
+            </StackPanel>-->
 
-            <Button Click="ReviewClick"  HorizontalAlignment="Left" Margin="15,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
+            <!--<Button Click="ReviewClick"  HorizontalAlignment="Left" Margin="15,10,0,0" MinHeight="10" MinWidth="10" Style="{StaticResource ButtonStyle2}" >
                 <Border>
                     <StackPanel Orientation="Horizontal">
                         <Path Width="30" Height="30" Data="M342,0L447.7,225.156 684,261.275 513,436.536 553.399,684 342,567.162 130.709,684 171,436.536 0,261.275 236.3,225.156z" Stretch="Uniform" Fill="{StaticResource MomentThemeColor}"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
@@ -96,7 +162,7 @@
                 </Border>
                 <HyperlinkButton  Content="MyerList" NavigateUri="http://www.windowsphone.com/s?appid=52172f00-cfe1-4695-b4f7-a2be0c1bfacc" HorizontalAlignment="Left" VerticalAlignment="Center"   FontSize="20" Margin="5,0,0,0" Foreground="White" />
 
-            </StackPanel>
+            </StackPanel>-->
         </StackPanel>
 
     </Grid>

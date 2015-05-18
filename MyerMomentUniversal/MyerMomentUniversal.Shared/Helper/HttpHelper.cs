@@ -34,9 +34,17 @@ namespace MyerMomentUniversal.Helper
             try
             {
                 HttpClient client = new HttpClient();
-                var stylesStr = await client.GetStringAsync(new Uri(GetAllStylesRequestUrl));
-                var styles = stylesStr.Split(',');
-                return styles;
+                var resp = await client.GetAsync(new Uri(GetAllStylesRequestUrl));
+                if(resp.IsSuccessStatusCode)
+                {
+                    var content =await resp.Content.ReadAsStringAsync();
+                    var styles = content.Split(',');
+                    return styles;
+                }
+               else
+                {
+                    return new string[0] { };
+                }
             }
             catch(Exception)
             {

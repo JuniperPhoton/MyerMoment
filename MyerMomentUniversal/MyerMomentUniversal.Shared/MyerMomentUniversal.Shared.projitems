@@ -39,6 +39,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ShareControl.xaml.cs">
       <DependentUpon>ShareControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserControl\SettingContent.xaml.cs">
+      <DependentUpon>SettingContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControl\StoreContentControl.xaml.cs">
       <DependentUpon>StoreContentControl.xaml</DependentUpon>
     </Compile>
@@ -72,9 +75,9 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Oily.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Original.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Sun.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\257108-106.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\DSC00069.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\time_alone3_hires.JPG" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\0.JPG" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\1.JPG" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\2.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Alone.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Alone.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Amazing.jpg" />
@@ -111,7 +114,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Thanks.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Time.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Time.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\Tile\LOGO_TRAN_300.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Tile\LOGO_WIDE.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Tile\LOGO_WIDE_TRAN.png" />
     <Content Include="$(MSBuildThisFileDirectory)Font\blockline.ttf" />
@@ -149,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)ShareControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)UserControl\SettingContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

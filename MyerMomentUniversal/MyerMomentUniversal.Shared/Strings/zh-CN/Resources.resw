@@ -375,4 +375,13 @@
   <data name="DownloadHint" xml:space="preserve">
     <value>下载</value>
   </data>
+  <data name="DeleteTB.Text" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="LangTB.Text" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="RefreshTB.Text" xml:space="preserve">
+    <value>刷新</value>
+  </data>
 </root>

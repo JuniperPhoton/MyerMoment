@@ -8,8 +8,13 @@
     mc:Ignorable="d"
     IconSource="/"
     Title="STORE"
-    Width="600"
-    d:DesignWidth="600" Padding="0" HorizontalContentAlignment="Stretch"  HeaderBackground="{StaticResource MomentThemeColor}" Background="{StaticResource MomentThemeBlack}" HeaderForeground="{StaticResource MomentThemeBlack}">
+    Width="620"
+    d:DesignWidth="620" 
+    Padding="0" 
+    HorizontalContentAlignment="Stretch"  
+    HeaderBackground="{StaticResource MomentThemeColor}" 
+    Background="{StaticResource MomentThemeBlack}"
+    HeaderForeground="{StaticResource MomentThemeBlack}">
     
     <Grid >
         <local:StoreContentControl />

@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Globalization;
 using Windows.Phone.UI.Input;
 using Windows.UI.Notifications;
 using Windows.UI.ViewManagement;
@@ -18,7 +20,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace MyerMomentUniversal
 {
@@ -27,12 +28,14 @@ namespace MyerMomentUniversal
         private bool iscomComDirty = false;
         private bool isposComDirty = false;
         private bool iscolorComDirty = false;
+        private bool islangComDirty = false;
 
         public SettingPage()
         {
             this.InitializeComponent();
 
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
+
         }
 
         private void qualityCom_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,29 +115,72 @@ namespace MyerMomentUniversal
             }
         }
 
+        private void lang_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (islangComDirty == false)
+            {
+                islangComDirty = true;
+                return;
+            }
+            var combox = sender as ComboBox;
+            if (combox != null)
+            {
+                var selectedIndex = combox.SelectedIndex;
+                LocalSettingHelper.AddValue("AppLang", selectedIndex.ToString());
+                ChangeLanguage();
+            }
+        }
+
+        private void ChangeLanguage()
+        {
+            //if (langCom.SelectedIndex == 1)
+            //{
+            //    ApplicationLanguages.PrimaryLanguageOverride = "zh-CN";
+            //    LocalSettingHelper.AddValue("AppLang", "zh-CN");
+            //    var resourceContext = ResourceContext.GetForCurrentView();
+            //    resourceContext.Reset();
+            //}
+            //else
+            //{
+            //    ApplicationLanguages.PrimaryLanguageOverride = "en-US";
+            //    LocalSettingHelper.AddValue("AppLang", "en-US");
+            //    var resourceContext = ResourceContext.GetForCurrentView();
+            //    resourceContext.Reset();
+            //}
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             StatusBar.GetForCurrentView().BackgroundOpacity = 0;
 
-            var quality = LocalSettingHelper.GetValue("QualityCompress");
-            if (quality != null)
-            {
-                qualityCom.SelectedIndex = int.Parse(quality);
-            }
+            //var quality = LocalSettingHelper.GetValue("QualityCompress");
+            //if (quality != null)
+            //{
+            //    qualityCom.SelectedIndex = int.Parse(quality);
+            //}
 
-            var position = LocalSettingHelper.GetValue("Position");
-            if (position != null)
-            {
-                positionCom.SelectedIndex = int.Parse(position);
-            }
+            //var position = LocalSettingHelper.GetValue("Position");
+            //if (position != null)
+            //{
+            //    positionCom.SelectedIndex = int.Parse(position);
+            //}
 
-            var color = LocalSettingHelper.GetValue("TileColor");
-            if (color != null)
-            {
-                colorCom.SelectedIndex = int.Parse(color);
-            }
+            //var color = LocalSettingHelper.GetValue("TileColor");
+            //if (color != null)
+            //{
+            //    colorCom.SelectedIndex = int.Parse(color);
+            //}
+
+            //var lang = LocalSettingHelper.GetValue("AppLang");
+            //if (lang.Contains("zh"))
+            //{
+            //    langCom.SelectedIndex = 1;
+            //}
+            //else langCom.SelectedIndex = 0;
         }
+
+       
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {

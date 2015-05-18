@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -16,7 +17,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace MyerMomentUniversal
 {
@@ -27,6 +27,11 @@ namespace MyerMomentUniversal
         public StoreContentControl()
         {
             this.InitializeComponent();
+
+            if(DesignMode.DesignModeEnabled)
+            {
+                loadingGrid.Visibility = Visibility.Collapsed;
+            }
 
             StylesVM = new StylesViewModel();
             this.DataContext = StylesVM;
@@ -51,6 +56,18 @@ namespace MyerMomentUniversal
             await StylesVM.DownloadFullsizeCommand(tag);
         }
 
+        private async void DeleteClick(object sender,RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            var tag = btn.Tag as string;
+            await StylesVM.DeleteStyle(tag);
+        }
+
+        private void RefreshClick(object sender,RoutedEventArgs e)
+        {
+            GetNewStyle();
+        }
+
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             var grid = sender as Grid;
@@ -59,7 +76,7 @@ namespace MyerMomentUniversal
             backgrdImage.Width = (installedListView.ActualWidth-30)/2;
             backgrdImage.Height = backgrdImage.Width;
 
-            var styleImage = grid.Children.LastOrDefault() as Image;
+            var styleImage = grid.Children.ElementAt(2) as Image;
             styleImage.Width = styleImage.Height = (backgrdImage.Width) / 1.7;
         }
 

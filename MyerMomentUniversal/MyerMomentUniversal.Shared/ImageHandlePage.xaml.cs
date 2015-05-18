@@ -117,6 +117,7 @@ namespace MyerMomentUniversal
 #endif
 #if WINDOWS_APP
             this.SizeChanged += ImageHandlePage_SizeChanged;
+            //grid1.Visibility = Visibility.Collapsed;
 #endif
 
             ConfigLang();

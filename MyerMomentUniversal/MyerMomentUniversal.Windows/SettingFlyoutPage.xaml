@@ -8,10 +8,15 @@
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
     Title="Setting"
-    d:DesignWidth="346" Background="{StaticResource MomentThemeBlack}">
+    d:DesignWidth="346" 
+    Padding="5"
+    Background="{StaticResource MomentThemeBlack}" 
+    HeaderBackground="{StaticResource MomentThemeColor}" 
+    HeaderForeground="{StaticResource MomentThemeBlack}">
 
     <Grid>
-        <StackPanel VerticalAlignment="Top" Orientation="Vertical">
+        <local:SettingContent Width="300"/>
+        <!--<StackPanel VerticalAlignment="Top" Orientation="Vertical">
             <Border  Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
                 <TextBlock x:Uid="PositionTB" Margin="5" Text="Saving Position" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
             </Border>
@@ -26,10 +31,10 @@
                     <TextBlock  x:Uid="CameraRollTB" Text="CameraRoll"/>
                 </ComboBoxItem>
             </ComboBox>
-            <!--<Border  Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,30,0,0">
+            --><!--<Border  Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,30,0,0">
                                     <TextBlock x:Name="importTB" Margin="5" Text="IMPORT FONT FAMILY" FontSize="15" FontWeight="ExtraBold" Foreground="{StaticResource MomentThemeBlack}" />
                                 </Border>
-                                <TextBlock x:Name="importHint" Margin="5,15,5,5" Text="Comming soon" FontSize="25" Foreground="White" />-->
-        </StackPanel>
+                                <TextBlock x:Name="importHint" Margin="5,15,5,5" Text="Comming soon" FontSize="25" Foreground="White" />--><!--
+        </StackPanel>-->
     </Grid>
 </SettingsFlyout>

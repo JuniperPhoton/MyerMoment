@@ -408,4 +408,13 @@
   <data name="DownloadHint" xml:space="preserve">
     <value>DOWNLOAD</value>
   </data>
+  <data name="DeleteTB.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="LangTB.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="RefreshTB.Text" xml:space="preserve">
+    <value>REFRESH</value>
+  </data>
 </root>
