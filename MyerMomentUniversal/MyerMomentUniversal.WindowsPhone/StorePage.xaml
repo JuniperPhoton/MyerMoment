@@ -36,8 +36,7 @@
                 <TextBlock x:Uid="StoreTB" Text="Store" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Segoe WP" FontSize="33.333" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
             </StackPanel>
         </Grid>
-
-        <local:StoreContentControl Grid.Row="1"/>
         
+         <local:StoreContentControl Grid.Row="1"/>
     </Grid>
 </Page>

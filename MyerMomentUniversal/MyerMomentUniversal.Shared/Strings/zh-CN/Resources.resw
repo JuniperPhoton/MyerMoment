@@ -387,4 +387,13 @@
   <data name="SettingHeader" xml:space="preserve">
     <value>设置</value>
   </data>
+  <data name="FontTB.Text" xml:space="preserve">
+    <value>字体（即将到来）</value>
+  </data>
+  <data name="StyleTB.Text" xml:space="preserve">
+    <value>水印样式</value>
+  </data>
+  <data name="IdeaTB.Text" xml:space="preserve">
+    <value>想法来自 JUNIPER PHOTON &amp; CHURWIN</value>
+  </data>
 </root>

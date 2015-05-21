@@ -420,4 +420,13 @@
   <data name="SettingHeader" xml:space="preserve">
     <value>SETTING</value>
   </data>
+  <data name="FontTB.Text" xml:space="preserve">
+    <value>FONT(COMING SOON)</value>
+  </data>
+  <data name="StyleTB.Text" xml:space="preserve">
+    <value>STYLE</value>
+  </data>
+  <data name="IdeaTB.Text" xml:space="preserve">
+    <value>IDEA OF JUNIPERPHOTON &amp; CHURWIN</value>
+  </data>
 </root>

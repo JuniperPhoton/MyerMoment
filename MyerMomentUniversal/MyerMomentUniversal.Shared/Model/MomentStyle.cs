@@ -22,7 +22,7 @@ namespace MyerMomentUniversal.Model
 {
     public class MomentStyle:ViewModelBase
     {
-        private const int IMAGE_NUM = 17;
+        private const int BACKGRDIMAGE_NUM = 17;
 
         private Uri thumbUri;
         private Uri fullSizeUri;
@@ -84,17 +84,17 @@ namespace MyerMomentUniversal.Model
             }
         }
        
-        public static int ImageNum { get; set; } = 1;
+        public static int ImageTag { get; set; } = 1;
         public BitmapImage RandomBackGrd
         {
             get
             {
                 BitmapImage bitmap = new BitmapImage();
 
-                bitmap.UriSource = new Uri("ms-appx:///Asset/Backgrd/" + ImageNum + ".jpg");
+                bitmap.UriSource = new Uri("ms-appx:///Asset/Backgrd/" + ImageTag + ".jpg");
 
-                ImageNum++;
-                if (ImageNum > IMAGE_NUM) ImageNum = 1;
+                ImageTag++;
+                if (ImageTag > BACKGRDIMAGE_NUM) ImageTag = 1;
 
                 return bitmap;
             }
@@ -174,9 +174,9 @@ namespace MyerMomentUniversal.Model
         }
 
 
-        public async Task CheckThumbExistAndSaveAsync()
+        public Task CheckThumbAndSaveAsync()
         {
-            await ExceptionHelper.TryExecute(async () =>
+            return ExceptionHelper.TryExecute(async () =>
             {
                 var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
 
@@ -281,9 +281,9 @@ namespace MyerMomentUniversal.Model
             }
         }
 
-        private async Task<IRandomAccessStream> GetStreamFromFileAsync(StorageFile fileToOpen)
+        private Task<IRandomAccessStream> GetStreamFromFileAsync(StorageFile fileToOpen)
         {
-            return await ExceptionHelper.TryExecute(async() =>
+            return ExceptionHelper.TryExecute(async() =>
             {
                 var fileStream = await fileToOpen.OpenStreamForReadAsync();
 

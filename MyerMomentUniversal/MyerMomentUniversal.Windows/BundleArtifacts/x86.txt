@@ -1,5 +1,2 @@
-MainPackage=C:\Users\dengw\Documents\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\x86\Debug\MyerMomentUniversal.Windows_1.9.0.2_x86_Debug.appx
-SymbolPackage=C:\Users\dengw\Documents\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\AppPackages\MyerMomentUniversal.Windows_1.9.0.2_Debug_Test\MyerMomentUniversal.Windows_1.9.0.2_x86_Debug.appxsym
-ResourcePack=C:\Users\dengw\Documents\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\x86\Debug\MyerMomentUniversal.Windows_1.9.0.2_language-en.appx
-ResourcePack=C:\Users\dengw\Documents\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\x86\Debug\MyerMomentUniversal.Windows_1.9.0.2_scale-140.appx
-ResourcePack=C:\Users\dengw\Documents\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\x86\Debug\MyerMomentUniversal.Windows_1.9.0.2_scale-180.appx
+MainPackage=D:\开发\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\x86\Release\MyerMomentUniversal.Windows_1.9.0.0_x86.appx
+SymbolPackage=D:\开发\开发\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\AppPackages\MyerMomentUniversal.Windows_1.9.0.0_Test\MyerMomentUniversal.Windows_1.9.0.0_x86.appxsym

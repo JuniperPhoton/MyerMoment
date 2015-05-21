@@ -104,63 +104,42 @@ namespace MyerMomentUniversal.ViewModel
             }
         }
 
-        private TaskCompletionSource<int> tcs;
+        //private TaskCompletionSource<int> tcs;
 
-        public StylesViewModel(bool ConfigLocalStyle=true)
+        public StylesViewModel()
         {
             NewStyles = new ObservableCollection<MomentStyle>();
             PackageStyles = new ObservableCollection<MomentStyle>();
 
-            tcs = new TaskCompletionSource<int>();
+            //tcs = new TaskCompletionSource<int>();
 
-            if (ConfigLocalStyle)
-            {
-                var task = Config();
-            }
-
+            
             IsLoadingVisibility = Visibility.Collapsed;
         }
 
-        public async Task Config()
+        public async Task ConfigLocalAsync()
         {
-            ConfigPackageStyle();
-            await ConfigInstalledStyle();
-            //NumStyle(PackageStyles);
+            var task1=ConfigPackageStyle();
+            var task2= ConfigInstalledStyle();
+            await task1;
+            await task2;
+            //Task.WaitAll(new Task[2] { task1, task2 });
         }
 
         /// <summary>
         /// 加载预安装的样式
         /// </summary>
-        private async void ConfigPackageStyle()
+        private async Task ConfigPackageStyle()
         {
-            var folder =await Package.Current.InstalledLocation.GetFolderAsync("Config");
+            var folder = await Package.Current.InstalledLocation.GetFolderAsync("Config");
             var file = await folder.GetFileAsync("LocalStyleConfig.txt");
-            
-                var str=await FileIO.ReadTextAsync(file);
-                var styles = str.Split(',');
-                foreach(var stylename in styles)
-                {
-                    PackageStyles.Add(new MomentStyle(stylename));
-                }
-           
-            //PackageStyles.Add(new MomentStyle("Alone"));
-            //PackageStyles.Add(new MomentStyle("Amazing"));
-            //PackageStyles.Add(new MomentStyle("Brave"));
-            //PackageStyles.Add(new MomentStyle("Couple"));
-            //PackageStyles.Add(new MomentStyle("Coffee"));
-            //PackageStyles.Add(new MomentStyle("Dinner"));
-            //PackageStyles.Add(new MomentStyle("Food"));
-            //PackageStyles.Add(new MomentStyle("GTA5"));
-            //PackageStyles.Add(new MomentStyle("Lumia"));
-            //PackageStyles.Add(new MomentStyle("Love"));
-            //PackageStyles.Add(new MomentStyle("Memory"));
-            //PackageStyles.Add(new MomentStyle("Music"));
-            //PackageStyles.Add(new MomentStyle("Night"));
-            //PackageStyles.Add(new MomentStyle("Place"));
-            //PackageStyles.Add(new MomentStyle("Sad"));
-            //PackageStyles.Add(new MomentStyle("Scene"));
-            //PackageStyles.Add(new MomentStyle("Thanks"));
-            //PackageStyles.Add(new MomentStyle("Time"));
+
+            var str = await FileIO.ReadTextAsync(file);
+            var styles = str.Split(',');
+            foreach (var stylename in styles)
+            {
+                PackageStyles.Add(new MomentStyle(stylename));
+            }
         }
 
         /// <summary>
@@ -170,7 +149,7 @@ namespace MyerMomentUniversal.ViewModel
         {
             try
             {
-                tcs = new TaskCompletionSource<int>();
+                //tcs = new TaskCompletionSource<int>();
 
                 IsLoadingVisibility = Visibility.Visible;
 
@@ -178,7 +157,7 @@ namespace MyerMomentUniversal.ViewModel
                 var files = await folder.GetFilesAsync();
                 if (files.Count == 0)
                 {
-                    tcs.SetResult(0);
+                    //tcs.SetResult(0);
                     return;
                 }
                 foreach (var file in files)
@@ -191,7 +170,7 @@ namespace MyerMomentUniversal.ViewModel
                     InstalledStylesList.Add(file.DisplayName);
                 }
 
-                tcs.SetResult(0);
+                //tcs.SetResult(0);
 
                 DispatcherTimer timer = new DispatcherTimer();
                 timer.Interval = TimeSpan.FromSeconds(1);
@@ -205,7 +184,7 @@ namespace MyerMomentUniversal.ViewModel
             catch(Exception e)
             {
                 await ExceptionHelper.WriteRecord(e);
-                tcs.SetResult(0);
+                //tcs.SetResult(0);
             }
            
         }
@@ -213,39 +192,47 @@ namespace MyerMomentUniversal.ViewModel
 
         public async Task ConfigWebStyle(JArray styles)
         {
-            await tcs.Task;
-
-            IsLoadingVisibility = Visibility.Visible;
-            NewStyles = new ObservableCollection<MomentStyle>();
-
-            foreach(var style in styles)
+            try
             {
-                if (style == null) continue;
-                var nameid = (string)style["name"];
-                var thumbUri = (string)style["basicUrl"] + nameid + ".png";
-                var fullsizeUri = (string)style["basicUrl"] + nameid + "2.png";
-                if (InstalledStylesList.Contains(nameid))
+                //await tcs.Task;
+
+                IsLoadingVisibility = Visibility.Visible;
+                NewStyles = new ObservableCollection<MomentStyle>();
+
+                foreach (var style in styles)
                 {
-                    continue;
+                    if (style == null) continue;
+                    var nameid = (string)style["name"];
+                    var thumbUri = (string)style["basicUrl"] + nameid + ".png";
+                    var fullsizeUri = (string)style["basicUrl"] + nameid + "2.png";
+                    if (InstalledStylesList.Contains(nameid))
+                    {
+                        continue;
+                    }
+
+                    var newstyle = new MomentStyle(nameid, new Uri(thumbUri), new Uri(fullsizeUri));
+                    await newstyle.CheckThumbAndSaveAsync();
+                    NewStyles.Insert(0, newstyle);
                 }
-                
-                var newstyle = new MomentStyle(nameid, new Uri(thumbUri), new Uri(fullsizeUri));
-                await newstyle.CheckThumbExistAndSaveAsync();
-                NewStyles.Insert(0,newstyle);
+
+                if (NewStyles.Count == 0) NoItemsVisibility = Visibility.Visible;
+                else NoItemsVisibility = Visibility.Collapsed;
+
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Tick += ((sendert, et) =>
+                {
+                    IsLoadingVisibility = Visibility.Collapsed;
+                    timer.Stop();
+                });
+                timer.Start();
+
             }
+            catch(Exception e)
+            {
 
-            if (NewStyles.Count == 0) NoItemsVisibility = Visibility.Visible;
-            else NoItemsVisibility = Visibility.Collapsed;
-
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += ((sendert, et) =>
-              {
-                  IsLoadingVisibility = Visibility.Collapsed;
-                  timer.Stop();
-              });
-            timer.Start();
-
+            }
+            
         }
 
         public async Task DownloadFullsizeCommand(string name)

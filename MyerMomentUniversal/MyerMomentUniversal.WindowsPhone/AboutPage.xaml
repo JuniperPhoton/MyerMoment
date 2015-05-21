@@ -19,8 +19,8 @@
     <Grid>
         <Grid x:Name="AboutGrid" Grid.Row="1" Opacity="100" Grid.RowSpan="2" Background="{StaticResource MomentThemeColor}" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="6*"/>
             </Grid.RowDefinitions>
             <StackPanel Background="{StaticResource MomentThemeColor}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,0">
                 
@@ -31,11 +31,14 @@
                     <TextBlock x:Uid="AboutTitle" Text="ABOUT" Margin="5,0,0,0"  FontSize="53.333" Foreground="{StaticResource MomentThemeBlack}" FontFamily="Microsoft YaHei" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 </StackPanel>
-                <Border  Margin="0,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
-                    <TextBlock x:Uid="PCAvailableTB" Text="Also available on PC" Margin="0,5,5,5"  FontSize="25" Foreground="Black" FontFamily="Segoe WP" FontWeight="Light"/>
-                </Border>
+                    <TextBlock x:Uid="IdeaTB" TextWrapping="Wrap" Text="JuniperPhoton and Churwin 's idea" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" FontFamily="Segoe WP" FontSize="24" HorizontalAlignment="Left" FontWeight="Light" Margin="0,0,0,10"/>
+
+                <!--<Border  Margin="0,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left" >
+                    <TextBlock x:Uid="PCAvailableTB" Text="Also available on PC" Margin="0,5,5,5"  FontSize="24" Foreground="Black" FontFamily="Segoe WP" FontWeight="Light"/>
+                </Border>-->
             </StackPanel>
-            <StackPanel Grid.Row="1" Orientation="Vertical" Background="{StaticResource MomentThemeBlack}">
+            
+            <StackPanel Grid.Row="2" Orientation="Vertical" Background="{StaticResource MomentThemeBlack}">
                     <!--<StackPanel Orientation="Horizontal" Margin="10,20,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <Border Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" >
                             <TextBlock x:Uid="VersionTB"   Margin="0" Text="Version" FontSize="33.333" FontFamily="Microsoft YaHei" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Light" />
@@ -49,9 +52,7 @@
                     <ScrollViewer HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Auto">
                         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                             <Border Height="15" Width="15" Background="{StaticResource MomentThemeColor}" BorderBrush="{StaticResource MomentThemeColor}"/>
-                            <TextBlock  Margin="10,0,0,0" Text="JuniperPhoton" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Light"/>
-                            <!--<TextBlock  Margin="15,0,0,0" Text="Churwin" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Light"/>-->
-                            <TextBlock  Margin="15,0,0,0" Text="Natsuki" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Light"/>
+                            <TextBlock  Margin="10,0,0,0" Text="Natsuki" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Light"/>
 
                             <TextBlock  Margin="15,0,0,0" Text="Ray" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontWeight="Light"/>
                         </StackPanel>

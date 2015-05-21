@@ -16,7 +16,20 @@
     Background="{StaticResource MomentThemeBlack}"
     HeaderForeground="{StaticResource MomentThemeBlack}">
     
-    <Grid >
-        <local:StoreContentControl />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{StaticResource MomentThemeColor}">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock x:Uid="StyleTB" Text="Style" FontSize="26.667" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock x:Uid="FontTB" Text="Font(Coming soon)" FontSize="26.667" Margin="30,0,0,0" VerticalAlignment="Center" Foreground="Black" Opacity="0.4"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <local:StoreContentControl />
+        </Grid>
+        
     </Grid>
 </SettingsFlyout>

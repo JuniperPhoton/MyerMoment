@@ -2,7 +2,9 @@
 using JP.Utils.Network;
 using MyerMomentUniversal.Helper;
 using MyerMomentUniversal.ViewModel;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -23,20 +25,30 @@ namespace MyerMomentUniversal
                 loadingGrid.Visibility = Visibility.Collapsed;
             }
 
-            StylesVM = new StylesViewModel();
-            this.DataContext = StylesVM;
 
-           GetNewStyle();
-            
+            var task=Config();
         }
 
-        private async void GetNewStyle()
+        private async Task Config()
         {
-            await ExceptionHelper.TryExecute(async () =>
+            StylesVM = new StylesViewModel();
+            await StylesVM.ConfigLocalAsync();
+            await GetNewStyle();
+            
+            this.DataContext = StylesVM;
+        }
+
+        private async Task GetNewStyle()
+        {
+            try
             {
                 var namesArray = await HttpHelper.GetAllStylesAsync();
                 await StylesVM.ConfigWebStyle(namesArray);
-            });
+            }
+            catch(Exception)
+            {
+
+            }
             
         }
 

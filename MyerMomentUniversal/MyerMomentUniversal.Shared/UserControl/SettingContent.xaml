@@ -11,7 +11,6 @@
     
     <Grid Background="{StaticResource MomentThemeBlack}">
         <StackPanel Grid.Row="1" VerticalAlignment="Top" Orientation="Vertical" Margin="10,10,10,0">
-            
                 <TextBlock x:Uid="QualityTB" Margin="5" Text="Saving Quality" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
             <ComboBox x:Name="qualityCom" SelectedIndex="0" PlaceholderText="Select the default saving quality" SelectionChanged="qualityCom_SelectionChanged" BorderBrush="White" Foreground="White" Background="{StaticResource MomentThemeBlack}" >
                 <ComboBoxItem>
@@ -24,13 +23,13 @@
                 <TextBlock x:Uid="PositionTB" Margin="5,20,5,5" Text="Saving Position" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />
             <ComboBox  SelectionChanged="positionCom_SelectionChanged" x:Name="positionCom" PlaceholderText="Select the default saving position" SelectedIndex="0"  BorderBrush="White" Foreground="White" Background="{StaticResource MomentThemeBlack}" >
                 <ComboBoxItem>
-                    <TextBlock x:Uid="SavedPictureTB"  Text="SavedPicture" />
+                    <TextBlock x:Uid="SavedPictureTB"   Text="SavedPicture" />
                 </ComboBoxItem>
                 <ComboBoxItem Foreground="{StaticResource MomentThemeBlack}">
-                    <TextBlock  x:Uid="MyerMomentFolderTB" Text="MyerMoment Folder"/>
+                    <TextBlock  x:Uid="MyerMomentFolderTB"   Text="MyerMoment Folder"/>
                 </ComboBoxItem>
                 <ComboBoxItem>
-                    <TextBlock  x:Uid="CameraRollTB" Text="CameraRoll" Foreground="{StaticResource MomentThemeBlack}"/>
+                    <TextBlock  x:Uid="CameraRollTB" Text="CameraRoll"/>
                 </ComboBoxItem>
             </ComboBox>
                 <TextBlock x:Uid="TileStyleTB" Margin="5,20,5,5" Text="TileStyle" FontFamily="Segoe WP" FontSize="25" FontWeight="ExtraLight" Foreground="{StaticResource MomentThemeColor}" />

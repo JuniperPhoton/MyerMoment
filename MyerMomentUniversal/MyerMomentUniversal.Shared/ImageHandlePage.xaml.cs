@@ -138,7 +138,7 @@ namespace MyerMomentUniversal
             var qualitySetting = LocalSettingHelper.GetValue("QualityCompress");
             if (qualitySetting == "0")
             {
-                _imageHandleHelper.ScaleLong = 1500;
+                _imageHandleHelper.ScaleLong = 1200;
 
                 EasClientDeviceInformation deviceInfo = new Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation();
 
@@ -147,7 +147,7 @@ namespace MyerMomentUniversal
                     || deviceInfo.SystemProductName.Contains("RM-876") 
                     || deviceInfo.SystemProductName.Contains("RM-877"))
                 {
-                    _imageHandleHelper.ScaleLong = 1024;
+                    _imageHandleHelper.ScaleLong = 900;
                 }
             }
 #endif
@@ -155,10 +155,10 @@ namespace MyerMomentUniversal
        
 
         //配置Style 列表
-        private async void ConfigStyle()
+        private async Task ConfigStyle()
         {
-            StylesVM = new StylesViewModel(false);
-            await StylesVM.Config();
+            StylesVM = new StylesViewModel();
+            await StylesVM.ConfigLocalAsync();
             foreach (var style in StylesVM.PackageStyles)
             {
                 Button styleBtn = new Button();
