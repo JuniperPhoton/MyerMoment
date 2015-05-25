@@ -48,33 +48,39 @@ namespace MyerMomentUniversal.Helper
         {
           
             //return ImageHandleLib.ImageHandleHelper.OpenImageFile(file);
-
-            using (var fileStream = await file.OpenAsync(FileAccessMode.Read))
+            try
             {
-                //从文件流里创建解码器
-                var decoder = await BitmapDecoder.CreateAsync(fileStream);
-
-                //获取目前图像的信息
-                this.DpiX = (int)decoder.DpiX;
-                this.DpiY = (int)decoder.DpiY;
-                this.Height = decoder.OrientedPixelHeight;
-                this.Width = decoder.OrientedPixelWidth;
-                this.FileCopyName = file.Name;
-                this.PixelFormat = decoder.BitmapPixelFormat;
-                this.AlphaMode = decoder.BitmapAlphaMode;
-
-                switch (file.FileType.ToLower())
+                using (var fileStream = await file.OpenAsync(FileAccessMode.Read))
                 {
-                    case ".jpg": this.EncodeID = BitmapEncoder.JpegEncoderId; break;
-                    case ".png": this.EncodeID = BitmapEncoder.PngEncoderId; break;
-                    default:this.EncodeID = BitmapEncoder.JpegEncoderId;break;
+                    //从文件流里创建解码器
+                    var decoder = await BitmapDecoder.CreateAsync(fileStream);
+
+                    //获取目前图像的信息
+                    this.DpiX = (int)decoder.DpiX;
+                    this.DpiY = (int)decoder.DpiY;
+                    this.Height = decoder.OrientedPixelHeight;
+                    this.Width = decoder.OrientedPixelWidth;
+                    this.FileCopyName = file.Name;
+                    this.PixelFormat = decoder.BitmapPixelFormat;
+                    this.AlphaMode = decoder.BitmapAlphaMode;
+
+                    switch (file.FileType.ToLower())
+                    {
+                        case ".jpg": this.EncodeID = BitmapEncoder.JpegEncoderId; break;
+                        case ".png": this.EncodeID = BitmapEncoder.PngEncoderId; break;
+                        default: this.EncodeID = BitmapEncoder.JpegEncoderId; break;
+                    }
+
+                    //显示图像
+                    var bitmap = new BitmapImage();
+                    await bitmap.SetSourceAsync(fileStream);
+
+                    return bitmap;
                 }
-
-                //显示图像
-                var bitmap = new BitmapImage();
-                await bitmap.SetSourceAsync(fileStream);
-
-                return bitmap;
+            }
+            catch(Exception)
+            {
+                return null;
             }
         }
 

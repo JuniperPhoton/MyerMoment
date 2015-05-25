@@ -29,7 +29,7 @@
 .titleDiv {
     background: #222222;
     
-    height: 270px;
+    height: 350px;
     margin-top: 10px;
     text-align: center;
 }
@@ -81,6 +81,8 @@ p {
     float:left;
     margin-top: 15px;
     margin-left: 10px;
+    width: 25px;
+    
 }
 
 #a2 {
@@ -222,4 +224,15 @@ body{
 .img3 {
     height: auto;
     width: 50%;
+}
+
+.subDiv {
+    margin-top: 10px;
+}
+
+.subt {
+    font-weight: 200;
+    color: white;
+    font-family: Microsoft YaHei;
+    font-size: 30px;
 }

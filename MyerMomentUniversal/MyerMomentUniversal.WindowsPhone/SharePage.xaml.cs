@@ -24,13 +24,10 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-// “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkID=390556 上有介绍
 
 namespace MyerMomentUniversal
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
+
     public sealed partial class SharePage : Page, IWebAuthenticationContinuable
     {
         public SharePage()
@@ -107,20 +104,26 @@ namespace MyerMomentUniversal
 
         public void ContinueWebAuthentication(WebAuthenticationBrokerContinuationEventArgs args)
         {
-
-            var oauthClient = new ClientOAuth();
-            oauthClient.LoginCallback += (async (isSucces, err, response) =>
+            try
             {
-                if (isSucces)
+                var oauthClient = new ClientOAuth();
+                oauthClient.LoginCallback += (async (isSucces, err, response) =>
                 {
-                    await shareControl.ShowImageAsync();
-                }
-                else
-                {
-                    shareControl.ShowErrorGrid();
-                }
-            });
-            oauthClient.continueAuth(args.WebAuthenticationResult); 
+                    if (isSucces)
+                    {
+                        await shareControl.ShowImageAsync();
+                    }
+                    else
+                    {
+                        shareControl.ShowErrorGrid();
+                    }
+                });
+                oauthClient.continueAuth(args.WebAuthenticationResult);
+            }
+            catch(Exception e)
+            {
+
+            }
         }
     }
 }
