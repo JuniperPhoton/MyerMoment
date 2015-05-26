@@ -57,7 +57,7 @@ namespace JP.Utils.Application
                     var registration = taskBuilder.Register();
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //new MessageDialog(e.Message).ShowAsync();
             }

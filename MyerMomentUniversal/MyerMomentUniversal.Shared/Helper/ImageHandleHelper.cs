@@ -17,7 +17,7 @@ namespace MyerMomentUniversal.Helper
     {
         private uint outputWidth;
         private uint outputHeight;
-        private IRandomAccessStream outputStream;
+        //private IRandomAccessStream outputStream;
 
         private int exceptionFlag = 0; //the result is either 0 or 1
 
@@ -132,7 +132,7 @@ namespace MyerMomentUniversal.Helper
 
                 return ImageSaveResult.Successful;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 if (exceptionFlag == 0) return ImageSaveResult.FailToGetPixels;
                 else return ImageSaveResult.FailToFlush;

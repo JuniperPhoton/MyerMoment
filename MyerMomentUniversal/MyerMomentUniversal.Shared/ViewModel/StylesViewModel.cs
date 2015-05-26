@@ -228,7 +228,7 @@ namespace MyerMomentUniversal.ViewModel
                 timer.Start();
 
             }
-            catch(Exception e)
+            catch(Exception )
             {
 
             }

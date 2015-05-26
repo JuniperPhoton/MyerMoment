@@ -84,6 +84,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Rotate.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Save.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Tag.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Wechat.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Weibo.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Image\0.JPG" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Image\1.JPG" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Image\2.jpg" />

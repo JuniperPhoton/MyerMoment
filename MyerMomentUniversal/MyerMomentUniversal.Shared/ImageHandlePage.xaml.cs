@@ -6,6 +6,7 @@ using System.Collections.Generic;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using DialogExt;
+using MicroMsg;
 #endif
 using Windows.Storage;
 using Windows.UI;
@@ -28,6 +29,7 @@ using Windows.UI.ViewManagement;
 using System.Diagnostics;
 using System.IO;
 using Windows.Storage.Streams;
+using System.Net.Http;
 
 namespace MyerMomentUniversal
 {
@@ -131,7 +133,7 @@ namespace MyerMomentUniversal
             ConfigLang();
             ConfigQuality();
             ConfigFilter();
-            ConfigStyle();
+            var task= ConfigStyle();
         }
 
         private void StyleImageGrid_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -254,7 +256,7 @@ namespace MyerMomentUniversal
             TextView3.PlaceholderText = loader.GetString("FontPlaceHolderText");
             savedTB.Text = loader.GetString("PhotoSavedHint");
             savingTB.Text = loader.GetString("SavingHint");
-            shareTB.Text = loader.GetString("ShareHint");
+            //shareTB.Text = loader.GetString("ShareHint");
             backhomeTB.Text = loader.GetString("BackToHomeHint");
             retryTB.Text = loader.GetString("ChangeToCompressHint");
             errorHintTB.Text = loader.GetString("CompressHint");
@@ -280,13 +282,13 @@ namespace MyerMomentUniversal
 #elif WINDOWS_APP
             contentGrid.Height = 320;
             contentSV.Height = 300;
-            shareBtn.MaxWidth = 300;
+            shareToWeiboBtn.MaxWidth = 300;
+            shareToWechatBtn.Visibility = Visibility.Collapsed;
             //systemBtn.MaxWidth = 300;
             backHomeBtn.MaxWidth = 300;
             familySV.Height = familySV2.Height = 60;
             //styleSV.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
             //filterSV.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
-
 #endif
         }
 
@@ -1309,7 +1311,11 @@ namespace MyerMomentUniversal
                 _isInShareMode = true;
 
                 //从分享打开后，不能再次分享
-                if (_isFromShareTarget) shareBtn.Visibility = Visibility.Collapsed;
+                if (_isFromShareTarget)
+                {
+                    shareToWeiboBtn.Visibility = Visibility.Collapsed;
+                    shareToWechatBtn.Visibility = Visibility.Collapsed;
+                }
             }
             catch (Exception e)
             {
@@ -1398,7 +1404,7 @@ namespace MyerMomentUniversal
             _isInErrorMode = false;
         }
 
-        private async void ShareClick(object sender, RoutedEventArgs e)
+        private async void ShareToWeiboClick(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -1411,6 +1417,40 @@ namespace MyerMomentUniversal
             {
                 var task = ExceptionHelper.WriteRecord(ee);
             }
+        }
+
+        private async void ShareToWechatClick(object sender,RoutedEventArgs e)
+        {
+#if WINDOWS_PHONE_APP
+            try
+            {
+                int scene = SendMessageToWX.Req.WXSceneChooseByUser; //发给微信朋友
+
+                var message = new WXImageMessage();
+                message.Title = "来自 MyerMoment for Windows 的一张图片";
+                var fileToShare = await GetFileToShare();
+                if (fileToShare == null) return;
+                using (var fs = await fileToShare.OpenStreamForReadAsync())
+                {
+                    var data = new byte[fs.Length];
+                    fs.Read(data, 0, (int)fs.Length);
+                    message.ImageData = data;
+                }
+                var thumbItem=await fileToShare.GetThumbnailAsync(Windows.Storage.FileProperties.ThumbnailMode.DocumentsView);
+                var thumbStream = thumbItem.AsStreamForRead();
+                var thumbData = new byte[thumbStream.Length];
+                await thumbStream.ReadAsync(thumbData, 0, (int)thumbStream.Length);
+                message.ThumbData = thumbData;
+                 
+                SendMessageToWX.Req req = new SendMessageToWX.Req(message, scene);
+                var api = WXAPIFactory.CreateWXAPI("wxafd875d032f05470");
+                await api.SendReq(req);
+            }
+            catch (WXException ex)
+            {
+                await new MessageDialog(ex.Message).ShowAsync();
+            }
+#endif
         }
 
         private async Task<StorageFile> GetFileToShare()

@@ -402,4 +402,10 @@
   <data name="ConfirmRotateTB.Text" xml:space="preserve">
     <value>确认旋转</value>
   </data>
+  <data name="shareToWechatTB.Text" xml:space="preserve">
+    <value>分享到微信</value>
+  </data>
+  <data name="shareToWeiboTB.Text" xml:space="preserve">
+    <value>分享到微博</value>
+  </data>
 </root>

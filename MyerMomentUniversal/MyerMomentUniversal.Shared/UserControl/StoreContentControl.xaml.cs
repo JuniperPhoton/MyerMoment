@@ -67,11 +67,6 @@ namespace MyerMomentUniversal
             await StylesVM.DeleteStyle(tag);
         }
 
-        private void RefreshClick(object sender,RoutedEventArgs e)
-        {
-            GetNewStyle();
-        }
-
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             var grid = sender as Grid;

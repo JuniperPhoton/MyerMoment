@@ -21,7 +21,7 @@
             <m2:ShowOn Tile="square150x150Logo" />
           </m2:ShowNameOnTiles>
         </m2:DefaultTile>
-        <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#333333" />
+        <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#1F1F1F" />
       </m2:VisualElements>
       <Extensions>
         <Extension Category="windows.shareTarget">

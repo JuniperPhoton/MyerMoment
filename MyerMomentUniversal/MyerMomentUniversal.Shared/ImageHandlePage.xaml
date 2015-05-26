@@ -1444,9 +1444,20 @@
             <Border Background="Black" Opacity="0.8"/>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Orientation="Vertical">
                 <TextBlock x:Name="savedTB" HorizontalAlignment="Center" Text="Photo saved :D" FontSize="30" />
-                <Button Click="ShareClick" x:Name="shareBtn" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
+                <Button  x:Name="shareToWeiboBtn"  Click="ShareToWeiboClick" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
                     <Border Background="{StaticResource MomentThemeColor}">
-                        <TextBlock x:Name="shareTB" Foreground="{StaticResource MomentThemeBlack}" Text="SHARE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <!--<Image Source="Asset/Icon/weibo.png" Width="30" Height="30"/>-->
+                            <TextBlock x:Uid="shareToWeiboTB" Foreground="{StaticResource MomentThemeBlack}" Text="SHARE TO WEIBO" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+                        </StackPanel>
+                    </Border>
+                </Button>
+                <Button x:Name="shareToWechatBtn" Click="ShareToWechatClick"  Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
+                    <Border Background="#FFFFDC7F">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <!--<Image Source="Asset/Icon/wechat.png" Width="30" Height="30"/>-->
+                            <TextBlock x:Uid="shareToWechatTB" Foreground="{StaticResource MomentThemeBlack}" Text="SHARE TO WECHAT" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+                        </StackPanel>
                     </Border>
                 </Button>
                 <!--<Button Click="ShareToSystemClick" x:Name="systemBtn" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
