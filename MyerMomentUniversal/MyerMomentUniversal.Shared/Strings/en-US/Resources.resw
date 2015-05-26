@@ -429,4 +429,10 @@
   <data name="IdeaTB.Text" xml:space="preserve">
     <value>IDEA OF JUNIPERPHOTON &amp; CHURWIN</value>
   </data>
+  <data name="CancelTB.Text" xml:space="preserve">
+    <value>CANCEL</value>
+  </data>
+  <data name="ConfirmRotateTB.Text" xml:space="preserve">
+    <value>ROTATE</value>
+  </data>
 </root>

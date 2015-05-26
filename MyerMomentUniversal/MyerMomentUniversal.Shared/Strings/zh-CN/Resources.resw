@@ -396,4 +396,10 @@
   <data name="IdeaTB.Text" xml:space="preserve">
     <value>想法来自 JUNIPER PHOTON &amp; CHURWIN</value>
   </data>
+  <data name="CancelTB.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ConfirmRotateTB.Text" xml:space="preserve">
+    <value>确认旋转</value>
+  </data>
 </root>

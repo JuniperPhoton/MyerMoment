@@ -781,13 +781,23 @@
             <Grid.Projection>
                 <PlaneProjection/>
             </Grid.Projection>
-            
-            <Image x:Name="image" Tapped="TapMask" Source="{Binding Image}" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <CompositeTransform/>
-                </Image.RenderTransform>
-            </Image>
-            
+            <Grid>
+                <!--<Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>-->
+                <!--<Border Grid.Row="0" x:Name="SubTitleBorder0" Background="#FFF6F6F6"/>-->
+
+                <Image Grid.Row="1" x:Name="image" Tapped="TapMask" Source="{Binding Image}" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <CompositeTransform x:Name="image_comTran"/>
+                    </Image.RenderTransform>
+                </Image>
+                <!--<Border Grid.Row="2" x:Name="SubTitleBorder1" Background="#FFF6F6F6"/>-->
+            </Grid>
+
+
             <Grid x:Name="FrameGrid" Visibility="Collapsed" Opacity="0.6">
                 <Border Background="White" Height="1" VerticalAlignment="Top"/>
                 <Border Background="White" Height="1" VerticalAlignment="Bottom"/>
@@ -825,8 +835,27 @@
                                                 Canvas.Left="{Binding Path=BottomRightCornerCanvasLeft,Mode=OneWay}"
                                                 Canvas.Top="{Binding Path=BottomRightCornerCanvasTop,Mode=OneWay}"/>
             </Canvas>
+
             <Canvas x:Name="fontCanvas">
                 <Grid x:Name="textGrid1"  Tapped="textGrid1_Tapped"  PointerEntered="TextView1_OnPointerEntered" ManipulationMode="TranslateX,TranslateY" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                    <Grid x:Name="tagGrid1Left" Visibility="Collapsed">
+                        <Path Data="M14.0467,0.998503 L-41.7714,26.1548 L12.7474,51.6232 z" Fill="Black" HorizontalAlignment="Left" Margin="-30.219,10.5,0,10.875" Stretch="Fill" UseLayoutRounding="False" Width="32.219" d:LayoutOverrides="TopPosition, BottomPosition"/>
+
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="0,10" Background="Black" CornerRadius="3"/>
+                        <Ellipse Fill="{StaticResource MomentThemeColor}" Margin="-20,0,78,0" Width="20" Height="20" Stroke="#FF373737" StrokeThickness="4" HorizontalAlignment="Left"/>
+
+                    </Grid>
+                    <Grid x:Name="tagGrid1Right" Visibility="Collapsed">
+                        <Path Data="M14.0467,0.998503 L-41.7714,26.1548 L12.7474,51.6232 z" Fill="Black" HorizontalAlignment="Right" Margin="0,10.724,-30.589,10.318" Stretch="Fill" UseLayoutRounding="False" Width="32.219" d:LayoutOverrides="TopPosition, BottomPosition" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <CompositeTransform Rotation="180"/>
+                            </Path.RenderTransform>
+                        </Path>
+
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="0,10" Background="Black" CornerRadius="3"/>
+                        <Ellipse Fill="{StaticResource MomentThemeColor}" Margin="0,0,-15,0" Width="20" Height="20" Stroke="#FF373737" StrokeThickness="4" HorizontalAlignment="Right"/>
+
+                    </Grid>
                     <Grid x:Name="textFrame1" Visibility="Collapsed">
                         <Border Background="White" Height="1" VerticalAlignment="Top"/>
                         <Border Background="White" Height="1" VerticalAlignment="Bottom"/>
@@ -838,7 +867,7 @@
                         <Ellipse Width="6" Height="6" HorizontalAlignment="Center" Fill="White" Stroke="White" VerticalAlignment="Top" Margin="0,-3,0,0"/>
 
                     </Grid>
-                    <TextBox x:Name="TextView1" IsEnabled="False" FontSize="30" AcceptsReturn="True" Background="Transparent" BorderThickness="0"   VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to edit" FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" Margin="0" InputScope="Chat"/>
+                    <TextBox x:Name="TextView1" IsEnabled="False" FontSize="30" AcceptsReturn="True" Background="Transparent" BorderThickness="0"   VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to edit" FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" Margin="0" InputScope="Chat"/>
                     <Border x:Name="maskBorder1" Background="Black" Opacity="0.01"/>
                 </Grid>
                 <Grid x:Name="textGrid2" Tapped="textGrid2_Tapped" PointerEntered="TextView2_OnPointerEntered" ManipulationMode="TranslateX,TranslateY"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
@@ -889,6 +918,7 @@
 
 
             </Canvas>
+
             <ProgressRing x:Name="ring"  VerticalAlignment="Center" HorizontalAlignment="Center" IsActive="True" Background="{x:Null}" Foreground="{StaticResource MomentThemeColor}"/>
         </Grid>
         <Grid x:Name="grid" Grid.Row="2" RenderTransformOrigin="0.5,0.5">
@@ -926,6 +956,12 @@
                                 <SymbolIcon Symbol="ViewAll" Foreground="Black"/>
                             </Grid>
                         </Button>
+                        <!--<Button Click="ToggleTagModeClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                            <Grid Height="50" Width="50">
+                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                <SymbolIcon Symbol="Tag" Foreground="Black"/>
+                            </Grid>
+                        </Button>-->
                         <Button x:Name="FilterBtn" Click="ToFilterClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
@@ -1035,15 +1071,14 @@
                 <Button Click="RotateImageClick" HorizontalAlignment="Stretch" VerticalContentAlignment="Stretch" Style="{StaticResource ButtonStyle2}" Grid.ColumnSpan="1" BorderThickness="0" Background="{StaticResource MomentThemeColor}" VerticalAlignment="Stretch">
                     <Border Background="{StaticResource MomentThemeColor}">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock  x:Name="ConfirmRotateTB"  Margin="10,0,0,0" Text="ROTATE" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraBold"/>
+                            <TextBlock  x:Uid="ConfirmRotateTB"  Margin="10,0,0,0" Text="ROTATE" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="ExtraBold"/>
                         </StackPanel>
                     </Border>
                 </Button>
                 <Button Click="DropRotateClick" HorizontalAlignment="Stretch" Grid.Column="1" VerticalContentAlignment="Stretch" Style="{StaticResource ButtonStyle2}" Grid.ColumnSpan="1" BorderThickness="0" Background="{x:Null}" VerticalAlignment="Stretch" >
                     <Border Background="White">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <SymbolIcon Symbol="Cancel" Foreground="{StaticResource MomentThemeBlack}"/>
-                            <TextBlock  x:Name="cancelTB3" Text="CANCEL" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="ExtraBold" />
+                            <TextBlock x:Uid="CancelTB"  x:Name="cancelTB3" Text="CANCEL" FontSize="20" Foreground="{StaticResource MomentThemeBlack}" HorizontalAlignment="Center" VerticalAlignment="Center"  FontWeight="ExtraBold" />
                         </StackPanel>
                     </Border>
                 </Button>

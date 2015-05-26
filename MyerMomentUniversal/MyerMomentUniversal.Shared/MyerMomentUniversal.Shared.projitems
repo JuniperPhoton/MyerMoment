@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\GetPixelsException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\MomentStyle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PageNavigateData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\TagCat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NewMainPage.xaml.cs">
       <DependentUpon>NewMainPage.xaml</DependentUpon>
     </Compile>
@@ -75,6 +76,14 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Oily.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Original.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Sun.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Cancel.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Crop.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Edit.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Filter.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Multi.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Rotate.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Save.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Tag.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Image\0.JPG" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Image\1.JPG" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Image\2.jpg" />

@@ -45,6 +45,7 @@ namespace MyerMomentUniversal
         private bool _isInFilterMode = false;
         private bool _isInExitMode = false;
         private bool _isInRotateMode = false;
+        private TagCat _tagMode = TagCat.Disable;
 
         private bool _isFromShareTarget = false;
 
@@ -505,11 +506,21 @@ namespace MyerMomentUniversal
             }
         }
 
+        /// <summary>
+        /// 点击空白地方
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TapMask(object sender, TappedRoutedEventArgs e)
         {
             e.Handled = true;
             HandleBack();
         }
+        /// <summary>
+        /// 进入裁剪模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void ToCropClick(object sender, RoutedEventArgs e)
         {
@@ -523,10 +534,44 @@ namespace MyerMomentUniversal
             _isInCropMode = true;
         }
 
+        /// <summary>
+        /// 进入旋转模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ToRotateClick(object sender, RoutedEventArgs e)
         {
             RotateInStory.Begin();
             _isInRotateMode = true;
+        }
+
+        /// <summary>
+        /// 触发标签模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToggleTagModeClick(object sender, RoutedEventArgs e)
+        {
+            switch (this._tagMode)
+            {
+                case TagCat.Disable:
+                    {
+                        tagGrid1Left.Visibility = Visibility.Visible;
+                        _tagMode = TagCat.ToLeft;
+                    }; break;
+                case TagCat.ToLeft:
+                    {
+                        tagGrid1Left.Visibility = Visibility.Collapsed;
+                        tagGrid1Right.Visibility = Visibility.Visible;
+                        _tagMode = TagCat.ToRight;
+                    }; break;
+                case TagCat.ToRight:
+                    {
+                        tagGrid1Left.Visibility = Visibility.Collapsed;
+                        tagGrid1Right.Visibility = Visibility.Collapsed;
+                        _tagMode = TagCat.Disable;
+                    };break;
+            }
         }
 
         private void InitialCrop()
@@ -1479,6 +1524,7 @@ namespace MyerMomentUniversal
                 {
                     RotateOutStory.Begin();
                     _isInRotateMode = false;
+                    (image.RenderTransform as CompositeTransform).Rotation =0;
                 }
                 if (_isInFilterMode)
                 {
