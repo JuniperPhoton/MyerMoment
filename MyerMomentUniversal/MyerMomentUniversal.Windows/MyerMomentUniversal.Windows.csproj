@@ -112,9 +112,6 @@
     <Compile Include="AboutFlyoutPage.xaml.cs">
       <DependentUpon>AboutFlyoutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FeaturePage.xaml.cs">
-      <DependentUpon>FeaturePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingFlyoutPage.xaml.cs">
       <DependentUpon>SettingFlyoutPage.xaml</DependentUpon>
@@ -160,10 +157,6 @@
     <Page Include="AboutFlyoutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FeaturePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="SettingFlyoutPage.xaml">
       <SubType>Designer</SubType>

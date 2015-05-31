@@ -30,14 +30,16 @@ using System.Diagnostics;
 using System.IO;
 using Windows.Storage.Streams;
 using System.Net.Http;
+using System.ComponentModel;
 
 namespace MyerMomentUniversal
 {
 
-    public sealed partial class ImageHandlePage : Page
+    public sealed partial class ImageHandlePage : Page,INotifyPropertyChanged
     {
         private StylesViewModel StylesVM;
 
+        #region MODE FIELD
         private bool _isInStyleMode = false;
         private bool _isInShareMode = false;
         private bool _isInErrorMode = false;
@@ -50,6 +52,7 @@ namespace MyerMomentUniversal
         private TagCat _tagMode = TagCat.Disable;
 
         private bool _isFromShareTarget = false;
+        #endregion
 
         private bool _hasCopy = false;
 
@@ -103,11 +106,94 @@ namespace MyerMomentUniversal
         /// </summary>
         Dictionary<uint, Point?> pointerPositionHistory = new Dictionary<uint, Point?>();
 
+        #region VM Layer 
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void RaisePropertyChanged(string propertyName)
+        {
+            var handler = this.PropertyChanged;
+            if(handler!=null)
+            {
+                handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        private Visibility _showLoadingVisibility;
+        public Visibility ShowLoadingVisibility
+        {
+            get
+            {
+                return _showLoadingVisibility;
+            }
+            set
+            {
+                if(_showLoadingVisibility!=value)
+                {
+                    _showLoadingVisibility = value;
+                    RaisePropertyChanged(nameof(ShowLoadingVisibility));
+                }
+            }
+        }
+
+        private Visibility _showErrorVisibility;
+        public Visibility ShowErrorVisibility
+        {
+            get
+            {
+                return _showErrorVisibility;
+            }
+           set
+            {
+                if(_showErrorVisibility!=value)
+                {
+                    _showErrorVisibility = value;
+                    RaisePropertyChanged(nameof(ShowErrorVisibility));
+                }
+            }
+        }
+
+        private Visibility _showShareVisibility;
+        public Visibility ShowShareVisibility
+        {
+            get
+            {
+                return _showShareVisibility;
+            }
+            set
+            {
+                if(_showShareVisibility!=value)
+                {
+                    _showShareVisibility = value;
+                    RaisePropertyChanged(nameof(ShowShareVisibility));
+                }
+            }
+        }
+
+        private Visibility _showFrameVisibility;
+        public Visibility ShowFrameVisibility
+        {
+            get
+            {
+                return _showFrameVisibility;
+            }
+            set
+            {
+                if(_showFrameVisibility!=value)
+                {
+                    _showFrameVisibility = value;
+                    RaisePropertyChanged(nameof(ShowFrameVisibility));
+                }
+            }
+        }
+
+        #endregion
+
         public ImageHandlePage()
         {
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Disabled;
+
+            this.DataContext = this;
 
             _imageHandleHelper = new ImageHandleHelper();
 
@@ -117,7 +203,7 @@ namespace MyerMomentUniversal
             styleImageGrid.RenderTransform = _compositeTransformStyle;
 
             selectedRegion = new SelectedRegion { MinSelectRegionSize = 2 * CornerSize };
-            this.DataContext = selectedRegion;
+            imageCanvas.DataContext = selectedRegion;
 
             this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
@@ -134,6 +220,11 @@ namespace MyerMomentUniversal
             ConfigQuality();
             ConfigFilter();
             var task= ConfigStyle();
+
+            ShowFrameVisibility = Visibility.Collapsed;
+            ShowErrorVisibility = Visibility.Collapsed;
+            ShowShareVisibility = Visibility.Collapsed;
+            ShowLoadingVisibility = Visibility.Collapsed;
         }
 
         private void StyleImageGrid_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -295,12 +386,6 @@ namespace MyerMomentUniversal
         #endregion
 
         #region 下方功能区的操作
-
-        private void FrameClick(object sender, RoutedEventArgs e)
-        {
-            if (FrameGrid.Visibility == Visibility.Collapsed) FrameGrid.Visibility = Visibility.Visible;
-            else FrameGrid.Visibility = Visibility.Collapsed;
-        }
 
         /// <summary>
         /// 增加文字大小
@@ -880,13 +965,13 @@ namespace MyerMomentUniversal
 
         private void TextGrid1_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            FrameGrid.Visibility = Visibility.Collapsed;
+            ShowFrameVisibility = Visibility.Collapsed;
             textFrame1.Visibility = Visibility.Collapsed;
         }
 
         private void TextView1_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            FrameGrid.Visibility = Visibility.Visible;
+            ShowFrameVisibility = Visibility.Visible;
             textFrame1.Visibility = Visibility.Visible;
 
             var newX = Canvas.GetLeft(textGrid1) + e.Delta.Translation.X;
@@ -951,13 +1036,13 @@ namespace MyerMomentUniversal
 
         private void TextGrid2_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            FrameGrid.Visibility = Visibility.Collapsed;
+         ShowFrameVisibility = Visibility.Collapsed;
             textFrame2.Visibility = Visibility.Collapsed;
         }
 
         private void TextView2_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            FrameGrid.Visibility = Visibility.Visible;
+            ShowFrameVisibility = Visibility.Visible;
             textFrame2.Visibility = Visibility.Visible;
 
             var newX = Canvas.GetLeft(textGrid2) + e.Delta.Translation.X;
@@ -1013,13 +1098,13 @@ namespace MyerMomentUniversal
 
         private void TextGrid3_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            FrameGrid.Visibility = Visibility.Collapsed;
+         ShowFrameVisibility = Visibility.Collapsed;
             textFrame3.Visibility = Visibility.Collapsed;
         }
 
         private void TextView3_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            FrameGrid.Visibility = Visibility.Visible;
+            ShowFrameVisibility = Visibility.Visible;
             textFrame3.Visibility = Visibility.Visible;
 
             var newX = Canvas.GetLeft(textGrid3) + e.Delta.Translation.X;
@@ -1077,13 +1162,13 @@ namespace MyerMomentUniversal
 
         private void StyleImage_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
         {
-            FrameGrid.Visibility = Visibility.Collapsed;
+            ShowFrameVisibility = Visibility.Collapsed;
             textFrame4.Visibility = Visibility.Collapsed;
         }
 
         private void StyleView_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
         {
-            FrameGrid.Visibility = Visibility.Visible;
+            ShowFrameVisibility = Visibility.Visible;
             textFrame4.Visibility = Visibility.Visible;
 
 
@@ -1147,7 +1232,8 @@ namespace MyerMomentUniversal
         {
             if (_imageRotateAngle != 0)
             {
-                MaskGrid.Visibility = Visibility.Visible;
+                //MaskGrid.Visibility = Visibility.Visible;
+                ShowLoadingVisibility = Visibility.Visible;
 
                 using (IRandomAccessStream fileStream = await sourceImageFileCopy.OpenAsync(FileAccessMode.ReadWrite),
                             memStream = new InMemoryRandomAccessStream())
@@ -1179,7 +1265,8 @@ namespace MyerMomentUniversal
                     //ShowImage(sourceImageFileCopy);
                 }
                 await ApplyFilterAsync(currentFilter);
-                MaskGrid.Visibility = Visibility.Collapsed;
+                //.Visibility = Visibility.Collapsed;
+                ShowLoadingVisibility = Visibility.Collapsed;
             }
 
             _imageRotateAngle = 0;
@@ -1203,7 +1290,8 @@ namespace MyerMomentUniversal
         /// </summary>
         private async void CropSaveClick(object sender, RoutedEventArgs e)
         {
-            MaskGrid.Visibility = Visibility.Visible;
+            //MaskGrid.Visibility = Visibility.Visible;
+            ShowLoadingVisibility = Visibility.Visible;
 
             double widthScale = imageCanvas.Width / _imageHandleHelper.Width;
             double heightScale = imageCanvas.Height / _imageHandleHelper.Height;
@@ -1216,7 +1304,8 @@ namespace MyerMomentUniversal
                 new Point(this.selectedRegion.SelectedRect.X / widthScale, this.selectedRegion.SelectedRect.Y / heightScale),
                 new Size(this.selectedRegion.SelectedRect.Width / widthScale, this.selectedRegion.SelectedRect.Height / heightScale));
 
-            MaskGrid.Visibility = Visibility.Collapsed;
+            //MaskGrid.Visibility = Visibility.Collapsed;
+            ShowLoadingVisibility = Visibility.Collapsed;
 
             //ShowImage(this.sourceImageFileCopy);
 
@@ -1248,7 +1337,7 @@ namespace MyerMomentUniversal
             {
                 TextView3.Visibility = Visibility.Collapsed;
             }
-            FrameGrid.Visibility = Visibility.Collapsed;
+            ShowFrameVisibility = Visibility.Collapsed;
             SaveImage();
         }
 
@@ -1285,7 +1374,8 @@ namespace MyerMomentUniversal
         {
             try
             {
-                MaskGrid.Visibility = Visibility.Visible;
+                //MaskGrid.Visibility = Visibility.Visible;
+                ShowLoadingVisibility = Visibility.Visible;
 
                 var result = await _imageHandleHelper.SaveImageAsync(renderGrid);
                 switch (result)
@@ -1306,8 +1396,10 @@ namespace MyerMomentUniversal
 
                 await ImageHandleHelper.DeleteTempFile(_imageHandleHelper.FileCopyName);
 
-                MaskGrid.Visibility = Visibility.Collapsed;
-                ShareGrid.Visibility = Visibility.Visible;
+                ShowLoadingVisibility = Visibility.Collapsed;
+                ShowShareVisibility = Visibility.Visible;
+                //MaskGrid.Visibility = Visibility.Collapsed;
+                //ShareGrid.Visibility = Visibility.Visible;
                 _isInShareMode = true;
 
                 //从分享打开后，不能再次分享
@@ -1334,8 +1426,10 @@ namespace MyerMomentUniversal
                 }
 
                 var task2 = ExceptionHelper.WriteRecord(e);
-                MaskGrid.Visibility = Visibility.Collapsed;
-                ErrorGrid.Visibility = Visibility.Visible;
+                ShowLoadingVisibility = Visibility.Collapsed;
+                //MaskGrid.Visibility = Visibility.Collapsed;
+                ShowErrorVisibility = Visibility.Visible;
+                //ErrorGrid.Visibility = Visibility.Visible;
                 _isInErrorMode = true;
             }
         }
@@ -1400,7 +1494,8 @@ namespace MyerMomentUniversal
 
         private void backErrorClick(object sender, RoutedEventArgs e)
         {
-            ErrorGrid.Visibility = Visibility.Collapsed;
+            ShowErrorVisibility = Visibility.Collapsed;
+            ///ErrorGrid.Visibility = Visibility.Collapsed;
             _isInErrorMode = false;
         }
 
@@ -1419,7 +1514,10 @@ namespace MyerMomentUniversal
             }
         }
 
-        private async void ShareToWechatClick(object sender,RoutedEventArgs e)
+#if WINDOWS_PHONE_APP 
+            async 
+ #endif 
+            void ShareToWechatClick(object sender,RoutedEventArgs e)
         {
 #if WINDOWS_PHONE_APP
             try
@@ -1484,14 +1582,15 @@ namespace MyerMomentUniversal
         {
             SaveClick(null, null);
 
-            ErrorGrid.Visibility = Visibility.Collapsed;
+            ShowErrorVisibility = Visibility.Collapsed;
+            //ErrorGrid.Visibility = Visibility.Collapsed;
             _isInErrorMode = false;
 
             LocalSettingHelper.AddValue("QualityCompress", "0");
 
         }
 
-        #endregion
+#endregion
 
         #region Navigate Override
         protected async override void OnNavigatedTo(NavigationEventArgs e)

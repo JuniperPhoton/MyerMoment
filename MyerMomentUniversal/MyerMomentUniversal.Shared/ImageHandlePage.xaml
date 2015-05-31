@@ -798,7 +798,7 @@
             </Grid>
 
 
-            <Grid x:Name="FrameGrid" Visibility="Collapsed" Opacity="0.6">
+            <Grid x:Name="FrameGrid" Visibility="{Binding ShowFrameVisibility}" Opacity="0.6">
                 <Border Background="White" Height="1" VerticalAlignment="Top"/>
                 <Border Background="White" Height="1" VerticalAlignment="Bottom"/>
                 <Border Background="White" Height="1" VerticalAlignment="Center"/>
@@ -838,7 +838,7 @@
 
             <Canvas x:Name="fontCanvas">
                 <Grid x:Name="textGrid1"  Tapped="textGrid1_Tapped"  PointerEntered="TextView1_OnPointerEntered" ManipulationMode="TranslateX,TranslateY" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                    <Grid x:Name="tagGrid1Left" Visibility="Collapsed">
+                    <Grid x:Name="tagGrid1Left">
                         <Path Data="M14.0467,0.998503 L-41.7714,26.1548 L12.7474,51.6232 z" Fill="Black" HorizontalAlignment="Left" Margin="-30.219,10.5,0,10.875" Stretch="Fill" UseLayoutRounding="False" Width="32.219" d:LayoutOverrides="TopPosition, BottomPosition"/>
 
                         <Border BorderBrush="Black" BorderThickness="1" Margin="0,10" Background="Black" CornerRadius="3"/>
@@ -950,18 +950,13 @@
                                 </Path>
                             </Grid>
                         </Button>
-                        <Button Visibility="Collapsed" Click="FrameClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                            <Grid Height="50" Width="50">
-                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                                <SymbolIcon Symbol="ViewAll" Foreground="Black"/>
-                            </Grid>
-                        </Button>
-                        <!--<Button Click="ToggleTagModeClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                        
+                        <Button Click="ToggleTagModeClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="Tag" Foreground="Black"/>
                             </Grid>
-                        </Button>-->
+                        </Button>
                         <Button x:Name="FilterBtn" Click="ToFilterClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
@@ -1355,52 +1350,8 @@
                     <StackPanel Orientation="Vertical">
                         <ScrollViewer x:Name="filterSV"  HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
                             <StackPanel x:Name="filterSP" Orientation="Horizontal" Margin="0,0,10,0">
-                                <!--<Button Click="ApplyFilterClick" Tag="0" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
-                                    <Border Background="White">
-                                        <TextBlock Text="Ori" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                </Button>-->
-                                <!--<Button Click="ApplyFilterClick" Tag="1" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
-                                    <Border Background="White">
-                                        <TextBlock Text="Auto" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                </Button>
-                                <Button Click="ApplyFilterClick" Tag="2" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
-                                    <Border Background="White">
-                                        <TextBlock Text="Cartoon" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                </Button>
-                                <Button Click="ApplyFilterClick" Tag="3" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
-                                    <Border Background="White">
-                                        <TextBlock Text="Color" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                </Button>
-                                <Button Click="ApplyFilterClick" Tag="4" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
-                                    <Border Background="White">
-                                        <TextBlock Text="Gray" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                </Button>
-                                <Button Click="ApplyFilterClick" Tag="5" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
-                                    <Border Background="White">
-                                        <TextBlock Text="Lomo" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                </Button>
-                                <Button Click="ApplyFilterClick" Tag="6" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
-                                    <Border Background="White">
-                                        <TextBlock Text="Mono" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                </Button>
                                 
-                                <Button Click="ApplyFilterClick" Tag="7" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
-                                    <Border Background="White">
-                                        <TextBlock Text="Stamp" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                </Button>
-                                <Button Click="ApplyFilterClick" Tag="8" Width="70" Height="70" Margin="10,10,0,0" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" VerticalAlignment="Top">
-                                    <Border Background="White">
-                                        <TextBlock Text="Water" Foreground="{StaticResource MomentThemeBlack}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                </Button>-->
+                               
                             </StackPanel>
                         </ScrollViewer>
                         <Grid>
@@ -1416,14 +1367,14 @@
 
         </Grid>
 
-        <Grid x:Name="MaskGrid" Grid.Row="0"  Grid.RowSpan="4" Margin="0,-52,0,0" Visibility="Collapsed">
+        <Grid x:Name="MaskGrid" Grid.Row="0"  Grid.RowSpan="4" Margin="0,-52,0,0" Visibility="{Binding ShowLoadingVisibility}" d:IsHidden="True">
             <Border Background="Black" Opacity="0.8"/>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
                 <ProgressRing IsActive="True" HorizontalAlignment="Center" Background="Transparent" Foreground="{StaticResource MomentThemeColor}"/>
                 <TextBlock x:Name="savingTB" Text="Working on saving..." FontSize="30" FontWeight="SemiLight" />
             </StackPanel>
         </Grid>
-        <Grid x:Name="ErrorGrid" Grid.Row="0"  Grid.RowSpan="4" Margin="0,-52,0,0" Visibility="Collapsed">
+        <Grid x:Name="ErrorGrid" Grid.Row="0"  Grid.RowSpan="4" Margin="0,-52,0,0" Visibility="{Binding ShowErrorVisibility}" d:IsHidden="True">
             <Border Background="Black" Opacity="0.8"/>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Orientation="Vertical">
                 <TextBlock VerticalAlignment="Center" x:Name="errorTB" Text="ERROR :-(" FontSize="40" HorizontalAlignment="Center" FontWeight="ExtraBlack" />
@@ -1440,7 +1391,7 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid x:Name="ShareGrid"  Margin="0,-52,0,0" Visibility="Collapsed" Grid.Row="0"  Grid.RowSpan="6">
+        <Grid x:Name="ShareGrid"  Margin="0,-52,0,0" Visibility="{Binding ShowShareVisibility}" Grid.Row="0"  Grid.RowSpan="6" d:IsHidden="True">
             <Border Background="Black" Opacity="0.8"/>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Orientation="Vertical">
                 <TextBlock x:Name="savedTB" HorizontalAlignment="Center" Text="Photo saved :D" FontSize="30" />
