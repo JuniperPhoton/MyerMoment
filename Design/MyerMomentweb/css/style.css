@@ -74,7 +74,9 @@ p {
 
 .btnp {
     margin: 0;
+    
     display: block;float:left;margin-top:15px;margin-left:30px;
+    
 }
 
 .btnimage {
@@ -169,7 +171,7 @@ body{
 .title {
     font-weight: 700;
     color: white;
-    font-family: Microsoft YaHei Light;
+    font-family: Microsoft YaHei;
     margin-left: -5;
     margin-top: 200px;
     font-size: 30px;
@@ -177,8 +179,29 @@ body{
     
     
 }
+@media screen and (min-width:1081px){
+    #div3_text_to_pic{
+        display: none;
+    }
+}
 
 @media screen and (min-width:0px) and (max-width: 1080px) { 
+    #div3_pic_to_text{
+        display: none;
+        
+    }
+    #div3_text_to_pic{
+        display: block;
+    }
+    .bodydiv{
+        background: #222222;
+    }
+    .div1{
+        background: #222222;
+    }
+    .div2{
+        background: #222222;
+    }
     .content1{
         width:80%;
         font-size: 20px;

@@ -22,7 +22,7 @@ namespace MyerMomentUniversal.Model
 {
     public class MomentStyle:ViewModelBase
     {
-        private const int BACKGRDIMAGE_NUM = 17;
+        private const int BACKGRDIMAGE_NUM = 19;
 
         private Uri thumbUri;
         private Uri fullSizeUri;

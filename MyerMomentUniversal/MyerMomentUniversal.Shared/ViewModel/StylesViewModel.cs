@@ -196,6 +196,14 @@ namespace MyerMomentUniversal.ViewModel
             {
                 //await tcs.Task;
 
+                if (styles == null)
+                {
+                    IsLoadingVisibility = Visibility.Collapsed;
+                    NoItemsVisibility = Visibility.Visible;
+                    return;
+                }
+                
+
                 IsLoadingVisibility = Visibility.Visible;
                 NewStyles = new ObservableCollection<MomentStyle>();
 

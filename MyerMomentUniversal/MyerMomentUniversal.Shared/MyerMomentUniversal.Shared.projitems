@@ -58,6 +58,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\15.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\16.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\17.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\18.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\19.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\2.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\3.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\4.jpg" />

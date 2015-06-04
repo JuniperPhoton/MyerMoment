@@ -838,7 +838,7 @@
 
             <Canvas x:Name="fontCanvas">
                 <Grid x:Name="textGrid1"  Tapped="textGrid1_Tapped"  PointerEntered="TextView1_OnPointerEntered" ManipulationMode="TranslateX,TranslateY" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                    <Grid x:Name="tagGrid1Left">
+                    <Grid x:Name="tagGrid1Left" Visibility="Collapsed">
                         <Path Data="M14.0467,0.998503 L-41.7714,26.1548 L12.7474,51.6232 z" Fill="Black" HorizontalAlignment="Left" Margin="-30.219,10.5,0,10.875" Stretch="Fill" UseLayoutRounding="False" Width="32.219" d:LayoutOverrides="TopPosition, BottomPosition"/>
 
                         <Border BorderBrush="Black" BorderThickness="1" Margin="0,10" Background="Black" CornerRadius="3"/>
@@ -951,7 +951,7 @@
                             </Grid>
                         </Button>
                         
-                        <Button Click="ToggleTagModeClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                        <Button Click="ToggleTagModeClick" Visibility="Collapsed" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="Tag" Foreground="Black"/>
