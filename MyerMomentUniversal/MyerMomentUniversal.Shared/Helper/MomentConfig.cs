@@ -31,6 +31,11 @@ namespace MyerMomentUniversal.Helper
                 LocalSettingHelper.AddValue("TileColor", "1");
             }
 
+            if(!LocalSettingHelper.IsExist("NewStyle"))
+            {
+                LocalSettingHelper.AddValue("NewStyle", "1");
+            }
+
         }
     }
 }

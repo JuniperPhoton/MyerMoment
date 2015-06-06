@@ -745,14 +745,307 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Name="StyleHintStory" RepeatBehavior="Forever" AutoReverse="False">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="10"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="ShowMoreStory">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border1">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border2">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border3">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border4">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border5">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border6">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.8">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border2">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border3">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border4">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border5">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border6">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-40"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid2">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
     </Page.Resources>
 
     <Grid Background="{StaticResource MomentThemeBlack}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition />
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
             <Grid Background="{StaticResource MomentThemeColor}">
@@ -774,6 +1067,7 @@
         <Grid x:Name="blackGrid" Grid.Row="0" Tapped="TapMask" Grid.RowSpan="4" Visibility="Collapsed" Margin="0,-32,0,0">
             <Border Background="Black" Opacity="0.7"/>
         </Grid>
+
         <Grid x:Name="renderGrid" Grid.Row="1" Grid.RowSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,30" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <CompositeTransform/>
@@ -837,12 +1131,12 @@
             </Canvas>
 
             <Canvas x:Name="fontCanvas">
-                <Grid x:Name="textGrid1"  Tapped="textGrid1_Tapped"  PointerEntered="TextView1_OnPointerEntered" ManipulationMode="TranslateX,TranslateY" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <Grid x:Name="textGrid1" Tapped="textGrid1_Tapped"  PointerEntered="TextView1_OnPointerEntered" ManipulationMode="TranslateX,TranslateY" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
                     <Grid x:Name="tagGrid1Left" Visibility="Collapsed">
                         <Path Data="M14.0467,0.998503 L-41.7714,26.1548 L12.7474,51.6232 z" Fill="Black" HorizontalAlignment="Left" Margin="-30.219,10.5,0,10.875" Stretch="Fill" UseLayoutRounding="False" Width="32.219" d:LayoutOverrides="TopPosition, BottomPosition"/>
 
                         <Border BorderBrush="Black" BorderThickness="1" Margin="0,10" Background="Black" CornerRadius="3"/>
-                        <Ellipse Fill="{StaticResource MomentThemeColor}" Margin="-20,0,78,0" Width="20" Height="20" Stroke="#FF373737" StrokeThickness="4" HorizontalAlignment="Left"/>
+                        <Ellipse Fill="{StaticResource MomentThemeColor}" Margin="-20,0,78,0" Width="18" Height="18" Stroke="#FF373737" StrokeThickness="3" HorizontalAlignment="Left"/>
 
                     </Grid>
                     <Grid x:Name="tagGrid1Right" Visibility="Collapsed">
@@ -867,10 +1161,29 @@
                         <Ellipse Width="6" Height="6" HorizontalAlignment="Center" Fill="White" Stroke="White" VerticalAlignment="Top" Margin="0,-3,0,0"/>
 
                     </Grid>
-                    <TextBox x:Name="TextView1" IsEnabled="False" FontSize="30" AcceptsReturn="True" Background="Transparent" BorderThickness="0"   VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to edit" FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" Margin="0" InputScope="Chat"/>
-                    <Border x:Name="maskBorder1" Background="Black" Opacity="0.01"/>
+                    <TextBox x:Name="TextView1" IsEnabled="False" FontSize="24" AcceptsReturn="True" Background="Transparent" BorderThickness="0"   VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to edit" FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" Margin="0,5,0,0" InputScope="Chat"/>
+                    <Border x:Name="maskBorder1" Background="Black" Opacity="0.001"/>
                 </Grid>
-                <Grid x:Name="textGrid2" Tapped="textGrid2_Tapped" PointerEntered="TextView2_OnPointerEntered" ManipulationMode="TranslateX,TranslateY"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+                <Grid x:Name="textGrid2" Tapped="textGrid2_Tapped" PointerEntered="TextView2_OnPointerEntered" ManipulationMode="TranslateX,TranslateY"  HorizontalAlignment="Center" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
+                    <Grid x:Name="tagGrid2Left" Visibility="Collapsed">
+                        <Path Data="M14.0467,0.998503 L-41.7714,26.1548 L12.7474,51.6232 z" Fill="Black" HorizontalAlignment="Left" Margin="-30.219,10.5,0,10.875" Stretch="Fill" UseLayoutRounding="False" Width="32.219" d:LayoutOverrides="TopPosition, BottomPosition"/>
+
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="0,10" Background="Black" CornerRadius="3"/>
+                        <Ellipse Fill="{StaticResource MomentThemeColor}" Margin="-20,0,78,0" Width="20" Height="20" Stroke="#FF373737" StrokeThickness="4" HorizontalAlignment="Left"/>
+
+                    </Grid>
+                    <Grid x:Name="tagGrid2Right" Visibility="Collapsed">
+                        <Path Data="M14.0467,0.998503 L-41.7714,26.1548 L12.7474,51.6232 z" Fill="Black" HorizontalAlignment="Right" Margin="0,10.724,-30.589,10.318" Stretch="Fill" UseLayoutRounding="False" Width="32.219" d:LayoutOverrides="TopPosition, BottomPosition" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <CompositeTransform Rotation="180"/>
+                            </Path.RenderTransform>
+                        </Path>
+
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="0,10" Background="Black" CornerRadius="3"/>
+                        <Ellipse Fill="{StaticResource MomentThemeColor}" Margin="0,0,-15,0" Width="20" Height="20" Stroke="#FF373737" StrokeThickness="4" HorizontalAlignment="Right"/>
+
+                    </Grid>
+
                     <Grid x:Name="textFrame2" Visibility="Collapsed">
                         <Border Background="White" Height="1" VerticalAlignment="Top"/>
                         <Border Background="White" Height="1" VerticalAlignment="Bottom"/>
@@ -882,10 +1195,29 @@
                         <Ellipse Width="6" Height="6" HorizontalAlignment="Center" Fill="White" Stroke="White" VerticalAlignment="Top" Margin="0,-3,0,0"/>
 
                     </Grid>
-                    <TextBox x:Name="TextView2" FontSize="30"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to write sth." FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial"  Margin="0" InputScope="Chat"/>
+                    <TextBox x:Name="TextView2" FontSize="18"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to write sth." FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial"  Margin="0,5,0,0" InputScope="Chat"/>
                     <Border x:Name="maskBorder2" Background="Black" Opacity="0.01"/>
                 </Grid>
                 <Grid x:Name="textGrid3"  Tapped="textGrid3_Tapped" PointerEntered="TextView3_OnPointerEntered" ManipulationMode="TranslateX,TranslateY"  HorizontalAlignment="Center" VerticalAlignment="Top" Visibility="Collapsed"  RenderTransformOrigin="0.5,0.5">
+                    <Grid x:Name="tagGrid3Left" Visibility="Collapsed">
+                        <Path Data="M14.0467,0.998503 L-41.7714,26.1548 L12.7474,51.6232 z" Fill="Black" HorizontalAlignment="Left" Margin="-30.219,10.5,0,10.875" Stretch="Fill" UseLayoutRounding="False" Width="32.219" d:LayoutOverrides="TopPosition, BottomPosition"/>
+
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="0,10" Background="Black" CornerRadius="3"/>
+                        <Ellipse Fill="{StaticResource MomentThemeColor}" Margin="-20,0,78,0" Width="20" Height="20" Stroke="#FF373737" StrokeThickness="4" HorizontalAlignment="Left"/>
+
+                    </Grid>
+                    <Grid x:Name="tagGrid3Right" Visibility="Collapsed">
+                        <Path Data="M14.0467,0.998503 L-41.7714,26.1548 L12.7474,51.6232 z" Fill="Black" HorizontalAlignment="Right" Margin="0,10.724,-30.589,10.318" Stretch="Fill" UseLayoutRounding="False" Width="32.219" d:LayoutOverrides="TopPosition, BottomPosition" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <CompositeTransform Rotation="180"/>
+                            </Path.RenderTransform>
+                        </Path>
+
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="0,10" Background="Black" CornerRadius="3"/>
+                        <Ellipse Fill="{StaticResource MomentThemeColor}" Margin="0,0,-15,0" Width="20" Height="20" Stroke="#FF373737" StrokeThickness="4" HorizontalAlignment="Right"/>
+
+                    </Grid>
+
                     <Grid x:Name="textFrame3" Visibility="Collapsed">
                         <Border Background="White" Height="1" VerticalAlignment="Top"/>
                         <Border Background="White" Height="1" VerticalAlignment="Bottom"/>
@@ -897,7 +1229,7 @@
                         <Ellipse Width="6" Height="6" HorizontalAlignment="Center" Fill="White" Stroke="White" VerticalAlignment="Top" Margin="0,-3,0,0"/>
 
                     </Grid>
-                    <TextBox x:Name="TextView3" FontSize="30"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Stretch" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to write sth."  FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" Margin="0" InputScope="Chat"/>
+                    <TextBox x:Name="TextView3" FontSize="18"   AcceptsReturn="True" Background="Transparent" BorderThickness="0"  VerticalAlignment="Center" Foreground="White" Style="{StaticResource TextBoxStyle1}" PlaceholderText="Tap to write sth."  FontFamily="Font/TpldKhangXiDictTrial.otf#TypeLand KhangXi Dict Trial" Margin="0,5,0,0" InputScope="Chat"/>
                     <Border x:Name="maskBorder3" Background="Black" Opacity="0.01"/>
                 </Grid>
                 <Grid x:Name="styleImageGrid" ManipulationMode="TranslateX,TranslateY" PointerEntered="StyleView_OnPointerEntered" RenderTransformOrigin="0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -912,31 +1244,46 @@
                         <Ellipse Width="6" Height="6" HorizontalAlignment="Center" Fill="White" Stroke="White" VerticalAlignment="Top" Margin="0,-3,0,0"/>
 
                     </Grid>
-                    <Image x:Name="styleImage" Width="120" Source="Asset/along.png"  />
+                    <Image x:Name="styleImage" Width="80" Source="Asset/along.png"  />
 
                 </Grid>
 
 
             </Canvas>
 
-            <ProgressRing x:Name="ring"  VerticalAlignment="Center" HorizontalAlignment="Center" IsActive="True" Background="{x:Null}" Foreground="{StaticResource MomentThemeColor}"/>
+            <ProgressRing x:Name="ring"  VerticalAlignment="Center" HorizontalAlignment="Center" IsActive="False" Background="{x:Null}" Foreground="{StaticResource MomentThemeColor}"/>
+        </Grid>
+        <Grid x:Name="grid2" Grid.Row="1">
+            <ProgressBar x:Name="progressBar" Visibility="Collapsed" VerticalAlignment="Top" Margin="0,10,0,0" IsIndeterminate="True"/>
         </Grid>
         <Grid x:Name="grid" Grid.Row="2" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
                 <CompositeTransform/>
             </Grid.RenderTransform>
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
 
-                <ScrollViewer HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
+                <ScrollViewer HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible" VerticalAlignment="Bottom">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Click="ToRotateClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
+                                <Border x:Name="border" Height="20" BorderBrush="{StaticResource MomentThemeColor}" RenderTransformOrigin="0.5,0.5" BorderThickness="2" Visibility="Collapsed">
+                                    <Border.RenderTransform>
+                                        <CompositeTransform/>
+                                    </Border.RenderTransform>
+                                    <TextBlock Text="Rorate" RenderTransformOrigin="0.5,0.5" Foreground="{StaticResource MomentThemeColor}" FontSize="13.333" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal"/>
+                                </Border>
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="Rotate" Foreground="Black"/>
                             </Grid>
                         </Button>
                         <Button x:Name="CropBtn"  Click="ToCropClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
+                                <Border x:Name="border1" Height="20" BorderBrush="{StaticResource MomentThemeColor}" RenderTransformOrigin="0.5,0.5" BorderThickness="2" Visibility="Collapsed">
+                                    <Border.RenderTransform>
+                                        <CompositeTransform/>
+                                    </Border.RenderTransform>
+                                    <TextBlock Text="Crop" RenderTransformOrigin="0.5,0.5" Foreground="{StaticResource MomentThemeColor}" FontSize="13.333" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal"/>
+                                </Border>
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <Path Width="20" Height="20" Data="M282.837,258.174L282.837,499.861 493.409,499.861 493.409,258.174z M149.125,0L282.837,0 282.837,136.122 627.162,136.122 627.162,499.861 777.764,499.861 777.764,621.913 628.641,621.913 628.641,758 494.965,758 494.965,621.913 149.125,621.913 149.125,258.174 0,258.174 0,136.122 149.125,136.122z" Stretch="Uniform" Fill="Black"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
                                     <Path.RenderTransform>
@@ -950,27 +1297,43 @@
                                 </Path>
                             </Grid>
                         </Button>
-                        
-                        <Button Click="ToggleTagModeClick" Visibility="Collapsed" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
-                            <Grid Height="50" Width="50">
-                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
-                                <SymbolIcon Symbol="Tag" Foreground="Black"/>
-                            </Grid>
-                        </Button>
+
+
                         <Button x:Name="FilterBtn" Click="ToFilterClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
+                                <Border x:Name="border2" Height="20" BorderBrush="{StaticResource MomentThemeColor}" RenderTransformOrigin="0.5,0.5" BorderThickness="2" Visibility="Collapsed">
+                                    <Border.RenderTransform>
+                                        <CompositeTransform/>
+                                    </Border.RenderTransform>
+                                    <TextBlock Text="Filter" RenderTransformOrigin="0.5,0.5" Foreground="{StaticResource MomentThemeColor}" FontSize="13.333" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal"/>
+                                </Border>
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="Filter" Foreground="Black"/>
                             </Grid>
                         </Button>
                         <Button x:Name="MoreLineBtn" Click="fontLineClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
+                                <Border x:Name="border3" Height="20" BorderBrush="{StaticResource MomentThemeColor}" RenderTransformOrigin="0.5,0.5" BorderThickness="2" Visibility="Collapsed">
+                                    <Border.RenderTransform>
+                                        <CompositeTransform/>
+                                    </Border.RenderTransform>
+                                    <TextBlock Text="More" RenderTransformOrigin="0.5,0.5" Foreground="{StaticResource MomentThemeColor}" FontSize="13.333" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal"/>
+                                </Border>
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="Bullets" Foreground="Black"/>
                             </Grid>
                         </Button>
-                        <Button Click="ToStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
+                        <Button x:Name="button" Click="ToStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
+                            <Button.RenderTransform>
+                                <CompositeTransform/>
+                            </Button.RenderTransform>
                             <Grid Height="50" Width="50">
+                                <Border x:Name="border4" Height="20" BorderBrush="{StaticResource MomentThemeColor}" RenderTransformOrigin="0.5,0.5" BorderThickness="2" Visibility="Collapsed">
+                                    <Border.RenderTransform>
+                                        <CompositeTransform/>
+                                    </Border.RenderTransform>
+                                    <TextBlock Text="Style" RenderTransformOrigin="0.5,0.5" Foreground="{StaticResource MomentThemeColor}" FontSize="13.333" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal"/>
+                                </Border>
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="Favorite" Foreground="Black"/>
                             </Grid>
@@ -978,16 +1341,37 @@
 
                         <Button x:Name="increaseStyleBtn" Visibility="Collapsed" Click="IncreaseStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
+                                <Border x:Name="border5" Height="20" BorderBrush="{StaticResource MomentThemeColor}" RenderTransformOrigin="0.5,0.5" BorderThickness="2" Visibility="Collapsed">
+                                    <Border.RenderTransform>
+                                        <CompositeTransform/>
+                                    </Border.RenderTransform>
+                                    <TextBlock Text="Increase" RenderTransformOrigin="0.5,0.5" Foreground="{StaticResource MomentThemeColor}" FontSize="13.333" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal"/>
+                                </Border>
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="FontIncrease" Foreground="Black"/>
                             </Grid>
                         </Button>
                         <Button x:Name="decreaseStyleBtn" Visibility="Collapsed" Click="DecreaseStyleClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch">
                             <Grid Height="50" Width="50">
+                                <Border x:Name="border6" Height="20" BorderBrush="{StaticResource MomentThemeColor}" RenderTransformOrigin="0.5,0.5" BorderThickness="2" Visibility="Collapsed">
+                                    <Border.RenderTransform>
+                                        <CompositeTransform/>
+                                    </Border.RenderTransform>
+                                    <TextBlock Text="Decrease" RenderTransformOrigin="0.5,0.5" Foreground="{StaticResource MomentThemeColor}" FontSize="13.333" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal"/>
+                                </Border>
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="FontDecrease" Foreground="Black"/>
                             </Grid>
                         </Button>
+                        <!--<Button x:Name="morebtn" Click="ShowMoreClick" Style="{StaticResource ButtonStyle1}" HorizontalAlignment="Stretch" BorderThickness="0" MinHeight="30" MinWidth="30" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5">
+                            <Button.RenderTransform>
+                                <CompositeTransform/>
+                            </Button.RenderTransform>
+                            <Grid Height="50" Width="50">
+                                <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
+                                <SymbolIcon Symbol="more" Foreground="Black"/>
+                            </Grid>
+                        </Button>-->
                     </StackPanel>
                 </ScrollViewer>
             </StackPanel>
@@ -1132,7 +1516,7 @@
                 </ScrollViewer>
             </StackPanel>
         </Grid>
-        <Grid x:Name="contentGrid" Height="260" Grid.Row="0" Grid.RowSpan="4" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Margin="0" Background="#FFE0E0E0" d:IsHidden="True" >
+        <Grid x:Name="contentGrid" Height="260" Grid.Row="0" Grid.RowSpan="4" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Bottom" Margin="0" Background="#FFE0E0E0" >
             <Grid.RenderTransform>
                 <CompositeTransform TranslateY="400"/>
             </Grid.RenderTransform>
@@ -1144,6 +1528,13 @@
                         <TextBox Text=""  x:Name="contentTB" AcceptsReturn="True" TextChanged="conentChanged"  Foreground="{StaticResource MomentThemeBlack}" FontSize="20" Margin="10,5,10,10" FontFamily="Segoe WP" InputScope="Chat"/>
                         <ScrollViewer x:Name="colorSV" HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Hidden">
                             <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+
+                                <Button Click="ToggleTagModeClick"   Width="50" Height="50"  Margin="5" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <Border Background="{StaticResource MomentThemeColor}">
+                                        <SymbolIcon Symbol="Tag" Foreground="Black" RenderTransformOrigin="0.5,0.5"/>
+                                    </Border>
+                                </Button>
+
                                 <Button Click="IncreaseFontsizeClick" Width="50" Height="50" Margin="0,5,5,5" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <Border Background="#FFD6D6D6">
                                         <SymbolIcon Symbol="FontIncrease" Foreground="Black"/>
@@ -1159,6 +1550,7 @@
                                         <SymbolIcon Symbol="Rotate" Foreground="Black" RenderTransformOrigin="0.5,0.5"/>
                                     </Border>
                                 </Button>
+
                                 <Button Click="FontColorClick"  Margin="10,0,0,0" Height="50" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
                                     <Border Background="White" />
                                 </Button>
@@ -1181,16 +1573,11 @@
                                     <Border Background="#FFFBF00A" />
                                 </Button>
                                 <Button Click="FontColorClick" Margin="0,0,0,0" Grid.Column="1" Height="50" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
-                                    <Border Background="#FFACF133" />
+                                    <Border Background="#FFA5D355" />
                                 </Button>
+
                                 <Button Click="FontColorClick" Margin="0,0,0,0" Grid.Column="1" Height="50" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
-                                    <Border Background="#FF6CFF35" />
-                                </Button>
-                                <Button Click="FontColorClick" Margin="0,0,0,0" Grid.Column="1" Height="50" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
-                                    <Border Background="#FF2CE860" />
-                                </Button>
-                                <Button Click="FontColorClick" Margin="0,0,0,0" Grid.Column="1" Height="50" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
-                                    <Border Background="#FF14E460" />
+                                    <Border Background="#FF14E487" />
                                 </Button>
                                 <Button Click="FontColorClick" Margin="0,0,0,0" Grid.Column="1" Height="50" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
                                     <Border Background="#FF14D1E4" />
@@ -1213,17 +1600,15 @@
                                 <Button Click="FontColorClick" Margin="0,0,0,0" Grid.Column="1" Height="50" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
                                     <Border Background="#FF723DB2" />
                                 </Button>
+
                                 <Button Click="FontColorClick" Margin="0,0,0,0" Grid.Column="1" Height="50" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
-                                    <Border Background="#FFB514E4" />
+                                    <Border Background="#FFCA68B8" />
                                 </Button>
                                 <Button Click="FontColorClick" Margin="0,0,0,0" Grid.Column="1" Height="50" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
-                                    <Border Background="#FFC330A8" />
+                                    <Border Background="#FFCA4C74" />
                                 </Button>
                                 <Button Click="FontColorClick" Margin="0,0,0,0" Grid.Column="1" Height="50" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
-                                    <Border Background="#FFE41456" />
-                                </Button>
-                                <Button Click="FontColorClick" Margin="0,0,0,0" Grid.Column="1" Height="50" Width="30" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="20" MinWidth="20" Style="{StaticResource ButtonStyle2}">
-                                    <Border Background="#FFE41414" />
+                                    <Border Background="Red" />
                                 </Button>
                             </StackPanel>
 
@@ -1232,10 +1617,16 @@
                             <ScrollViewer x:Name="familySV"  HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto" Background="#FFE0E0E0">
                                 <StackPanel Orientation="Horizontal">
                                     <Button  Click="FontFamilyClick" Margin="10,0,0,0" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch"  >
-                                        <TextBlock Text="Segoe WP" Foreground="Black" FontSize="20"/>
+                                        <TextBlock Text="Segoe" Foreground="Black" FontSize="20"/>
+                                    </Button>
+                                    <Button Click="FontFamilyClick"  Margin="10,0,0,0" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch"  >
+                                        <TextBlock Text="BLKCHCRY" Foreground="Black" FontFamily="Font/blockline.ttf#Blockline" FontSize="20" VerticalAlignment="Center"/>
                                     </Button>
                                     <Button Click="FontFamilyClick"  Margin="10,0,0,0" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Row="1"  >
                                         <TextBlock Text="FROZEN" Foreground="Black" FontFamily="Font/Frozen.ttf#Frozen" FontSize="20"/>
+                                    </Button>
+                                    <Button Click="FontFamilyClick" Margin="10,0,0,0" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
+                                        <TextBlock Text="MEPHISTO" Foreground="Black" FontFamily="Font/MEPHISTO.TTF#Mephisto™" FontSize="20"/>
                                     </Button>
                                     <Button Click="FontFamilyClick" Margin="10,0,0,0" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
                                         <TextBlock Text="NORWESTER" Foreground="Black" FontFamily="Font/norwester.otf#Norwester" FontSize="20"/>
@@ -1247,7 +1638,7 @@
                                         <TextBlock Text="Penna" Foreground="Black" FontFamily="Font/penna.otf#Penna" FontSize="20"/>
                                     </Button>
                                     <Button Click="FontFamilyClick"  Margin="10,0,0,0" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
-                                        <TextBlock Text="Thank you" Foreground="Black" FontFamily="Font/Thank you Drf.ttf#Thank you Drf" FontSize="20"/>
+                                        <TextBlock Text="Og" Foreground="Black" FontFamily="Font/Og.TTF#Ogilvie" FontSize="20"/>
                                     </Button>
                                     <Button Click="FontFamilyClick"  Margin="10,0,0,0" MinHeight="10" BorderThickness="0" Style="{StaticResource ButtonStyle2}" MinWidth="10" HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1"  >
                                         <TextBlock Text="Blockline" Foreground="Black" FontFamily="Font/blockline.ttf#Blockline" FontSize="20"/>
@@ -1350,8 +1741,8 @@
                     <StackPanel Orientation="Vertical">
                         <ScrollViewer x:Name="filterSV"  HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Visible">
                             <StackPanel x:Name="filterSP" Orientation="Horizontal" Margin="0,0,10,0">
-                                
-                               
+
+
                             </StackPanel>
                         </ScrollViewer>
                         <Grid>
@@ -1391,31 +1782,33 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid x:Name="ShareGrid"  Margin="0,-52,0,0" Visibility="{Binding ShowShareVisibility}" Grid.Row="0"  Grid.RowSpan="6" d:IsHidden="True">
+        <Grid x:Name="ShareGrid"  Margin="0,-52,0,0" Visibility="{Binding ShowShareVisibility}" Grid.Row="0"  Grid.RowSpan="6">
             <Border Background="Black" Opacity="0.8"/>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch" Orientation="Vertical">
+            <StackPanel MaxWidth="500" VerticalAlignment="Center" HorizontalAlignment="Stretch" Orientation="Vertical">
                 <TextBlock x:Name="savedTB" HorizontalAlignment="Center" Text="Photo saved :D" FontSize="30" />
-                <Button  x:Name="shareToWeiboBtn"  Click="ShareToWeiboClick" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
-                    <Border Background="{StaticResource MomentThemeColor}">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <!--<Image Source="Asset/Icon/weibo.png" Width="30" Height="30"/>-->
-                            <TextBlock x:Uid="shareToWeiboTB" Foreground="{StaticResource MomentThemeBlack}" Text="SHARE TO WEIBO" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
-                        </StackPanel>
-                    </Border>
-                </Button>
+
+
                 <Button x:Name="shareToWechatBtn" Click="ShareToWechatClick"  Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
-                    <Border Background="#FFFFDC7F">
+                    <Border Background="#FF2FD9B7">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <!--<Image Source="Asset/Icon/wechat.png" Width="30" Height="30"/>-->
                             <TextBlock x:Uid="shareToWechatTB" Foreground="{StaticResource MomentThemeBlack}" Text="SHARE TO WECHAT" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
                         </StackPanel>
                     </Border>
                 </Button>
-                <!--<Button Click="ShareToSystemClick" x:Name="systemBtn" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
-                    <Border Background="#FFFFD360">
+                <Button Click="ShareToSystemClick" x:Name="systemBtn" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
+                    <Border Background="{StaticResource MomentThemeColor}">
                         <TextBlock x:Uid="systemShareTB" Foreground="{StaticResource MomentThemeBlack}" Text="SHARE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
-                </Button>-->
+                </Button>
+                <Button  x:Name="shareToWeiboBtn"  Click="ShareToWeiboClick" Height="50" MinHeight="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
+                    <Border Background="#FFFFE59F">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <!--<Image Source="Asset/Icon/weibo.png" Width="30" Height="30"/>-->
+                            <TextBlock x:Uid="shareToWeiboTB" Foreground="{StaticResource MomentThemeBlack}" Text="SHARE TO WEIBO" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0"/>
+                        </StackPanel>
+                    </Border>
+                </Button>
                 <Button x:Name="backHomeBtn" Click="BackHomeClick" Height="50" MinHeight="10"  Background="White" Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
                     <Border Background="White">
                         <TextBlock x:Name="backhomeTB" Foreground="{StaticResource MomentThemeBlack}" Text="BACK TO HOME" HorizontalAlignment="Center" VerticalAlignment="Center"/>

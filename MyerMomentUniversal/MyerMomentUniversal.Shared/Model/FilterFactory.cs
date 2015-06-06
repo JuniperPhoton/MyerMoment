@@ -18,14 +18,13 @@ namespace MyerMomentUniversal.Model
         {
             switch(kind)
             {
-                case FilterKind.AutoEnhanceFilter: return new List<IFilter>(){new AutoEnhanceFilter()};
                 case FilterKind.BlurFilter: return new List<IFilter>(){new BlurFilter(50)};
                 case FilterKind.ColorBoostFilter: return  new List<IFilter>(){new ColorBoostFilter(0.7)};
                 case FilterKind.CartoonFilter: return  new List<IFilter>(){new CartoonFilter()};
                 case FilterKind.GrayscaleFilter: return  new List<IFilter>(){new GrayscaleFilter()};
+                case FilterKind.ExposureFilter:return new List<IFilter>() { new ExposureFilter(ExposureMode.Gamma,0.2)};
                 case FilterKind.LomoFilter: return  new List<IFilter>(){new LomoFilter()};
                 case FilterKind.NoiseFilter: return  new List<IFilter>(){new NoiseFilter(NoiseLevel.Medium)};
-                case FilterKind.OilyFilter: return  new List<IFilter>(){new OilyFilter(OilBrushSize.Small)};
                 case FilterKind.SunFilter: return new List<IFilter>() { new LomoFilter(), new LomoFilter(0.3, 0.2, LomoVignetting.Low, LomoStyle.Yellow) };
                 default: return new List<IFilter>(){new AutoEnhanceFilter()};
             }
@@ -36,13 +35,12 @@ namespace MyerMomentUniversal.Model
             FilterList = new List<string>();
 
             FilterList.Add("Original");
-            FilterList.Add("Auto");
             FilterList.Add("Cartoon");
             FilterList.Add("Gray");
+            FilterList.Add("Exposure");
             FilterList.Add("Lomo");
             FilterList.Add("Sun");
             FilterList.Add("Noise");
-            FilterList.Add("Oily");
             FilterList.Add("Blur");
             FilterList.Add("Boost");
 

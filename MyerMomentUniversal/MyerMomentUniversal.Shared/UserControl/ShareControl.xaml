@@ -16,11 +16,11 @@
         <StackPanel MaxWidth="500" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock x:Uid="TitleTB" x:Name="TileTB" Text="Share to Weibo" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button Click="ShareToSystemClick" x:Name="systemBtn" MinHeight="10" MinWidth="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
+                <!--<Button Click="ShareToSystemClick" x:Name="systemBtn" MinHeight="10" MinWidth="10"  Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10" HorizontalAlignment="Stretch">
                     <Border>
                         <TextBlock x:Uid="systemShareTB" Foreground="{StaticResource MomentThemeColor}" Text="OTHER" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
-                </Button>
+                </Button>-->
             </StackPanel>
             <TextBox x:Uid="contentTB" x:Name="contentTB" Margin="10,0,10,0" MaxLength="150" Height="150" PlaceholderText="What do you want to share?" InputScope="Chat" TextWrapping="Wrap"/>
             <Button x:Uid="shareBtn"  HorizontalAlignment="Stretch" Click="shareClick" Height="50" MinHeight="10"  Background="White" Style="{StaticResource ButtonStyle2}" BorderThickness="0" Margin="10,10,10,0">

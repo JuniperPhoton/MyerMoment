@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json.Linq;
 using Windows.ApplicationModel;
 using Windows.Storage.Streams;
+using JP.Utils.Data;
 
 namespace MyerMomentUniversal.ViewModel
 {
@@ -257,6 +258,8 @@ namespace MyerMomentUniversal.ViewModel
                 {
                     NewStyles.Remove(style);
                     PackageStyles.Insert(0, style);
+
+                    LocalSettingHelper.AddValue("NewStyle", "1");
 
                     if(NewStyles.Count==0)
                     {

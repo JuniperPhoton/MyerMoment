@@ -31,6 +31,7 @@ using System.IO;
 using Windows.Storage.Streams;
 using System.Net.Http;
 using System.ComponentModel;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace MyerMomentUniversal
 {
@@ -49,7 +50,11 @@ namespace MyerMomentUniversal
         private bool _isInFilterMode = false;
         private bool _isInExitMode = false;
         private bool _isInRotateMode = false;
-        private TagCat _tagMode = TagCat.Disable;
+        private TagCat _tag1Mode = TagCat.Disable;
+        private TagCat _tag2Mode = TagCat.Disable;
+        private TagCat _tag3Mode = TagCat.Disable;
+
+        private TagCat _currentTagMode;
 
         private bool _isFromShareTarget = false;
         #endregion
@@ -61,10 +66,18 @@ namespace MyerMomentUniversal
         private double _text2Angle = 0;
         private double _text3Angle = 0;
 
-        private Size _styleSize = new Size(0, 0);
-
         private TextBox _currentTextBox = null;
         private int _currentTextViewFlag = 1;
+
+        private Size _styleCurrentSize = new Size(0, 0);
+        private Size _styleOriSize = new Size(0, 0);
+
+        private Size _text1CurrentSize = new Size(0, 0);
+
+        private Size _text2CurrentSize = new Size(0, 0);
+
+        private Size _text3CurrentSize = new Size(0, 0);
+
 
         //用于样式和文字的手势
         private CompositeTransform _compositeTransform1 = new CompositeTransform();
@@ -79,7 +92,6 @@ namespace MyerMomentUniversal
 
         //传进来的源文件
         private StorageFile sourceImageFileCopy = null;
-        //private StorageFile afterCropImageFile = null;
         string tempFileName = "";
 
         private FilterKind currentFilter = FilterKind.Original;
@@ -208,6 +220,9 @@ namespace MyerMomentUniversal
             this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
             styleImageGrid.SizeChanged += StyleImageGrid_SizeChanged;
+            textGrid1.SizeChanged += TextGrid1_SizeChanged;
+            textGrid2.SizeChanged += TextGrid2_SizeChanged;
+            textGrid3.SizeChanged += TextGrid3_SizeChanged;
 
 #if WINDOWS_PHONE_APP
             StatusBar.GetForCurrentView().ForegroundColor = (App.Current.Resources["MomentThemeBlack"] as SolidColorBrush).Color;
@@ -227,9 +242,37 @@ namespace MyerMomentUniversal
             ShowLoadingVisibility = Visibility.Collapsed;
         }
 
+        private void TextGrid3_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            _text3CurrentSize = e.NewSize;
+        }
+
+        private void TextGrid2_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            _text2CurrentSize = e.NewSize;
+        }
+
+        private void TextGrid1_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            _text1CurrentSize = e.NewSize;
+
+            var currentleft = Canvas.GetLeft(textGrid1);
+            if(currentleft>(fontCanvas.ActualWidth-_text1CurrentSize.Width))
+            {
+                DecreaseFontsizeClick(null, null);
+            }
+        }
+
+
+        /// <summary>
+        /// 换样式的时候发生
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StyleImageGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            _styleSize = e.NewSize;
+            _styleOriSize = e.NewSize;
+            _styleCurrentSize = e.NewSize;
         }
 
         private void ImageHandlePage_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -292,7 +335,7 @@ namespace MyerMomentUniversal
                 });
 
                 Border border = new Border();
-                Image image = new Image();
+                Image image = new Image() { Width = 60, Height = 60 };
                 image.Source = style.PreviewImage;
                 border.Background = new SolidColorBrush(Colors.Black);
                 border.Child = image;
@@ -373,10 +416,8 @@ namespace MyerMomentUniversal
 #elif WINDOWS_APP
             contentGrid.Height = 320;
             contentSV.Height = 300;
-            shareToWeiboBtn.MaxWidth = 300;
             shareToWechatBtn.Visibility = Visibility.Collapsed;
             //systemBtn.MaxWidth = 300;
-            backHomeBtn.MaxWidth = 300;
             familySV.Height = familySV2.Height = 60;
             //styleSV.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
             //filterSV.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
@@ -396,7 +437,13 @@ namespace MyerMomentUniversal
         {
             if (_currentTextBox != null)
             {
-                if (_currentTextBox.FontSize < 100) _currentTextBox.FontSize += 5;
+                if (_currentTextBox.FontSize < 130)
+                {
+                    if(_currentTagMode==TagCat.Disable)
+                    {
+                        _currentTextBox.FontSize += 5;
+                    }
+                }
             }
         }
 
@@ -409,7 +456,10 @@ namespace MyerMomentUniversal
         {
             if (_currentTextBox != null)
             {
-                if (_currentTextBox.FontSize > 10) _currentTextBox.FontSize -= 5;
+                if (_currentTagMode == TagCat.Disable)
+                {
+                    if (_currentTextBox.FontSize > 10) _currentTextBox.FontSize -= 5;
+                }
             }
         }
 
@@ -422,8 +472,8 @@ namespace MyerMomentUniversal
         {
             _compositeTransformStyle.ScaleX += 0.2;
             _compositeTransformStyle.ScaleY += 0.2;
-            _styleSize.Width *= 1.2;
-            _styleSize.Height *= 1.2;
+            _styleCurrentSize.Width =_styleOriSize.Width*_compositeTransformStyle.ScaleX;
+            _styleCurrentSize.Height = _styleOriSize.Height * _compositeTransformStyle.ScaleY;
         }
 
         /// <summary>
@@ -435,8 +485,8 @@ namespace MyerMomentUniversal
         {
             _compositeTransformStyle.ScaleX -= 0.2;
             _compositeTransformStyle.ScaleY -= 0.2;
-            _styleSize.Width /= 1.2;
-            _styleSize.Height /= 1.2;
+            _styleCurrentSize.Width /= 1.2;
+            _styleCurrentSize.Height /= 1.2;
         }
 
         /// <summary>
@@ -471,6 +521,11 @@ namespace MyerMomentUniversal
         /// <param name="e"></param>
         private void ToStyleClick(object sender, RoutedEventArgs e)
         {
+            if(LocalSettingHelper.GetValue("NewStyle")=="1")
+            {
+                LocalSettingHelper.AddValue("NewStyle", "0");
+                StyleHintStory.Stop();
+            }
             if (_isInStyleMode)
             {
                 MovieOutStory.Begin();
@@ -603,12 +658,12 @@ namespace MyerMomentUniversal
             e.Handled = true;
             HandleBack();
         }
+
         /// <summary>
         /// 进入裁剪模式
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
         private void ToCropClick(object sender, RoutedEventArgs e)
         {
             this.imageCanvas.Visibility = Windows.UI.Xaml.Visibility.Visible;
@@ -639,26 +694,34 @@ namespace MyerMomentUniversal
         /// <param name="e"></param>
         private void ToggleTagModeClick(object sender, RoutedEventArgs e)
         {
-            switch (this._tagMode)
+            var tagLeft = this.FindName("tagGrid" + _currentTextViewFlag + "Left") as Grid;
+            var tagRight = this.FindName("tagGrid" + _currentTextViewFlag + "Right") as Grid;
+
+            switch (this._currentTagMode)
             {
                 case TagCat.Disable:
                     {
-                        tagGrid1Left.Visibility = Visibility.Visible;
-                        _tagMode = TagCat.ToLeft;
+                        tagLeft.Visibility = Visibility.Visible;
+                        _currentTagMode = TagCat.ToLeft;
                     }; break;
                 case TagCat.ToLeft:
                     {
-                        tagGrid1Left.Visibility = Visibility.Collapsed;
-                        tagGrid1Right.Visibility = Visibility.Visible;
-                        _tagMode = TagCat.ToRight;
+                        tagLeft.Visibility = Visibility.Collapsed;
+                        tagRight.Visibility = Visibility.Visible;
+                        _currentTagMode = TagCat.ToRight;
                     }; break;
                 case TagCat.ToRight:
                     {
-                        tagGrid1Left.Visibility = Visibility.Collapsed;
-                        tagGrid1Right.Visibility = Visibility.Collapsed;
-                        _tagMode = TagCat.Disable;
+                        tagLeft.Visibility = Visibility.Collapsed;
+                        tagRight.Visibility = Visibility.Collapsed;
+                        _currentTagMode = TagCat.Disable;
                     };break;
             }
+        }
+
+        private void ShowMoreClick(object sender,RoutedEventArgs e)
+        {
+            ShowMoreStory.Begin();
         }
 
         private void InitialCrop()
@@ -673,6 +736,7 @@ namespace MyerMomentUniversal
             imageCanvas.Visibility = Visibility.Collapsed;
 
         }
+
         #endregion
 
         #region 裁剪操作
@@ -1008,6 +1072,7 @@ namespace MyerMomentUniversal
                 EditInStory.Begin();
                 _isInEditMode = true;
                 _currentTextViewFlag = 1;
+                _currentTagMode = _tag1Mode;
 
                 _compositeTransform1.CenterX = 0;
                 _compositeTransform1.CenterY = 0;
@@ -1074,6 +1139,8 @@ namespace MyerMomentUniversal
                 EditInStory.Begin();
                 _isInEditMode = true;
                 _currentTextViewFlag = 2;
+                _currentTagMode = _tag2Mode;
+
 
                 _compositeTransform2.CenterX = 0;
                 _compositeTransform2.CenterY = 0;
@@ -1145,6 +1212,7 @@ namespace MyerMomentUniversal
             _currentTextBox = TextView3;
             contentTB.Text = TextView3.Text;
             _currentTextViewFlag = 3;
+            _currentTagMode = _tag3Mode;
 
 #if WINDOWS_APP
             contentTB.Focus(FocusState.Programmatic);
@@ -1153,7 +1221,6 @@ namespace MyerMomentUniversal
 
         private void StyleView_OnPointerEntered(object sender, PointerRoutedEventArgs e)
         {
-
             styleImageGrid.ManipulationDelta -= StyleView_ManipulationDelta;
             styleImageGrid.ManipulationDelta += StyleView_ManipulationDelta;
             styleImageGrid.ManipulationCompleted -= StyleImage_ManipulationCompleted;
@@ -1171,12 +1238,11 @@ namespace MyerMomentUniversal
             ShowFrameVisibility = Visibility.Visible;
             textFrame4.Visibility = Visibility.Visible;
 
-
             var newX = Canvas.GetLeft(styleImageGrid) + e.Delta.Translation.X;
             var newY = Canvas.GetTop(styleImageGrid) + e.Delta.Translation.Y;
 
-            if (newX < (fontCanvas.ActualWidth - _styleSize.Width) && newX > 0) Canvas.SetLeft(styleImageGrid, newX);
-            if (newY < (fontCanvas.ActualHeight - _styleSize.Height) && newY > 0) Canvas.SetTop(styleImageGrid, newY);
+            if (newX < (fontCanvas.ActualWidth - _styleCurrentSize.Width) && newX > 0) Canvas.SetLeft(styleImageGrid, newX);
+            if (newY < (fontCanvas.ActualHeight - _styleCurrentSize.Height) && newY > 0) Canvas.SetTop(styleImageGrid, newY);
             //_compositeTransformStyle.TranslateX += e.Delta.Translation.X;
             //_compositeTransformStyle.TranslateY += e.Delta.Translation.Y;
         }
@@ -1201,7 +1267,7 @@ namespace MyerMomentUniversal
 
             else
             {
-                ring.IsActive = true;
+                progressBar.Visibility = Visibility.Visible;
                 _isLoadImage = false;
 
                 try
@@ -1214,7 +1280,7 @@ namespace MyerMomentUniversal
                     }
 
                     this.currentFilter = kindToApply;
-                    ring.IsActive = false;
+                    progressBar.Visibility = Visibility.Collapsed;
                 }
                 catch (Exception e)
                 {
@@ -1348,7 +1414,8 @@ namespace MyerMomentUniversal
         private async void ShowImage(StorageFile file)
         {
             TextView1.Visibility = Visibility.Collapsed;
-            ring.IsActive = true;
+            progressBar.Visibility = Visibility.Visible;
+
             try
             {
                 var bitmap = await _imageHandleHelper.GetBitmapFromFileAsync(file);
@@ -1362,7 +1429,7 @@ namespace MyerMomentUniversal
             }
             finally
             {
-                ring.IsActive = false;
+                progressBar.Visibility = Visibility.Collapsed;
                 TextView1.Visibility = Visibility.Visible;
             }
         }
@@ -1406,7 +1473,6 @@ namespace MyerMomentUniversal
                 if (_isFromShareTarget)
                 {
                     shareToWeiboBtn.Visibility = Visibility.Collapsed;
-                    shareToWechatBtn.Visibility = Visibility.Collapsed;
                 }
             }
             catch (Exception e)
@@ -1505,7 +1571,7 @@ namespace MyerMomentUniversal
             {
                 PageNavigateData data = new PageNavigateData();
                 data.isFromShare = false;
-                data.file = await GetFileToShare();
+                //data.file = await GetFileToShare();
                 Frame.Navigate(typeof(SharePage), data);
             }
             catch (Exception ee)
@@ -1514,9 +1580,22 @@ namespace MyerMomentUniversal
             }
         }
 
-#if WINDOWS_PHONE_APP 
-            async 
- #endif 
+        private void ShareToSystemClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DataTransferManager.ShowShareUI();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+
+#if WINDOWS_PHONE_APP
+        async
+#endif
             void ShareToWechatClick(object sender,RoutedEventArgs e)
         {
 #if WINDOWS_PHONE_APP
@@ -1610,6 +1689,36 @@ namespace MyerMomentUniversal
             selectRegion.ManipulationDelta += selectRegion_ManipulationDelta;
 
             image.SizeChanged += sourceImage_SizeChanged;
+
+            DataTransferManager.GetForCurrentView().DataRequested += (async(sender,args)=>
+            {
+                DataRequest request = args.Request;
+                request.Data.Properties.Title = "MyerMoment";
+                request.Data.Properties.Description = "image From MyerMoment";
+                DataRequestDeferral deferral = request.GetDeferral();
+
+                try
+                {
+                    
+                    List<IStorageItem> storageItems = new List<IStorageItem>();
+                    storageItems.Add(await GetFileToShare());
+                    request.Data.SetStorageItems(storageItems);
+
+                }
+                catch (Exception)
+                {
+
+                }
+                finally
+                {
+                    deferral.Complete();
+                }
+            });
+
+            if (LocalSettingHelper.GetValue("NewStyle") == "1")
+            {
+                StyleHintStory.Begin();
+            }
 
             if (e.Parameter != null)
             {

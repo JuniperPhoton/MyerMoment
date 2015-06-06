@@ -43,11 +43,6 @@ namespace MyerMomentUniversal
         {
             try
             {
-                if (!NetworkHelper.HasNetWork())
-                {
-                    shareControl.ShowErrorGrid();
-                    return;
-                }
                 var oauthClient = new ClientOAuth();
                 // 判断是否已经授权或者授权是否过期.
                 if (oauthClient.IsAuthorized == false)

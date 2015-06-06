@@ -7,13 +7,12 @@ namespace MyerMomentUniversal.Model
     public enum FilterKind
     {
         Original,
-        AutoEnhanceFilter,
         CartoonFilter,
         GrayscaleFilter,
+        ExposureFilter,
         LomoFilter,
         SunFilter,
         NoiseFilter,
-        OilyFilter,
         BlurFilter,
         ColorBoostFilter,
     }

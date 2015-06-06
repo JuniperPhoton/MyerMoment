@@ -277,7 +277,7 @@
     <value>Share to Weibo</value>
   </data>
   <data name="systemShareTB.Text" xml:space="preserve">
-    <value>OTHER</value>
+    <value>Share to system</value>
   </data>
   <data name="customTB.Text" xml:space="preserve">
     <value>Custom</value>

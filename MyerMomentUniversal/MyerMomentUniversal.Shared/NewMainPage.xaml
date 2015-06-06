@@ -76,13 +76,17 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image2">
                 <EasingDoubleKeyFrame KeyTime="0:0:5" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:6" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image_Copy">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image3">
                 <EasingDoubleKeyFrame KeyTime="0:0:8" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:9" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image4">
+                <EasingDoubleKeyFrame KeyTime="0:0:11" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:12" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
@@ -90,10 +94,11 @@
     <Grid Margin="0,-30,0,0">
 
         <Image x:Name="image1_Copy" Stretch="UniformToFill" Source="Asset/Image/0.jpg" />
+        <Image x:Name="image4" Stretch="UniformToFill" Source="Asset/Image/3.JPG"/>
 
-        <Image x:Name="image_Copy" Stretch="UniformToFill" Source="Asset/Image/2.JPG"/>
+        <Image x:Name="image3" Stretch="UniformToFill" Source="Asset/Image/2.JPG"/>
 
-        <Image x:Name="image" Stretch="UniformToFill" Source="Asset/Image/1.jpg"/>
+        <Image x:Name="image2" Stretch="UniformToFill" Source="Asset/Image/1.jpg"/>
 
         <Image x:Name="image1" Source="Asset/Image/0.jpg" Stretch="UniformToFill" />
         <Border Background="Black" Opacity="0.4"/>
@@ -108,14 +113,14 @@
                     <CompositeTransform TranslateX="100"/>
                 </StackPanel.RenderTransform>
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock  FontSize="50" FontFamily="Segoe WP" Foreground="{StaticResource MomentThemeColor}" VerticalAlignment="Center" Margin="15,0,0,0">
+                    <TextBlock  FontSize="50" FontFamily="Segoe WP" Foreground="White" VerticalAlignment="Center" Margin="15,0,0,0">
                 <Run FontWeight="Light" Text="Myer"/>
                     </TextBlock>
-                    <TextBlock  FontSize="50" FontFamily="Segoe WP" Foreground="{StaticResource MomentThemeColor}" VerticalAlignment="Center" Margin="0,0,0,0">
+                    <TextBlock  FontSize="50" FontFamily="Segoe WP" Foreground="White" VerticalAlignment="Center" Margin="0,0,0,0">
                 <Run FontWeight="Bold" Text="Moment"/>
                     </TextBlock>
                 </StackPanel>
-                <TextBlock x:Uid="SubTitleTB" Foreground="White"  FontWeight="Light" FontSize="30" FontFamily="Segoe WP" Text="Photos tell story" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Uid="SubTitleTB" Foreground="{StaticResource MomentThemeColor}"  FontWeight="Light" FontSize="30" FontFamily="Segoe WP" Text="Photos tell story" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
             <Grid Grid.Row="1" Grid.RowSpan="2" MaxWidth="700" RenderTransformOrigin="0.5,0.5" >
 

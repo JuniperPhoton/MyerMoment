@@ -37,11 +37,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)NewMainPage.xaml.cs">
       <DependentUpon>NewMainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ShareControl.xaml.cs">
-      <DependentUpon>ShareControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControl\SettingContent.xaml.cs">
       <DependentUpon>SettingContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UserControl\ShareControl.xaml.cs">
+      <DependentUpon>ShareControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)UserControl\StoreContentControl.xaml.cs">
       <DependentUpon>StoreContentControl.xaml</DependentUpon>
@@ -68,14 +68,13 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\7.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\8.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Backgrd\9.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Auto.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Blur.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Boost.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Cartoon.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Exposure.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Gray.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Lomo.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Noise.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Oily.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Original.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Filter\Sun.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Icon\Cancel.png" />
@@ -91,6 +90,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Image\0.JPG" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Image\1.JPG" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Image\2.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Asset\Image\3.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Alone.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Alone.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Style\Amazing.jpg" />
@@ -128,6 +128,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Asset\Tile\LOGO_WIDE.scale-100.png" />
     <Content Include="$(MSBuildThisFileDirectory)Asset\Tile\LOGO_WIDE_TRAN.png" />
     <Content Include="$(MSBuildThisFileDirectory)Config\LocalStyleConfig.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\BLKCHCRY.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\blockline.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\ClubNight.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Cubos.ttf" />
@@ -138,14 +139,15 @@
     <Content Include="$(MSBuildThisFileDirectory)Font\HYLiLiangHeiJ.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\KrinkesDecorPERSONAL.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Mad Potato Bill.ttf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\MEPHISTO.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Modern-Vision.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\norwester.otf" />
+    <Content Include="$(MSBuildThisFileDirectory)Font\Og.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\penna.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\PRISTINA.TTF" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Reswysokr.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Sigma Five Sans Italic.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\SOFT ADDICTIONS.ttf" />
-    <Content Include="$(MSBuildThisFileDirectory)Font\Thank you Drf.ttf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\TpldKhangXiDictTrial.otf" />
     <Content Include="$(MSBuildThisFileDirectory)Font\Western Bang Bang.ttf" />
   </ItemGroup>
@@ -162,11 +164,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)ShareControl.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)UserControl\SettingContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)UserControl\SettingContent.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)UserControl\ShareControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

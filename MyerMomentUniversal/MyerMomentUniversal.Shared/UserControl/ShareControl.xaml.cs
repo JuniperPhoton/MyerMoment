@@ -32,7 +32,7 @@ namespace MyerMomentUniversal
         {
             this.InitializeComponent();
 
-            DataTransferManager.GetForCurrentView().DataRequested += dataTransferManager_DataRequested;
+            //DataTransferManager.GetForCurrentView().DataRequested += dataTransferManager_DataRequested;
         }
 
         private void ShareToSystemClick(object sender, RoutedEventArgs e)
@@ -138,11 +138,6 @@ namespace MyerMomentUniversal
         {
             try
             {
-                if (!NetworkHelper.HasNetWork())
-                {
-                    ShowErrorGrid();
-                    return;
-                }
 
                 var engine = new SdkNetEngine();
                 CmdPostMsgWithPic cmdBase = new CmdPostMsgWithPic();

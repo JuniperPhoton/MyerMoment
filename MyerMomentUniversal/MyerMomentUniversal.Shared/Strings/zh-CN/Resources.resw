@@ -163,7 +163,7 @@
     <value>字体</value>
   </data>
   <data name="FontPlaceHolderText" xml:space="preserve">
-    <value>点击编辑</value>
+    <value>点击开始</value>
   </data>
   <data name="getpixelsErrorHint" xml:space="preserve">
     <value>抱歉，因为图片太大以致无法正常保存，请期待未来的更新支持。</value>
@@ -250,7 +250,7 @@
     <value>分享中...</value>
   </data>
   <data name="systemShareTB.Text" xml:space="preserve">
-    <value>其他</value>
+    <value>分享到其他</value>
   </data>
   <data name="customTB.Text" xml:space="preserve">
     <value>自定义</value>
