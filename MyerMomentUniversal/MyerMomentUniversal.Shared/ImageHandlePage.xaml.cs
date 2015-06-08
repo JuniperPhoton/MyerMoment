@@ -470,6 +470,13 @@ namespace MyerMomentUniversal
         /// <param name="e"></param>
         private void IncreaseStyleClick(object sender, RoutedEventArgs e)
         {
+            var newWidth = _styleOriSize.Width * (_compositeTransformStyle.ScaleX + 0.2);
+            var newHeight = _styleOriSize.Height * (_compositeTransformStyle.ScaleY + 0.2);
+
+            if(((Canvas.GetLeft(styleImageGrid) +newWidth)>fontCanvas.ActualWidth) || (Canvas.GetTop(styleImageGrid) +newHeight)>fontCanvas.ActualHeight)
+            {
+                return;
+            }
             _compositeTransformStyle.ScaleX += 0.2;
             _compositeTransformStyle.ScaleY += 0.2;
             _styleCurrentSize.Width =_styleOriSize.Width*_compositeTransformStyle.ScaleX;
@@ -703,18 +710,21 @@ namespace MyerMomentUniversal
                     {
                         tagLeft.Visibility = Visibility.Visible;
                         _currentTagMode = TagCat.ToLeft;
+                        TagToLeftStory.Begin();
                     }; break;
                 case TagCat.ToLeft:
                     {
                         tagLeft.Visibility = Visibility.Collapsed;
                         tagRight.Visibility = Visibility.Visible;
                         _currentTagMode = TagCat.ToRight;
+                        TagToRightStory.Begin();
                     }; break;
                 case TagCat.ToRight:
                     {
                         tagLeft.Visibility = Visibility.Collapsed;
                         tagRight.Visibility = Visibility.Collapsed;
                         _currentTagMode = TagCat.Disable;
+                        TagToDisable.Begin();
                     };break;
             }
         }
@@ -1571,7 +1581,7 @@ namespace MyerMomentUniversal
             {
                 PageNavigateData data = new PageNavigateData();
                 data.isFromShare = false;
-                //data.file = await GetFileToShare();
+                data.file = await GetFileToShare();
                 Frame.Navigate(typeof(SharePage), data);
             }
             catch (Exception ee)

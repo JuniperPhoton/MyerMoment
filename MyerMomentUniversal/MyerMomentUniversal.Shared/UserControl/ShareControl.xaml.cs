@@ -169,10 +169,14 @@ namespace MyerMomentUniversal
                         ShowErrorGrid();
                     }
                 }
+                else
+                {
+                    ShowErrorGrid();
+                }
             }
             catch(Exception)
             {
-
+                ShowErrorGrid();
             }
             
         }

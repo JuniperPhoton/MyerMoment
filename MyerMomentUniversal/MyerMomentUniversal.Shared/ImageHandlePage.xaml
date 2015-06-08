@@ -885,38 +885,6 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border4">
-                <DiscreteObjectKeyFrame KeyTime="0">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Collapsed</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.8">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:1">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-                <DiscreteObjectKeyFrame KeyTime="0:0:1.1">
-                    <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Collapsed</Visibility>
-                    </DiscreteObjectKeyFrame.Value>
-                </DiscreteObjectKeyFrame>
-            </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border5">
                 <DiscreteObjectKeyFrame KeyTime="0">
                     <DiscreteObjectKeyFrame.Value>
@@ -1009,13 +977,6 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border4">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-40"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-40"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="border5">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-40"/>
@@ -1037,6 +998,24 @@
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="TagToLeftStory">
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="border7">
+                <EasingDoubleKeyFrame KeyTime="0" Value="5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="25"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="TagToRightStory">
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="border7">
+                <EasingDoubleKeyFrame KeyTime="0" Value="25"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="50"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="TagToDisable">
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="border7">
+                <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="5"/>
+            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
 
@@ -1328,12 +1307,6 @@
                                 <CompositeTransform/>
                             </Button.RenderTransform>
                             <Grid Height="50" Width="50">
-                                <Border x:Name="border4" Height="20" BorderBrush="{StaticResource MomentThemeColor}" RenderTransformOrigin="0.5,0.5" BorderThickness="2" Visibility="Collapsed">
-                                    <Border.RenderTransform>
-                                        <CompositeTransform/>
-                                    </Border.RenderTransform>
-                                    <TextBlock Text="Style" RenderTransformOrigin="0.5,0.5" Foreground="{StaticResource MomentThemeColor}" FontSize="13.333" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Normal"/>
-                                </Border>
                                 <Ellipse StrokeThickness="4" Fill="{StaticResource MomentThemeColor}"/>
                                 <SymbolIcon Symbol="Favorite" Foreground="Black"/>
                             </Grid>
@@ -1529,10 +1502,11 @@
                         <ScrollViewer x:Name="colorSV" HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Hidden">
                             <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
 
-                                <Button Click="ToggleTagModeClick"   Width="50" Height="50"  Margin="5" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                    <Border Background="{StaticResource MomentThemeColor}">
+                                <Button Click="ToggleTagModeClick"   Width="50" Height="50"  Margin="0,5,10,5" MinHeight="10" MinWidth="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource ButtonStyle2}">
+                                    <Grid Background="#FFD6D6D6">
+                                        <Border x:Name="border7" Background="{StaticResource MomentThemeColor}" Width="5" HorizontalAlignment="Left"/>
                                         <SymbolIcon Symbol="Tag" Foreground="Black" RenderTransformOrigin="0.5,0.5"/>
-                                    </Border>
+                                    </Grid>
                                 </Button>
 
                                 <Button Click="IncreaseFontsizeClick" Width="50" Height="50" Margin="0,5,5,5" Style="{StaticResource ButtonStyle2}" MinHeight="10" MinWidth="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
