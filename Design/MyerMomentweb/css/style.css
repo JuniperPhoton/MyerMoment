@@ -193,6 +193,13 @@ body{
     #div3_text_to_pic{
         display: block;
     }
+    #div2_pic_to_text{
+        display: block;
+        
+    }
+    #div2_text_to_pic{
+        display: none;
+    }
     .bodydiv{
         background: #222222;
     }
@@ -258,4 +265,12 @@ body{
     color: white;
     font-family: Microsoft YaHei;
     font-size: 30px;
+}
+
+#div2_text_to_pic {
+    display: block;
+}
+
+#div2_pic_to_text {
+    display: none;
 }
