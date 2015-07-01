@@ -28,6 +28,8 @@ using MyerMomentUniversal.Model;
 using Windows.Storage;
 using JP.Utils.Data;
 using Windows.Globalization;
+using System.Reflection;
+using Windows.UI;
 
 // 有关“空白应用程序”模板的信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -134,7 +136,44 @@ namespace MyerMomentUniversal
             Window.Current.Activate();
 
             MomentConfig.InitialMomentConfig();
+
+            SetUpTitleBar(false);
         }
+
+        public static void SetUpTitleBar(bool isGray)
+        {
+#if WINDOWS_APP
+            var v = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
+            var allProperties = v.GetType().GetRuntimeProperties();
+            var titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
+            if (titleBar == null) return;
+            dynamic titleBarInst = titleBar.GetMethod.Invoke(v, null);
+            if (!isGray)
+            {
+                titleBarInst.BackgroundColor = Colors.Black;
+                titleBarInst.ForegroundColor = Colors.White;
+                titleBarInst.ButtonBackgroundColor = Colors.Black;
+                titleBarInst.ButtonForegroundColor = Colors.White;
+                titleBarInst.ButtonHoverBackgroundColor = Colors.Black;
+                titleBarInst.ButtonHoverForegroundColor = Colors.White;
+                titleBarInst.ButtonPressedBackgroundColor = Colors.Black;
+
+                titleBarInst.InactiveBackgroundColor = Colors.Black;
+                titleBarInst.InactiveForegroundColor = Colors.White;
+                titleBarInst.ButtonInactiveBackgroundColor = Colors.Black;
+                titleBarInst.ButtonInactiveForegroundColor = Colors.White;
+            }
+            else
+            {
+                titleBarInst.BackgroundColor = (App.Current.Resources["MyerListGray"] as SolidColorBrush).Color;
+                titleBarInst.ForegroundColor = Colors.Black;
+                titleBarInst.ButtonBackgroundColor = (App.Current.Resources["MyerListGray"] as SolidColorBrush).Color;
+                titleBarInst.ButtonForegroundColor = Colors.Black;
+            }
+#endif
+        }
+
+
 
 #if WINDOWS_APP
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
