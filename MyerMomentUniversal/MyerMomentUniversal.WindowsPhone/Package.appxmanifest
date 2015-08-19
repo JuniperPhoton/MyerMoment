@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="19204JuniperPhoton.MyerMoment" Publisher="CN=A9291247-1C35-4EE6-8B51-1551AF1EB838" Version="1.9.4.0" />
-  <mp:PhoneIdentity PhoneProductId="d7063b18-b78d-46ae-be5f-51cc9155a921" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="19204JuniperPhoton.MyerMoment" Publisher="CN=A9291247-1C35-4EE6-8B51-1551AF1EB838" Version="1.9.5.2" />
+  <mp:PhoneIdentity PhoneProductId="36c9625a-b597-4b30-9ebc-6d29a5b2ead8" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>MyerMoment</DisplayName>
     <PublisherDisplayName>JuniperPhoton</PublisherDisplayName>

@@ -115,7 +115,7 @@ namespace MyerMomentUniversal
                 });
                 oauthClient.continueAuth(args.WebAuthenticationResult);
             }
-            catch(Exception e)
+            catch(Exception)
             {
 
             }

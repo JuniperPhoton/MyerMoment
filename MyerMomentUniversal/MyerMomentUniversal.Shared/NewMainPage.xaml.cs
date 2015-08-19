@@ -13,6 +13,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI;
 using Windows.ApplicationModel.Activation;
 using MyerMomentUniversal.Helper;
+using JP.Utils.Data;
 
 namespace MyerMomentUniversal
 {
@@ -120,11 +121,26 @@ namespace MyerMomentUniversal
             if(!_isNavigate)
             {
                 await Task.Delay(TimeSpan.FromSeconds(0.5));
+                NavigateStory.Completed += ((sc, ec) =>
+                  {
+                      if(!LocalSettingHelper.IsExist("Goodbye"))
+                      {
+                          GoodbyeStory.Begin();
+                          LocalSettingHelper.AddValue("Goodbye", true);
+                      }
+                  });
                 NavigateStory.Begin();
                 _isNavigate = true;
                 BackgrdStory.Begin();
+
+                
             }
             
+        }
+
+        private void GoodbyeClick(object sender,RoutedEventArgs e)
+        {
+            GoodbyeBackStory.Begin();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -133,6 +149,8 @@ namespace MyerMomentUniversal
             HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
 #endif
         }
+
+       
 #if WINDOWS_PHONE_APP
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {

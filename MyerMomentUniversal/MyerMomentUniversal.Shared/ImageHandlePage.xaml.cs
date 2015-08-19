@@ -1606,7 +1606,7 @@ namespace MyerMomentUniversal
 #if WINDOWS_PHONE_APP
         async
 #endif
-            void ShareToWechatClick(object sender,RoutedEventArgs e)
+        void ShareToWechatClick(object sender,RoutedEventArgs e)
         {
 #if WINDOWS_PHONE_APP
             try

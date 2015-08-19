@@ -89,6 +89,67 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:12" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Name="GoodbyeStory">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="300"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="145.476"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CircleEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.7">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="GoodbyeBackStory">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid">
+                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="300"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="300"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.4">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
     </Page.Resources>
 
     <Grid Margin="0,-30,0,0">
@@ -160,6 +221,37 @@
                 </StackPanel>
                 <HyperlinkButton x:Uid="PrivacyHLB" NavigateUri="http://121.41.21.21/myermomentpolicy.html" Content="Privacy policy" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="White" Margin="0,0,0,10" FontSize="26.667"/>
             </Grid>
+        </Grid>
+        <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" Opacity="0">
+            <Grid.RenderTransform>
+                <CompositeTransform/>
+            </Grid.RenderTransform>
+            <Border Background="Black" Opacity="0.8"/>
+            <Grid MaxWidth="700" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Height="500">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+
+                <Border Background="Black" Opacity="1" Grid.RowSpan="3"/>
+                <TextBlock Foreground="{StaticResource MomentThemeColor}" FontSize="26.667" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            	<Run Text="是时候说再见了 " FontWeight="Bold" />
+            	<Run Foreground="#33FFFFFF" FontWeight="Bold" Text="CHINESE ONLY"/>
+                </TextBlock>
+                <TextBlock Foreground="White" FontSize="20" Grid.Row="1" TextWrapping="Wrap" Padding="0" Margin="10,10,10,0" FontWeight="Light">
+            	<Run Text="十分感谢一直支持着 MyerMoment 的各位用户，我不知道有没有承诺过是否会一直坚持维护 MyerMoment 下去，如果我确实说过这样的话，请允许我说一声抱歉。MyerMoment 即日起会暂停维护，但是它不会下架，你依然能从应用商店下载手机和电脑的版本。"/>
+            	<LineBreak/>
+                <LineBreak/>
+            	<Run Text="但是，好的照片加字应用并不会从此绝迹。在不久的未来，将会有一款更加强大的同样好用有趣的应用加入 Windows 10 的家庭。敬请期待。"/>
+                </TextBlock>
+                <Button Click="GoodbyeClick"  Style="{StaticResource ButtonStyle1}" Grid.Row="2" HorizontalAlignment="Stretch" Padding="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinHeight="0" MinWidth="0" VerticalAlignment="Stretch" Margin="10,0">
+                    <Border Background="{StaticResource MomentThemeColor}">
+                        <TextBlock Text="好的" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </Button>
+            </Grid>
+
         </Grid>
     </Grid>
 </Page>
