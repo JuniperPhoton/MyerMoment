@@ -1,0 +1,17 @@
+D:\Dev\apps\ButterCamUWP\WeiboSDK\bin\Debug\WeiboSDK.dll
+D:\Dev\apps\ButterCamUWP\WeiboSDK\bin\Debug\WeiboSDK.pdb
+D:\Dev\apps\ButterCamUWP\WeiboSDK\bin\Debug\WeiboSDK.pri
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\WeiboSDK.dll
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\WeiboSDK.pdb
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\ResourceHandlingTask.state
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\priconfig.xml
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\priconfig.xml.intermediate
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\layout.resfiles
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\layout.resfiles.intermediate
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\resources.resfiles
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\resources.resfiles.intermediate
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\pri.resfiles
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\pri.resfiles.intermediate
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\qualifiers.txt
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\qualifiers.txt.intermediate
+D:\Dev\apps\ButterCamUWP\WeiboSDK\obj\Debug\MultipleQualifiersPerDimensionFound.txt

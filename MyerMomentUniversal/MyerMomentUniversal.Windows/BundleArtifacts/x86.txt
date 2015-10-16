@@ -1,5 +1,0 @@
-MainPackage=D:\Dev\apps\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\x86\Release\MyerMomentUniversal.Windows_1.9.5.3_x86.appx
-SymbolPackage=D:\Dev\apps\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\AppPackages\MyerMomentUniversal.Windows_1.9.5.3_Test\MyerMomentUniversal.Windows_1.9.5.3_x86.appxsym
-ResourcePack=D:\Dev\apps\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\x86\Release\MyerMomentUniversal.Windows_1.9.5.3_language-en.appx
-ResourcePack=D:\Dev\apps\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\x86\Release\MyerMomentUniversal.Windows_1.9.5.3_scale-140.appx
-ResourcePack=D:\Dev\apps\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\x86\Release\MyerMomentUniversal.Windows_1.9.5.3_scale-180.appx

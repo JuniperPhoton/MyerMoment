@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>ZHIHAO</Machine>
+    <WindowsUser>chao</WindowsUser>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|x86</SolutionConfiguration>
+    <PackageArchitecture>x86</PackageArchitecture>
+    <PackageIdentityName>acf7c27f-1316-4139-a7e2-6e1b118f091d</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\obj\x86\Debug\</IntermediateOutputPath>
+    <RegisteredManifestChecksum>BC2CA13EE7D5CAA3790A37FBDFC81F23F542DDC140D2B05D1F75B6B92C6F0936</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>acf7c27f-1316-4139-a7e2-6e1b118f091d_1.1.0.0_x86__hjqyy8fzvfte2</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>acf7c27f-1316-4139-a7e2-6e1b118f091d_hjqyy8fzvfte2!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>acf7c27f-1316-4139-a7e2-6e1b118f091d</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=liangjie</RegisteredPackagePublisher>
+    <RegisteredVersion>1.1.0.0</RegisteredVersion>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\bin\x86\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-04-11T06:48:10.151</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\bin\x86\Debug\WeiboCSharpSample.exe">
+      <PackagePath>WeiboCSharpSample.exe</PackagePath>
+      <Modified>2015-04-11T06:48:36.239</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\Package\RestSharp.winmd">
+      <PackagePath>RestSharp.winmd</PackagePath>
+      <Modified>2015-04-11T06:37:56.358</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\Package\WeiboSDKForWinRT.winmd">
+      <PackagePath>WeiboSDKForWinRT.winmd</PackagePath>
+      <Modified>2015-04-11T06:37:56.326</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-04-11T06:37:56.576</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-04-11T06:37:56.592</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-04-11T06:37:56.576</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-04-11T06:37:56.592</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\Assets\weibo.png">
+      <PackagePath>Assets\weibo.png</PackagePath>
+      <Modified>2015-04-11T06:37:56.592</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\bin\x86\Debug\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+      <Modified>2015-04-11T06:48:05.808</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\bin\x86\Debug\Common\StandardStyles.xbf">
+      <PackagePath>Common\StandardStyles.xbf</PackagePath>
+      <Modified>2015-04-11T06:48:05.826</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\bin\x86\Debug\MainPage.xbf">
+      <PackagePath>MainPage.xbf</PackagePath>
+      <Modified>2015-04-11T06:48:05.840</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\bin\x86\Debug\WeiboCSharpSample.xr.xml">
+      <PackagePath>WeiboCSharpSample.xr.xml</PackagePath>
+      <Modified>2015-04-11T06:48:05.391</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\WeiboSDK_RT\WeiboSDKSample\WeiboCSharpSample\bin\x86\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2015-04-11T06:48:06.409</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

@@ -1,2 +1,0 @@
-MainPackage=D:\Dev\apps\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\bin\ARM\Release\MyerMomentUniversal.Windows_1.9.4.0_ARM.appx
-SymbolPackage=D:\Dev\apps\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal.Windows\AppPackages\MyerMomentUniversal.Windows_1.9.4.0_Test\MyerMomentUniversal.Windows_1.9.4.0_ARM.appxsym

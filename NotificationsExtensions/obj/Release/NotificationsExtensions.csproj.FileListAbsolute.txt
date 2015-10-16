@@ -1,0 +1,104 @@
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\bin\Release\NotificationsExtensions.XML
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\bin\Release\NotificationsExtensions.winmd
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\bin\Release\NotificationsExtensions.pdb
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\bin\Release\NotificationsExtensions.pri
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\NotificationsExtensions.winmd
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\NotificationsExtensions.xml
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\NotificationsExtensions.pdb
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\NotificationsExtensions.winmdobj
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\NotificationsExtensions.compile.pdb
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\priconfig.xml
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\priconfig.xml.intermediate
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\layout.resfiles
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\layout.resfiles.intermediate
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\resources.resfiles
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\resources.resfiles.intermediate
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\pri.resfiles
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\pri.resfiles.intermediate
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\qualifiers.txt
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\qualifiers.txt.intermediate
+C:\Users\Photon\Documents\MyerList\NotificationsExtensions\obj\Release\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.XML
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.winmd
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.pdb
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.pri
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.csprojResolveAssemblyReference.cache
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.winmd
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.xml
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.pdb
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.winmdobj
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.compile.pdb
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\priconfig.xml
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\priconfig.xml.intermediate
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\layout.resfiles
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\layout.resfiles.intermediate
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\resources.resfiles
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\resources.resfiles.intermediate
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\pri.resfiles
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\pri.resfiles.intermediate
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\qualifiers.txt
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\qualifiers.txt.intermediate
+C:\Users\Photon\Documents\Visual Studio 2013\Projects\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.XML
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.winmd
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.pdb
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.pri
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.csprojResolveAssemblyReference.cache
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.winmd
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.xml
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.pdb
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.winmdobj
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.compile.pdb
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\priconfig.xml
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\priconfig.xml.intermediate
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\layout.resfiles
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\layout.resfiles.intermediate
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\resources.resfiles
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\resources.resfiles.intermediate
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\pri.resfiles
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\pri.resfiles.intermediate
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\qualifiers.txt
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\qualifiers.txt.intermediate
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.XML
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.winmd
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.pdb
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.pri
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.csprojResolveAssemblyReference.cache
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.winmd
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.xml
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.pdb
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.winmdobj
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.compile.pdb
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\priconfig.xml
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\priconfig.xml.intermediate
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\layout.resfiles
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\layout.resfiles.intermediate
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\resources.resfiles
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\resources.resfiles.intermediate
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\pri.resfiles
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\pri.resfiles.intermediate
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\qualifiers.txt
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\qualifiers.txt.intermediate
+C:\Users\Photon\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\MultipleQualifiersPerDimensionFound.txt
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.XML
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.winmd
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.pdb
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\bin\Release\NotificationsExtensions.pri
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.csprojResolveAssemblyReference.cache
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.winmd
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.xml
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.pdb
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.winmdobj
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\NotificationsExtensions.compile.pdb
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\priconfig.xml
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\priconfig.xml.intermediate
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\layout.resfiles
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\layout.resfiles.intermediate
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\resources.resfiles
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\resources.resfiles.intermediate
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\pri.resfiles
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\pri.resfiles.intermediate
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\qualifiers.txt
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\qualifiers.txt.intermediate
+C:\Users\志豪\Documents\MyerMomentUniversal\MyerMomentUniversal\MyerMomentUniversal\NotificationsExtensions\obj\Release\MultipleQualifiersPerDimensionFound.txt

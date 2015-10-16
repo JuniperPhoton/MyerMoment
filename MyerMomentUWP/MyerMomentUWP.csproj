@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{5E1AFA91-8BB4-40AD-8783-553D9A066DA8}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyerMomentUWP</RootNamespace>
+    <AssemblyName>MyerMomentUWP</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>MyerMomentUWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Backgrd\1.jpg" />
+    <Content Include="Assets\Backgrd\10.jpg" />
+    <Content Include="Assets\Backgrd\11.jpg" />
+    <Content Include="Assets\Backgrd\12.jpg" />
+    <Content Include="Assets\Backgrd\13.jpg" />
+    <Content Include="Assets\Backgrd\14.jpg" />
+    <Content Include="Assets\Backgrd\15.jpg" />
+    <Content Include="Assets\Backgrd\16.jpg" />
+    <Content Include="Assets\Backgrd\17.jpg" />
+    <Content Include="Assets\Backgrd\18.jpg" />
+    <Content Include="Assets\Backgrd\19.jpg" />
+    <Content Include="Assets\Backgrd\2.jpg" />
+    <Content Include="Assets\Backgrd\3.jpg" />
+    <Content Include="Assets\Backgrd\4.jpg" />
+    <Content Include="Assets\Backgrd\5.jpg" />
+    <Content Include="Assets\Backgrd\6.jpg" />
+    <Content Include="Assets\Backgrd\7.jpg" />
+    <Content Include="Assets\Backgrd\8.jpg" />
+    <Content Include="Assets\Backgrd\9.jpg" />
+    <Content Include="Assets\Filter\Blur.jpg" />
+    <Content Include="Assets\Filter\Boost.jpg" />
+    <Content Include="Assets\Filter\Cartoon.jpg" />
+    <Content Include="Assets\Filter\Exposure.jpg" />
+    <Content Include="Assets\Filter\Gray.jpg" />
+    <Content Include="Assets\Filter\Lomo.jpg" />
+    <Content Include="Assets\Filter\Noise.jpg" />
+    <Content Include="Assets\Filter\Original.jpg" />
+    <Content Include="Assets\Filter\Sun.jpg" />
+    <Content Include="Assets\Icon\Cancel.png" />
+    <Content Include="Assets\Icon\Crop.png" />
+    <Content Include="Assets\Icon\Edit.png" />
+    <Content Include="Assets\Icon\Filter.png" />
+    <Content Include="Assets\Icon\Multi.png" />
+    <Content Include="Assets\Icon\Rotate.png" />
+    <Content Include="Assets\Icon\Save.png" />
+    <Content Include="Assets\Icon\Tag.png" />
+    <Content Include="Assets\Icon\Wechat.png" />
+    <Content Include="Assets\Icon\Weibo.png" />
+    <Content Include="Assets\Image\0.JPG" />
+    <Content Include="Assets\Image\1.jpg" />
+    <Content Include="Assets\Image\2.jpg" />
+    <Content Include="Assets\Image\3.jpg" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\Style\Alone.jpg" />
+    <Content Include="Assets\Style\Alone.png" />
+    <Content Include="Assets\Style\Amazing.jpg" />
+    <Content Include="Assets\Style\Amazing.png" />
+    <Content Include="Assets\Style\Brave.jpg" />
+    <Content Include="Assets\Style\Brave.png" />
+    <Content Include="Assets\Style\Coffee.jpg" />
+    <Content Include="Assets\Style\Coffee.png" />
+    <Content Include="Assets\Style\Couple.jpg" />
+    <Content Include="Assets\Style\Couple.png" />
+    <Content Include="Assets\Style\Dinner.jpg" />
+    <Content Include="Assets\Style\Dinner.png" />
+    <Content Include="Assets\Style\Food.jpg" />
+    <Content Include="Assets\Style\Food.png" />
+    <Content Include="Assets\Style\GTA5.jpg" />
+    <Content Include="Assets\Style\GTA5.png" />
+    <Content Include="Assets\Style\Love.jpg" />
+    <Content Include="Assets\Style\Love.png" />
+    <Content Include="Assets\Style\Lumia.jpg" />
+    <Content Include="Assets\Style\Lumia.png" />
+    <Content Include="Assets\Style\Memory.jpg" />
+    <Content Include="Assets\Style\Memory.png" />
+    <Content Include="Assets\Style\Music.jpg" />
+    <Content Include="Assets\Style\Music.png" />
+    <Content Include="Assets\Style\Night.jpg" />
+    <Content Include="Assets\Style\Night.png" />
+    <Content Include="Assets\Style\Place.jpg" />
+    <Content Include="Assets\Style\Place.png" />
+    <Content Include="Assets\Style\Sad.jpg" />
+    <Content Include="Assets\Style\Sad.png" />
+    <Content Include="Assets\Style\Scene.jpg" />
+    <Content Include="Assets\Style\Scene.png" />
+    <Content Include="Assets\Style\Thanks.jpg" />
+    <Content Include="Assets\Style\Thanks.png" />
+    <Content Include="Assets\Style\Time.jpg" />
+    <Content Include="Assets\Style\Time.png" />
+    <Content Include="Assets\Tile\LOGO_WIDE.scale-100.png" />
+    <Content Include="Assets\Tile\LOGO_WIDE_TRAN.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Font\Aileron-Regular.otf" />
+    <Content Include="Font\Bitter-Regular.otf" />
+    <Content Include="Font\BLKCHCRY.TTF" />
+    <Content Include="Font\blockline.ttf" />
+    <Content Include="Font\ClubNight.ttf" />
+    <Content Include="Font\Cubos.ttf" />
+    <Content Include="Font\Digiform_demo.otf" />
+    <Content Include="Font\FAXT.ttf" />
+    <Content Include="Font\FOT-M.otf" />
+    <Content Include="Font\Frozen.ttf" />
+    <Content Include="Font\FZYTK.TTF" />
+    <Content Include="Font\HYLiLiangHeiJ.ttf" />
+    <Content Include="Font\HYLXJ.ttf" />
+    <Content Include="Font\Kelson Sans Regular.otf" />
+    <Content Include="Font\KrinkesDecorPERSONAL.ttf" />
+    <Content Include="Font\Mad Potato Bill.ttf" />
+    <Content Include="Font\Marta_Italic.otf" />
+    <Content Include="Font\MEPHISTO.TTF" />
+    <Content Include="Font\Modern-Vision.ttf" />
+    <None Include="Font\msyh.ttc" />
+    <Content Include="Font\norwester.otf" />
+    <Content Include="Font\NotoSansHans-DemiLight.otf" />
+    <Content Include="Font\Og.TTF" />
+    <Content Include="Font\penna.otf" />
+    <Content Include="Font\PRISTINA.TTF" />
+    <Content Include="Font\Reswysokr.otf" />
+    <Content Include="Font\Sigma Five Sans Italic.otf" />
+    <Content Include="Font\simfang.ttf" />
+    <Content Include="Font\SOFT ADDICTIONS.ttf" />
+    <Content Include="Font\STZHONGS.TTF" />
+    <Content Include="Font\Thank you Drf.ttf" />
+    <Content Include="Font\TpldKhangXiDictTrial.otf" />
+    <Content Include="Font\Western Bang Bang.ttf" />
+    <None Include="Font\wqy-microhei.ttc" />
+    <None Include="project.json" />
+    <PRIResource Include="Strings\zh-CN\Resources.resw" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\BasePage.cs" />
+    <Compile Include="Converter\DownloadHintConverter.cs" />
+    <Compile Include="Helper\ContinuationManager.cs" />
+    <Compile Include="Helper\CropBitmap.cs" />
+    <Compile Include="Helper\HttpHelper.cs" />
+    <Compile Include="Helper\ImageHandleHelper.cs" />
+    <Compile Include="Helper\ImageSaveResult.cs" />
+    <Compile Include="Helper\MomentConfig.cs" />
+    <Compile Include="Helper\SelectedRegion.cs" />
+    <Compile Include="Helper\StatusBarHelper.cs" />
+    <Compile Include="Helper\SuspensionManager.cs" />
+    <Compile Include="Helper\TitleBarHelper.cs" />
+    <Compile Include="ImageHandlePage.xaml.cs">
+      <DependentUpon>ImageHandlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AppUtils.cs" />
+    <Compile Include="Model\DataContext.cs" />
+    <Compile Include="Model\FileManager.cs" />
+    <Compile Include="Model\GetPixelsException.cs" />
+    <Compile Include="Model\LocalizedStrings.cs" />
+    <Compile Include="Model\MomentStyle.cs" />
+    <Compile Include="Model\PageNavigateData.cs" />
+    <Compile Include="Model\TagCat.cs" />
+    <Compile Include="NewMainPage.xaml.cs">
+      <DependentUpon>NewMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingPage.xaml.cs">
+      <DependentUpon>SettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\SettingContent.xaml.cs">
+      <DependentUpon>SettingContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\StylesViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="MyerMomentUWP_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\LocalStyleConfig.txt" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ImageHandlePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NewMainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SettingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControl\SettingContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="External.WeChat">
+      <HintPath>..\WeChatSDK\External.WeChat.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.ProtocolBuffersLite">
+      <HintPath>..\WeChatSDK\Google.ProtocolBuffersLite.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ContentDialogEx\ContentDialogEx\ContentDialogEx.csproj">
+      <Project>{5d4b47df-d685-4fe9-9ad4-ebc3fc812e2c}</Project>
+      <Name>ContentDialogEx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JP.Utils\JP.Utils.csproj">
+      <Project>{7e22106b-24ab-49b3-b09d-255cc07fc159}</Project>
+      <Name>JP.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WeiboSDK\WeiboSDK.csproj">
+      <Project>{0b2a4b82-de1c-4020-b64b-8f9f0a398bfe}</Project>
+      <Name>WeiboSDK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsMobile, Version=10.0.10240.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

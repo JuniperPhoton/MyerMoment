@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:build="http://schemas.microsoft.com/developer/appx/2012/build" IgnorableNamespaces="build">
+  <!--
+    此包清单文件由生成过程生成。
+
+    如果重新生成此文件，将丢失对其所做的更改。若要更正此文件中的错误，请编辑源 .appxmanifest 文件。
+
+    有关程序包清单文件的详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=241727
+  -->
+  <Identity Name="acf7c27f-1316-4139-a7e2-6e1b118f091d" Publisher="CN=liangjie" Version="1.1.0.0" ProcessorArchitecture="x86" />
+  <Properties>
+    <DisplayName>WeiboCSharpSample</DisplayName>
+    <PublisherDisplayName>liangjie</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="EN-US" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="WeiboCSharpSample.exe" EntryPoint="WeiboCSharpSample.App">
+      <m2:VisualElements DisplayName="WeiboCSharpSample" Description="WeiboCSharpSample" BackgroundColor="#464646" ForegroundText="light" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png">
+        <m2:DefaultTile>
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:SplashScreen Image="Assets\SplashScreen.png" />
+      </m2:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+  <Extensions>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
+        <Path>CLRHost.dll</Path>
+        <ActivatableClass ActivatableClassId="RestSharp.RestResponse" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.HttpCookie" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Validation.Validate" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Validation.Require" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.FileParameter" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.HttpResponse" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Deserializers.XmlDeserializer" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Deserializers.JsonDeserializer" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Deserializers.XmlAttributeDeserializer" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Deserializers.DotNetXmlDeserializer" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.HttpHeader" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.NtlmAuthenticator" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Serializers.XmlSerializer" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Serializers.DotNetXmlSerializer" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Serializers.JsonSerializer" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.HttpBasicAuthenticator" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.HttpFile" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Authenticators.OAuth.OAuthWebQueryInfo" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Authenticators.OAuth1Authenticator" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.HttpParameter" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.DateFormat" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.RestResponseCookie" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Http" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.RestClient" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Extensions.ReflectionExtensions" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Extensions.MiscExtensions" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Extensions.StringExtensions" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.SimpleAuthenticator" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.RestRequest" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.RestClientExtensions" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="RestSharp.Parameter" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.CmdShortenUrl" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.OAuthErrRes" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.SdkAuthError" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.CmdPostMessage" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.SdkData" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.SdkResponse" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.ErrorRes" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.CmdFriendShip" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.SdkNetEngine" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.CmdUserTimeline" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.CmdPostMsgWithPic" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.CmdAtUsers" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.CmdTimelines" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.ClientOAuth" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="WeiboSDKForWinRT.SdkAuth2Res" ThreadingModel="both" />
+      </InProcessServer>
+    </Extension>
+  </Extensions>
+  <build:Metadata>
+    <build:Item Name="TargetFrameworkMoniker" Value=".NETCore,Version=v4.5.1" />
+    <build:Item Name="VisualStudio" Version="12.0" />
+    <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Professional 2013" />
+    <build:Item Name="OperatingSystem" Version="6.3.9600.16384 (winblue_rtm.130821-1623)" />
+    <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="12.0.31101.0" />
+    <build:Item Name="ProjectGUID" Value="{E7407DB7-15AD-4B08-B3DC-8247F3D06A0C}" />
+    <build:Item Name="Microsoft.Windows.UI.Xaml.Build.Tasks.dll" Version="12.0.30501.0" />
+    <build:Item Name="MakePri.exe" Version="6.3.9600.17298 (winblue.141024-1500)" />
+  </build:Metadata>
+</Package>
