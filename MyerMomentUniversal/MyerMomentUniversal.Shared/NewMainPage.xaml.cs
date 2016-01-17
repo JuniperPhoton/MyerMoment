@@ -123,7 +123,7 @@ namespace MyerMomentUniversal
                 await Task.Delay(TimeSpan.FromSeconds(0.5));
                 NavigateStory.Completed += ((sc, ec) =>
                   {
-                      if(!LocalSettingHelper.IsExist("Goodbye"))
+                      if(!LocalSettingHelper.HasValue("Goodbye"))
                       {
                           GoodbyeStory.Begin();
                           LocalSettingHelper.AddValue("Goodbye", true);

@@ -16,9 +16,9 @@ using JP.Utils.Data;
 
 namespace MyerMomentUniversal.ViewModel
 {
-    public class StylesViewModel:ViewModelBase
+    public class StylesViewModel : ViewModelBase
     {
-       
+
 
         public List<string> InstalledStylesList = new List<string>();
 
@@ -59,7 +59,7 @@ namespace MyerMomentUniversal.ViewModel
             }
             set
             {
-                if(_newStyles!=value)
+                if (_newStyles != value)
                 {
                     _newStyles = value;
                     RaisePropertyChanged(() => NewStyles);
@@ -68,7 +68,7 @@ namespace MyerMomentUniversal.ViewModel
                         NoItemsVisibility = Visibility.Visible;
                     }
                 }
-              
+
             }
         }
 
@@ -114,14 +114,14 @@ namespace MyerMomentUniversal.ViewModel
 
             //tcs = new TaskCompletionSource<int>();
 
-            
+
             IsLoadingVisibility = Visibility.Collapsed;
         }
 
         public async Task ConfigLocalAsync()
         {
-            var task1=ConfigPackageStyle();
-            var task2= ConfigInstalledStyle();
+            var task1 = ConfigPackageStyle();
+            var task2 = ConfigInstalledStyle();
             await task1;
             await task2;
             //Task.WaitAll(new Task[2] { task1, task2 });
@@ -166,8 +166,8 @@ namespace MyerMomentUniversal.ViewModel
                     if (file.DisplayName.EndsWith("2")) continue;
                     var newStyle = new MomentStyle(file.DisplayName, new Uri(file.Path), new Uri(file.Path));
                     newStyle.SetUpInstalledStyle();
-                    PackageStyles.Insert(0,newStyle);
-                    
+                    PackageStyles.Insert(0, newStyle);
+
                     InstalledStylesList.Add(file.DisplayName);
                 }
 
@@ -182,12 +182,12 @@ namespace MyerMomentUniversal.ViewModel
                   });
                 timer.Start();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 await ExceptionHelper.WriteRecord(e);
                 //tcs.SetResult(0);
             }
-           
+
         }
 
 
@@ -203,7 +203,7 @@ namespace MyerMomentUniversal.ViewModel
                     NoItemsVisibility = Visibility.Visible;
                     return;
                 }
-                
+
 
                 IsLoadingVisibility = Visibility.Visible;
                 NewStyles = new ObservableCollection<MomentStyle>();
@@ -237,11 +237,11 @@ namespace MyerMomentUniversal.ViewModel
                 timer.Start();
 
             }
-            catch(Exception )
+            catch (Exception)
             {
 
             }
-            
+
         }
 
         public async Task DownloadFullsizeCommand(string name)
@@ -253,15 +253,15 @@ namespace MyerMomentUniversal.ViewModel
             });
             if (style != null && !style.IsDownloaded)
             {
-                var success=await style.GetStyle(StyleFileType.FullSize);
-                if(success)
+                var success = await style.GetStyle(StyleFileType.FullSize);
+                if (success)
                 {
                     NewStyles.Remove(style);
                     PackageStyles.Insert(0, style);
 
                     LocalSettingHelper.AddValue("NewStyle", "1");
 
-                    if(NewStyles.Count==0)
+                    if (NewStyles.Count == 0)
                     {
                         NoItemsVisibility = Visibility.Visible;
                     }
@@ -271,44 +271,41 @@ namespace MyerMomentUniversal.ViewModel
 
         public async Task DeleteStyle(string name)
         {
-            var delete=await DeleteStyleFile(name);
-            if(!delete)
+            var delete = await DeleteStyleFile(name);
+            if (!delete)
             {
                 return;
             }
             InstalledStylesList.Remove(InstalledStylesList.ToList().Find(n =>
             {
-                if (n ==name) return true;
+                if (n == name) return true;
                 else return false;
             }));
-            PackageStyles.Remove(PackageStyles.ToList().Find(s=>
+            PackageStyles.Remove(PackageStyles.ToList().Find(s =>
             {
                 if (s.NameID == name) return true;
                 else return false;
             }));
-            
+
         }
 
         private async Task<bool> DeleteStyleFile(string displayName)
         {
-            return await ExceptionHelper.TryExecute<bool>(async () =>
+            var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("WebStyles");
+            var thumbFile = await folder.TryGetFileAsync(displayName + ".png");
+            if (thumbFile == null)
             {
-                var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("WebStyles");
-                var thumbFile = await JP.Utils.Data.StorageFileHandleHelper.TryGetFile(folder, displayName + ".png");
-                if(thumbFile==null)
-                {
-                    return false;
-                }
-                var fullSizeFile = await JP.Utils.Data.StorageFileHandleHelper.TryGetFile(folder, displayName + "2.png");
-                if(fullSizeFile==null)
-                {
-                    return false;
-                }
-                await thumbFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
-                await fullSizeFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+                return false;
+            }
+            var fullSizeFile = await folder.TryGetFileAsync(displayName + "2.png");
+            if (fullSizeFile == null)
+            {
+                return false;
+            }
+            await thumbFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
+            await fullSizeFile.DeleteAsync(StorageDeleteOption.PermanentDelete);
 
-                return true;
-            });     
+            return true;
         }
     }
 }

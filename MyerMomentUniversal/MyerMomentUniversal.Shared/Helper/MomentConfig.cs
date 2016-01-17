@@ -12,12 +12,12 @@ namespace MyerMomentUniversal.Helper
         public static void InitialMomentConfig()
         {
             
-            if(!LocalSettingHelper.IsExist("Position"))
+            if(!LocalSettingHelper.HasValue("Position"))
             {
                 LocalSettingHelper.AddValue("Position", "0");
             }
 
-            if (!LocalSettingHelper.IsExist("QualityCompress"))
+            if (!LocalSettingHelper.HasValue("QualityCompress"))
             {
 #if WINDOWS_PHONE_APP
                 LocalSettingHelper.AddValue("QualityCompress", "0");
@@ -26,12 +26,12 @@ namespace MyerMomentUniversal.Helper
 #endif
             }
 
-            if (!LocalSettingHelper.IsExist("TileColor"))
+            if (!LocalSettingHelper.HasValue("TileColor"))
             {
                 LocalSettingHelper.AddValue("TileColor", "1");
             }
 
-            if(!LocalSettingHelper.IsExist("NewStyle"))
+            if(!LocalSettingHelper.HasValue("NewStyle"))
             {
                 LocalSettingHelper.AddValue("NewStyle", "1");
             }

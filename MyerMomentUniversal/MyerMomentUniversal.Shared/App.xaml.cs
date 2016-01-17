@@ -55,6 +55,12 @@ namespace MyerMomentUniversal
             this.Suspending += this.OnSuspending;
 
             App.Current.RequestedTheme = ApplicationTheme.Dark;
+            App.Current.UnhandledException += Current_UnhandledException;
+        }
+
+        private void Current_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            e.Handled = true;
         }
 
         /// <summary>
@@ -72,7 +78,7 @@ namespace MyerMomentUniversal
             }
 #endif
 
-            if (LocalSettingHelper.IsExist("AppLang") == false)
+            if (LocalSettingHelper.HasValue("AppLang") == false)
             {
                 var lang = Windows.System.UserProfile.GlobalizationPreferences.Languages[0];
                 if (lang.Contains("zh"))
