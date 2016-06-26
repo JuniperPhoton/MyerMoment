@@ -219,7 +219,7 @@
                         </Border>
                     </Button>
                 </StackPanel>
-                <HyperlinkButton x:Uid="PrivacyHLB" NavigateUri="http://121.41.21.21/myermomentpolicy.html" Content="Privacy policy" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="White" Margin="0,0,0,10" FontSize="26.667"/>
+                <HyperlinkButton x:Uid="PrivacyHLB" NavigateUri="http://juniperphoton.net/myermoment/privacy.html" Content="Privacy policy" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="White" Margin="0,0,0,10" FontSize="26.667"/>
             </Grid>
         </Grid>
         <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed" Opacity="0">
@@ -232,26 +232,25 @@
                     <RowDefinition Height="70"/>
                     <RowDefinition/>
                     <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
                 </Grid.RowDefinitions>
-
-                <Border Background="Black" Opacity="1" Grid.RowSpan="3"/>
-                <TextBlock Foreground="{StaticResource MomentThemeColor}" FontSize="26.667" VerticalAlignment="Center" HorizontalAlignment="Center" >
-            	<Run Text="是时候说再见了 " FontWeight="Bold" />
-            	<Run Foreground="#33FFFFFF" FontWeight="Bold" Text="CHINESE ONLY"/>
+                <Border Background="Black" Opacity="1" Grid.RowSpan="4"/>
+                <TextBlock Foreground="{StaticResource MomentThemeColor}" FontSize="26.667" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" >
+            	    <Run Text="更好的已经在前方" FontWeight="Bold"/>
                 </TextBlock>
-                <TextBlock Foreground="White" FontSize="20" Grid.Row="1" TextWrapping="Wrap" Padding="0" Margin="10,10,10,0" FontWeight="Light">
-            	<Run Text="十分感谢一直支持着 MyerMoment 的各位用户，我不知道有没有承诺过是否会一直坚持维护 MyerMoment 下去，如果我确实说过这样的话，请允许我说一声抱歉。MyerMoment 即日起会暂停维护，但是它不会下架，你依然能从应用商店下载手机和电脑的版本。"/>
-            	<LineBreak/>
-                <LineBreak/>
-            	<Run Text="但是，好的照片加字应用并不会从此绝迹。在不久的未来，将会有一款更加强大的同样好用有趣的应用加入 Windows 10 的家庭。敬请期待。"/>
-                </TextBlock>
-                <Button Click="GoodbyeClick"  Style="{StaticResource ButtonStyle1}" Grid.Row="2" HorizontalAlignment="Stretch" Padding="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinHeight="0" MinWidth="0" VerticalAlignment="Stretch" Margin="10,0">
-                    <Border Background="{StaticResource MomentThemeColor}">
+                 <TextBlock Grid.Row="1" Text="十分感谢一直支持着 MyerMoment 的各位用户，更棒的中文拍照应用 ｢黄油相机｣ 已经登陆 Windows 10 平台，更加丰富的字体和图形，更加有趣的模板，为你的照片更添特色。点击下面的按钮下载。" Foreground="White" FontSize="22.667" TextWrapping="Wrap" Padding="0" Margin="10,10,10,0" FontWeight="Light">
+                    </TextBlock>
+                <Button Click="Button_Click" Style="{StaticResource ButtonStyle1}" Grid.Row="2" HorizontalAlignment="Stretch" Padding="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinHeight="0" MinWidth="0" VerticalAlignment="Stretch" Margin="10,0" Background="{x:Null}">
+                    <Border Background="#FFFFE190">
+                        <TextBlock Text="下载去" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </Button>
+                <Button Click="GoodbyeClick"  Style="{StaticResource ButtonStyle1}" Grid.Row="3" HorizontalAlignment="Stretch" Padding="0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinHeight="0" MinWidth="0" VerticalAlignment="Stretch" Margin="10,0" Background="{x:Null}">
+                    <Border Background="#FFFFC733">
                         <TextBlock Text="好的" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </Button>
             </Grid>
-
         </Grid>
     </Grid>
 </Page>

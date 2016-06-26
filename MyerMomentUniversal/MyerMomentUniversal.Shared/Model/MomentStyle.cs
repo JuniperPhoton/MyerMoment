@@ -20,7 +20,7 @@ using Windows.ApplicationModel.Resources;
 
 namespace MyerMomentUniversal.Model
 {
-    public class MomentStyle:ViewModelBase
+    public class MomentStyle : ViewModelBase
     {
         private const int BACKGRDIMAGE_NUM = 19;
 
@@ -58,7 +58,7 @@ namespace MyerMomentUniversal.Model
         private bool _isDownloaded;
         public bool IsDownloaded
         {
-           get
+            get
             {
                 return _isDownloaded;
             }
@@ -83,7 +83,7 @@ namespace MyerMomentUniversal.Model
                 else return downStr;
             }
         }
-       
+
         public static int ImageTag { get; set; } = 1;
         public BitmapImage RandomBackGrd
         {
@@ -153,7 +153,7 @@ namespace MyerMomentUniversal.Model
         /// <param name="nameID"></param>
         /// <param name="thumbUri"></param>
         /// <param name="fullSizeUri"></param>
-        public MomentStyle(string nameID,Uri thumbUri,Uri fullSizeUri)
+        public MomentStyle(string nameID, Uri thumbUri, Uri fullSizeUri)
         {
             this.NameID = nameID;
             this.thumbUri = thumbUri;
@@ -174,23 +174,20 @@ namespace MyerMomentUniversal.Model
         }
 
 
-        public Task CheckThumbAndSaveAsync()
+        public async Task CheckThumbAndSaveAsync()
         {
-            return ExceptionHelper.TryExecute(async () =>
-            {
-                var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
+            var folder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("WebStyles", CreationCollisionOption.OpenIfExists);
 
-                var thumbFile = await StorageFileHandleHelper.TryGetFile(folder, this.NameID + "2" + ".png");
-                if (thumbFile != null)
-                {
-                    PreviewImage = new BitmapImage();
-                    PreviewImage.UriSource = new Uri(thumbFile.Path);
-                }
-                else
-                {
-                    await GetStyle(StyleFileType.Thumb);
-                }
-            }); 
+            var thumbFile = await folder.TryGetFileAsync(this.NameID + "2" + ".png");
+            if (thumbFile != null)
+            {
+                PreviewImage = new BitmapImage();
+                PreviewImage.UriSource = new Uri(thumbFile.Path);
+            }
+            else
+            {
+                await GetStyle(StyleFileType.Thumb);
+            }
         }
 
         public async Task<bool> GetStyle(StyleFileType type)
@@ -200,7 +197,7 @@ namespace MyerMomentUniversal.Model
                 IsDownloadingVisibility = Visibility.Visible;
 
                 var fileName = this.NameID + (type == StyleFileType.Thumb ? "2" : "") + ".png";
-                var file = await DownLoadAndSaveAsync(fileName, type==StyleFileType.Thumb?thumbUri:fullSizeUri);
+                var file = await DownLoadAndSaveAsync(fileName, type == StyleFileType.Thumb ? thumbUri : fullSizeUri);
 
                 if (file == null) return false;
 
@@ -219,7 +216,7 @@ namespace MyerMomentUniversal.Model
                 IsDownloadingVisibility = Visibility.Collapsed;
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -230,7 +227,7 @@ namespace MyerMomentUniversal.Model
             try
             {
                 HttpClient client = new HttpClient();
-                var response =await client.GetAsync(uri);
+                var response = await client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     var buffer = await response.Content.ReadAsBufferAsync();
@@ -275,21 +272,17 @@ namespace MyerMomentUniversal.Model
                 }
                 else return null;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return null;
             }
         }
 
-        private Task<IRandomAccessStream> GetStreamFromFileAsync(StorageFile fileToOpen)
+        private async Task<IRandomAccessStream> GetStreamFromFileAsync(StorageFile fileToOpen)
         {
-            return ExceptionHelper.TryExecute(async() =>
-            {
-                var fileStream = await fileToOpen.OpenStreamForReadAsync();
+            var fileStream = await fileToOpen.OpenStreamForReadAsync();
 
-                return fileStream.AsRandomAccessStream();
-            });
-           
+            return fileStream.AsRandomAccessStream();
         }
 
     }

@@ -18,7 +18,7 @@
     <PackageCertificateKeyFile>MyerMomentUniversal.Windows_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <PackageCertificateThumbprint>FD19B4DD63C69DF794452D59119494894C6CBCF4</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>0BC70402B368F0384029467536927721D61F7DF8</PackageCertificateThumbprint>
     <NuGetPackageImportStamp>59ab78b7</NuGetPackageImportStamp>
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
@@ -172,6 +172,18 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.2.0.37222, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmLightLibs.5.2.0.0\lib\windows81\GalaSoft.MvvmLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.2.0.37222, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmLightLibs.5.2.0.0\lib\windows81\GalaSoft.MvvmLight.Extras.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.2.0.37226, Culture=neutral, PublicKeyToken=7a953f43091b5a17, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MvvmLightLibs.5.2.0.0\lib\windows81\GalaSoft.MvvmLight.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -183,13 +195,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\JP.Utils\JP.Utils\JP.Utils.csproj">
-      <Project>{9d13cebe-a582-4729-b859-22fc78653a56}</Project>
+    <ProjectReference Include="..\..\..\JP.Utils\JP.Utils.csproj">
+      <Project>{7e22106b-24ab-49b3-b09d-255cc07fc159}</Project>
       <Name>JP.Utils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NotificationsExtensions\NotificationsExtensions.csproj">
-      <Project>{6e87464b-b064-40ca-8161-7c18c337adff}</Project>
-      <Name>NotificationsExtensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\WeiboSDK_RT\WeiboSDKforWinRT\WeiboSDKForWinRT.csproj">
       <Project>{680c312d-ae8c-41ce-a043-a8b5825a467d}</Project>

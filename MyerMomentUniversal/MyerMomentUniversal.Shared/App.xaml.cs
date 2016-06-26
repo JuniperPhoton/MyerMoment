@@ -72,7 +72,7 @@ namespace MyerMomentUniversal
             }
 #endif
 
-            if (LocalSettingHelper.IsExist("AppLang") == false)
+            if (LocalSettingHelper.HasValue("AppLang") == false)
             {
                 var lang = Windows.System.UserProfile.GlobalizationPreferences.Languages[0];
                 if (lang.Contains("zh"))

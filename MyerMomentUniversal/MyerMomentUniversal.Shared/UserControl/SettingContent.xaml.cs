@@ -1,5 +1,4 @@
 ﻿using JP.Utils.Data;
-using NotificationsExtensions.TileContent;
 using Windows.ApplicationModel.Resources.Core;
 using Windows.Globalization;
 using Windows.UI.Notifications;
@@ -81,25 +80,25 @@ namespace MyerMomentUniversal
                 {
                     case 1:
                         {
-                            var smallTileContent = TileContentFactory.CreateTileSquare71x71Image();
-                            smallTileContent.Image.Src = "ms-appx:///Assets/newLogo_tran_71.png";
+                            //var smallTileContent = TileContentFactory.CreateTileSquare71x71Image();
+                            //smallTileContent.Image.Src = "ms-appx:///Assets/newLogo_tran_71.png";
 
-                            //medium
-                            var mediumTileContent = TileContentFactory.CreateTileSquare150x150Image();
-                            mediumTileContent.RequireSquare71x71Content = true;
-                            mediumTileContent.Square71x71Content = smallTileContent;
-                            mediumTileContent.Image.Src = "ms-appx:///Assets/newLogo_tran.png";
-                            mediumTileContent.Branding = TileBranding.Name;
+                            ////medium
+                            //var mediumTileContent = TileContentFactory.CreateTileSquare150x150Image();
+                            //mediumTileContent.RequireSquare71x71Content = true;
+                            //mediumTileContent.Square71x71Content = smallTileContent;
+                            //mediumTileContent.Image.Src = "ms-appx:///Assets/newLogo_tran.png";
+                            //mediumTileContent.Branding = TileBranding.Name;
 
-                            //wide
-                            var wideTileContent = TileContentFactory.CreateTileWide310x150Image();
-                            wideTileContent.Square150x150Content = mediumTileContent;
-                            wideTileContent.Image.Src = "ms-appx:///Asset/Tile/LOGO_WIDE_TRAN.png";
-                            wideTileContent.Branding = TileBranding.None;
+                            ////wide
+                            //var wideTileContent = TileContentFactory.CreateTileWide310x150Image();
+                            //wideTileContent.Square150x150Content = mediumTileContent;
+                            //wideTileContent.Image.Src = "ms-appx:///Asset/Tile/LOGO_WIDE_TRAN.png";
+                            //wideTileContent.Branding = TileBranding.None;
 
-                            var notification = wideTileContent.CreateNotification();
+                            //var notification = wideTileContent.CreateNotification();
 
-                            TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
+                            //TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
                         }
                         break;
                     case 0:

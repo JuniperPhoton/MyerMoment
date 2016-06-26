@@ -14,6 +14,7 @@ using Windows.UI;
 using Windows.ApplicationModel.Activation;
 using MyerMomentUniversal.Helper;
 using JP.Utils.Data;
+using Windows.System;
 
 namespace MyerMomentUniversal
 {
@@ -123,19 +124,16 @@ namespace MyerMomentUniversal
                 await Task.Delay(TimeSpan.FromSeconds(0.5));
                 NavigateStory.Completed += ((sc, ec) =>
                   {
-                      if(!LocalSettingHelper.IsExist("Goodbye"))
+                      if(!LocalSettingHelper.HasValue("Goodbye6"))
                       {
                           GoodbyeStory.Begin();
-                          LocalSettingHelper.AddValue("Goodbye", true);
+                          LocalSettingHelper.AddValue("Goodbye6", true);
                       }
                   });
                 NavigateStory.Begin();
                 _isNavigate = true;
                 BackgrdStory.Begin();
-
-                
-            }
-            
+            } 
         }
 
         private void GoodbyeClick(object sender,RoutedEventArgs e)
@@ -150,7 +148,12 @@ namespace MyerMomentUniversal
 #endif
         }
 
-       
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+           await Launcher.LaunchUriAsync(new Uri("https://www.microsoft.com/store/apps/9nblggh5fp0h"));
+        }
+
+
 #if WINDOWS_PHONE_APP
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
